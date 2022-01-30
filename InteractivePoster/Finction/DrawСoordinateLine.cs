@@ -45,5 +45,52 @@ namespace InteractivePoster.Finction
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
         }
+        public void DrawArrow(double coord, Orientation orientation, double th, Canvas cv)
+        {
+            line = new Line()
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = th,
+                SnapsToDevicePixels = true
+            };
+            if (orientation == Orientation.Horizontal)
+            {
+                line.X1 = maxX;
+                line.X2 = convertX(count / 2 - 1);
+                line.Y1 = convertCoord(coord);
+                line.Y2 = convertY(0.5);
+            }
+            if (orientation == Orientation.Vertical)
+            {
+                line.Y1 = 0;
+                line.Y2 = convertY(count / (-2) + 1);
+                line.X1 = convertCoord(coord);
+                line.X2 = convertX(0.5);
+            }
+            line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+            cv.Children.Add(line);
+            line = new Line()
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = th,
+                SnapsToDevicePixels = true
+            };
+            if (orientation == Orientation.Horizontal)
+            {
+                line.X1 = maxX;
+                line.X2 = convertX(count / 2 - 1);
+                line.Y1 = convertCoord(coord);
+                line.Y2 = convertY(-0.5);
+            }
+            if (orientation == Orientation.Vertical)
+            {
+                line.Y1 = 0;
+                line.Y2 = convertY(count / (-2) + 1);
+                line.X1 = convertCoord(coord);
+                line.X2 = convertX(-0.5);
+            }
+            line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+            cv.Children.Add(line);
+        }
     }
 }

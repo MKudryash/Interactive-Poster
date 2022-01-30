@@ -33,7 +33,7 @@
             <StackPanel>
                 <TextBlock Text="Гипербола"  HorizontalAlignment="Center"/>
                 <RadioButton Content="Images/Circle.jpg"
-                             Tag="HiperboleTag"
+                             Tag="HyperboleTag"
                             Height="150"
                             Width="150"
                              Style="{StaticResource MenuButtonTheme}"
