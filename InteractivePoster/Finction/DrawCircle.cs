@@ -5,32 +5,12 @@ using System.Windows.Shapes;
 
 namespace InteractivePoster.Finction
 {
-    class DrawCircle
+    class DrawCircle:GeometricPatterns
     {
        
-            double maxX;//максиммум по оси Х (масштабы по Y также пересчитываем через значения по Х, иначе круг может получиться не круглым, а квадрат не квадратным)   
-            double radius;//радиус окружности
-            double count;//масштаб (количество клеток)
+            
             Ellipse circle;//непосредственно сама окружность
-            /// <summary>
-            /// метод для преобразования координаты Х их канвы в декартово значение
-            /// </summary>
-            /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
-            /// <returns>актуальная координата Х на канве</returns>
-            double convertX(double x)
-            {
-                //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
-                return maxX / 2 + x * (maxX / count) - radius;
-            }
-            /// <summary>
-            /// метод для преобразования координаты Y их канвы в декартово значение
-            /// </summary>
-            /// <param name="y">декартова координата (как нам надо с точки зрения математики)</param>
-            /// <returns>актуальная координата Y на канве</returns>
-            double convertY(double y)
-            {
-                return maxX / 2 - y * (maxX / count) - radius;
-            }
+         
             /// <summary>
             /// Конструктор класса
             /// </summary>

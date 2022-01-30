@@ -5,18 +5,12 @@ using System.Windows.Shapes;
 
 namespace InteractivePoster.Finction
 {
-    class DrawСoordinateLine
+    class DrawСoordinateLine : GeometricPatterns
     {
 
-        double maxX;
-        double maxY;
-        double count;
         Line line;
         Orientation orientation;//для вертикальной или горизонтальной линии
-        double convertCoord(double coord)
-        {
-            return maxX / 2 + coord * (maxX / count);
-        }
+
         /// <summary>
         /// конструктор класса
         /// </summary>
