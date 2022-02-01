@@ -32,7 +32,7 @@
                         PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
             </GroupBox>
-            <TextBox Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay}"/>
+            <TextBox Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <GroupBox Header="Радиус окружности">
                 <Slider x:Name="slRadius" SmallChange="1" LargeChange="1" Value="1" 
                         Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
