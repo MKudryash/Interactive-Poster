@@ -40,7 +40,7 @@ namespace InteractivePoster.Finction
         void DrawText(double x, double y, Canvas cv)
         {
             TextBlock TB = new TextBlock();
-            TB.Text = "О("+x.ToString()+";"+(y / (-1)).ToString()+")";
+            TB.Text = "О("+x.ToString("F1")+";"+(y / (-1)).ToString("F1")+")";
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoord(x));
             TB.SetValue(Canvas.TopProperty, convertCoord(y));
@@ -54,18 +54,18 @@ namespace InteractivePoster.Finction
                 SnapsToDevicePixels = true
             };
             line.X1 =  convertCoord(x);
-            line.X2 = convertCoord(x+r*Math.Cos(45));
+            line.X2 = convertCoord(x + r * Math.Cos(convert(45)));
             line.Y1 = convertCoord(y);
-            line.Y2 = convertCoord(y+r*Math.Sin(45));
+            line.Y2 = convertCoord(y + r * Math.Sin(convert(-45)));
 
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
 
             TextBlock TB = new TextBlock();
-            TB.Text = "M(x0;y0)";
+            TB.Text = "О(" + (x + r * Math.Cos(convert(45))).ToString("F1") + ";" + (y + r * Math.Sin(convert(45))).ToString("F1") + ")";
             cv.Children.Add(TB);
-            TB.SetValue(Canvas.LeftProperty, convertCoord(x + r * Math.Cos(45)));
-            TB.SetValue(Canvas.TopProperty, convertCoord(y + r * Math.Sin(45)));
+            TB.SetValue(Canvas.LeftProperty, convertCoord(x + r * Math.Cos(convert(45))));
+            TB.SetValue(Canvas.TopProperty, convertCoord(y + r * Math.Sin(convert(-45))));
         } //Орисовка радиуса + текст с точкой на окружности
 
 

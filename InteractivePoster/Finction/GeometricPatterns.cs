@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -59,6 +60,9 @@ namespace InteractivePoster.Finction
         {
             return maxX / 2 + y * (maxX / count) - radius;
         }
-       
+        public double convert(double r)
+        {
+            return r/60;
+        }
     }
 }

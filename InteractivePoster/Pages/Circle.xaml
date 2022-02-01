@@ -24,18 +24,19 @@
                 <Slider x:Name="slCoordX" SmallChange="1" LargeChange="1" Value="0"
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency="1"/>
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
             </GroupBox>
             <GroupBox Header="Смещение по оси ординат">
                 <Slider x:Name="slCoordY" SmallChange="1" LargeChange="1" Value="0" 
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency="1"/>
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
             </GroupBox>
+            <TextBox Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay}"/>
             <GroupBox Header="Радиус окружности">
                 <Slider x:Name="slRadius" SmallChange="1" LargeChange="1" Value="1" 
                         Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency="1"/>
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
             </GroupBox>
         </StackPanel>
         <Canvas x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
