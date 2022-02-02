@@ -63,7 +63,7 @@ namespace InteractivePoster.Finction
             if (orientation == Orientation.Vertical)
             {
                 line.Y1 = 0;
-                line.Y2 = convertY(count / (-2) + 1);
+                line.Y2 = convertY(count / 2 + 1);
                 line.X1 = convertCoordX(coord);
                 line.X2 = convertX(0.5);
             }
@@ -85,7 +85,7 @@ namespace InteractivePoster.Finction
             if (orientation == Orientation.Vertical)
             {
                 line.Y1 = 0;
-                line.Y2 = convertY(count / (-2) + 1);
+                line.Y2 = convertY(count / (2) + 1);
                 line.X1 = convertCoordX(coord);
                 line.X2 = convertX(-0.5);
             }

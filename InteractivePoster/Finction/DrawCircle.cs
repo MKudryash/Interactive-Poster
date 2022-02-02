@@ -16,6 +16,9 @@ namespace InteractivePoster.Finction
         /// <param name="y">Декартова ордината центра окружности</param>
         /// <param name="r">Радиус окружности в декартовой системе</param>
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
+        
+        
+        
         public DrawCircle(double x, double y, double r, Canvas cv)
         {
             count = Convert.ToDouble(cv.Tag);//получаем масштабы области
@@ -53,19 +56,19 @@ namespace InteractivePoster.Finction
                 StrokeThickness = 4,
                 SnapsToDevicePixels = true
             };
-            line.X1 =  convertCoordX(x);
-            line.X2 = convertCoordX(x + r * Math.Cos(convert(45)));
+            line.X1 = convertCoordX(x);
+            line.X2 = convertCoordX(x + r * Math.Cos(convert(MaxMinCoordinat.gradusValue)));
             line.Y1 = convertCoordY(y);
-            line.Y2 = convertCoordY(y + r * Math.Sin(convert(45)));
+            line.Y2 = convertCoordY(y + r * Math.Sin(convert(MaxMinCoordinat.gradusValue)));
 
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
 
             TextBlock TB = new TextBlock();
-            TB.Text = "О(" + (x + r * Math.Cos(convert(45))).ToString("F1") + ";" + (y + r * Math.Sin(convert(45))).ToString("F1") + ")";
+            TB.Text = "О(" + (x + r * Math.Cos(convert(MaxMinCoordinat.gradusValue))).ToString("F1") + ";" + (y + r * Math.Sin(convert(MaxMinCoordinat.gradusValue))).ToString("F1") + ")";
             cv.Children.Add(TB);
-            TB.SetValue(Canvas.LeftProperty, convertCoordX(x + r * Math.Cos(convert(45))));
-            TB.SetValue(Canvas.TopProperty, convertCoordY(y + r * Math.Sin(convert(45))));
+            TB.SetValue(Canvas.LeftProperty, convertCoordX(x + r * Math.Cos(convert(MaxMinCoordinat.gradusValue))));
+            TB.SetValue(Canvas.TopProperty, convertCoordY(y + r * Math.Sin(convert(MaxMinCoordinat.gradusValue))));
         } //Орисовка радиуса + текст с точкой на окружности
 
 

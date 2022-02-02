@@ -40,6 +40,12 @@
                         Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
             </GroupBox>
+            <TextBox Text="{Binding ElementName=SlPoint,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <GroupBox Header="Точка M">
+                <Slider x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="45" 
+                        Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
+                        IsSnapToTickEnabled="True" TickFrequency="1"/>
+            </GroupBox>
         </StackPanel>
         <Canvas x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->

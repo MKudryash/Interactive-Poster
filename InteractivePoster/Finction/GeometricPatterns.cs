@@ -16,19 +16,26 @@ namespace InteractivePoster.Finction
         public event PropertyChangedEventHandler PropertyChanged;
         public double MaxValue { get; set; } = 9;
         public double MinValue { get; set; } = -9;
-        public double maxRadius { get; set; } = 10;
+        public   double maxRadius { get; set; } = 10;
+        public static int gradusValue { get; set; } = 45;
+        public  int GradusValue 
+        {
+            set {
+                gradusValue = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("gradusValue"));
+            }
+}
+
         public double MaxMinValueCoordinat
         {
             set
             {
                 MaxValue = value;
-                MinValue = value / (-1);
+                MinValue = value * (-1);
                 PropertyChanged(this, new PropertyChangedEventArgs("MaxValue"));
                 PropertyChanged(this, new PropertyChangedEventArgs("MinValue"));
             }
         }
-
-
     }
     class GeometricPatterns
     {
