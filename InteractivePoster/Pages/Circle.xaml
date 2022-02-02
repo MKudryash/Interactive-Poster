@@ -20,12 +20,14 @@
                         PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
             </GroupBox>
+            <TextBox Text="{Binding ElementName=slCoordX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <GroupBox Header="Смещение по оси абсцисс">
                 <Slider x:Name="slCoordX" SmallChange="1" LargeChange="1" Value="0"
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
             </GroupBox>
+            <TextBox Text="{Binding ElementName=slCoordY,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <GroupBox Header="Смещение по оси ординат">
                 <Slider x:Name="slCoordY" SmallChange="1" LargeChange="1" Value="0" 
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 

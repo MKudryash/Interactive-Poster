@@ -33,8 +33,8 @@ namespace InteractivePoster.Pages
             }
             DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background);
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
-            lineX.DrawArrow(0, Orientation.Horizontal, 3, Background);
-            lineY.DrawArrow(0, Orientation.Vertical, 3, Background);
+            //lineX.DrawArrow(0, Orientation.Horizontal, 3, Background);
+           // lineY.DrawArrow(0, Orientation.Vertical, 3, Background);
             // наша целевая окружность
             DrawCircle c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
             

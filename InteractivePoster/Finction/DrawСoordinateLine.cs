@@ -34,13 +34,13 @@ namespace InteractivePoster.Finction
             {
                 line.X1 = 0;
                 line.X2 = maxX;
-                line.Y1 = line.Y2 = convertCoord(coord);
+                line.Y1 = line.Y2 = convertCoordY(coord);
             }
             if (orientation == Orientation.Vertical)
             {
                 line.Y1 = 0;
                 line.Y2 = maxY;
-                line.X1 = line.X2 = convertCoord(coord); ;
+                line.X1 = line.X2 = convertCoordY(coord); ;
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
@@ -57,14 +57,14 @@ namespace InteractivePoster.Finction
             {
                 line.X1 = maxX;
                 line.X2 = convertX(count / 2 - 1);
-                line.Y1 = convertCoord(coord);
+                line.Y1 = convertCoordY(coord);
                 line.Y2 = convertY(0.5);
             }
             if (orientation == Orientation.Vertical)
             {
                 line.Y1 = 0;
                 line.Y2 = convertY(count / (-2) + 1);
-                line.X1 = convertCoord(coord);
+                line.X1 = convertCoordX(coord);
                 line.X2 = convertX(0.5);
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
@@ -79,14 +79,14 @@ namespace InteractivePoster.Finction
             {
                 line.X1 = maxX;
                 line.X2 = convertX(count / 2 - 1);
-                line.Y1 = convertCoord(coord);
+                line.Y1 = convertCoordY(coord);
                 line.Y2 = convertY(-0.5);
             }
             if (orientation == Orientation.Vertical)
             {
                 line.Y1 = 0;
                 line.Y2 = convertY(count / (-2) + 1);
-                line.X1 = convertCoord(coord);
+                line.X1 = convertCoordX(coord);
                 line.X2 = convertX(-0.5);
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);

@@ -37,9 +37,13 @@ namespace InteractivePoster.Finction
         public double maxY;
         public double count;
         public double radius;
-        public double convertCoord(double coord)
+        public double convertCoordX(double coord)
         {
             return maxX / 2 + coord * (maxX / count);
+        }
+        public double convertCoordY(double coord)
+        {
+            return maxX / 2 + coord*(-1) * (maxX / count);
         }
         /// <summary>
         /// метод для преобразования координаты Х их канвы в декартово значение
@@ -58,11 +62,11 @@ namespace InteractivePoster.Finction
         /// <returns>актуальная координата Y на канве</returns>
         public double convertY(double y)
         {
-            return maxX / 2 + y * (maxX / count) - radius;
+            return maxX / 2 + y/-1 * (maxX / count) - radius;
         }
         public double convert(double r)
         {
-            return r/60;
+            return r/180*Math.PI;
         }
     }
 }
