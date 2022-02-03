@@ -25,7 +25,7 @@ namespace InteractivePoster.Finction
                 gradusValue = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("gradusValue"));
             }
-}
+    }
 
         public double MaxMinValueCoordinat
         {
@@ -53,28 +53,6 @@ namespace InteractivePoster.Finction
         {
             return maxX / 2 + coord*(-1) * (maxX / count);
         }
-        /// <summary>
-        /// метод для преобразования координаты Х их канвы в декартово значение
-        /// </summary>
-        /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
-        /// <returns>актуальная координата Х на канве</returns>
-        public double convertX(double x)
-        {
-            //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
-            return maxX / 2 + x * (maxX / count) - radius;
-        }
-        /// <summary>
-        /// метод для преобразования координаты Y их канвы в декартово значение
-        /// </summary>
-        /// <param name="y">декартова координата (как нам надо с точки зрения математики)</param>
-        /// <returns>актуальная координата Y на канве</returns>
-        public double convertY(double y)
-        {
-            return maxX / 2 + y/-1 * (maxX / count) - radius;
-        }
-        public double convertRadian(double r)
-        {
-            return r/180*Math.PI;
-        }
+
     }
 }

@@ -16,15 +16,45 @@ namespace InteractivePoster.Finction
         /// <param name="y">Декартова ордината центра окружности</param>
         /// <param name="r">Радиус окружности в декартовой системе</param>
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
-        
-        
-        
+         
+         
+         
+        /// <summary>
+        /// метод для преобразования координаты Х их канвы в декартово значение
+        /// </summary>
+        /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
+        /// <returns>актуальная координата Х на канве</returns>
+        public double convertX(double x)
+        {
+            //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
+            return maxX / 2 + x * (maxX / count) - radius;
+        }
+        /// <summary>
+        /// метод для преобразования координаты Y их канвы в декартово значение
+        /// </summary>
+        /// <param name="y">декартова координата (как нам надо с точки зрения математики)</param>
+        /// <returns>актуальная координата Y на канве</returns>
+        public double convertY(double y)
+        {
+            return maxX / 2 + y / -1 * (maxX / count) - radius;
+        }
+        /// <summary>
+        /// метод для преобразования градусов в радиан
+        /// </summary>
+        /// <param name="r">значение в градусах (как нам надо с точки зрения математики)</param>
+        /// <returns>значаение в радианах</returns>
+        public double convertRadian(double r)
+        {
+            return r / 180 * Math.PI;
+        }
+
+        Canvas cv;
         public DrawCircle(double x, double y, double r, Canvas cv)
         {
             count = Convert.ToDouble(cv.Tag);//получаем масштабы области
             maxX = cv.ActualWidth; //получаем ширину канвы       
             radius = r * (maxX / count);//преобразуем радиус из декартовой системы
-
+            this.cv = cv;
             circle = new Ellipse()//задаем прочие параметры
             {
                 Width = 2 * radius,//ширина и длина по сути равна диаметру окружности
@@ -37,20 +67,24 @@ namespace InteractivePoster.Finction
             //в нужную точку канвы
             circle.SetValue(Canvas.LeftProperty, convertX(x));
             circle.SetValue(Canvas.TopProperty, convertY(y));
-
-            DrawRadius(x, y, cv, r);
-            DrawText(x, y, cv);
+            string text = "О(" + x.ToString("F1") + ";" + y.ToString("F1") + ")";
+            DrawRadius(x, y , r);
+            DrawText(x, y,text);
         }
-        void DrawText(double x, double y, Canvas cv)
+        void DrawText(double x, double y,string s)
         {
             TextBlock TB = new TextBlock();
-            TB.Text = "О("+x.ToString("F1")+";"+y.ToString("F1")+")";
+            TB.Text = s;
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
         } //Текст с центром окружности
-        void DrawRadius(double x, double y, Canvas cv, double r)
+        void DrawRadius(double x, double y, double r)
         {
+
+            double circleX = x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue));
+            double circleY = y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue));
+
             line = new Line()
             {
                 Stroke = Brushes.Blue,
@@ -58,18 +92,14 @@ namespace InteractivePoster.Finction
                 SnapsToDevicePixels = true
             };
             line.X1 = convertCoordX(x);
-            line.X2 = convertCoordX(x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue)));
+            line.X2 = convertCoordX(circleX);
             line.Y1 = convertCoordY(y);
-            line.Y2 = convertCoordY(y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue)));
+            line.Y2 = convertCoordY(circleY);
 
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
-
-            TextBlock TB = new TextBlock();
-            TB.Text = "M(" + (x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))).ToString("F1") + ";" + (y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))).ToString("F1") + ")";
-            cv.Children.Add(TB);
-            TB.SetValue(Canvas.LeftProperty, convertCoordX(x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))));
-            TB.SetValue(Canvas.TopProperty, convertCoordY(y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))));
+            string text = "M(" + circleX.ToString("F1") + ";" + circleY.ToString("F1") + ")";
+            DrawText(circleX, circleY, text);
         } //Орисовка радиуса + текст с точкой на окружности
 
 

@@ -45,7 +45,7 @@ namespace InteractivePoster.Finction
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
         }
-        public void DrawArrow(double coord, Orientation orientation, double th, Canvas cv)
+        public void DrawArrow(double x, double y, Orientation orientation, double th, Canvas cv)
         {
             line = new Line()
             {
@@ -55,17 +55,17 @@ namespace InteractivePoster.Finction
             };
             if (orientation == Orientation.Horizontal)
             {
-                line.X1 = maxX;
-                line.X2 = convertX(count / 2 - 1);
-                line.Y1 = convertCoordY(coord);
-                line.Y2 = convertY(0.5);
+                line.X1 = convertCoordX(x);
+                line.X2 = convertCoordX(x - 1);
+                line.Y1 = convertCoordY(y);
+                line.Y2 = convertCoordY(y + 0.5);
             }
-            if (orientation == Orientation.Vertical)
+            else
             {
-                line.Y1 = 0;
-                line.Y2 = convertY(count / 2 + 1);
-                line.X1 = convertCoordX(coord);
-                line.X2 = convertX(0.5);
+                line.X1 = convertCoordX(x);
+                line.X2 = convertCoordX(x + 0.5);
+                line.Y1 = convertCoordY(y);
+                line.Y2 = convertCoordY(y - 1);
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
@@ -77,17 +77,17 @@ namespace InteractivePoster.Finction
             };
             if (orientation == Orientation.Horizontal)
             {
-                line.X1 = maxX;
-                line.X2 = convertX(count / 2 - 1);
-                line.Y1 = convertCoordY(coord);
-                line.Y2 = convertY(-0.5);
+                line.X1 = convertCoordX(x);
+                line.X2 = convertCoordX(x - 1);
+                line.Y1 = convertCoordY(y);
+                line.Y2 = convertCoordY(y - 0.5);
             }
-            if (orientation == Orientation.Vertical)
+            else 
             {
-                line.Y1 = 0;
-                line.Y2 = convertY(count / (2) + 1);
-                line.X1 = convertCoordX(coord);
-                line.X2 = convertX(-0.5);
+                line.X1 = convertCoordX(x);
+                line.X2 = convertCoordX(x - 0.5);
+                line.Y1 = convertCoordY(y);
+                line.Y2 = convertCoordY(y - 1);
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
