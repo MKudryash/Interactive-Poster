@@ -26,6 +26,7 @@ namespace InteractivePoster.Pages
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
+            
             Background.Children.Clear();          
              //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
@@ -38,7 +39,8 @@ namespace InteractivePoster.Pages
             lineX.DrawArrow(count/2,0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0,count/2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
-            DrawCircle c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);           
+            DrawCircle c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
+            MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)

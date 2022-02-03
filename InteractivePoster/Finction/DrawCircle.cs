@@ -16,37 +16,7 @@ namespace InteractivePoster.Finction
         /// <param name="y">Декартова ордината центра окружности</param>
         /// <param name="r">Радиус окружности в декартовой системе</param>
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
-         
-         
-         
-        /// <summary>
-        /// метод для преобразования координаты Х их канвы в декартово значение
-        /// </summary>
-        /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
-        /// <returns>актуальная координата Х на канве</returns>
-        public double convertX(double x)
-        {
-            //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
-            return maxX / 2 + x * (maxX / count) - radius;
-        }
-        /// <summary>
-        /// метод для преобразования координаты Y их канвы в декартово значение
-        /// </summary>
-        /// <param name="y">декартова координата (как нам надо с точки зрения математики)</param>
-        /// <returns>актуальная координата Y на канве</returns>
-        public double convertY(double y)
-        {
-            return maxX / 2 + y / -1 * (maxX / count) - radius;
-        }
-        /// <summary>
-        /// метод для преобразования градусов в радиан
-        /// </summary>
-        /// <param name="r">значение в градусах (как нам надо с точки зрения математики)</param>
-        /// <returns>значаение в радианах</returns>
-        public double convertRadian(double r)
-        {
-            return r / 180 * Math.PI;
-        }
+                
 
         Canvas cv;
         public DrawCircle(double x, double y, double r, Canvas cv)
@@ -78,7 +48,7 @@ namespace InteractivePoster.Finction
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
-        } //Текст с центром окружности
+        } //Текст c содержанием точек
         void DrawRadius(double x, double y, double r)
         {
 
@@ -102,6 +72,37 @@ namespace InteractivePoster.Finction
             DrawText(circleX, circleY, text);
         } //Орисовка радиуса + текст с точкой на окружности
 
-
+        /// <summary>
+        /// метод для преобразования координаты Х их канвы в декартово значение
+        /// </summary>
+        /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
+        /// <returns>актуальная координата Х на канве</returns>
+        public double convertX(double x)
+        {
+            //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
+            return maxX / 2 + x * (maxX / count) - radius;
+        }
+        /// <summary>
+        /// метод для преобразования координаты Y их канвы в декартово значение
+        /// </summary>
+        /// <param name="y">декартова координата (как нам надо с точки зрения математики)</param>
+        /// <returns>актуальная координата Y на канве</returns>
+        public double convertY(double y)
+        {
+            return maxX / 2 + y / -1 * (maxX / count) - radius;
+        }
+        /// <summary>
+        /// метод для преобразования градусов в радиан
+        /// </summary>
+        /// <param name="r">значение в градусах (как нам надо с точки зрения математики)</param>
+        /// <returns>значаение в радианах</returns>
+        public double convertRadian(double r)
+        {
+            return r / 180 * Math.PI;
+        }
+        public double MaxRadius(double x, double y)
+        {
+            return  Math.Abs(x)> Math.Abs(y) ? count/2-Math.Abs(x) : count / 2 - Math.Abs(y);
+        }
     }
 }

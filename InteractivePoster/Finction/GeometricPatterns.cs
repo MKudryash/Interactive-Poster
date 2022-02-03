@@ -16,16 +16,24 @@ namespace InteractivePoster.Finction
         public event PropertyChangedEventHandler PropertyChanged;
         public double MaxValue { get; set; } = 9;
         public double MinValue { get; set; } = -9;
-        public   double maxRadius { get; set; } = 10;
+        public double maxRadius { get; set; } = 10;
         public static int gradusValue { get; set; } = 45;
-        public  int GradusValue 
+        public int GradusValue
         {
-            set 
+            set
             {
                 gradusValue = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("gradusValue"));
             }
-    }
+        }
+        public int MaxRadius
+        {
+            set
+            {
+                maxRadius = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("maxRadius"));
+            }
+        }
 
         public double MaxMinValueCoordinat
         {
@@ -51,7 +59,7 @@ namespace InteractivePoster.Finction
         }
         public double convertCoordY(double coord)
         {
-            return maxX / 2 + coord*(-1) * (maxX / count);
+            return maxX / 2 + coord * (-1) * (maxX / count);
         }
 
     }
