@@ -37,13 +37,14 @@ namespace InteractivePoster.Finction
             //в нужную точку канвы
             circle.SetValue(Canvas.LeftProperty, convertX(x));
             circle.SetValue(Canvas.TopProperty, convertY(y));
+
             DrawRadius(x, y, cv, r);
             DrawText(x, y, cv);
         }
         void DrawText(double x, double y, Canvas cv)
         {
             TextBlock TB = new TextBlock();
-            TB.Text = "О("+x.ToString("F1")+";"+(y).ToString("F1")+")";
+            TB.Text = "О("+x.ToString("F1")+";"+y.ToString("F1")+")";
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
@@ -57,18 +58,18 @@ namespace InteractivePoster.Finction
                 SnapsToDevicePixels = true
             };
             line.X1 = convertCoordX(x);
-            line.X2 = convertCoordX(x + r * Math.Cos(convert(MaxMinCoordinat.gradusValue)));
+            line.X2 = convertCoordX(x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue)));
             line.Y1 = convertCoordY(y);
-            line.Y2 = convertCoordY(y + r * Math.Sin(convert(MaxMinCoordinat.gradusValue)));
+            line.Y2 = convertCoordY(y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue)));
 
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
 
             TextBlock TB = new TextBlock();
-            TB.Text = "О(" + (x + r * Math.Cos(convert(MaxMinCoordinat.gradusValue))).ToString("F1") + ";" + (y + r * Math.Sin(convert(MaxMinCoordinat.gradusValue))).ToString("F1") + ")";
+            TB.Text = "M(" + (x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))).ToString("F1") + ";" + (y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))).ToString("F1") + ")";
             cv.Children.Add(TB);
-            TB.SetValue(Canvas.LeftProperty, convertCoordX(x + r * Math.Cos(convert(MaxMinCoordinat.gradusValue))));
-            TB.SetValue(Canvas.TopProperty, convertCoordY(y + r * Math.Sin(convert(MaxMinCoordinat.gradusValue))));
+            TB.SetValue(Canvas.LeftProperty, convertCoordX(x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))));
+            TB.SetValue(Canvas.TopProperty, convertCoordY(y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))));
         } //Орисовка радиуса + текст с точкой на окружности
 
 

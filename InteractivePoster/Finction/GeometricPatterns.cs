@@ -20,7 +20,8 @@ namespace InteractivePoster.Finction
         public static int gradusValue { get; set; } = 45;
         public  int GradusValue 
         {
-            set {
+            set 
+            {
                 gradusValue = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("gradusValue"));
             }
@@ -71,7 +72,7 @@ namespace InteractivePoster.Finction
         {
             return maxX / 2 + y/-1 * (maxX / count) - radius;
         }
-        public double convert(double r)
+        public double convertRadian(double r)
         {
             return r/180*Math.PI;
         }

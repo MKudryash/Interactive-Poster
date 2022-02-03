@@ -22,6 +22,7 @@ namespace InteractivePoster.Pages
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
+           
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
