@@ -64,6 +64,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Finction\DrawCircle.cs" />
+    <Compile Include="Finction\DrawElips.cs" />
+    <Compile Include="Finction\DrawHyperbole.cs" />
+    <Compile Include="Finction\DrawParabola.cs" />
     <Compile Include="Finction\DrawСoordinateLine.cs" />
     <Compile Include="Finction\GeometricPatterns.cs" />
     <Compile Include="LoadPage.cs" />
@@ -125,6 +128,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Flanker Griffo Bold.otf" />
+    <Resource Include="Fonts\Flanker Griffo Italic Bold.otf" />
+    <Resource Include="Fonts\Flanker Griffo Italic.otf" />
+    <Resource Include="Fonts\Flanker Griffo.otf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -135,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Circle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sound.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

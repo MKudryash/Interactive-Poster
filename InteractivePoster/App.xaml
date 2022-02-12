@@ -27,5 +27,31 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style BasedOn ="{StaticResource {x:Type ToggleButton}}"
+               TargetType="RadioButton"
+               x:Key="MenuButtonThemeParabola">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20">
+                            <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+                              TextAlignment="Center" 
+                                       FontSize="24"
+                                       Foreground="#262F34"                             />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

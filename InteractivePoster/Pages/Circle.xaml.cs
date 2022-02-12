@@ -47,7 +47,5 @@ namespace InteractivePoster.Pages
         {
             UpdateBackPattern(null, null);
         }
-
-
     }
 }

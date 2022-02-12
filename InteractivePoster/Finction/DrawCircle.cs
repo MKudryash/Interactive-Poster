@@ -29,15 +29,15 @@ namespace InteractivePoster.Finction
             {
                 Width = 2 * radius,//ширина и длина по сути равна диаметру окружности
                 Height = 2 * radius,
-                Stroke = Brushes.Red,
-                StrokeThickness = 1
+                Stroke = Brushes.Black,
+                StrokeThickness = 3
             };
 
             cv.Children.Add(circle);//помещаем на канву
             //в нужную точку канвы
             circle.SetValue(Canvas.LeftProperty, convertX(x));
             circle.SetValue(Canvas.TopProperty, convertY(y));
-            string text = "О(" + x.ToString("F1") + ";" + y.ToString("F1") + ")";
+            string text = "О( " + x.ToString("F1") + "; " + y.ToString("F1") + ")";
             DrawRadius(x, y , r);
             DrawText(x, y,text);
         }
@@ -48,6 +48,8 @@ namespace InteractivePoster.Finction
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
+            TB.TextWrapping = System.Windows.TextWrapping.Wrap;
+            TB.Width = 100;
         } //Текст c содержанием точек
         void DrawRadius(double x, double y, double r)
         {
@@ -57,8 +59,8 @@ namespace InteractivePoster.Finction
 
             line = new Line()
             {
-                Stroke = Brushes.Blue,
-                StrokeThickness = 4,
+                Stroke = Brushes.Black,
+                StrokeThickness = 3,
                 SnapsToDevicePixels = true
             };
             line.X1 = convertCoordX(x);
@@ -68,7 +70,7 @@ namespace InteractivePoster.Finction
 
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
-            string text = "M(" + circleX.ToString("F1") + ";" + circleY.ToString("F1") + ")";
+            string text = "M( " + circleX.ToString("F1") + "; " + circleY.ToString("F1") + ")";
             DrawText(circleX, circleY, text);
         } //Орисовка радиуса + текст с точкой на окружности
 

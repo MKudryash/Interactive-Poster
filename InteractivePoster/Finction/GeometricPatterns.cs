@@ -18,6 +18,7 @@ namespace InteractivePoster.Finction
         public double MinValue { get; set; } = -9;
         public double maxRadius { get; set; } = 10;
         public static int gradusValue { get; set; } = 45;
+        public string FormalaElips { get; set; }
         public int GradusValue
         {
             set
@@ -45,6 +46,11 @@ namespace InteractivePoster.Finction
                 PropertyChanged(this, new PropertyChangedEventArgs("MinValue"));
             }
         }
+        public static bool equation { get; set; } = true;
+
+
+
+
     }
     class GeometricPatterns
     {
