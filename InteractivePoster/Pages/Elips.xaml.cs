@@ -56,5 +56,10 @@ namespace InteractivePoster.Pages
         {
             UpdateBackPattern(null,null);
         }
+
+        private void ComeBack(object sender, RoutedEventArgs e)
+        {
+            LoadPage.MainFrame.GoBack();
+        }
     }
 }

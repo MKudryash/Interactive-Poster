@@ -12,43 +12,37 @@
         <StackPanel VerticalAlignment="Center" 
                     HorizontalAlignment="Center" 
                     Orientation="Horizontal">
-            <StackPanel Width="236">
+            <StackPanel Width="300">
                 <TextBlock Text="Окружность"  HorizontalAlignment="Center"/>
-                <RadioButton Content="Images/Circle.jpg"
-                             Tag="CircleTag"
-                            Height="150"
-                            Width="150"
+                <Button Content="Images/Circle.jpg"
+                             Tag="CircleTag"                            
                              Style="{StaticResource MenuButtonTheme}"
-                             Checked="ThemeMath">
-                </RadioButton>
+                             Click="ThemeMath"
+                             >
+                </Button>
                 <TextBlock Text="Эллипс"  HorizontalAlignment="Center"/>
-                <RadioButton Content="Images/Circle.jpg"
-                             Tag="ElipsTag"
-                            Height="150"
-                            Width="150"
+                <Button Content="Images/Circle.jpg"
+                             Tag="ElipsTag"                          
                              Style="{StaticResource MenuButtonTheme}"
-                             Checked="ThemeMath">
-                </RadioButton>
+                             Click="ThemeMath"
+                             >
+                </Button>
             </StackPanel>
-            <StackPanel>
+            <StackPanel  Width="300">
                 <TextBlock Text="Гипербола"  HorizontalAlignment="Center"/>
-                <RadioButton Content="Images/Circle.jpg"
-                             Tag="HyperboleTag"
-                            Height="150"
-                            Width="150"
+                <Button Content="Images/Circle.jpg"
+                             Tag="HyperboleTag"                           
                              Style="{StaticResource MenuButtonTheme}"
-                             Checked="ThemeMath">
-
-                </RadioButton>
+                             Click="ThemeMath"
+                             >
+                </Button>
                 <TextBlock Text="Парабола"  HorizontalAlignment="Center"/>
-                <RadioButton Content="Images/Circle.jpg"
-                             Tag="ParabolaTag"
-                            Height="150"
-                            Width="150"
+                <Button Content="Images/Circle.jpg"
+                             Tag="ParabolaTag"                            
                              Style="{StaticResource MenuButtonTheme}"
-                             Checked="ThemeMath">
-
-                </RadioButton>
+                             Click="ThemeMath"
+                             >
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

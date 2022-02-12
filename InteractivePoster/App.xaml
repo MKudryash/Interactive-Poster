@@ -4,19 +4,14 @@
              xmlns:local="clr-namespace:InteractivePoster"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style BasedOn ="{StaticResource {x:Type ToggleButton}}"
-               TargetType="RadioButton"
+        <Style BasedOn ="{StaticResource {x:Type Button}}"
+               TargetType="Button"
                x:Key="MenuButtonTheme">
-            <Style.Triggers>
-                <Trigger Property="IsChecked" Value="False">
-                    <Setter Property="Opacity" Value="0.5"/>
-                </Trigger>
-            </Style.Triggers>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="RadioButton">
+                    <ControlTemplate TargetType="Button">
                         <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 Background="Transparent"
@@ -52,6 +47,14 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="BackButton">
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#262F34"/>
+            <Setter Property="Background" Value="#F1D3BC"/>
         </Style>
     </Application.Resources>
 </Application>

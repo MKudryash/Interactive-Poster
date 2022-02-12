@@ -27,7 +27,7 @@ namespace InteractivePoster.Pages
 
         private void ThemeMath(object sender, RoutedEventArgs e)
         {
-            string themePage = (sender as RadioButton).Tag.ToString();
+            string themePage = (sender as Button).Tag.ToString();
             switch (themePage)
             {
                 case "CircleTag":
