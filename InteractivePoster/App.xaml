@@ -16,7 +16,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 Background="Transparent"
                                 CornerRadius="20">
-                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" Width="200" Height="200"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>

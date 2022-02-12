@@ -47,11 +47,21 @@ namespace InteractivePoster.Pages
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, count / 2, Orientation.Vertical, 3, Background);
 
-            DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background, SlParametrHyperbolaX.Value);
+            DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background, SlParametrHyperbolaX.Value,SlTransform.Value);
             Path path = new Path();
             path.Data = drawHyperbole.Hyperbola();
             path.Stroke = Brushes.Black;
             path.StrokeThickness = 3;
+
+            double maxX = Background.ActualWidth;
+
+            RotateTransform rotateTransform = new RotateTransform();
+            rotateTransform.CenterX = maxX / 2 + slCoordX.Value * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
+            rotateTransform.CenterY = maxX / 2 + slCoordY.Value * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
+            rotateTransform.Angle = SlTransform.Value;//поворот на количетсво градусов     
+            path.RenderTransform = rotateTransform;
+
+
             Background.Children.Add(path);
         }
 

@@ -12,7 +12,7 @@
         <StackPanel VerticalAlignment="Center" 
                     HorizontalAlignment="Center" 
                     Orientation="Horizontal">
-            <StackPanel Width="300">
+            <StackPanel >
                 <TextBlock Text="Окружность"  HorizontalAlignment="Center"/>
                 <Button Content="Images/Circle.jpg"
                              Tag="CircleTag"                            
@@ -21,23 +21,23 @@
                              >
                 </Button>
                 <TextBlock Text="Эллипс"  HorizontalAlignment="Center"/>
-                <Button Content="Images/Circle.jpg"
+                <Button Content="Images/Elipse.jpg"
                              Tag="ElipsTag"                          
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"
                              >
                 </Button>
             </StackPanel>
-            <StackPanel  Width="300">
+            <StackPanel  >
                 <TextBlock Text="Гипербола"  HorizontalAlignment="Center"/>
-                <Button Content="Images/Circle.jpg"
+                <Button Content="Images/Hyperbole.jpg"
                              Tag="HyperboleTag"                           
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"
                              >
                 </Button>
                 <TextBlock Text="Парабола"  HorizontalAlignment="Center"/>
-                <Button Content="Images/Circle.jpg"
+                <Button Content="Images/Parabola.jpg"
                              Tag="ParabolaTag"                            
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"

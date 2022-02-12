@@ -18,7 +18,7 @@ namespace InteractivePoster.Finction
         Rectangle rectangle;
         Line line;
         double x, y,a,b, maxCorrdinatX;
-        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double maxCorrdinatX)
+        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double maxCorrdinatX,double gradusTransform)
         {
             this.x = x;
             this.y = y;
@@ -29,7 +29,7 @@ namespace InteractivePoster.Finction
             maxX = cv.ActualWidth; //получаем ширину канвы       
             rectangleA = a * (maxX / count);//преобразуем ширину прямоугольника из декартовой системы
             rectangleB = b * (maxX / count);//преобразуем высоту прямоугольника из декартовой системы
-            DrawRectangle(x, y, cv);
+            DrawRectangle(x, y, cv, gradusTransform);
         }
         QuadraticBezierSegment quadraticBezierSegment;
         public PathGeometry Hyperbola()
@@ -56,7 +56,7 @@ namespace InteractivePoster.Finction
 
             return pathGeometry;
         }
-        void DrawRectangle(double x, double y, Canvas cv)
+        void DrawRectangle(double x, double y, Canvas cv, double gradusTransform)
         {
             rectangle = new Rectangle()
             {
@@ -66,6 +66,11 @@ namespace InteractivePoster.Finction
                 StrokeThickness = 2,
                 StrokeDashArray = { 4, 3 }
             };
+            RotateTransform rotateTransform = new RotateTransform();
+            rotateTransform.CenterX = rectangleA;//центр оси X по отношению к кругу, не к координатной плоскости
+            rotateTransform.CenterY = rectangleB;//центр оси Y по отношению к кругу, не к координатной плоскости
+            rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов     
+            rectangle.RenderTransform = rotateTransform;
             cv.Children.Add(rectangle);//помещаем на канву
                                        //в нужную точку канвы
             rectangle.SetValue(Canvas.LeftProperty, convertX(x));
