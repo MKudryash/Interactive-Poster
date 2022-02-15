@@ -31,8 +31,7 @@ namespace InteractivePoster.Pages
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
-            //MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
-            //MMC.GradusValue = (int)SlPoint.Value;
+            FormulaHyperbole.Formula = @"\frac{(x-(" + slCoordX.Value + @"))^2}{" + slRectangleA.Value + @"^2}+ \frac{(y-(" + slCoordY.Value + @"))^2}{" + slRectangleB.Value + @"^2} = 1";
 
 
             Background.Children.Clear();

@@ -244,8 +244,10 @@
                                 <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
                             </Grid>
                             <StackPanel Style="{StaticResource HideTheopry}">
-                                <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20"
-                         Text="- это множество всех точек плоскости, сумма расстояний от каждой из которых до двух данных точек этой плоскости, называемых фокусами, есть величина постоянная, большая, чем расстояние между фокусами."/>
+                                <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, сумма расстояний от каждой из которых до двух данных точек этой плоскости, называемых
+                                 <Run Foreground="#F34A4A"> фокусами</Run>
+                                   , есть величина постоянная, большая, чем расстояние между фокусами./>
+                                </TextBlock>
                                 <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                 <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="\frac{(x-x_0)^2}{a^2} + \frac{(y-y_0)^2}{b^2} = 1"

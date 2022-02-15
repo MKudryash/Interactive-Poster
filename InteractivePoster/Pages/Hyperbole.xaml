@@ -247,7 +247,8 @@
                          Text="- это множество всех точек плоскости, модуль
 разности расстояний от каждой из которых до двух данных точек этой плоскости,
 называемых фокусами, есть величина постоянная, меньшая, чем расстояние между
-фокусами."/>
+фокусами.
+"/>
                                 <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                 <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="\frac{(x-x_0)^2}{a^2} - \frac{(y-y_0)^2}{b^2} = 1"
@@ -256,7 +257,9 @@
                                            Text="Расстояние между фокусами вычисляется по формуле: "/>
                                 <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="c^2 = a^2+b^2" Background="#F1D3BC"/>
-                                <TextBlock Foreground="#F1D3BC" Width="auto" TextWrapping="Wrap" FontSize="20" Text="Гипербола называется равносторонней, если ее полуоси равны: a = b"/>
+                                <TextBlock Foreground="#F1D3BC" Width="auto" TextWrapping="Wrap" FontSize="20">Гипербола называется 
+                                    <Run Foreground="#F34A4A">равносторонней</Run>
+                                    , если ее полуоси равны: a = b</TextBlock>
                             </StackPanel>
                         </StackPanel>
 
@@ -385,33 +388,7 @@
                     </Grid>
                     <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <GroupBox Header="Каноническое уравнение:">
-                            <Grid>
-                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock  TextDecorations="Underline" Text="(x-( " FontFamily="/InteractivePoster;component/Fonts/#New Standard" />
-                                            <TextBlock TextDecorations="Underline" Foreground="#f34A4A"  Text="{Binding ElementName=slCoordX,Path=Value,StringFormat='{}{0:#0.0}'}"/>
-                                            <TextBlock TextDecorations="Underline" Text=" ))&#x00B2;" />
-                                        </StackPanel>
-                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                            <TextBlock  Foreground="#f34A4A"   Text="{Binding ElementName=slRadiusW,Path=Value}"/>
-                                            <TextBlock  Text="&#x00B2;" />
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock TextDecorations="Underline" Text="+(y-( "/>
-                                            <TextBlock  TextDecorations="Underline" Foreground="#f34A4A"  Text="{Binding ElementName=slCoordY,Path=Value,StringFormat='{}{0:#0.0}'}"/>
-                                            <TextBlock  TextDecorations="Underline" Text=" ))&#x00B2;" />
-                                        </StackPanel>
-                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                            <TextBlock  Foreground="#f34A4A"   Text="{Binding ElementName=slRadiusH,Path=Value}"/>
-                                            <TextBlock  Text="&#x00B2;" />
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <TextBlock Text="= 1"/>
-                                </StackPanel>
-                            </Grid>
+                            <controls:FormulaControl x:Name="FormulaHyperbole"/>
                         </GroupBox>
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>

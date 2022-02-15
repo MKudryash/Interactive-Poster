@@ -221,8 +221,11 @@
                             <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
                         </Grid>
                         <StackPanel Style="{StaticResource HideTheopry}">
-                            <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20"
-                         Text="- это множество всех точек плоскости, равноудаленных от данной точки, называемой центром окружности. Расстояние от центра окружности до любой ее точки называется радиусом окружности."/>
+                            <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, равноудаленных от данной точки, называемой 
+                                       <Run Foreground="#F34A4A">центром </Run>
+                                окружности. Расстояние от центра окружности до любой ее точки называется
+                                <Run Foreground="#F34A4A">радиусом </Run>
+                                окружности.</TextBlock>
                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                             <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="(x-x_0)^2+ (y-y_0)^2 = r^2"
