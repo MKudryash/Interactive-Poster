@@ -55,11 +55,6 @@ namespace InteractivePoster.Pages
             double maxX = Background.ActualWidth;
             double y = slCoordX.Value * slCoordX.Value / 2 * SlParametrParabola.Value * (-1)+slCoordY.Value;
 
-            RotateTransform rotateTransform = new RotateTransform();
-            rotateTransform.CenterX = maxX / 2 + slCoordX.Value * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
-            rotateTransform.CenterY = maxX / 2 + y * (-1)*(maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
-            rotateTransform.Angle = SlTransform.Value;//поворот на количетсво градусов     
-            path.RenderTransform = rotateTransform;
 
             Background.Children.Add(path);
         }

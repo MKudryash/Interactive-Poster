@@ -225,7 +225,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="20" Grid.Column="1" >
+            <StackPanel Panel.ZIndex="1" Margin="20" Grid.Column="1" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -299,7 +299,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBox Grid.Column="0" Text="{Binding ElementName=slRadiusW,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="slRadiusW" SmallChange="1" LargeChange="1" Value="5" 
+                        Grid.Column="1" x:Name="slRadiusW" SmallChange="1" LargeChange="1" Value="3" 
                         Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
                                 </Grid>
@@ -314,7 +314,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBox Grid.Column="0" Text="{Binding ElementName=slRadiusH,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="slRadiusH" SmallChange="1" LargeChange="1" Value="3" 
+                        Grid.Column="1" x:Name="slRadiusH" SmallChange="1" LargeChange="1" Value="5" 
                         Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
                                 </Grid>
@@ -330,7 +330,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBox Grid.Column="0" Text="{Binding ElementName=SlPoint,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="0" 
+                        Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="45" 
                         Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency="1"/>
                                 </Grid>
@@ -385,7 +385,7 @@
                 </StackPanel>
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
             </StackPanel>
-            <Canvas x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
+            <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
 

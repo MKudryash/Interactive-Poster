@@ -224,7 +224,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="20" Grid.Column="1"  Background="#262F34">
+        <StackPanel Panel.ZIndex="1" Margin="20" Grid.Column="1"  Background="#262F34">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -333,20 +333,7 @@
                             </Grid>
                         </GroupBox>
 
-                        <!--Вращение-->
-                        <GroupBox Header="Вращение">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" Text="{Binding ElementName=SlTransform,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="SlTransform" SmallChange="1" LargeChange="1" Value="0" 
-                        Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency="1"/>
-                            </Grid>
-                        </GroupBox>
+                       
                     </StackPanel>
                 </GroupBox>
             </Grid>
@@ -360,7 +347,7 @@
             <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
 
         </StackPanel>
-        <Canvas x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
+        <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
 
