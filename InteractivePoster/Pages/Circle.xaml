@@ -217,11 +217,11 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
-                            <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
+                            <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto"/>
                             <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
                         </Grid>
                         <StackPanel Style="{StaticResource HideTheopry}">
-                            <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="25"
+                            <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20"
                          Text="- это множество всех точек плоскости, равноудаленных от данной точки, называемой центром окружности. Расстояние от центра окружности до любой ее точки называется радиусом окружности."/>
                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                             <controls:FormulaControl HorizontalAlignment="Center" 

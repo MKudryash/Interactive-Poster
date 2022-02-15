@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:InteractivePoster.Pages"
+      xmlns:local="clr-namespace:InteractivePoster.Pages" xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
       Title="Parabola" Background="#F1D3BC">
@@ -223,17 +223,35 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Panel.ZIndex="1" Margin="20" Grid.Column="1"  Background="#262F34">
+        <ScrollViewer Panel.ZIndex="1" Grid.Column="1" >
+        <StackPanel  Margin="20"  Background="#262F34">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-             
 
-                <GroupBox Grid.Row="1">
+                    <StackPanel Grid.Row="0"
+                        Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Парабола"  Style="{StaticResource CheckBoxContext}" Width="auto"/>
+                            <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <StackPanel Style="{StaticResource HideTheopry}">
+                            <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">
+                         - это множество всех точек плоскости, каждая из
+которых одинаково удалена от данной точки, называемой фокусом, и данной
+прямой, называемой директрисой.<LineBreak></LineBreak> 
+Расстояние от фокуса F до директрисы называется параметром
+параболы и обозначается буквой p.</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <GroupBox Grid.Row="1">
                     <GroupBox.Header>
                         <Border  CornerRadius="5" >
                             <StackPanel Margin="10 0">
@@ -337,16 +355,11 @@
                     </StackPanel>
                 </GroupBox>
             </Grid>
-            <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <GroupBox Header="Каноническое уравнение:">
-                    <Grid>
 
-                    </Grid>
-                </GroupBox>
-            </StackPanel>
             <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
 
         </StackPanel>
+        </ScrollViewer>
         <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
