@@ -96,8 +96,8 @@ namespace InteractivePoster.Finction
         void DrawRadius(double rW, double rH, double gradusValueElips)
         {
 
-            double circleX = x + rW * cosGradusElpis;
-            double circleY = y - rW * sinGradusElpis;
+            double circleX = x + (rW * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))) * cosGradusElpis + (rH * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))) * sinGradusElpis;
+            double circleY = y + (rH * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))) * cosGradusElpis - (rW * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))) * sinGradusElpis;
 
             line = new Line()
             {
