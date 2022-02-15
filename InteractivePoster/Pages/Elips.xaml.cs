@@ -30,7 +30,7 @@ namespace InteractivePoster.Pages
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
-            Formula.Formula = @"\frac{(x-"+ slCoordX.Value+@")^2}{" + slRadiusW.Value+@"^2}+ \frac{(y-"+ slCoordY.Value + @")^2}{"+ slRadiusH.Value + @"^2} = 1";
+            Formula.Formula = @"\frac{(x-("+ slCoordX.Value+@"))^2}{" + slRadiusW.Value+@"^2}+ \frac{(y-("+ slCoordY.Value + @"))^2}{"+ slRadiusH.Value + @"^2} = 1";
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;

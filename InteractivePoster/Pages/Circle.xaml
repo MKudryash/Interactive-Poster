@@ -43,7 +43,7 @@
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
-           
+
             </Setter>
             <Setter Property="Header">
                 <Setter.Value>
@@ -180,7 +180,7 @@
             <Setter Property="BorderBrush" Value="#262F34"/>
             <Setter Property="Width" Value="42"/>
         </Style>
-        
+
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
@@ -203,34 +203,34 @@
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="1">
             <StackPanel Panel.ZIndex="1" Margin="20" Background="#262F34">
-            
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
-                <StackPanel Grid.Row="0"
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
                         Margin="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="30"/>
-                        </Grid.ColumnDefinitions>
-                        <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
-                        <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <StackPanel Style="{StaticResource HideTheopry}">
-                    <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="25"
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
+                            <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <StackPanel Style="{StaticResource HideTheopry}">
+                            <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="25"
                          Text="- это множество всех точек плоскости, равноудаленных от данной точки, называемой центром окружности. Расстояние от центра окружности до любой ее точки называется радиусом окружности."/>
                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                             <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="(x-x_0)^2+ (y-y_0)^2 = r^2"
                                                      Background="#F1D3BC"/>
                         </StackPanel>
-                </StackPanel>
-                
-            <GroupBox Grid.Row="1">
+                    </StackPanel>
+
+                    <GroupBox Grid.Row="1">
                         <GroupBox.Header>
                             <Border  CornerRadius="5" >
                                 <StackPanel Margin="10 0">
@@ -240,106 +240,106 @@
                             </Border>
                         </GroupBox.Header>
                         <StackPanel Margin="5">
-                        
+
                             <!--Масштаб области-->
-                    <GroupBox Header="Масштаб области">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox
+                            <GroupBox Header="Масштаб области">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox
                                 Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                            <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
                             SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
                         PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
-                        </Grid>
-                    </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
-                    <!--Смещение по оси абсцисс-->
-                    <GroupBox Header="Смещение по оси абсцисс">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
-                            <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                            <!--Смещение по оси абсцисс-->
+                            <GroupBox Header="Смещение по оси абсцисс">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slCoordX" SmallChange="1" LargeChange="1" Value="0"
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                        </Grid>
-                    </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
-                    <!--Смещение по оси ординат-->
-                    <GroupBox Header="Смещение по оси ординат">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox  Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordY,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
-                            <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                            <!--Смещение по оси ординат-->
+                            <GroupBox Header="Смещение по оси ординат">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox  Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordY,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slCoordY" SmallChange="1" LargeChange="1" Value="0" 
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                        </Grid>
-                    </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
 
-                    <!--Радиус окружности-->
-                    <GroupBox Header="Радиус окружности">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
-                            <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                            <!--Радиус окружности-->
+                            <GroupBox Header="Радиус окружности">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slRadius" SmallChange="1" LargeChange="1" Value="1" 
                         Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                        </Grid>
-                    </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
 
-                    <!--Точка M (в градусах)-->
-                    <GroupBox Header="Точка M (в градусах)">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Text="{Binding ElementName=SlPoint,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                            <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                            <!--Точка M (в градусах)-->
+                            <GroupBox Header="Точка M (в градусах)">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" Text="{Binding ElementName=SlPoint,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="45" 
                         Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency="1"/>
-                        </Grid>
+                                </Grid>
+                            </GroupBox>
+
+                        </StackPanel>
+
                     </GroupBox>
-                        
-                    </StackPanel>
-                   
-                </GroupBox>
-                
-            </Grid>
-            <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <GroupBox Header="Каноническое уравнение:">
-                    <Grid>
+
+                </Grid>
+                <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox Header="Каноническое уравнение:">
+                        <Grid>
                             <controls:FormulaControl 
                                x:Name="FormulaCircle" 
                                 />
                         </Grid>
-                </GroupBox>
-            </StackPanel>
+                    </GroupBox>
+                </StackPanel>
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
             </StackPanel>
         </ScrollViewer>
         <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
-    <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
+        <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
 
 
