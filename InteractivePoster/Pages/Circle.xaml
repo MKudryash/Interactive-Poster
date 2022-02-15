@@ -190,13 +190,13 @@
             <Setter Property="Width" Value="42"/>
         </Style>
 
-        <Style x:Key="gg" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Style x:Key="gg" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Uid" Value="0"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
+                <Trigger Property="IsCancel" Value="True">
                     <Setter Property="Uid" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="False">
+                    <Setter Property="Uid" Value="0"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -241,7 +241,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Margin="30,0,0,0" x:Name="Circle_Header" Style="{StaticResource gg}" Text="Окружностью" Width="auto" FontSize="25" Foreground="#f34A4A"/>
+                        <CheckBox  Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружностью"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
+                        <!--<TextBlock Margin="30,0,0,0" x:Name="Circle_Header" Style="{StaticResource gg}" Text="Окружностью" Width="auto" FontSize="25" Foreground="#f34A4A"/>-->
                         <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
                     </Grid>
                     <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Style="{StaticResource smt}" Width="auto" TextWrapping="Wrap" FontSize="25"
