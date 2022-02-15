@@ -26,7 +26,9 @@ namespace InteractivePoster.Pages
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
-            
+
+            FormulaCircle.Formula = @"(x-("+slCoordX.Value.ToString("F1")+@"))^2+ (y-("+slCoordY.Value.ToString("F1")+@"))^2 = "+slRadius.Value.ToString("F1") +@"^2";
+
             Background.Children.Clear();          
              //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)

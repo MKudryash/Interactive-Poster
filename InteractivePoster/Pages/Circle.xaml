@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InteractivePoster.Pages"
+      xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
       Title="Circle" Background="#F1D3BC">
@@ -190,34 +191,8 @@
             <Setter Property="Width" Value="42"/>
         </Style>
 
-        <Style x:Key="gg" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-            <Style.Triggers>
-                <Trigger Property="IsCancel" Value="True">
-                    <Setter Property="Uid" Value="1"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="False">
-                    <Setter Property="Uid" Value="0"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
 
-        <Style  x:Key="smt" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=Circle_Header, Path=Uid}"
-                        Value="0">
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=Circle_Header, Path=Uid}"
-                        Value="1">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="Math" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#New Standard"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
+
 
     </Page.Resources>
 
@@ -226,8 +201,9 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Panel.ZIndex="1" Margin="20" Grid.Column="1"  Background="#262F34">
+        <ScrollViewer Grid.Column="1">
+            <StackPanel Panel.ZIndex="1" Margin="20" Background="#262F34">
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -241,25 +217,31 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox  Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружностью"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
-                        <!--<TextBlock Margin="30,0,0,0" x:Name="Circle_Header" Style="{StaticResource gg}" Text="Окружностью" Width="auto" FontSize="25" Foreground="#f34A4A"/>-->
+                        <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
                         <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
                     </Grid>
-                    <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Style="{StaticResource smt}" Width="auto" TextWrapping="Wrap" FontSize="25"
-                         Text="- называется множество всех точек плоскости, равноудаленных от данной точки, называемой центром окружности. Расстояние от центра окружности до любой ее точки называется радиусом окружности."/>
+                    <StackPanel Style="{StaticResource HideTheopry}">
+                    <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="25"
+                         Text="- это множество всех точек плоскости, равноудаленных от данной точки, называемой центром окружности. Расстояние от центра окружности до любой ее точки называется радиусом окружности."/>
+                            <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
+                            <controls:FormulaControl HorizontalAlignment="Center" 
+                                Formula="(x-x_0)^2+ (y-y_0)^2 = r^2"
+                                                     Background="#F1D3BC"/>
+                        </StackPanel>
                 </StackPanel>
                 
             <GroupBox Grid.Row="1">
-                <GroupBox.Header>
-                    <Border  CornerRadius="5" >
-                        <StackPanel Margin="10 0">
-                            <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Fonts/#Flanker Griffo"
+                        <GroupBox.Header>
+                            <Border  CornerRadius="5" >
+                                <StackPanel Margin="10 0">
+                                    <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Fonts/#Flanker Griffo"
                                         />
-                        </StackPanel>
-                    </Border>
-                </GroupBox.Header>
-                <StackPanel Margin="5">
-                    <!--Масштаб области-->
+                                </StackPanel>
+                            </Border>
+                        </GroupBox.Header>
+                        <StackPanel Margin="5">
+                        
+                            <!--Масштаб области-->
                     <GroupBox Header="Масштаб области">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -338,29 +320,24 @@
                         IsSnapToTickEnabled="True" TickFrequency="1"/>
                         </Grid>
                     </GroupBox>
-                </StackPanel>
-            </GroupBox>
+                        
+                    </StackPanel>
+                   
+                </GroupBox>
+                
             </Grid>
             <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <GroupBox Header="Каноническое уравнение:">
                     <Grid>
-                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource Math}" Text="(x-( " FontFamily="/InteractivePoster;component/Fonts/#New Standard" />
-                        <TextBlock Foreground="#f34A4A" Style="{StaticResource Math}" Text="{Binding ElementName=slCoordX,Path=Value,StringFormat='{}{0:#0.0}'}"/>
-                        <TextBlock Style="{StaticResource Math}" Text=" ))&#x00B2;" />
-                        <TextBlock Style="{StaticResource Math}" Text="+(y-( "/>
-                        <TextBlock Foreground="#f34A4A" Style="{StaticResource Math}" Text="{Binding ElementName=slCoordY,Path=Value,StringFormat='{}{0:#0.0}'}"/>
-                        <TextBlock Style="{StaticResource Math}" Text=" ))&#x00B2;" />
-                        <TextBlock Style="{StaticResource Math}" Text="="/>
-                        <TextBlock Foreground="#f34A4A" Style="{StaticResource Math}" Text="{Binding ElementName=slRadius,Path=Value}" />
-                    <TextBlock Text=" &#x00B2;" Style="{StaticResource Math}"/>
-                       
-                    </StackPanel>
-                    </Grid>
+                            <controls:FormulaControl 
+                               x:Name="FormulaCircle" 
+                                />
+                        </Grid>
                 </GroupBox>
             </StackPanel>
-            <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
-        </StackPanel>
+                <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
+            </StackPanel>
+        </ScrollViewer>
         <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
     <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 

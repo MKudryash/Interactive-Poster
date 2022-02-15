@@ -274,7 +274,7 @@
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
                                 </Grid>
                             </GroupBox>
-                            
+
                             <!--Смещение по оси ординат-->
                             <GroupBox Header="Смещение по оси ординат">
                                 <Grid>
@@ -357,30 +357,7 @@
                     <GroupBox Header="Каноническое уравнение:">
                         <Grid>
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-                                <StackPanel Orientation="Vertical">
-                                    <!--<StackPanel Orientation="Horizontal">
-                                        <TextBlock  TextDecorations="Underline" Text="(x-( " FontFamily="/InteractivePoster;component/Fonts/#New Standard" />
-                                        <TextBlock TextDecorations="Underline" Foreground="#f34A4A"  Text="{Binding ElementName=slCoordX,Path=Value,StringFormat='{}{0:#0.0}'}"/>
-                                        <TextBlock TextDecorations="Underline" Text=" ))&#x00B2;" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                        <TextBlock  Foreground="#f34A4A"   Text="{Binding ElementName=slRadiusW,Path=Value}"/>
-                                        <TextBlock  Text="&#x00B2;" />
-                                    </StackPanel>-->
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <controls:FormulaControl x:Name="Formula"/>
-                                    <!--<StackPanel Orientation="Horizontal">
-                                        <TextBlock TextDecorations="Underline" Text="+(y-( "/>
-                                        <TextBlock  TextDecorations="Underline" Foreground="#f34A4A"  Text="{Binding ElementName=slCoordY,Path=Value,StringFormat='{}{0:#0.0}'}"/>
-                                        <TextBlock  TextDecorations="Underline" Text=" ))&#x00B2;" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                        <TextBlock  Foreground="#f34A4A"   Text="{Binding ElementName=slRadiusH,Path=Value}"/>
-                                        <TextBlock  Text="&#x00B2;" />
-                                    </StackPanel>-->
-                                </StackPanel>
-                                <!--<TextBlock Text="= 1"/>-->
+                                <controls:FormulaControl x:Name="Formula"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
