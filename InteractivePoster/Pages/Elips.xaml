@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InteractivePoster.Pages"
+       xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
       Title="Elips" Background="#F1D3BC">
@@ -357,7 +358,7 @@
                         <Grid>
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal">
+                                    <!--<StackPanel Orientation="Horizontal">
                                         <TextBlock  TextDecorations="Underline" Text="(x-( " FontFamily="/InteractivePoster;component/Fonts/#New Standard" />
                                         <TextBlock TextDecorations="Underline" Foreground="#f34A4A"  Text="{Binding ElementName=slCoordX,Path=Value,StringFormat='{}{0:#0.0}'}"/>
                                         <TextBlock TextDecorations="Underline" Text=" ))&#x00B2;" />
@@ -365,10 +366,11 @@
                                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                         <TextBlock  Foreground="#f34A4A"   Text="{Binding ElementName=slRadiusW,Path=Value}"/>
                                         <TextBlock  Text="&#x00B2;" />
-                                    </StackPanel>
+                                    </StackPanel>-->
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal">
+                                    <controls:FormulaControl x:Name="Formula"/>
+                                    <!--<StackPanel Orientation="Horizontal">
                                         <TextBlock TextDecorations="Underline" Text="+(y-( "/>
                                         <TextBlock  TextDecorations="Underline" Foreground="#f34A4A"  Text="{Binding ElementName=slCoordY,Path=Value,StringFormat='{}{0:#0.0}'}"/>
                                         <TextBlock  TextDecorations="Underline" Text=" ))&#x00B2;" />
@@ -376,9 +378,9 @@
                                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                         <TextBlock  Foreground="#f34A4A"   Text="{Binding ElementName=slRadiusH,Path=Value}"/>
                                         <TextBlock  Text="&#x00B2;" />
-                                    </StackPanel>
+                                    </StackPanel>-->
                                 </StackPanel>
-                                <TextBlock Text="= 1"/>
+                                <!--<TextBlock Text="= 1"/>-->
                             </StackPanel>
                         </Grid>
                     </GroupBox>
