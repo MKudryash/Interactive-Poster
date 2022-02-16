@@ -71,7 +71,8 @@ namespace InteractivePoster.Finction
             }
             cv.Children.Add(TB);            
             TB.TextWrapping = System.Windows.TextWrapping.Wrap;
-            TB.Width = 120;
+            TB.Width = double.NaN;
+            TB.FontSize = maxX / count * 0.5;
 
         }
         Ellipse PointFocus;

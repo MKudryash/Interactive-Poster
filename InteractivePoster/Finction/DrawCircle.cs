@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -48,8 +49,9 @@ namespace InteractivePoster.Finction
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
-            TB.TextWrapping = System.Windows.TextWrapping.Wrap;
-            TB.Width = 100;
+            TB.TextWrapping = TextWrapping.Wrap;
+            TB.Width = double.NaN;
+            TB.FontSize = maxX/count*0.5;
         } //Текст c содержанием точек
         void DrawRadius(double x, double y, double r)
         {

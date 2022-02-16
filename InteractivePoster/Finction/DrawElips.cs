@@ -90,7 +90,8 @@ namespace InteractivePoster.Finction
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
             TB.TextWrapping = System.Windows.TextWrapping.Wrap;
-            TB.Width = 120;
+            TB.Width = double.NaN;
+            TB.FontSize = maxX / count * 0.5;
         } //Текст c содержанием точек
 
         void DrawRadius(double rW, double rH, double gradusValueElips)
