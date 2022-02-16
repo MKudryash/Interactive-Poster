@@ -31,7 +31,7 @@ namespace InteractivePoster.Pages
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
-            FormulaHyperbole.Formula = @"\frac{(x-(" + slCoordX.Value + @"))^2}{" + slRectangleA.Value + @"^2}+ \frac{(y-(" + slCoordY.Value + @"))^2}{" + slRectangleB.Value + @"^2} = 1";
+            FormulaHyperbole.Formula = @"\frac{(x-(" + slCoordX.Value.ToString("F1") + @"))^2}{" + slRectangleA.Value.ToString("F1") + @"^2}+ \frac{(y-(" + slCoordY.Value.ToString("F1") + @"))^2}{" + slRectangleB.Value.ToString("F1") + @"^2} = 1";
 
 
             Background.Children.Clear();
