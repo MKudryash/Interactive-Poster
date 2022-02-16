@@ -53,10 +53,10 @@ namespace InteractivePoster.Finction
 
             };
             //вращение круга
-            RotateTransform rotateTransform = new RotateTransform();
-            rotateTransform.CenterX = radiusW;//центр оси X по отношению к кругу, не к координатной плоскости
-            rotateTransform.CenterY = radiusH;//центр оси Y по отношению к кругу, не к координатной плоскости
-            rotateTransform.Angle = gradusValueElips;//поворот на количетсво градусов     
+            RotateTransform rotateTransform = new RotateTransform() { 
+            CenterX = radiusW,
+            CenterY = radiusH,
+            Angle = gradusValueElips};
             circle.RenderTransform = rotateTransform;
 
 
@@ -79,19 +79,21 @@ namespace InteractivePoster.Finction
             DrawText(x - rH * sinGradusElpis, y - rH * cosGradusElpis, text);//Точка В2
 
 
-            FocusElips(rW, rH, gradusValueElips);
-            DrawRadius(rW, rH, gradusValueElips);
+            FocusElips(rW, rH, gradusValueElips);//Отрисовка и подсчет Фокусов
+            DrawRadius(rW, rH, gradusValueElips);//ОТрисовка радиуса Элипса
         }
-        void DrawText(double x, double y, string s)
+        void DrawText(double x, double y, string text)
         {
-            TextBlock TB = new TextBlock();
-            TB.Text = s;
+            TextBlock TB = new TextBlock()
+            { 
+            Text = text,
+            TextWrapping = TextWrapping.Wrap,
+            Width = double.NaN,
+            FontSize = maxX/count*0.4
+            };
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
-            TB.TextWrapping = System.Windows.TextWrapping.Wrap;
-            TB.Width = double.NaN;
-            TB.FontSize = maxX / count * 0.5;
         } //Текст c содержанием точек
 
         void DrawRadius(double rW, double rH, double gradusValueElips)
@@ -104,13 +106,12 @@ namespace InteractivePoster.Finction
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 3,
-                SnapsToDevicePixels = true
+                SnapsToDevicePixels = true,
+                X1 = convertCoordX(x),
+                X2 = convertCoordX(circleX),
+                Y1 = convertCoordY(y),
+                Y2 = convertCoordY(circleY),
             };
-            line.X1 = convertCoordX(x);
-            line.X2 = convertCoordX(circleX);
-            line.Y1 = convertCoordY(y);
-            line.Y2 = convertCoordY(circleY);
-
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
             string text = "M( " + circleX.ToString("F1") + "; " + circleY.ToString("F1") + ")";
@@ -121,7 +122,7 @@ namespace InteractivePoster.Finction
             double c = FindFocusElips(rW, rH);
             if (rW == rH)
             {
-
+                //при равных радиусах получается круг, поэтому фокусы не считаются
             }
             else
             {
@@ -185,12 +186,12 @@ namespace InteractivePoster.Finction
         {
             return maxX / 2 + y / -1 * (maxX / count) - radiusH;
         }
-
+        /// метод для подсчета фокусов
         public double FindFocusElips(double x, double y)
         {
             return x > y ? Math.Sqrt(Math.Pow(x, 2) - Math.Pow(y, 2)) : Math.Sqrt(Math.Pow(y, 2) - Math.Pow(x, 2));
         }
-
+        /// метод для перевода в радианы
         public double convertRadian(double r)
         {
             return r / 180 * Math.PI;

@@ -20,8 +20,8 @@ namespace InteractivePoster.Finction
         Rectangle rectangle;
         Canvas cv;
         Line line;
-        double x, y,a,b, maxCorrdinatX;
-        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double maxCorrdinatX,double gradusTransform)
+        double x, y, a, b, maxCorrdinatX;
+        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double maxCorrdinatX, double gradusTransform)
         {
             this.x = x;
             this.y = y;
@@ -43,23 +43,32 @@ namespace InteractivePoster.Finction
         QuadraticBezierSegment quadraticBezierSegment;
         public PathGeometry Hyperbola()
         {
-            //y=b/a*x
-            PathFigure pathFigure = new PathFigure();
             PathGeometry pathGeometry = new PathGeometry();
-            quadraticBezierSegment = new QuadraticBezierSegment();
-            pathFigure.StartPoint = new Point(convertCoordX(maxCorrdinatX + x), convertCoordY(b/a* maxCorrdinatX + y));
-            quadraticBezierSegment.Point1 = new Point(convertCoordX(a*2+x-maxCorrdinatX), convertCoordY(y));
-            quadraticBezierSegment.Point2 = new Point(convertCoordX(maxCorrdinatX + x), convertCoordY(-1*b / a * maxCorrdinatX + y));
+
+            //y=b/a*x
+            PathFigure pathFigure = new PathFigure()
+            {
+                StartPoint = new Point(convertCoordX(maxCorrdinatX + x), convertCoordY(b / a * maxCorrdinatX + y))
+            };
+            quadraticBezierSegment = new QuadraticBezierSegment()
+            {
+                Point1 = new Point(convertCoordX(a * 2 + x - maxCorrdinatX), convertCoordY(y)),
+                Point2 = new Point(convertCoordX(maxCorrdinatX + x), convertCoordY(-1 * b / a * maxCorrdinatX + y))
+            };
             pathFigure.Segments.Add(quadraticBezierSegment);
             pathGeometry.Figures.Add(pathFigure);
 
 
             //y=-b/a*x
-            PathFigure pathFigureTwo = new PathFigure();
-            quadraticBezierSegment = new QuadraticBezierSegment();
-            pathFigureTwo.StartPoint = new Point(convertCoordX(maxCorrdinatX*-1 + x), convertCoordY(b / a * maxCorrdinatX + y));
-            quadraticBezierSegment.Point1 = new Point(convertCoordX((a * 2 - maxCorrdinatX)*(-1) + x), convertCoordY(y));
-            quadraticBezierSegment.Point2 = new Point(convertCoordX(maxCorrdinatX *-1+ x), convertCoordY(-1 * b / a * maxCorrdinatX + y));
+            PathFigure pathFigureTwo = new PathFigure()
+            {
+                StartPoint = new Point(convertCoordX(maxCorrdinatX * -1 + x), convertCoordY(b / a * maxCorrdinatX + y))
+            };
+            quadraticBezierSegment = new QuadraticBezierSegment()
+            {
+                Point1 = new Point(convertCoordX((a * 2 - maxCorrdinatX) * (-1) + x), convertCoordY(y)),
+                Point2 = new Point(convertCoordX(maxCorrdinatX * -1 + x), convertCoordY(-1 * b / a * maxCorrdinatX + y))
+            };
             pathFigureTwo.Segments.Add(quadraticBezierSegment);
             pathGeometry.Figures.Add(pathFigureTwo);
 
@@ -68,47 +77,51 @@ namespace InteractivePoster.Finction
 
         void DrawRectangle(double x, double y, Canvas cv, double gradusTransform)
         {
+            RotateTransform rotateTransform = new RotateTransform() //вращение прямоугольника
+            {
+                CenterX = rectangleA,
+                CenterY = rectangleB,
+                Angle = gradusTransform
+            };
+
             rectangle = new Rectangle()
             {
                 Width = 2 * rectangleA,//ширина и длина по сути равна диаметру окружности
                 Height = 2 * rectangleB,
                 Stroke = Brushes.Black,
                 StrokeThickness = 2,
-                StrokeDashArray = { 4, 3 }
+                StrokeDashArray = { 4, 3 },
+                RenderTransform = rotateTransform
             };
-            RotateTransform rotateTransform = new RotateTransform();
-            rotateTransform.CenterX = rectangleA;//центр оси X по отношению к кругу, не к координатной плоскости
-            rotateTransform.CenterY = rectangleB;//центр оси Y по отношению к кругу, не к координатной плоскости
-            rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов     
-            rectangle.RenderTransform = rotateTransform;
+
             cv.Children.Add(rectangle);//помещаем на канву
                                        //в нужную точку канвы
             rectangle.SetValue(Canvas.LeftProperty, convertX(x));
             rectangle.SetValue(Canvas.TopProperty, convertY(y));
         }
-        void DrawText(double x, double y, string s)
+        void DrawText(double x, double y, string text)
         {
-            TextBlock TB = new TextBlock();
-            TB.Text = s;
+            TextBlock TB = new TextBlock()
+            {
+                Text = text,
+                TextWrapping = TextWrapping.Wrap,
+                Width = double.NaN,
+                FontSize = maxX / count * 0.5
+            };
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
-            TB.TextWrapping = System.Windows.TextWrapping.Wrap;
-            TB.Width = double.NaN;
-            TB.FontSize = maxX / count * 0.5;
         } //Текст c содержанием точек
         void FocusHyperbole()
         {
-            double c = Math.Sqrt(Math.Pow(a,2)+ Math.Pow(b, 2));
+            double c = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
 
-                    string text = "F1( " + (x + c * cosGradusElpis).ToString("F1") + "; " + (y - c * sinGradusElpis).ToString("F1") + ")";
-                    DrawPoinFocus(x + c * cosGradusElpis, y - c * sinGradusElpis);
-                    DrawText(x + c * cosGradusElpis, y - c * sinGradusElpis, text);
-                    text = "F2( " + (x - c * cosGradusElpis).ToString("F1") + "; " + (y + c * sinGradusElpis).ToString("F1") + ")";
-                    DrawPoinFocus(x - c * cosGradusElpis, y + c * sinGradusElpis);
-                    DrawText(x - c * cosGradusElpis, y + c * sinGradusElpis, text);
-
-            
+            string text = "F1( " + (x + c * cosGradusElpis).ToString("F1") + "; " + (y - c * sinGradusElpis).ToString("F1") + ")";
+            DrawPoinFocus(x + c * cosGradusElpis, y - c * sinGradusElpis);
+            DrawText(x + c * cosGradusElpis, y - c * sinGradusElpis, text);
+            text = "F2( " + (x - c * cosGradusElpis).ToString("F1") + "; " + (y + c * sinGradusElpis).ToString("F1") + ")";
+            DrawPoinFocus(x - c * cosGradusElpis, y + c * sinGradusElpis);
+            DrawText(x - c * cosGradusElpis, y + c * sinGradusElpis, text);
         }
         Ellipse PointFocus;
         void DrawPoinFocus(double x, double y)
@@ -148,6 +161,7 @@ namespace InteractivePoster.Finction
         {
             return maxX / 2 + y / -1 * (maxX / count) - rectangleB;
         }
+        /// метод для преобразования градусов в радианы
         public double convertRadian(double r)
         {
             return r / 180 * Math.PI;
