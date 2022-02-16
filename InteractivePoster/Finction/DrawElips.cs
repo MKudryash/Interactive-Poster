@@ -134,6 +134,20 @@ namespace InteractivePoster.Finction
                     text = "F2( " + (x - c * cosGradusElpis).ToString("F1") + "; " + (y + c * sinGradusElpis).ToString("F1") + ")";
                     DrawPoinFocus(x - c * cosGradusElpis, y + c * sinGradusElpis);
                     DrawText(x - c * cosGradusElpis, y + c * sinGradusElpis, text);
+                    line = new Line
+                    {
+                        X1 = convertCoordX(x + rW * cosGradusElpis),
+                        X2 = convertCoordX(x - rW * cosGradusElpis),
+                        Y1 = convertCoordY(y - rW * sinGradusElpis),
+                        Y2 = convertCoordY(y + rW * sinGradusElpis),
+                        Stroke = Brushes.Black,
+                        StrokeThickness = 2,
+                        SnapsToDevicePixels = true
+                    };
+                   
+                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+                    cv.Children.Add(line);
+
                 }
                 else
                 {
@@ -143,9 +157,21 @@ namespace InteractivePoster.Finction
                     text = "F1( " + (x + c * sinGradusElpis).ToString("F1") + "; " + (y + c * cosGradusElpis).ToString("F1") + ")";
                     DrawPoinFocus(x + c * sinGradusElpis, y + c * cosGradusElpis);
                     DrawText(x + c * sinGradusElpis, y + c * cosGradusElpis, text);
-
+                    line = new Line
+                    {
+                        X1 = convertCoordX(x + rH * sinGradusElpis),
+                        X2 = convertCoordX(x - rH * sinGradusElpis),
+                        Y1 = convertCoordY(y + rH * cosGradusElpis),
+                        Y2 = convertCoordY(y - rH * cosGradusElpis),
+                        Stroke = Brushes.Black,
+                        StrokeThickness = 2,
+                        SnapsToDevicePixels = true
+                    };
+                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+                    cv.Children.Add(line);
 
                 }
+               
             }
         }
         Ellipse PointFocus;

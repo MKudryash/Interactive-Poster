@@ -48,9 +48,6 @@ namespace InteractivePoster.Finction
         }
         public static bool equation { get; set; } = true;
 
-
-
-
     }
     class GeometricPatterns
     {

@@ -14,17 +14,16 @@ namespace InteractivePoster.Finction
     class DrawParabola : GeometricPatterns
     {
 
-        double x, p, y, maxCorrdinatX;
-
-        public DrawParabola(double x, double y,  Canvas cv,double p,double maxCorrdinatX)
+        double x, p, y, maxCorrdinatX = -15;
+        public DrawParabola(double x, double y,  Canvas cv,double p)
         {
             this.p = p;
             this.x = x;
             this.y = y;
-            this.maxCorrdinatX = maxCorrdinatX;
             count = Convert.ToDouble(cv.Tag);//получаем масштабы области
             maxX = cv.ActualWidth; //получаем ширину канвы
             FocusParabola(cv);
+            
         }
         public PathGeometry Parabola()
         {

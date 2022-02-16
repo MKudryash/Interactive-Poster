@@ -216,7 +216,7 @@
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
-    </Page.Resources> 
+    </Page.Resources>
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -224,12 +224,12 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer Panel.ZIndex="1" Grid.Column="1" >
-        <StackPanel  Margin="20"  Background="#262F34">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <StackPanel  Margin="20"  Background="#262F34">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0"
                         Margin="10">
@@ -252,113 +252,103 @@
                     </StackPanel>
 
                     <GroupBox Grid.Row="1">
-                    <GroupBox.Header>
-                        <Border  CornerRadius="5" >
-                            <StackPanel Margin="10 0">
-                                <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления "  FontFamily="/InteractivePoster;component/Fonts/#Flanker Griffo"
+                        <GroupBox.Header>
+                            <Border  CornerRadius="5" >
+                                <StackPanel Margin="10 0">
+                                    <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления "  FontFamily="/InteractivePoster;component/Fonts/#Flanker Griffo"
                                         />
+                                </StackPanel>
+                            </Border>
+                        </GroupBox.Header>
+
+                        <StackPanel Margin="5">
+
+
+                            <StackPanel>
+                                <RadioButton Height="50" 
+                                         Style="{StaticResource MenuButtonThemeParabola}" 
+                                         IsChecked="{Binding equation}" 
+                                         Content="Вертикальная"/>
+                                <RadioButton Height="50" 
+                                         Style="{StaticResource MenuButtonThemeParabola}" 
+                                         Content="Горизонтальная"/>
                             </StackPanel>
-                        </Border>
-                    </GroupBox.Header>
-
-                    <StackPanel Margin="5">
 
 
-                        <StackPanel>
-                            <RadioButton Height="50" Style="{StaticResource MenuButtonThemeParabola}" IsChecked="{Binding equation}" Content="2py = x&#x00B2;"/>
-                            <RadioButton Height="50" Style="{StaticResource MenuButtonThemeParabola}" Content="2px= y&#x00B2;"/>
-                        </StackPanel>
 
-
-                        <!--Параметр f(x)-->
-                        <GroupBox Header="Параметр f(x)">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox
-                                Grid.Column="0"  Text="{Binding ElementName=SlParametrParabolaX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
-                                <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="SlParametrParabolaX" 
-                            SmallChange="2" LargeChange="2" Value="3" Minimum="1" Maximum="{Binding MaxValue}"
-                        PreviewMouseMove="Area_PreviewMouseMove" 
-                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                            </Grid>
-                        </GroupBox>
-
-                        <!--Парметр параболы-->
-                        <GroupBox Header="Параметр параболы">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox
+                            <!--Парметр параболы-->
+                            <GroupBox Header="Параметр параболы">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox
                                 Grid.Column="0"  Text="{Binding ElementName=SlParametrParabola,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
-                                <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="SlParametrParabola" 
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="SlParametrParabola" 
                             SmallChange="2" LargeChange="2" Value="2" Minimum="-10" Maximum="10"
                         PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                            </Grid>
-                        </GroupBox>
-                        
-                        
-                        <!--Масштаб области-->
-                        <GroupBox Header="Масштаб области">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox
+                                </Grid>
+                            </GroupBox>
+
+
+                            <!--Масштаб области-->
+                            <GroupBox Header="Масштаб области">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox
                                 Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
                             SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
                         PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
-                            </Grid>
-                        </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
-                        <!--Смещение по оси абсцисс-->
-                        <GroupBox Header="Смещение по оси абсцисс">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
-                                <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                            <!--Смещение по оси абсцисс-->
+                            <GroupBox Header="Смещение по оси абсцисс">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slCoordX" SmallChange="1" LargeChange="1" Value="0"
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                            </Grid>
-                        </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
-                        <!--Смещение по оси ординат-->
-                        <GroupBox Header="Смещение по оси ординат">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox  Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordY,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
-                                <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                            <!--Смещение по оси ординат-->
+                            <GroupBox Header="Смещение по оси ординат">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox  Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordY,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slCoordY" SmallChange="1" LargeChange="1" Value="0" 
                         Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                            </Grid>
-                        </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
-                       
-                    </StackPanel>
-                </GroupBox>
-            </Grid>
 
-            <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
 
-        </StackPanel>
+                <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
+
+            </StackPanel>
         </ScrollViewer>
         <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
