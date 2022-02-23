@@ -85,7 +85,7 @@ namespace InteractivePoster.Finction
             quadraticBezierSegment = new QuadraticBezierSegment()
             {
                 Point1 = new Point(convertCoordX(AvgX + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1)) * -1 + y)),
-                Point2 = new Point(convertCoordX(count / 2 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 2)) * -1 + y))
+                Point2 = new Point(convertCoordX(count / 2 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 1)) * -1 + y))
             };
             pathFigure.Segments.Add(quadraticBezierSegment);
             pathGeometry.Figures.Add(pathFigure);
@@ -114,7 +114,7 @@ namespace InteractivePoster.Finction
             quadraticBezierSegment = new QuadraticBezierSegment()
             {
                 Point1 = new Point(convertCoordX(AvgX * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1)) + y)),
-                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 2)) + y))
+                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 1)) + y))
             };
             pathFigure.Segments.Add(quadraticBezierSegment);
             pathGeometry.Figures.Add(pathFigure);
@@ -128,7 +128,7 @@ namespace InteractivePoster.Finction
             quadraticBezierSegment = new QuadraticBezierSegment()
             {
                 Point1 = new Point(convertCoordX(AvgX * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1)) * -1 + y)),
-                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 2)) * -1 + y))
+                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 1)) * -1 + y))
             };
             pathFigure.Segments.Add(quadraticBezierSegment);
             pathGeometry.Figures.Add(pathFigure);
