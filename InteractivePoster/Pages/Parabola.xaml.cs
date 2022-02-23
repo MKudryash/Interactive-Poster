@@ -63,5 +63,11 @@ namespace InteractivePoster.Pages
         {
             LoadPage.MainFrame.GoBack();
         }
+        
+
+        private void ChangedParabola(object sender, RoutedEventArgs e)
+        {
+            UpdateBackPattern(null, null);
+        }
     }
 }

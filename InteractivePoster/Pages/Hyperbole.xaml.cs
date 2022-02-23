@@ -22,9 +22,11 @@ namespace InteractivePoster.Pages
     public partial class Hyperbole : Page
     {
         double count;
+        MaxMinCoordinat MMC = new MaxMinCoordinat();
         public Hyperbole()
         {
             InitializeComponent();
+            DataContext = MMC;
 
         }
 
@@ -46,7 +48,7 @@ namespace InteractivePoster.Pages
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, count / 2, Orientation.Vertical, 3, Background);
 
-            DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background, SlParametrHyperbolaX.Value,SlTransform.Value);
+            DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background,SlTransform.Value);
             Path path = new Path();
             path.Data = drawHyperbole.Hyperbola();
             path.Stroke = Brushes.Black;

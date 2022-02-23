@@ -283,28 +283,13 @@
                                         <TextBox
                                 Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                         <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
-                            SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
+                            SmallChange="2" LargeChange="2" Value="20" Minimum="14" Maximum="36"
                         PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
                                     </Grid>
                                 </GroupBox>
 
 
-                                <!--Параметр f(x)-->
-                                <GroupBox Header="Параметр f(x)">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBox
-                                Grid.Column="0"  Text="{Binding ElementName=SlParametrHyperbolaX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
-                                        <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="SlParametrHyperbolaX" 
-                            SmallChange="2" LargeChange="2" Value="4" Minimum="1" Maximum="{Binding MaxValue}"
-                        PreviewMouseMove="Area_PreviewMouseMove" 
-                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                                    </Grid>
-                                </GroupBox>
 
                                 <!--Смещение по оси абсцисс-->
                                 <GroupBox Header="Смещение по оси абсцисс">
@@ -338,7 +323,7 @@
                                     </Grid>
                                 </GroupBox>
 
-                                <!--Радиус окружности width-->
+                                <!--Действительная ось-->
                                 <GroupBox Header="Действительная ось">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -353,7 +338,7 @@
                                     </Grid>
                                 </GroupBox>
 
-                                <!--Радиус окружности height-->
+                                <!--Мнимая ось-->
                                 <GroupBox Header="Мнимая ось">
                                     <Grid>
                                         <Grid.ColumnDefinitions>

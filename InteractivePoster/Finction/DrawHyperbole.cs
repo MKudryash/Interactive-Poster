@@ -20,8 +20,8 @@ namespace InteractivePoster.Finction
         Rectangle rectangle;
         Canvas cv;
         Line line;
-        double x, y, a, b, maxCorrdinatX;
-        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double maxCorrdinatX, double gradusTransform)
+        double x, y, a, b;
+        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double gradusTransform)
         {
             this.x = x;
             this.y = y;
@@ -32,48 +32,150 @@ namespace InteractivePoster.Finction
             sinGradusElpis = Math.Sin(convertRadian(gradusTransform));
             cosGradusElpis = Math.Cos(convertRadian(gradusTransform));
 
-            this.maxCorrdinatX = maxCorrdinatX;
             count = Convert.ToDouble(cv.Tag);//получаем масштабы области
             maxX = cv.ActualWidth; //получаем ширину канвы       
             rectangleA = a * (maxX / count);//преобразуем ширину прямоугольника из декартовой системы
             rectangleB = b * (maxX / count);//преобразуем высоту прямоугольника из декартовой системы
             DrawRectangle(x, y, cv, gradusTransform);
             FocusHyperbole();
+            DrawAsymptotes(gradusTransform);
         }
         QuadraticBezierSegment quadraticBezierSegment;
         public PathGeometry Hyperbola()
         {
             PathGeometry pathGeometry = new PathGeometry();
 
-            //y=b/a*x
+            //правая ветвь
             PathFigure pathFigure = new PathFigure()
             {
-                StartPoint = new Point(convertCoordX(maxCorrdinatX + x), convertCoordY(b / a * maxCorrdinatX + y))
+                StartPoint = new Point(convertCoordX(a+1+x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a+1, 2)) / (a * a)) - 1))+y))
             };
             quadraticBezierSegment = new QuadraticBezierSegment()
             {
-                Point1 = new Point(convertCoordX(a * 2 + x - maxCorrdinatX), convertCoordY(y)),
-                Point2 = new Point(convertCoordX(maxCorrdinatX + x), convertCoordY(-1 * b / a * maxCorrdinatX + y))
+                Point1 = new Point(convertCoordX(a-1+x), convertCoordY(y)),
+                Point2 = new Point(convertCoordX(a+1+x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a+1,2)) / (a * a)) - 1))*-1+y))
             };
             pathFigure.Segments.Add(quadraticBezierSegment);
             pathGeometry.Figures.Add(pathFigure);
 
 
-            //y=-b/a*x
-            PathFigure pathFigureTwo = new PathFigure()
+            double AvgX = (((count / 2) - (a + 1)) / 2)+(a + 1);
+
+
+
+
+            pathFigure = new PathFigure()
             {
-                StartPoint = new Point(convertCoordX(maxCorrdinatX * -1 + x), convertCoordY(b / a * maxCorrdinatX + y))
+                StartPoint = new Point(convertCoordX(a + 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1))+y))
             };
             quadraticBezierSegment = new QuadraticBezierSegment()
             {
-                Point1 = new Point(convertCoordX((a * 2 - maxCorrdinatX) * (-1) + x), convertCoordY(y)),
-                Point2 = new Point(convertCoordX(maxCorrdinatX * -1 + x), convertCoordY(-1 * b / a * maxCorrdinatX + y))
+                Point1 = new Point(convertCoordX(AvgX + x), convertCoordY(Math.Sqrt(Math.Abs(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1))) + y)),
+                Point2 = new Point(convertCoordX(count/2+x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) -1))+y))
             };
-            pathFigureTwo.Segments.Add(quadraticBezierSegment);
-            pathGeometry.Figures.Add(pathFigureTwo);
+            pathFigure.Segments.Add(quadraticBezierSegment);
+            pathGeometry.Figures.Add(pathFigure);
+
+
+
+            pathFigure = new PathFigure()
+            {
+                StartPoint = new Point(convertCoordX(a + 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * -1 + y))
+            };
+            quadraticBezierSegment = new QuadraticBezierSegment()
+            {
+                Point1 = new Point(convertCoordX(AvgX + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1)) * -1 + y)),
+                Point2 = new Point(convertCoordX(count / 2 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 2)) * -1 + y))
+            };
+            pathFigure.Segments.Add(quadraticBezierSegment);
+            pathGeometry.Figures.Add(pathFigure);
+
+
+
+            //левая ветвь
+            pathFigure = new PathFigure()
+            {
+                StartPoint = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(-a - 1, 2)) / (a * a)) - 1)) + y))
+            };
+            quadraticBezierSegment = new QuadraticBezierSegment()
+            {
+                Point1 = new Point(convertCoordX(-a + 1 + x), convertCoordY(y)),
+                Point2 = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(-a - 1, 2)) / (a * a)) - 1)) * -1 + y))
+            };
+            pathFigure.Segments.Add(quadraticBezierSegment);
+            pathGeometry.Figures.Add(pathFigure);
+
+
+
+            pathFigure = new PathFigure()
+            {
+                StartPoint = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(-a - 1, 2)) / (a * a)) - 1)) + y))
+            };
+            quadraticBezierSegment = new QuadraticBezierSegment()
+            {
+                Point1 = new Point(convertCoordX(AvgX * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1)) + y)),
+                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 2)) + y))
+            };
+            pathFigure.Segments.Add(quadraticBezierSegment);
+            pathGeometry.Figures.Add(pathFigure);
+
+
+
+            pathFigure = new PathFigure()
+            {
+                StartPoint = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(-a - 1, 2)) / (a * a)) - 1)) * -1 + y))
+            };
+            quadraticBezierSegment = new QuadraticBezierSegment()
+            {
+                Point1 = new Point(convertCoordX(AvgX * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1)) * -1 + y)),
+                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 2)) * -1 + y))
+            };
+            pathFigure.Segments.Add(quadraticBezierSegment);
+            pathGeometry.Figures.Add(pathFigure);
 
             return pathGeometry;
         }
+
+        void DrawAsymptotes(double gradusTransform)
+        {
+            line = new Line()
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = 2,
+                StrokeDashArray = { 4, 3 },
+                SnapsToDevicePixels = true,
+                X1 = convertCoordX((count / 2) * -1+x),
+                X2 = convertCoordX((count / 2 + x)),
+                Y1 = convertCoordY((b/a*count/2)*-1+y),
+                Y2 = convertCoordY(b / a * count / 2 + y),
+            };
+            RotateTransform rotateTransform = new RotateTransform();
+            rotateTransform.CenterX = maxX / 2 + x * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
+            rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
+            rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
+            line.RenderTransform = rotateTransform;
+            line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+            cv.Children.Add(line);
+            line = new Line()
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = 2,
+                StrokeDashArray = { 4, 3 },
+                SnapsToDevicePixels = true,
+                X1 = convertCoordX((count / 2 ) * -1+x),
+                X2 = convertCoordX((count / 2 + x)),
+                Y2 = convertCoordY((b / a * count / 2) *-1 +y),
+                Y1 = convertCoordY(b / a * count / 2 + y),
+            };
+            line.RenderTransform = rotateTransform;
+            line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+            cv.Children.Add(line);
+
+
+
+        }
+
+
 
         void DrawRectangle(double x, double y, Canvas cv, double gradusTransform)
         {

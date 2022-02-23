@@ -268,10 +268,12 @@
                                 <RadioButton Height="50" 
                                          Style="{StaticResource MenuButtonThemeParabola}" 
                                          IsChecked="{Binding equation}" 
-                                         Content="Вертикальная"/>
+                                         Content="Вертикальная"
+                                             Checked="ChangedParabola"/>
                                 <RadioButton Height="50" 
                                          Style="{StaticResource MenuButtonThemeParabola}" 
-                                         Content="Горизонтальная"/>
+                                         Content="Горизонтальная"
+                                              Checked="ChangedParabola"/>
                             </StackPanel>
 
 
