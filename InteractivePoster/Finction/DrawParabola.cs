@@ -91,5 +91,38 @@ namespace InteractivePoster.Finction
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
         }
+
+
+       public string CanonicalEquation()
+        {
+            switch (MaxMinCoordinat.equation)
+            {
+                case true:
+                    if (p > 0)
+                    {
+                        return @"(x-" + x.ToString("F1") + "))^2= 2p((y-" + y.ToString("F1") + ")"; 
+                    };
+                    if (p < 0)
+                    {
+                        return @"(x-" + x.ToString("F1") + "))^2= -2p((y-" + y.ToString("F1") + ")";
+                    };
+                    break;
+
+                case false:
+                    if (p > 0)
+                    {
+                        return @"((y - " + y.ToString("F1") + ")^2= 2p(x-" + x.ToString("F1") + "))";
+                    };
+                    if (p < 0)
+                    {
+                        return @"((y - " + y.ToString("F1") + ")^2= -2p(x-" + x.ToString("F1") + "))";
+                    };
+                    break;
+                default:
+                    return " ";
+            }
+            return "";
+
+        }
     }
 }

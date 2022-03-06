@@ -52,6 +52,8 @@ namespace InteractivePoster.Pages
             path.StrokeThickness = 3;
 
             Background.Children.Add(path);
+
+            Formula.Formula = drawParabola.CanonicalEquation();
         }
        
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)

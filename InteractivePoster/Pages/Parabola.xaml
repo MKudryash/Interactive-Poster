@@ -347,7 +347,13 @@
                         </StackPanel>
                     </GroupBox>
                 </Grid>
-
+                <GroupBox Header="Каноническое уравнение:">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                            <controls:FormulaControl x:Name="Formula" />
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
 
             </StackPanel>
