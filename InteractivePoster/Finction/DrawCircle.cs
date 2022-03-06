@@ -8,7 +8,7 @@ namespace InteractivePoster.Finction
 {
     class DrawCircle : GeometricPatterns
     {
-        Ellipse circle;//непосредственно сама окружность
+        Ellipse circle,point;//непосредственно сама окружность
         Line line;
         /// <summary>
         /// Конструктор класса
@@ -39,6 +39,24 @@ namespace InteractivePoster.Finction
             circle.SetValue(Canvas.LeftProperty, convertX(x));
             circle.SetValue(Canvas.TopProperty, convertY(y));
             string text = "О( " + x.ToString("F1") + "; " + y.ToString("F1") + ")";
+            //центр окружности
+
+             point = new Ellipse()//задаем прочие параметры
+            {
+                Width = (maxX / count) * 0.2,
+                Height = (maxX / count) * 0.2,
+                Fill = Brushes.Black,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1
+            };
+
+            cv.Children.Add(point);//помещаем на канву
+                                   //в нужную точку канвы
+            point.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
+            point.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
+
+
+
             DrawRadius(x, y , r);
             DrawText(x, y,text);
         }
