@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Основы аналитической геометрии. Кривые второго порядка"
         Height="450" Width="458.954" WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized" >
  
     <Grid>
         <Frame Name="frmMain" NavigationUIVisibility="Hidden"></Frame>

@@ -14,7 +14,7 @@
                     Orientation="Horizontal">
             <StackPanel >
                 <TextBlock Text="Окружность"  HorizontalAlignment="Center"/>
-                <Button Content="Images/Circle.jpg"
+                <Button 
                              Tag="CircleTag"                            
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"

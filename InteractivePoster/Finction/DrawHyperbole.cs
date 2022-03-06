@@ -170,9 +170,6 @@ namespace InteractivePoster.Finction
             line.RenderTransform = rotateTransform;
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
-
-
-
         }
 
 

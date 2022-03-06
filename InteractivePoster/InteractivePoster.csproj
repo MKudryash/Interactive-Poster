@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IconPoster.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -145,9 +148,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Circle.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Sound.png" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +156,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Hyperbole.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconPoster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconPoster.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IconPoster.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

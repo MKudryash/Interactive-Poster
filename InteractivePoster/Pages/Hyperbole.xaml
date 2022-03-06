@@ -333,7 +333,7 @@
                                         <TextBox Grid.Column="0" Text="{Binding ElementName=slRectangleA,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
                                         <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slRectangleA" SmallChange="1" LargeChange="1" Value="2" 
-                        Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
+                        Minimum="0.1" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
                                     </Grid>
                                 </GroupBox>
@@ -348,7 +348,7 @@
                                         <TextBox Grid.Column="0" Text="{Binding ElementName=slRectangleB,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
                                         <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slRectangleB" SmallChange="1" LargeChange="1" Value="1" 
-                        Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
+                        Minimum="0.1" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
                                     </Grid>
                                 </GroupBox>
