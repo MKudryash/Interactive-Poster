@@ -30,7 +30,8 @@ namespace InteractivePoster.Pages
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
-            Formula.Formula = @"\frac{(x-("+ slCoordX.Value.ToString("F1")+"* cos("+SlTransform.Value.ToString("F1")+")"+@"))^2}{" + slRadiusW.Value.ToString("F1") + @"^2}+ \frac{(y-("+ slCoordY.Value.ToString("F1") + "* sin(" + SlTransform.Value.ToString("F1") + ")" + @"))^2}{" + slRadiusH.Value.ToString("F1") + @"^2} = 1";
+            Formula.Formula = @"\frac{(x*cos(" + SlTransform.Value.ToString() + ")-y*sin(" + SlTransform.Value.ToString() + ")-("+ slCoordX.Value.ToString("F1")+")"+@"))^2}{" + slRadiusW.Value.ToString("F1") +
+                @"^2}+ \frac{(y*sin(" + SlTransform.Value.ToString() + ")+y*cos(" + SlTransform.Value.ToString() + ")-(" + slCoordY.Value.ToString("F1") + ")" + @"))^2}{" + slRadiusH.Value.ToString("F1") + @"^2} = 1";
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
