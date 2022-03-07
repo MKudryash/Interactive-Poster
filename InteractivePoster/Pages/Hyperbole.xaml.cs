@@ -33,7 +33,7 @@ namespace InteractivePoster.Pages
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
-            FormulaHyperbole.Formula = @"\frac{(x-(" + slCoordX.Value.ToString("F1") + @"))^2}{" + slRectangleA.Value.ToString("F1") + @"^2}+ \frac{(y-(" + slCoordY.Value.ToString("F1") + @"))^2}{" + slRectangleB.Value.ToString("F1") + @"^2} = 1";
+            FormulaHyperbole.Formula = @"\frac{(x-(" + slCoordX.Value.ToString("F1") + "* cos(" + SlTransform.Value.ToString("F1") + ")" + @"))^2}{" + slRectangleA.Value.ToString("F1") + @"^2}+ \frac{(y-(" + slCoordY.Value.ToString("F1") + "* sin(" + SlTransform.Value.ToString("F1") + ")" + @"))^2}{" + slRectangleB.Value.ToString("F1") + @"^2} = 1";
 
 
             Background.Children.Clear();
@@ -49,21 +49,21 @@ namespace InteractivePoster.Pages
             lineY.DrawArrow(0, count / 2, Orientation.Vertical, 3, Background);
 
             DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background,SlTransform.Value);
-            //Path path = new Path();
-            //path.Data = drawHyperbole.Hyperbola();
-            //path.Stroke = Brushes.Black;
-            //path.StrokeThickness = 3;
+            Path path = new Path();
+            path.Data = drawHyperbole.Hyperbola();
+            path.Stroke = Brushes.Black;
+            path.StrokeThickness = 3;
 
-            //double maxX = Background.ActualWidth;
+            double maxX = Background.ActualWidth;
 
-            //RotateTransform rotateTransform = new RotateTransform();
-            //rotateTransform.CenterX = maxX / 2 + slCoordX.Value * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
-            //rotateTransform.CenterY = maxX / 2 + slCoordY.Value * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
-            //rotateTransform.Angle = SlTransform.Value;//поворот на количетсво градусов     
-            //path.RenderTransform = rotateTransform;
+            RotateTransform rotateTransform = new RotateTransform();
+            rotateTransform.CenterX = maxX / 2 + slCoordX.Value * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
+            rotateTransform.CenterY = maxX / 2 + slCoordY.Value * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
+            rotateTransform.Angle = SlTransform.Value;//поворот на количетсво градусов     
+            path.RenderTransform = rotateTransform;
 
 
-            //Background.Children.Add(path);
+            Background.Children.Add(path);
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)

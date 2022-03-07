@@ -56,7 +56,7 @@ namespace InteractivePoster.Finction
                                         //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
-            DrawByPoint(gradusTransform);
+           // DrawByPoint(gradusTransform);
 
         }
         QuadraticBezierSegment quadraticBezierSegment;
