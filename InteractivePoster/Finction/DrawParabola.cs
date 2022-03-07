@@ -105,7 +105,6 @@ namespace InteractivePoster.Finction
             double pointX = -1;
             for (double i = -1; i < 0.9; i += 0.1)
             {
-
                 lines = new Line()
                 {
                     X1 = convertCoordX(pointX * pointX + x),
@@ -122,21 +121,6 @@ namespace InteractivePoster.Finction
                 rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
                 rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
                 cc.RenderTransform = rotateTransform;
-
-
-                //point = new Ellipse()
-                //{
-                //    Width = maxX / count * 0.2,
-                //    Height = maxX / count * 0.2,
-                //    Stroke = Brushes.Black,
-                //    StrokeThickness = 3
-
-                //};
-                //cv.Children.Add(point);//помещаем на канву
-                //                       //в нужную точку канвы
-                //point.SetValue(Canvas.LeftProperty, convertCoordX(i));
-                //point.SetValue(Canvas.TopProperty, convertCoordY(i*i));
-
             }
             cv.Children.Add(cc);
 

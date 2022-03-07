@@ -56,7 +56,7 @@ namespace InteractivePoster.Finction
                                         //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
-
+            DrawByPoint(gradusTransform);
 
         }
         QuadraticBezierSegment quadraticBezierSegment;
@@ -154,7 +154,7 @@ namespace InteractivePoster.Finction
 
             return pathGeometry;
         }
-
+        Line lines;
         void DrawAsymptotes(double gradusTransform)
         {
             line = new Line()
@@ -190,8 +190,43 @@ namespace InteractivePoster.Finction
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
         }
+        void DrawByPoint(double gradusTransform)
+        {
+            Canvas cc = new Canvas();
+            double pointX =0;
+            int razmer = (int)(count / 2 - a);
+            for (double i =0; i < 4.9; i += 0.1)
+            {
+                lines = new Line()
+                {
+                    X1 = convertCoordX(pointX + x - a),
+                    Y1 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - a, 2) / (a * a)) - 1)) + y),
+                    X2 = convertCoordX(pointX - 0.1 + x - a),
+                    Y2 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - 0.1- a, 2) / (a * a)) - 1)) + y),
+                    Stroke = Brushes.Black,
+                    StrokeThickness =3
+                };
+                cc.Children.Add(lines);
+                lines = new Line()
+                {
+                   X1 = convertCoordX(pointX + x - a),
+                Y1 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - a, 2) / (a * a)) - 1))*-1 + y),
+                    X2 = convertCoordX(pointX - 0.1 + x - a),
+                    Y2 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - 0.1 - a, 2) / (a * a)) - 1))*-1 + y),
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 3
+                };
+                pointX -= 0.1;
+                cc.Children.Add(lines);
+                RotateTransform rotateTransform = new RotateTransform();
+                rotateTransform.CenterX = maxX / 2 + x * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
+                rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
+                rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
+                cc.RenderTransform = rotateTransform;
+            }
+            cv.Children.Add(cc);
 
-
+        }
 
         void DrawRectangle(double x, double y, Canvas cv, double gradusTransform)
         {
