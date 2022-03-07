@@ -39,7 +39,6 @@ namespace InteractivePoster.Finction
             DrawRectangle(x, y, cv, gradusTransform);
             FocusHyperbole();
             DrawAsymptotes(gradusTransform);
-
             double mX = (a + 1) * cosGradusHyperbole + Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * sinGradusHyperbole + x;
             double mY = (a + 1) * sinGradusHyperbole * -1 + Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * cosGradusHyperbole + y;
 
@@ -285,6 +284,10 @@ namespace InteractivePoster.Finction
         {
             return r / 180 * Math.PI;
         }
+
+
+
+
     }
 
 }
