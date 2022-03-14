@@ -15,7 +15,7 @@ namespace InteractivePoster.Finction
     {
         double rectangleA;
         double rectangleB;
-        double sinGradusHyperbole;
+        double sinGradusHyperbole, gradusTransform;
         double cosGradusHyperbole;
         Rectangle rectangle;
         Canvas cv;
@@ -28,6 +28,7 @@ namespace InteractivePoster.Finction
             this.a = a;
             this.b = b;
             this.cv = cv;
+            this.gradusTransform = gradusTransform;
 
             sinGradusHyperbole = Math.Sin(convertRadian(gradusTransform));
             cosGradusHyperbole = Math.Cos(convertRadian(gradusTransform));
@@ -195,54 +196,76 @@ namespace InteractivePoster.Finction
         void CalculationPoinHyperbole()
         {
             int razmer = (int)(count / 2-a);
+            double h = 0.1;
             razmer = razmer == 0 ? 1 : razmer;
-            double[,] massPoint = new double[razmer*2*10, 4];
+            double[,] massPoint = new double[razmer*10*2+1, 2];
             int countfor = 0;
             double pointX = razmer*-1;
-           
-            int h = 1;
+            double pointXTwo =0;
 
-            for (double i = 0; i < razmer * 10+1; i++)
+            for (double i = 0; i < razmer *10+1; i++)
             {
                 pointX = Math.Round(pointX,2);
                 massPoint[countfor, 0] = Math.Round(pointX + x,2) - a;
                 massPoint[countfor, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)), 2) - 1)) + y;
-                massPoint[countfor, 2] = Math.Round(Math.Abs(pointX) + x,2) + a;
-                massPoint[countfor, 3] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(pointX) + a, 2) / (a * a)),2) - 1)) + y;
-                pointX += 0.1;
+                massPoint[countfor+razmer*10, 0] = Math.Round(pointXTwo + x, 2) - a;
+                massPoint[countfor+razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo - a, 2) / (a * a)), 2) - 1))*-1 + y;
+                pointXTwo -= h;
+                pointX += h;
                 countfor++;
             }
-          DrawByPoints(massPoint);
+            DrawByPoints(massPoint);
+            massPoint = new double[razmer * 10 * 2 + 1, 2];
+            pointX = razmer * -1;
+            countfor = 0;
+            pointXTwo = 0;
+            for (double i = 0; i < razmer * 10 + 1; i++)
+            {
+                pointX = Math.Round(pointX, 2);
+                massPoint[countfor, 0] = Math.Round(Math.Abs(pointX) + x, 2) + a;
+                massPoint[countfor, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(pointX) + a, 2) / (a * a)), 2) - 1)) + y;
+                massPoint[countfor + razmer * 10, 0] = Math.Round(pointXTwo+ x, 2) + a;
+                massPoint[countfor + razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo + a, 2) / (a * a)), 2) - 1)) * -1 + y;
+                pointX += h;
+                pointXTwo += h;
+                countfor++;
+            }
+            DrawByPoints(massPoint);
         }
         void DrawByPoints(double[,] massPoint)
         {
             Canvas cc = new Canvas();
             int razmer = (int)(count / 2 - a);
             int countfor = 0;
-            for (double i = 0; i < razmer*10; i++)
+            for (double i = 0; i < razmer*2*10-1; i++)
             {
                 lines = new Line()
                 {
                     X1 = convertCoordX(massPoint[countfor, 0]),
                     Y1 = convertCoordY(massPoint[countfor, 1]),
-                    X2 = convertCoordX(massPoint[countfor + 1,0]),
+                    X2 = convertCoordX(massPoint[countfor+1,0]),
                     Y2 = convertCoordY(massPoint[countfor+1, 1]),
                     Stroke = Brushes.Black,
                     StrokeThickness = 3
                 };
                 cc.Children.Add(lines);
 
-                lines = new Line()
-                {
-                    X1 = convertCoordX(massPoint[countfor, 2]),
-                    Y1 = convertCoordY(massPoint[countfor, 3]),
-                    X2 = convertCoordX(massPoint[countfor + 1, 2]),
-                    Y2 = convertCoordY(massPoint[countfor + 1, 3]),
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 3
-                };
-                cc.Children.Add(lines);
+                //lines = new Line()
+                //{
+                //    X1 = convertCoordX(massPoint[countfor, 2]),
+                //    Y1 = convertCoordY(massPoint[countfor, 3]),
+                //    X2 = convertCoordX(massPoint[countfor + 1, 2]),
+                //    Y2 = convertCoordY(massPoint[countfor + 1, 3]),
+                //    Stroke = Brushes.Black,
+                //    StrokeThickness = 3
+                //};
+                //cc.Children.Add(lines);
                 countfor++;
+                RotateTransform rotateTransform = new RotateTransform();
+                rotateTransform.CenterX = maxX / 2 + x * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
+                rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
+                rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
+                cc.RenderTransform = rotateTransform;
             }
             cv.Children.Add(cc);
 
