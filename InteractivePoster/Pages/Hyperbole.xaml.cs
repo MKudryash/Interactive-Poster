@@ -51,20 +51,20 @@ namespace InteractivePoster.Pages
 
             DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background,SlTransform.Value);
             Path path = new Path();
-            path.Data = drawHyperbole.Hyperbola();
-            path.Stroke = Brushes.Black;
-            path.StrokeThickness = 3;
+            //path.Data = drawHyperbole.Hyperbola();
+            //path.Stroke = Brushes.Black;
+            //path.StrokeThickness = 3;
 
-            double maxX = Background.ActualWidth;
+            //double maxX = Background.ActualWidth;
 
-            RotateTransform rotateTransform = new RotateTransform();
-            rotateTransform.CenterX = maxX / 2 + slCoordX.Value * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
-            rotateTransform.CenterY = maxX / 2 + slCoordY.Value * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
-            rotateTransform.Angle = SlTransform.Value;//поворот на количетсво градусов     
-            path.RenderTransform = rotateTransform;
+            //RotateTransform rotateTransform = new RotateTransform();
+            //rotateTransform.CenterX = maxX / 2 + slCoordX.Value * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
+            //rotateTransform.CenterY = maxX / 2 + slCoordY.Value * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
+            //rotateTransform.Angle = SlTransform.Value;//поворот на количетсво градусов     
+            //path.RenderTransform = rotateTransform;
 
 
-            Background.Children.Add(path);
+            //Background.Children.Add(path);
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)

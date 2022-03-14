@@ -56,7 +56,8 @@ namespace InteractivePoster.Finction
                                         //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
-           // DrawByPoint(gradusTransform);
+          //  DrawByPoint(gradusTransform);
+            CalculationPoinHyperbole();
 
         }
         QuadraticBezierSegment quadraticBezierSegment;
@@ -190,10 +191,67 @@ namespace InteractivePoster.Finction
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
         }
+
+        void CalculationPoinHyperbole()
+        {
+            int razmer = (int)(count / 2-a);
+            razmer = razmer == 0 ? 1 : razmer;
+            double[,] massPoint = new double[razmer*2*10, 4];
+            int countfor = 0;
+            double pointX = razmer*-1;
+           
+            int h = 1;
+
+            for (double i = 0; i < razmer * 10+1; i++)
+            {
+                pointX = Math.Round(pointX,2);
+                massPoint[countfor, 0] = Math.Round(pointX + x,2) - a;
+                massPoint[countfor, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)), 2) - 1)) + y;
+                massPoint[countfor, 2] = Math.Round(pointX + x,2) - a;
+                massPoint[countfor, 3] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)),2) - 1)) * -1 + y;
+                pointX += 0.1;
+                countfor++;
+            }
+          DrawByPoints(massPoint);
+        }
+        void DrawByPoints(double[,] massPoint)
+        {
+            Canvas cc = new Canvas();
+            int razmer = (int)(count / 2 - a);
+            int countfor = 0;
+            for (double i = 0; i < razmer*10; i++)
+            {
+                lines = new Line()
+                {
+                    X1 = convertCoordX(massPoint[countfor, 0]),
+                    Y1 = convertCoordY(massPoint[countfor, 1]),
+                    X2 = convertCoordX(massPoint[countfor + 1,0]),
+                    Y2 = convertCoordY(massPoint[countfor+1, 1]),
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 3
+                };
+                cc.Children.Add(lines);
+
+                lines = new Line()
+                {
+                    X1 = convertCoordX(massPoint[countfor, 2]),
+                    Y1 = convertCoordY(massPoint[countfor, 3]),
+                    X2 = convertCoordX(massPoint[countfor + 1, 2]),
+                    Y2 = convertCoordY(massPoint[countfor + 1, 3]),
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 3
+                };
+                cc.Children.Add(lines);
+                countfor++;
+            }
+            cv.Children.Add(cc);
+
+        }
         void DrawByPoint(double gradusTransform)
         {
             Canvas cc = new Canvas();
             double pointX =0;
+            a = Math.Round(a,2);
             int razmer = (int)(count / 2 - a);
             for (double i =0; i < 4.9; i += 0.1)
             {
