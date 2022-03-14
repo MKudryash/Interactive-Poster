@@ -240,7 +240,7 @@
                                     <ColumnDefinition Width="30"/>
                                 </Grid.ColumnDefinitions>
                                 <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Гипербола"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
-                                <Button Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                                <Button Click="PlaySound" Style="{StaticResource SoundButton}"  Grid.Column="1" >
                                     <Button.Content>
                                         <Image  Source="/Resource/Images/Sound.png"/>
                                     </Button.Content>

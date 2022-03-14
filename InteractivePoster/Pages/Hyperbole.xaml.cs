@@ -60,5 +60,25 @@ namespace InteractivePoster.Pages
         {
             LoadPage.MainFrame.GoBack();
         }
+        MediaElement soundCircle = new MediaElement();
+        bool isPlay = true;
+        private void PlaySound(object sender, RoutedEventArgs e)
+        {
+            soundCircle.LoadedBehavior = MediaState.Manual;
+            soundCircle.Source = new Uri("Resource\\Sounds\\HyperboleSound.mp3", UriKind.RelativeOrAbsolute);
+            soundCircle.Position = TimeSpan.Zero;
+            if (isPlay)
+            {
+                Background.Children.Add(soundCircle);
+                soundCircle.Play();
+                isPlay = false;
+            }
+            else
+            {
+                Background.Children.Remove(soundCircle);
+                soundCircle.Stop();
+                isPlay = true;
+            }
+        }
     }
 }

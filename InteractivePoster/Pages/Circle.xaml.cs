@@ -22,6 +22,7 @@ namespace InteractivePoster.Pages
         {
             InitializeComponent();
             DataContext = MMC;
+           
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
@@ -59,15 +60,24 @@ namespace InteractivePoster.Pages
         }
 
         MediaElement soundCircle = new MediaElement();
+        bool isPlay = true;
         private void PlaySound(object sender, RoutedEventArgs e)
         {
-            Background.Children.Remove(soundCircle);
             soundCircle.LoadedBehavior = MediaState.Manual;
             soundCircle.Source = new Uri("Resource\\Sounds\\CircleSound.mp3", UriKind.RelativeOrAbsolute);
             soundCircle.Position = TimeSpan.Zero;
-            Background.Children.Add(soundCircle);
-            soundCircle.Play();
-
+            if (isPlay)
+            {
+                Background.Children.Add(soundCircle);
+                soundCircle.Play();
+                isPlay = false;
+            }
+            else
+            {
+                Background.Children.Remove(soundCircle);
+                soundCircle.Stop();
+                isPlay = true;
+            }
         }
     }
 }

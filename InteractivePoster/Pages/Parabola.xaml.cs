@@ -71,5 +71,27 @@ namespace InteractivePoster.Pages
         {
             UpdateBackPattern(null, null);
         }
+        MediaElement soundCircle = new MediaElement();
+        bool isPlay = true;
+        private void PlaySound(object sender, RoutedEventArgs e)
+        {
+            soundCircle.LoadedBehavior = MediaState.Manual;
+            soundCircle.Source = new Uri("Resource\\Sounds\\ParabolaSound.mp3", UriKind.RelativeOrAbsolute);
+            soundCircle.Position = TimeSpan.Zero;
+            if (!isPlay)
+            {
+                soundCircle.Stop();
+                Background.Children.Remove(soundCircle);
+               
+                isPlay = true;
+            }
+            else
+            {
+                Background.Children.Add(soundCircle);
+                soundCircle.Play();
+                isPlay = false;
+                
+            }
+        }
     }
 }
