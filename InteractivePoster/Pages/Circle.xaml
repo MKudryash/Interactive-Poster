@@ -13,7 +13,7 @@
 
     <Page.Resources>
         <Style x:Key="Heading" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -167,10 +167,8 @@
             Value="True" />
         </Style>
 
-
-
         <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -180,9 +178,8 @@
             <Setter Property="BorderBrush" Value="#262F34"/>
             <Setter Property="Width" Value="42"/>
         </Style>
-
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -190,10 +187,6 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Width" Value="42"/>
         </Style>
-
-
-
-
     </Page.Resources>
 
     <Grid>
@@ -218,7 +211,12 @@
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
                             <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto"/>
-                            <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
+                            <Button  Click="Button_Click" Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                                <Button.Content>
+                                    <Image  Source="/Resource/Images/Sound.png"/>
+                                </Button.Content>
+                            </Button>
+                            <MediaElement x:Name="sss" LoadedBehavior="Manual" Source="Resource\Sounds\CircleSound.mp3"/>
                         </Grid>
                         <StackPanel Style="{StaticResource HideTheopry}">
                             <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, равноудаленных от данной точки, называемой 
@@ -237,7 +235,7 @@
                         <GroupBox.Header>
                             <Border  CornerRadius="5" >
                                 <StackPanel Margin="10 0">
-                                    <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Fonts/#Flanker Griffo"
+                                    <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"
                                         />
                                 </StackPanel>
                             </Border>

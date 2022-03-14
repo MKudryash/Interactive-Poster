@@ -21,7 +21,7 @@
                              >
                 </Button>
                 <TextBlock Text="Эллипс"  HorizontalAlignment="Center"/>
-                <Button Content="Images/Elipse.jpg"
+                <Button Content="Resource/Images/Elipse.jpg"
                              Tag="ElipsTag"                          
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"
@@ -30,14 +30,14 @@
             </StackPanel>
             <StackPanel  >
                 <TextBlock Text="Гипербола"  HorizontalAlignment="Center"/>
-                <Button Content="Images/Hyperbole.jpg"
+                <Button Content="Resource/Images/Hyperbole.jpg"
                              Tag="HyperboleTag"                           
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"
                              >
                 </Button>
                 <TextBlock Text="Парабола"  HorizontalAlignment="Center"/>
-                <Button Content="Images/Parabola.jpg"
+                <Button Content="Resource/Images/Parabola.jpg"
                              Tag="ParabolaTag"                            
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"

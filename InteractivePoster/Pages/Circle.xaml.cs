@@ -1,8 +1,11 @@
 ﻿using InteractivePoster.Finction;
 using System;
+using System.IO;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace InteractivePoster.Pages
 {
@@ -22,15 +25,15 @@ namespace InteractivePoster.Pages
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
-           
+
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
 
-            FormulaCircle.Formula = @"(x-("+slCoordX.Value.ToString("F1")+@"))^2+ (y-("+slCoordY.Value.ToString("F1")+@"))^2 = "+slRadius.Value.ToString("F1") +@"^2";
+            FormulaCircle.Formula = @"(x-(" + slCoordX.Value.ToString("F1") + @"))^2+ (y-(" + slCoordY.Value.ToString("F1") + @"))^2 = " + slRadius.Value.ToString("F1") + @"^2";
 
-            Background.Children.Clear();          
-             //просто добавляем на канву объекты наших созданных классов            
+            Background.Children.Clear();
+            //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
             {
                 DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background);
@@ -38,8 +41,8 @@ namespace InteractivePoster.Pages
             }
             DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background);
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
-            lineX.DrawArrow(count/2,0, Orientation.Horizontal, 3, Background);
-            lineY.DrawArrow(0,count/2, Orientation.Vertical, 3, Background);
+            lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
+            lineY.DrawArrow(0, count / 2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
             DrawCircle c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
             MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
@@ -53,6 +56,16 @@ namespace InteractivePoster.Pages
         private void ComeBack(object sender, RoutedEventArgs e)
         {
             LoadPage.MainFrame.GoBack();
+        }
+        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MediaElement soundCircle = new MediaElement();
+            soundCircle.LoadedBehavior = MediaState.Manual;
+            soundCircle.Source = new Uri("Resource\\Sounds\\CircleSound.mp3", UriKind.RelativeOrAbsolute);
+            Background.Children.Add(soundCircle);
+            soundCircle.Play();
         }
     }
 }

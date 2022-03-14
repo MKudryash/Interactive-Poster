@@ -10,7 +10,7 @@
 
     <Page.Resources>
         <Style x:Key="Heading" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -167,7 +167,7 @@
 
 
         <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -179,7 +179,7 @@
         </Style>
 
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -241,7 +241,11 @@
                                     <ColumnDefinition Width="30"/>
                                 </Grid.ColumnDefinitions>
                                 <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Элипс"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
-                                <Image Width="30"  Grid.Column="1" Source="/Images/Sound.png" HorizontalAlignment="Right"/>
+                                <Button Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                                    <Button.Content>
+                                        <Image  Source="/Resource/Images/Sound.png"/>
+                                    </Button.Content>
+                                </Button>
                             </Grid>
                             <StackPanel Style="{StaticResource HideTheopry}">
                                 <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, сумма расстояний от каждой из которых до двух данных точек этой плоскости, называемых
@@ -265,7 +269,7 @@
                             <GroupBox.Header>
                                 <Border  CornerRadius="5" >
                                     <StackPanel Margin="10 0">
-                                        <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Fonts/#Flanker Griffo"
+                                        <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"
                                         />
                                     </StackPanel>
                                 </Border>

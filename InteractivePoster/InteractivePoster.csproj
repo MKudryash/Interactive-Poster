@@ -134,10 +134,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\Flanker Griffo Bold.otf" />
-    <Resource Include="Fonts\Flanker Griffo Italic Bold.otf" />
-    <Resource Include="Fonts\Flanker Griffo Italic.otf" />
-    <Resource Include="Fonts\Flanker Griffo.otf" />
+    <Resource Include="Resource\Fonts\Flanker Griffo Bold.otf" />
+    <Resource Include="Resource\Fonts\Flanker Griffo Italic Bold.otf" />
+    <Resource Include="Resource\Fonts\Flanker Griffo Italic.otf" />
+    <Resource Include="Resource\Fonts\Flanker Griffo.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -148,23 +148,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Sound.png" />
+    <Resource Include="Resource\Images\Sound.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Elipse.jpg" />
-    <Resource Include="Images\Parabola.jpg" />
+    <Resource Include="Resource\Images\Elipse.jpg" />
+    <Resource Include="Resource\Images\Parabola.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Hyperbole.jpg" />
+    <Resource Include="Resource\Images\Hyperbole.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\IconPoster.png" />
+    <Resource Include="Resource\Images\IconPoster.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\IconPoster.ico" />
+    <Resource Include="Resource\Images\IconPoster.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IconPoster.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resource\Sounds\CircleSound.mp3" />
+    <Content Include="Resource\Sounds\ElipsSound.mp3" />
+    <Content Include="Resource\Sounds\HyperboleSound.mp3" />
+    <Content Include="Resource\Sounds\ParabolaSound.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
