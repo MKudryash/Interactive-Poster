@@ -207,8 +207,8 @@ namespace InteractivePoster.Finction
                 pointX = Math.Round(pointX,2);
                 massPoint[countfor, 0] = Math.Round(pointX + x,2) - a;
                 massPoint[countfor, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)), 2) - 1)) + y;
-                massPoint[countfor, 2] = Math.Round(pointX + x,2) - a;
-                massPoint[countfor, 3] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)),2) - 1)) * -1 + y;
+                massPoint[countfor, 2] = Math.Round(Math.Abs(pointX) + x,2) + a;
+                massPoint[countfor, 3] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(pointX) + a, 2) / (a * a)),2) - 1)) + y;
                 pointX += 0.1;
                 countfor++;
             }
