@@ -211,12 +211,11 @@
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
                             <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto"/>
-                            <Button  Click="Button_Click" Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                            <Button  Click="PlaySound" Style="{StaticResource SoundButton}"  Grid.Column="1" >
                                 <Button.Content>
                                     <Image  Source="/Resource/Images/Sound.png"/>
                                 </Button.Content>
                             </Button>
-                            <MediaElement x:Name="sss" LoadedBehavior="Manual" Source="Resource\Sounds\CircleSound.mp3"/>
                         </Grid>
                         <StackPanel Style="{StaticResource HideTheopry}">
                             <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, равноудаленных от данной точки, называемой 

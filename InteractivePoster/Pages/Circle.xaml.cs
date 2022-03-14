@@ -57,15 +57,17 @@ namespace InteractivePoster.Pages
         {
             LoadPage.MainFrame.GoBack();
         }
-        
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        MediaElement soundCircle = new MediaElement();
+        private void PlaySound(object sender, RoutedEventArgs e)
         {
-            MediaElement soundCircle = new MediaElement();
+            Background.Children.Remove(soundCircle);
             soundCircle.LoadedBehavior = MediaState.Manual;
             soundCircle.Source = new Uri("Resource\\Sounds\\CircleSound.mp3", UriKind.RelativeOrAbsolute);
+            soundCircle.Position = TimeSpan.Zero;
             Background.Children.Add(soundCircle);
             soundCircle.Play();
+
         }
     }
 }
