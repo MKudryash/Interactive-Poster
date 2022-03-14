@@ -57,106 +57,9 @@ namespace InteractivePoster.Finction
                                         //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
-          //  DrawByPoint(gradusTransform);
             CalculationPoinHyperbole();
 
         }
-        QuadraticBezierSegment quadraticBezierSegment;
-        public PathGeometry Hyperbola()
-        {
-            PathGeometry pathGeometry = new PathGeometry();
-
-            //правая ветвь
-            PathFigure pathFigure = new PathFigure()
-            {
-                StartPoint = new Point(convertCoordX(a + 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(a + 1, 2) / (a * a)) - 1)) + y))
-            };
-            quadraticBezierSegment = new QuadraticBezierSegment()
-            {
-                Point1 = new Point(convertCoordX(a - 1 + x), convertCoordY(y)),
-                Point2 = new Point(convertCoordX(a + 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * -1 + y))
-            };
-            pathFigure.Segments.Add(quadraticBezierSegment);
-            pathGeometry.Figures.Add(pathFigure);
-
-
-            double AvgX = (((count / 2) - (a + 1)) / 2) + (a + 1);
-
-
-
-
-            pathFigure = new PathFigure()
-            {
-                StartPoint = new Point(convertCoordX(a + 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(a + 1, 2) / (a * a)) - 1)) + y))
-            };
-            quadraticBezierSegment = new QuadraticBezierSegment()
-            {
-                Point1 = new Point(convertCoordX(AvgX + x), convertCoordY(Math.Sqrt(Math.Abs(Math.Pow(b, 2) * ((Math.Pow(AvgX, 2) / (a * a)) - 1))) + y)),
-                Point2 = new Point(convertCoordX(count / 2 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(count / 2, 2) / (a * a)) - 1)) + y))
-            };
-            pathFigure.Segments.Add(quadraticBezierSegment);
-            pathGeometry.Figures.Add(pathFigure);
-
-
-
-            pathFigure = new PathFigure()
-            {
-                StartPoint = new Point(convertCoordX(a + 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(a + 1, 2) / (a * a)) - 1)) * -1 + y))
-            };
-            quadraticBezierSegment = new QuadraticBezierSegment()
-            {
-                Point1 = new Point(convertCoordX(AvgX + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(AvgX, 2) / (a * a)) - 1)) * -1 + y)),
-                Point2 = new Point(convertCoordX(count / 2 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(count / 2, 2) / (a * a)) - 1)) * -1 + y))
-            };
-            pathFigure.Segments.Add(quadraticBezierSegment);
-            pathGeometry.Figures.Add(pathFigure);
-
-
-
-            //левая ветвь
-            pathFigure = new PathFigure()
-            {
-                StartPoint = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(-a - 1, 2) / (a * a)) - 1)) + y))
-            };
-            quadraticBezierSegment = new QuadraticBezierSegment()
-            {
-                Point1 = new Point(convertCoordX(-a + 1 + x), convertCoordY(y)),
-                Point2 = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(-a - 1, 2) / (a * a)) - 1)) * -1 + y))
-            };
-            pathFigure.Segments.Add(quadraticBezierSegment);
-            pathGeometry.Figures.Add(pathFigure);
-
-
-
-            pathFigure = new PathFigure()
-            {
-                StartPoint = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(-a - 1, 2)) / (a * a)) - 1)) + y))
-            };
-            quadraticBezierSegment = new QuadraticBezierSegment()
-            {
-                Point1 = new Point(convertCoordX(AvgX * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(AvgX, 2) / (a * a)) - 1)) + y)),
-                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 1)) + y))
-            };
-            pathFigure.Segments.Add(quadraticBezierSegment);
-            pathGeometry.Figures.Add(pathFigure);
-
-
-
-            pathFigure = new PathFigure()
-            {
-                StartPoint = new Point(convertCoordX(-a - 1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(-a - 1, 2)) / (a * a)) - 1)) * -1 + y))
-            };
-            quadraticBezierSegment = new QuadraticBezierSegment()
-            {
-                Point1 = new Point(convertCoordX(AvgX * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(AvgX, 2)) / (a * a)) - 1)) * -1 + y)),
-                Point2 = new Point(convertCoordX((count / 2) * -1 + x), convertCoordY(Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(count / 2, 2)) / (a * a)) - 1)) * -1 + y))
-            };
-            pathFigure.Segments.Add(quadraticBezierSegment);
-            pathGeometry.Figures.Add(pathFigure);
-
-            return pathGeometry;
-        }
-        Line lines;
         void DrawAsymptotes(double gradusTransform)
         {
             line = new Line()
@@ -199,115 +102,66 @@ namespace InteractivePoster.Finction
             double h = 0.1;
             razmer = razmer == 0 ? 1 : razmer;
             double[,] massPoint = new double[razmer*10*2+1, 2];
-            int countfor = 0;
+            int countforPoint = 0;
             double pointX = razmer*-1;
             double pointXTwo =0;
 
             for (double i = 0; i < razmer *10+1; i++)
             {
                 pointX = Math.Round(pointX,2);
-                massPoint[countfor, 0] = Math.Round(pointX + x,2) - a;
-                massPoint[countfor, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)), 2) - 1)) + y;
-                massPoint[countfor+razmer*10, 0] = Math.Round(pointXTwo + x, 2) - a;
-                massPoint[countfor+razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo - a, 2) / (a * a)), 2) - 1))*-1 + y;
+                massPoint[countforPoint, 0] = Math.Round(pointX + x,2) - a;
+                massPoint[countforPoint, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)), 2) - 1)) + y;
+                massPoint[countforPoint+razmer*10, 0] = Math.Round(pointXTwo + x, 2) - a;
+                massPoint[countforPoint+razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo - a, 2) / (a * a)), 2) - 1))*-1 + y;
                 pointXTwo -= h;
                 pointX += h;
-                countfor++;
+                countforPoint++;
             }
             DrawByPoints(massPoint);
             massPoint = new double[razmer * 10 * 2 + 1, 2];
             pointX = razmer * -1;
-            countfor = 0;
+            countforPoint = 0;
             pointXTwo = 0;
             for (double i = 0; i < razmer * 10 + 1; i++)
             {
                 pointX = Math.Round(pointX, 2);
-                massPoint[countfor, 0] = Math.Round(Math.Abs(pointX) + x, 2) + a;
-                massPoint[countfor, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(pointX) + a, 2) / (a * a)), 2) - 1)) + y;
-                massPoint[countfor + razmer * 10, 0] = Math.Round(pointXTwo+ x, 2) + a;
-                massPoint[countfor + razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo + a, 2) / (a * a)), 2) - 1)) * -1 + y;
+                massPoint[countforPoint, 0] = Math.Round(Math.Abs(pointX) + x, 2) + a;
+                massPoint[countforPoint, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(pointX) + a, 2) / (a * a)), 2) - 1)) + y;
+                massPoint[countforPoint + razmer * 10, 0] = Math.Round(pointXTwo+ x, 2) + a;
+                massPoint[countforPoint + razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo + a, 2) / (a * a)), 2) - 1)) * -1 + y;
                 pointX += h;
                 pointXTwo += h;
-                countfor++;
+                countforPoint++;
             }
             DrawByPoints(massPoint);
         }
         void DrawByPoints(double[,] massPoint)
         {
-            Canvas cc = new Canvas();
-            int razmer = (int)(count / 2 - a);
-            int countfor = 0;
-            for (double i = 0; i < razmer*2*10-1; i++)
+            Canvas canvaFotPoint = new Canvas();
+            int countForPoint = 0;
+            for (double i = 0; i < massPoint.Length/2-1; i++)
             {
-                lines = new Line()
+                line = new Line()
                 {
-                    X1 = convertCoordX(massPoint[countfor, 0]),
-                    Y1 = convertCoordY(massPoint[countfor, 1]),
-                    X2 = convertCoordX(massPoint[countfor+1,0]),
-                    Y2 = convertCoordY(massPoint[countfor+1, 1]),
+                    X1 = convertCoordX(massPoint[countForPoint, 0]),
+                    Y1 = convertCoordY(massPoint[countForPoint, 1]),
+                    X2 = convertCoordX(massPoint[countForPoint+1,0]),
+                    Y2 = convertCoordY(massPoint[countForPoint+1, 1]),
                     Stroke = Brushes.Black,
                     StrokeThickness = 3
                 };
-                cc.Children.Add(lines);
+                canvaFotPoint.Children.Add(line);
 
-                //lines = new Line()
-                //{
-                //    X1 = convertCoordX(massPoint[countfor, 2]),
-                //    Y1 = convertCoordY(massPoint[countfor, 3]),
-                //    X2 = convertCoordX(massPoint[countfor + 1, 2]),
-                //    Y2 = convertCoordY(massPoint[countfor + 1, 3]),
-                //    Stroke = Brushes.Black,
-                //    StrokeThickness = 3
-                //};
-                //cc.Children.Add(lines);
-                countfor++;
+                countForPoint++;
                 RotateTransform rotateTransform = new RotateTransform();
-                rotateTransform.CenterX = maxX / 2 + x * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
-                rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
-                rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
-                cc.RenderTransform = rotateTransform;
+                rotateTransform.CenterX = maxX / 2 + x * (maxX / count); 
+                rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);
+                rotateTransform.Angle = gradusTransform; 
+                canvaFotPoint.RenderTransform = rotateTransform;
             }
-            cv.Children.Add(cc);
+            cv.Children.Add(canvaFotPoint);
 
-        }
-        void DrawByPoint(double gradusTransform)
-        {
-            Canvas cc = new Canvas();
-            double pointX =0;
-            a = Math.Round(a,2);
-            int razmer = (int)(count / 2 - a);
-            for (double i =0; i < 4.9; i += 0.1)
-            {
-                lines = new Line()
-                {
-                    X1 = convertCoordX(pointX + x - a),
-                    Y1 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - a, 2) / (a * a)) - 1)) + y),
-                    X2 = convertCoordX(pointX - 0.1 + x - a),
-                    Y2 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - 0.1- a, 2) / (a * a)) - 1)) + y),
-                    Stroke = Brushes.Black,
-                    StrokeThickness =3
-                };
-                cc.Children.Add(lines);
-                lines = new Line()
-                {
-                   X1 = convertCoordX(pointX + x - a),
-                Y1 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - a, 2) / (a * a)) - 1))*-1 + y),
-                    X2 = convertCoordX(pointX - 0.1 + x - a),
-                    Y2 = convertCoordY(Math.Sqrt(Math.Pow(b, 2) * ((Math.Pow(pointX - 0.1 - a, 2) / (a * a)) - 1))*-1 + y),
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 3
-                };
-                pointX -= 0.1;
-                cc.Children.Add(lines);
-                RotateTransform rotateTransform = new RotateTransform();
-                rotateTransform.CenterX = maxX / 2 + x * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
-                rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
-                rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
-                cc.RenderTransform = rotateTransform;
-            }
-            cv.Children.Add(cc);
-
-        }
+        }        
 
         void DrawRectangle(double x, double y, Canvas cv, double gradusTransform)
         {
