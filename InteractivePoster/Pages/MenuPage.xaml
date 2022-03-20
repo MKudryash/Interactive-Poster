@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:InteractivePoster.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MenuPage">
+      Title="MenuPage"
+      MinHeight="550"
+      MinWidth="750">
 
     <Grid>
         <StackPanel VerticalAlignment="Center" 
@@ -14,7 +16,7 @@
                     Orientation="Horizontal">
             <StackPanel >
                 <TextBlock Text="Окружность"  HorizontalAlignment="Center"/>
-                <Button 
+                <Button Content="Resource/Images/Circle.png"
                              Tag="CircleTag"                            
                              Style="{StaticResource MenuButtonTheme}"
                              Click="ThemeMath"

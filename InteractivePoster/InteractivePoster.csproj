@@ -167,6 +167,7 @@
     <Resource Include="IconPoster.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\Images\Circle.png" />
     <Content Include="Resource\Sounds\CircleSound.mp3" />
     <Content Include="Resource\Sounds\ElipsSound.mp3" />
     <Content Include="Resource\Sounds\HyperboleSound.mp3" />
