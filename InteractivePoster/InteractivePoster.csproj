@@ -151,13 +151,6 @@
     <Resource Include="Resource\Images\Sound.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Images\Elipse.jpg" />
-    <Resource Include="Resource\Images\Parabola.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Images\Hyperbole.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\Images\IconPoster.png" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Images\Circle.png" />
+    <Resource Include="Resource\Images\Elipse.png" />
+    <Resource Include="Resource\Images\Hyperbole.png" />
+    <Resource Include="Resource\Images\Parabola.png" />
     <Content Include="Resource\Sounds\CircleSound.mp3" />
     <Content Include="Resource\Sounds\ElipsSound.mp3" />
     <Content Include="Resource\Sounds\HyperboleSound.mp3" />
