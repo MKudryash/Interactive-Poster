@@ -10,19 +10,30 @@
       MinHeight="550"
       MinWidth="750">
 
+    <Page.Resources>
+        <Style x:Key="Header" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        
         <StackPanel
             Grid.Row="0" Grid.Column="0" Orientation="Vertical"
             HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock  Text="Окружность"  HorizontalAlignment="Center"/>
+            <TextBlock Style="{StaticResource Header}" Text="Окружность"  HorizontalAlignment="Center"/>
             <Button Content="Resource/Images/Circle.png"
                              Tag="CircleTag"                            
                              Style="{StaticResource MenuButtonTheme}"
@@ -32,7 +43,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock  Text="Эллипс"  HorizontalAlignment="Center"/>
+            <TextBlock Style="{StaticResource Header}" Text="Эллипс"  HorizontalAlignment="Center"/>
             <Button Content="Resource/Images/Elipse.png"
                              Tag="ElipsTag"                          
                              Style="{StaticResource MenuButtonTheme}"
@@ -42,7 +53,7 @@
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Гипербола"  HorizontalAlignment="Center"/>
+            <TextBlock Style="{StaticResource Header}" Text="Гипербола"  HorizontalAlignment="Center"/>
             <Button Content="Resource/Images/Hyperbole.png"
                              Tag="HyperboleTag"                           
                              Style="{StaticResource MenuButtonTheme}"
@@ -52,7 +63,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock  Text="Парабола"  HorizontalAlignment="Center"/>
+            <TextBlock Style="{StaticResource Header}" Text="Парабола"  HorizontalAlignment="Center"/>
             <Button Content="Resource/Images/Parabola.png"
                              Tag="ParabolaTag"                            
                              Style="{StaticResource MenuButtonTheme}"
