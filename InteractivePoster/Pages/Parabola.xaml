@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:InteractivePoster.Pages" xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+      xmlns:local="clr-namespace:InteractivePoster.Pages"
+      xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
       Title="Parabola" Background="#F1D3BC">
@@ -221,14 +222,17 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
+        <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
+        <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
+
         <ScrollViewer Panel.ZIndex="1" Grid.Column="1" >
             <StackPanel  Margin="20"  Background="#262F34">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="500"/>
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0"
@@ -272,11 +276,12 @@
                                          Style="{StaticResource MenuButtonThemeParabola}" 
                                          IsChecked="{Binding equation}" 
                                          Content="Вертикальная"
-                                             Checked="ChangedParabola"/>
+                                           
+                                             Click="ChangedParabola"/>
                                 <RadioButton Height="50" 
                                          Style="{StaticResource MenuButtonThemeParabola}" 
                                          Content="Горизонтальная"
-                                              Checked="ChangedParabola"/>
+                                              Click="ChangedParabola"/>
                             </StackPanel>
 
 
@@ -361,9 +366,7 @@
 
             </StackPanel>
         </ScrollViewer>
-        <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
-        <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
-
+       
 
     </Grid>
 </Page>

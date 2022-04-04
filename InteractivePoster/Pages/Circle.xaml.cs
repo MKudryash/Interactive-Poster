@@ -17,12 +17,12 @@ namespace InteractivePoster.Pages
     public partial class Circle : Page
     {
         double count;
+
         MaxMinCoordinat MMC = new MaxMinCoordinat();
         public Circle()
         {
             InitializeComponent();
-            DataContext = MMC;
-           
+            DataContext = MMC;           
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
@@ -30,7 +30,7 @@ namespace InteractivePoster.Pages
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
-
+            double countY = Math.Round( Background.ActualHeight/ (Background.ActualWidth / count));
             FormulaCircle.Formula = @"(x-(" + slCoordX.Value.ToString("F1") + @"))^2+ (y-(" + slCoordY.Value.ToString("F1") + @"))^2 = " + slRadius.Value.ToString("F1") + @"^2";
 
             Background.Children.Clear();
@@ -42,11 +42,11 @@ namespace InteractivePoster.Pages
             }
             DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background);
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
-            lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
-            lineY.DrawArrow(0, count / 2, Orientation.Vertical, 3, Background);
+           lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
+           lineY.DrawArrow(0, countY/2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
-            DrawCircle c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
-            MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
+          DrawCircle c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
+           MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)

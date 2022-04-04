@@ -21,7 +21,8 @@ namespace InteractivePoster.Finction
         public DrawСoordinateLine(double coord, Orientation orientation, double th, Canvas cv)
         {
             this.orientation = orientation;
-            count = Convert.ToDouble(cv.Tag);
+            countX = Convert.ToDouble(cv.Tag);
+            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
             maxX = cv.ActualWidth;
             maxY = cv.ActualHeight;
             line = new Line()
@@ -40,7 +41,7 @@ namespace InteractivePoster.Finction
             {
                 line.Y1 = 0;
                 line.Y2 = maxY;
-                line.X1 = line.X2 = convertCoordY(coord); ;
+                line.X1 = line.X2 = convertCoordX(coord); 
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);

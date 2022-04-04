@@ -222,7 +222,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="500"/>
             </Grid.ColumnDefinitions>
             <ScrollViewer  Panel.ZIndex="1" Grid.Column="1">
                 <StackPanel Margin="20" Background="#262F34">

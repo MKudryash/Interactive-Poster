@@ -18,7 +18,6 @@ namespace InteractivePoster.Finction
         double sinGradusHyperbole, gradusTransform;
         double cosGradusHyperbole;
         Rectangle rectangle;
-        Canvas cv;
         Line line;
         double x, y, a, b;
         public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double gradusTransform)
@@ -33,10 +32,12 @@ namespace InteractivePoster.Finction
             sinGradusHyperbole = Math.Sin(convertRadian(gradusTransform));
             cosGradusHyperbole = Math.Cos(convertRadian(gradusTransform));
 
-            count = Convert.ToDouble(cv.Tag);//получаем масштабы области
-            maxX = cv.ActualWidth; //получаем ширину канвы       
-            rectangleA = a * (maxX / count);//преобразуем ширину прямоугольника из декартовой системы
-            rectangleB = b * (maxX / count);//преобразуем высоту прямоугольника из декартовой системы
+            countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
+            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
+            maxX = cv.ActualWidth; //получаем ширину канвы
+            maxY = cv.ActualHeight; //получаем высоту канвы        
+            rectangleA = a * (maxX / countX);//преобразуем ширину прямоугольника из декартовой системы
+            rectangleB = b * (maxY / countY);//преобразуем высоту прямоугольника из декартовой системы
             DrawRectangle(x, y, cv, gradusTransform);
             FocusHyperbole();
             DrawAsymptotes(gradusTransform);
@@ -46,8 +47,8 @@ namespace InteractivePoster.Finction
             DrawText(mX , mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
             PointFocus = new Ellipse()//задаем прочие параметры
             {
-                Width = (maxX / count) * 0.2,
-                Height = (maxX / count) * 0.2,
+                Width = (maxX / countX) * 0.2,
+                Height = (maxX / countX) * 0.2,
                 Fill = Brushes.Black,
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
@@ -68,14 +69,14 @@ namespace InteractivePoster.Finction
                 StrokeThickness = 2,
                 StrokeDashArray = { 4, 3 },
                 SnapsToDevicePixels = true,
-                X1 = convertCoordX(count / 2 * -1 + x),
-                X2 = convertCoordX(count / 2 + x),
-                Y1 = convertCoordY(b / a * count / 2 * -1 + y),
-                Y2 = convertCoordY(b / a * count / 2 + y),
+                X1 = convertCoordX(countX / 2 * -1 + x),
+                X2 = convertCoordX(countX / 2 + x),
+                Y1 = convertCoordY(b / a * countX / 2 * -1 + y),
+                Y2 = convertCoordY(b / a * countX / 2 + y),
             };
             RotateTransform rotateTransform = new RotateTransform();
-            rotateTransform.CenterX = maxX / 2 + x * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
-            rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
+            rotateTransform.CenterX = maxX / 2 + x * (maxX / countX); //центр оси X по отношению к параболе, не к координатной плоскости
+            rotateTransform.CenterY = maxY / 2 + y * (-1) * (maxY / countY);//центр оси Y по отношению к параболе, не к координатной плоскости
             rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
             line.RenderTransform = rotateTransform;
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
@@ -86,10 +87,10 @@ namespace InteractivePoster.Finction
                 StrokeThickness = 2,
                 StrokeDashArray = { 4, 3 },
                 SnapsToDevicePixels = true,
-                X1 = convertCoordX((count / 2) * -1 + x),
-                X2 = convertCoordX((count / 2 + x)),
-                Y2 = convertCoordY((b / a * count / 2) * -1 + y),
-                Y1 = convertCoordY(b / a * count / 2 + y),
+                X1 = convertCoordX((countX / 2) * -1 + x),
+                X2 = convertCoordX((countX / 2 + x)),
+                Y2 = convertCoordY((b / a * countX / 2) * -1 + y),
+                Y1 = convertCoordY(b / a * countX / 2 + y),
             };
             line.RenderTransform = rotateTransform;
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
@@ -98,7 +99,7 @@ namespace InteractivePoster.Finction
 
         void CalculationPoinHyperbole()
         {
-            int razmer = (int)(count / 2-a);
+            int razmer = (int)(countX / 2-a);
             double h = 0.1;
             razmer = razmer == 0 ? 1 : razmer;
             double[,] massPoint = new double[razmer*10*2+1, 2];
@@ -154,8 +155,8 @@ namespace InteractivePoster.Finction
 
                 countForPoint++;
                 RotateTransform rotateTransform = new RotateTransform();
-                rotateTransform.CenterX = maxX / 2 + x * (maxX / count); 
-                rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);
+                rotateTransform.CenterX = maxX / 2 + x * (maxX / countX); 
+                rotateTransform.CenterY = maxY / 2 + y * (-1) * (maxY / countY);
                 rotateTransform.Angle = gradusTransform; 
                 canvaFotPoint.RenderTransform = rotateTransform;
             }
@@ -187,19 +188,7 @@ namespace InteractivePoster.Finction
             rectangle.SetValue(Canvas.LeftProperty, convertX(x));
             rectangle.SetValue(Canvas.TopProperty, convertY(y));
         }
-        void DrawText(double x, double y, string text)
-        {
-            TextBlock TB = new TextBlock()
-            {
-                Text = text,
-                TextWrapping = TextWrapping.Wrap,
-                Width = double.NaN,
-                FontSize = maxX / count * 0.5
-            };
-            cv.Children.Add(TB);
-            TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
-            TB.SetValue(Canvas.TopProperty, convertCoordY(y));
-        } //Текст c содержанием точек
+        
         void FocusHyperbole()
         {
             double c = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
@@ -217,8 +206,8 @@ namespace InteractivePoster.Finction
 
             PointFocus = new Ellipse()//задаем прочие параметры
             {
-                Width = (maxX / count) * 0.2,
-                Height = (maxX / count) * 0.2,
+                Width = (maxX / countX) * 0.2,
+                Height = (maxX / countX) * 0.2,
                 Fill = Brushes.Black,
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
@@ -238,7 +227,7 @@ namespace InteractivePoster.Finction
         public double convertX(double x)
         {
             //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
-            return maxX / 2 + x * (maxX / count) - rectangleA;
+            return maxX / 2 + x * (maxX / countX) - rectangleA;
         }
         /// <summary>
         /// метод для преобразования координаты Y их канвы в декартово значение
@@ -247,7 +236,7 @@ namespace InteractivePoster.Finction
         /// <returns>актуальная координата Y на канве</returns>
         public double convertY(double y)
         {
-            return maxX / 2 + y / -1 * (maxX / count) - rectangleB;
+            return maxY / 2 + y / -1 * (maxY / countY) - rectangleB;
         }
         /// метод для преобразования градусов в радианы
         public double convertRadian(double r)

@@ -30,13 +30,15 @@ namespace InteractivePoster.Finction
 
         double sinGradusElpis;
         double cosGradusElpis;
-        Canvas cv;
+  
         public DrawElips(double x, double y, double rW, double rH, Canvas cv, double gradusValueElips)
         {
-            count = Convert.ToDouble(cv.Tag);//получаем масштабы области
-            maxX = cv.ActualWidth; //получаем ширину канвы       
-            radiusW = rW * (maxX / count);//преобразуем радиус из декартовой системы
-            radiusH = rH * (maxX / count);//преобразуем радиус из декартовой системы
+            countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
+            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
+            maxX = cv.ActualWidth; //получаем ширину канвы
+            maxY = cv.ActualHeight; //получаем высоту канвы     
+            radiusW = rW * (maxX / countX);//преобразуем радиус из декартовой системы
+            radiusH = rH * (maxY / countY);//преобразуем радиус из декартовой системы
             this.cv = cv;
             this.x = x;
             this.y = y;
@@ -82,19 +84,7 @@ namespace InteractivePoster.Finction
             FocusElips(rW, rH, gradusValueElips);//Отрисовка и подсчет Фокусов
             DrawRadius(rW, rH, gradusValueElips);//ОТрисовка радиуса Элипса
         }
-        void DrawText(double x, double y, string text)
-        {
-            TextBlock TB = new TextBlock()
-            { 
-            Text = text,
-            TextWrapping = TextWrapping.Wrap,
-            Width = double.NaN,
-            FontSize = maxX/count*0.4
-            };
-            cv.Children.Add(TB);
-            TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
-            TB.SetValue(Canvas.TopProperty, convertCoordY(y));
-        } //Текст c содержанием точек
+      
 
         void DrawRadius(double rW, double rH, double gradusValueElips)
         {
@@ -180,8 +170,8 @@ namespace InteractivePoster.Finction
 
             PointFocus = new Ellipse()//задаем прочие параметры
             {
-                Width = (maxX / count) * 0.2,
-                Height = (maxX / count) * 0.2,
+                Width = (maxX / countX) * 0.2,
+                Height = (maxX / countX) * 0.2,
                 Fill = Brushes.Black,
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
@@ -201,7 +191,7 @@ namespace InteractivePoster.Finction
         public double convertX(double x)
         {
             //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
-            return maxX / 2 + x * (maxX / count) - radiusW;
+            return maxX / 2 + x * (maxX / countX) - radiusW;
         }
         /// <summary>
         /// метод для преобразования координаты Y их канвы в декартово значение
@@ -210,7 +200,7 @@ namespace InteractivePoster.Finction
         /// <returns>актуальная координата Y на канве</returns>
         public double convertY(double y)
         {
-            return maxX / 2 + y / -1 * (maxX / count) - radiusH;
+            return maxY / 2 + y / -1 * (maxY / countY) - radiusH;
         }
         /// метод для подсчета фокусов
         public double FindFocusElips(double x, double y)

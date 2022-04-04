@@ -97,7 +97,7 @@
                     <Path.Data>
                         <EllipseGeometry Center="0,0"
                                  RadiusX="10"
-                                 RadiusY="10" />
+                                 RadiusY="10"/>
                     </Path.Data>
                 </Path>
             </Grid>
@@ -118,14 +118,15 @@
                     </Grid.RowDefinitions>
                     <Border x:Name="TrackBackground"
                     Grid.Row="1"
-                    Height="4.0"
+                    Height="5.0"
                     Margin="5,0"
                     VerticalAlignment="center"
                     Background="#F34A4A" />
                     <Border x:Name="TrackDarkener"
                     Grid.Row="1"
                     Width="{Binding ActualWidth, ElementName=RightRepeatButton}"
-                    Height="4.0"
+                    Height="
+                            5.0"
                     Margin="5,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
@@ -143,8 +144,8 @@
                         </Track.IncreaseRepeatButton>
                         <Track.Thumb>
                             <Thumb x:Name="Thumb"
-                           Width="12"
-                           Height="12"
+                           Width="16"
+                           Height="16"
                            VerticalAlignment="Center"
                            Focusable="False"
                            OverridesDefaultStyle="True"
@@ -169,14 +170,15 @@
 
         <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="#262F34"/>
-            <Setter Property="Width" Value="42"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="30"/>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
@@ -192,8 +194,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
+
         <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
@@ -253,7 +256,6 @@
                                     </Grid.ColumnDefinitions>
                                     <Border >
                                     <TextBox
-                                        BorderThickness="0"
                                 Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Border>
                                         <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 

@@ -32,6 +32,7 @@ namespace InteractivePoster.Pages
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы       
+            double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
 
             Background.Children.Clear();
             //просто добавляем на канву объекты наших созданных классов            
@@ -43,7 +44,7 @@ namespace InteractivePoster.Pages
             DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background);
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
-            lineY.DrawArrow(0, count / 2, Orientation.Vertical, 3, Background);
+            lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
 
             DrawParabola drawParabola = new DrawParabola(slCoordX.Value, slCoordY.Value, Background,SlParametrParabola.Value);
             Path path = new Path();

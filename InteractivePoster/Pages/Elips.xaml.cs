@@ -35,6 +35,7 @@ namespace InteractivePoster.Pages
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
+            double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
 
 
             Background.Children.Clear();
@@ -47,7 +48,7 @@ namespace InteractivePoster.Pages
             DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background);
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
-            lineY.DrawArrow(0, count / 2, Orientation.Vertical, 3, Background);
+            lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
             DrawElips c = new DrawElips(slCoordX.Value, slCoordY.Value, slRadiusW.Value, slRadiusH.Value, Background,SlTransform.Value);
            // MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);

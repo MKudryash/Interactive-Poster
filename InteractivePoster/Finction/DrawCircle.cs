@@ -19,12 +19,13 @@ namespace InteractivePoster.Finction
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
                 
 
-        Canvas cv;
         public DrawCircle(double x, double y, double r, Canvas cv)
         {
-            count = Convert.ToDouble(cv.Tag);//получаем масштабы области
-            maxX = cv.ActualWidth; //получаем ширину канвы       
-            radius = r * (maxX / count);//преобразуем радиус из декартовой системы
+            countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
+            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
+            maxX = cv.ActualWidth; //получаем ширину канвы
+            maxY = cv.ActualHeight; //получаем высоту канвы     
+            radius = r * (maxX / countX);//преобразуем радиус из декартовой системы
             this.cv = cv;
             circle = new Ellipse()//задаем прочие параметры
             {
@@ -43,8 +44,8 @@ namespace InteractivePoster.Finction
 
              point = new Ellipse()//задаем прочие параметры
             {
-                Width = (maxX / count) * 0.2,
-                Height = (maxX / count) * 0.2,
+                Width = (maxX / countX) * 0.2,
+                Height = (maxX / countX) * 0.2,
                 Fill = Brushes.Black,
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
@@ -60,17 +61,7 @@ namespace InteractivePoster.Finction
             DrawRadius(x, y , r);
             DrawText(x, y,text);
         }
-        void DrawText(double x, double y,string s)
-        {
-            TextBlock TB = new TextBlock();
-            TB.Text = s;
-            cv.Children.Add(TB);
-            TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
-            TB.SetValue(Canvas.TopProperty, convertCoordY(y));
-            TB.TextWrapping = TextWrapping.Wrap;
-            TB.Width = double.NaN;
-            TB.FontSize = maxX/count*0.5;
-        } //Текст c содержанием точек
+
         void DrawRadius(double x, double y, double r)
         {
 
@@ -102,7 +93,7 @@ namespace InteractivePoster.Finction
         public double convertX(double x)
         {
             //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
-            return maxX / 2 + x * (maxX / count) - radius;
+            return maxX / 2 + x * (maxX / countX) - radius;
         }
         /// <summary>
         /// метод для преобразования координаты Y их канвы в декартово значение
@@ -111,7 +102,7 @@ namespace InteractivePoster.Finction
         /// <returns>актуальная координата Y на канве</returns>
         public double convertY(double y)
         {
-            return maxX / 2 + y / -1 * (maxX / count) - radius;
+            return maxY / 2 + y / -1 * (maxY / countY) - radius;
         }
         /// <summary>
         /// метод для преобразования градусов в радиан
@@ -124,7 +115,7 @@ namespace InteractivePoster.Finction
         }
         public double MaxRadius(double x, double y)
         {
-            return  Math.Abs(x)> Math.Abs(y) ? count/2-Math.Abs(x) : count / 2 - Math.Abs(y);
+            return  Math.Abs(x)> Math.Abs(y) ? countX/2-Math.Abs(x) : countX / 2 - Math.Abs(y);
         }
     }
 }

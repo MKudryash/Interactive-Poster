@@ -15,15 +15,16 @@ namespace InteractivePoster.Finction
     {
 
         double x, p, y, maxCorrdinatX = -15;
-        Canvas cv;
         public DrawParabola(double x, double y,  Canvas cv,double p)
         {
             this.p = p;
             this.x = x;
             this.cv = cv;
             this.y = y;
-            count = Convert.ToDouble(cv.Tag);//получаем масштабы области
+            countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
+            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
             maxX = cv.ActualWidth; //получаем ширину канвы
+            maxY = cv.ActualHeight; //получаем высоту канвы     
             FocusParabola(cv);
             //DrawByPoint();
         }
@@ -81,8 +82,8 @@ namespace InteractivePoster.Finction
         {
             PointFocus = new Ellipse()//задаем прочие параметры
             {
-                Width = (maxX / count) * 0.2,
-                Height = (maxX / count) * 0.2,
+                Width = (maxX / countX) * 0.2,
+                Height = (maxX / countX) * 0.2,
                 Fill = Brushes.Black,
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
@@ -98,33 +99,6 @@ namespace InteractivePoster.Finction
 
         Ellipse point;
         Line lines;
-
-        void DrawByPoint(double gradusTransform)
-        {
-            Canvas cc = new Canvas();
-            double pointX = -1;
-            for (double i = -1; i < 0.9; i += 0.1)
-            {
-                lines = new Line()
-                {
-                    X1 = convertCoordX(pointX * pointX + x),
-                    Y1 = convertCoordY(pointX + y),
-                    X2 = convertCoordX(Math.Pow(pointX + 0.1, 2) + x),
-                    Y2 = convertCoordY(pointX + 0.1 + y),
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 3
-                };
-                pointX += 0.1;
-                cc.Children.Add(lines);
-                RotateTransform rotateTransform = new RotateTransform();
-                rotateTransform.CenterX = maxX / 2 + x * (maxX / count); //центр оси X по отношению к параболе, не к координатной плоскости
-                rotateTransform.CenterY = maxX / 2 + y * (-1) * (maxX / count);//центр оси Y по отношению к параболе, не к координатной плоскости
-                rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
-                cc.RenderTransform = rotateTransform;
-            }
-            cv.Children.Add(cc);
-
-        }
 
         public string CanonicalEquation()
         {

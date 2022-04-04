@@ -52,19 +52,33 @@ namespace InteractivePoster.Finction
     }
     class GeometricPatterns
     {
-
         public double maxX;
         public double maxY;
-        public double count;
+        public double countX;
+        public double countY;
         public double radius;
+        public Canvas cv;
         public double convertCoordX(double coord)
         {
-            return maxX / 2 + coord * (maxX / count);
+            return maxX / 2 + coord * (maxX / countX);
         }
         public double convertCoordY(double coord)
         {
-            return maxX / 2 + coord * (-1) * (maxX / count);
+            return maxY / 2 + coord * (-1) * (maxY / countY);
         }
+       public void DrawText(double x, double y, string text)
+        {
+            TextBlock TB = new TextBlock()
+            {
+                Text = text,
+                TextWrapping = TextWrapping.Wrap,
+                Width = double.NaN,
+                FontSize = maxX / countX * 0.5
+            };
+            cv.Children.Add(TB);
+            TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
+            TB.SetValue(Canvas.TopProperty, convertCoordY(y));
+        } //Текст c содержанием точек
 
     }
 }
