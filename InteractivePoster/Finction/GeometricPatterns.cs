@@ -73,7 +73,7 @@ namespace InteractivePoster.Finction
                 Text = text,
                 TextWrapping = TextWrapping.Wrap,
                 Width = double.NaN,
-                FontSize = maxX / countX * 0.5
+                FontSize =countX
             };
             cv.Children.Add(TB);
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));

@@ -25,7 +25,7 @@ namespace InteractivePoster.Finction
             countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
             maxX = cv.ActualWidth; //получаем ширину канвы
             maxY = cv.ActualHeight; //получаем высоту канвы     
-            radius = r * (maxX / countX);//преобразуем радиус из декартовой системы
+            radius = r * (maxY / countY);//преобразуем радиус из декартовой системы
             this.cv = cv;
             circle = new Ellipse()//задаем прочие параметры
             {
