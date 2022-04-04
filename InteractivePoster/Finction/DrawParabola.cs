@@ -107,22 +107,22 @@ namespace InteractivePoster.Finction
                 case true:
                     if (p > 0)
                     {
-                        return @"(x-" + x.ToString("F1") + "))^2= 2p((y-" + y.ToString("F1") + ")"; 
+                        return @"(x- (" + x.ToString("F1") + "))^2= 2p(y- (" + y.ToString("F1") + "))"; 
                     };
                     if (p < 0)
                     {
-                        return @"(x-" + x.ToString("F1") + "))^2= -2p((y-" + y.ToString("F1") + ")";
+                        return @"(x- (" + x.ToString("F1") + "))^2= -2p(y- (" + y.ToString("F1") + "))";
                     };
                     break;
 
                 case false:
                     if (p > 0)
                     {
-                        return @"((y - " + y.ToString("F1") + ")^2= 2p(x-" + x.ToString("F1") + "))";
+                        return @"(y - (" + y.ToString("F1") + "))^2= 2p(x- (" + x.ToString("F1") + "))";
                     };
                     if (p < 0)
                     {
-                        return @"((y - " + y.ToString("F1") + ")^2= -2p(x-" + x.ToString("F1") + "))";
+                        return @"(y - (" + y.ToString("F1") + "))^2= -2p(x- (" + x.ToString("F1") + "))";
                     };
                     break;
                 default:
