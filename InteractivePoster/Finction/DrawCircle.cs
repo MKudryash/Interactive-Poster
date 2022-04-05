@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -85,12 +86,118 @@ namespace InteractivePoster.Finction
             DrawText(circleX, circleY, text);
         } //Орисовка радиуса + текст с точкой на окружности
 
-        /// <summary>
-        /// метод для преобразования координаты Х их канвы в декартово значение
-        /// </summary>
-        /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
-        /// <returns>актуальная координата Х на канве</returns>
-        public double convertX(double x)
+
+        public async void ChangedGradus(object sender, MouseEventArgs e)
+        {
+                double x = e.GetPosition(cv).X;
+                double y = e.GetPosition(cv).Y;
+
+
+
+                double coordX = countX / cv.ActualWidth * (x - cv.ActualWidth / 2);
+                double coordY = -1 * (countY / cv.ActualHeight) * (y - cv.ActualHeight / 2);
+                double p = Math.Abs(Math.Round(Math.Atan(coordX / coordY), 2));
+
+
+                if (coordX > 0)
+                {
+                    if (coordY > 0)
+                    { MaxMinCoordinat.gradusValue= (int)(90 - p * 180 / Math.PI); }
+                    else { MaxMinCoordinat.gradusValue = (int)(270 + (p * 180 / Math.PI)); }
+                }
+                else
+                {
+                    if (coordY > 0)
+                    { MaxMinCoordinat.gradusValue = (int)(90 + p * 180 / Math.PI); }
+                    else { MaxMinCoordinat.gradusValue = (int)(270 - p * 180 / Math.PI); }
+                }
+        }
+
+        public async void BuildCircle(object sender, MouseEventArgs e)
+        {
+            //центр окружности и радиус 
+
+            //if (centerCircle)
+            //{
+            //    x = e.GetPosition(Background).X;
+            //    y = e.GetPosition(Background).Y;
+            //    double coordX = count / Background.ActualWidth * (x - Background.ActualWidth / 2);
+            //    double coordY = -1 * (countY / Background.ActualHeight) * (y - Background.ActualHeight / 2);
+            //    slCoordX.Value = coordX;
+            //    slCoordY.Value = coordY;
+            //    centerCircle = false;
+            //}
+            //if (radiusCircle)
+            //{
+            //    Line line = new Line()
+            //    {
+            //        Stroke = Brushes.Black,
+            //        StrokeThickness = 3,
+            //        SnapsToDevicePixels = true,
+            //        X1 = x,
+            //        X2 = e.GetPosition(Background).X,
+            //        Y1 = y,
+            //        Y2 = e.GetPosition(Background).Y
+            //    };
+            //    radius = Math.Sqrt(Math.Pow(e.GetPosition(Background).X - x, 2) + Math.Pow(e.GetPosition(Background).Y - y, 2));
+            //    Btn1.IsEnabled = false;
+            //    Btn2.IsEnabled = false;
+            //    centerCircle = false;
+            //    radiusCircle = false;
+            //    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+            //    Background.Children.Add(line);
+            //    flag = true;
+            //}
+
+            //if (isMouseDown)
+            //{
+            //    double x = e.GetPosition(Background).X;
+            //    double y = e.GetPosition(Background).Y;
+
+
+            //    double coordX = count / Background.ActualWidth * (x - Background.ActualWidth / 2);
+            //    double coordY = -1 * (countY / Background.ActualHeight) * (y - Background.ActualHeight / 2);
+            //    double p = Math.Abs(Math.Round(Math.Atan(coordX / coordY), 2));
+
+
+            //    if ((count / Background.ActualWidth * (this.x - Background.ActualWidth / 2)) <= coordX)
+            //    {
+            //        if ((-1 * (countY / Background.ActualHeight) * (this.y - Background.ActualHeight / 2)) <= coordY)
+            //        { gradus = 90 - p * 180 / Math.PI; }
+            //        else
+            //        { gradus = 270 + p * 180 / Math.PI; }
+            //    }
+            //    else
+            //    {
+            //        if ((-1 * (countY / Background.ActualHeight) * (this.y - Background.ActualHeight / 2)) <= coordY)
+            //        { gradus = 90 + p * 180 / Math.PI; }
+            //        else { gradus = 270 - p * 180 / Math.PI; }
+            //    }
+            //    gradus = Math.Abs(gradus);
+            //    double circleX = this.x + radius * Math.Cos(gradus);
+            //    double circleY = this.y + radius * Math.Sin(gradus);
+            //    el = new Ellipse()
+            //    {
+            //        Width = 5,
+            //        Height = 5,
+            //        Fill = Brushes.Black,
+            //        Stroke = Brushes.Black,
+            //        StrokeThickness = 1
+            //    };
+            //    Background.Children.Add(el);
+            //    el.SetValue(Canvas.LeftProperty, circleX);
+            //    el.SetValue(Canvas.TopProperty, circleY);
+            //}
+
+        }
+
+
+            /// <summary>
+            /// метод для преобразования координаты Х их канвы в декартово значение
+            /// </summary>
+            /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
+            /// <returns>актуальная координата Х на канве</returns>
+            public double convertX(double x)
         {
             //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
             return maxX / 2 + x * (maxX / countX) - radius;

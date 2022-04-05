@@ -60,12 +60,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-
-
-
-
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
@@ -83,7 +77,17 @@
             <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
+        <Canvas 
+            Panel.ZIndex="0"
+            x:Name="Background"
+            Grid.Column="0"
+            SizeChanged="UpdateBackPattern" 
+            Tag="{Binding ElementName=Area,Path=Value}"
+            MouseDown="MouseDown_Background"
+            MouseUp="MouseUp_Background"
+             MouseMove="MouseMove_Background"
+            Background="#F1D3BC"/>
+        
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
@@ -213,7 +217,7 @@
                                     <TextBox  Style="{StaticResource TextBoxForSlider}"
                                         Grid.Column="0" Text="{Binding ElementName=SlPoint,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="45" 
+                        Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="{Binding GradusValue}" 
                         Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency="1"/>
                                 </Grid>

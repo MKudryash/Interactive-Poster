@@ -21,6 +21,10 @@ namespace InteractivePoster.Finction
         public string FormalaElips { get; set; }
         public int GradusValue
         {
+            get
+            {
+                return gradusValue;
+            }
             set
             {
                 gradusValue = value;

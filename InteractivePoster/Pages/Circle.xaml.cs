@@ -19,6 +19,7 @@ namespace InteractivePoster.Pages
         double count;
 
         MaxMinCoordinat MMC = new MaxMinCoordinat();
+        DrawCircle c;
         public Circle()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace InteractivePoster.Pages
 
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
-            MMC.GradusValue = (int)SlPoint.Value;
+            SlPoint.Value = MMC.GradusValue;
             double countY = Math.Round( Background.ActualHeight/ (Background.ActualWidth / count));
             FormulaCircle.Formula = @"(x-(" + slCoordX.Value.ToString("F1") + @"))^2+ (y-(" + slCoordY.Value.ToString("F1") + @"))^2 = " + slRadius.Value.ToString("F1") + @"^2";
 
@@ -45,7 +46,7 @@ namespace InteractivePoster.Pages
            lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
            lineY.DrawArrow(0, countY/2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
-          DrawCircle c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
+         c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
            MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
         }
 
@@ -78,6 +79,25 @@ namespace InteractivePoster.Pages
                 soundCircle.Stop();
                 isPlay = true;
             }
+        }
+        bool isMouse = false;
+        private void MouseDown_Background(object sender, MouseButtonEventArgs e)
+        {
+            isMouse = true;
+        }
+
+        private void MouseUp_Background(object sender, MouseButtonEventArgs e)
+        {
+            isMouse = false;
+        }
+
+        private void MouseMove_Background(object sender, MouseEventArgs e)
+        {
+            if (isMouse)
+            {
+                c.ChangedGradus(sender, e);
+            }
+            UpdateBackPattern(null, null);
         }
     }
 }
