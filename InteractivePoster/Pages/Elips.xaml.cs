@@ -30,8 +30,6 @@ namespace InteractivePoster.Pages
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
-            Formula.Formula = @"\frac{(x*cos(" + SlTransform.Value.ToString() + ")-y*sin(" + SlTransform.Value.ToString() + ")-("+ slCoordX.Value.ToString("F1")+")"+@"))^2}{" + slRadiusW.Value.ToString("F1") +
-                @"^2}+ \frac{(y*sin(" + SlTransform.Value.ToString() + ")+y*cos(" + SlTransform.Value.ToString() + ")-(" + slCoordY.Value.ToString("F1") + ")" + @"))^2}{" + slRadiusH.Value.ToString("F1") + @"^2} = 1";
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
@@ -51,7 +49,7 @@ namespace InteractivePoster.Pages
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
             DrawElips c = new DrawElips(slCoordX.Value, slCoordY.Value, slRadiusW.Value, slRadiusH.Value, Background,SlTransform.Value);
-           // MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
+            Formula.Formula = c.CanonicalEquation();
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -82,6 +80,11 @@ namespace InteractivePoster.Pages
                 soundCircle.Stop();
                 isPlay = true;
             }
+        }
+
+        private void ChangedElipsFormula(object sender, RoutedEventArgs e)
+        {
+            UpdateBackPattern(null, null);
         }
     }
 }

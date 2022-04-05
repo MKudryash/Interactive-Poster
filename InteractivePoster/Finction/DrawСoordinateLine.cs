@@ -57,16 +57,16 @@ namespace InteractivePoster.Finction
             if (orientation == Orientation.Horizontal)
             {
                 line.X1 = convertCoordX(x);
-                line.X2 = convertCoordX(x - 1);
+                line.X2 = convertCoordX(x - 0.5);
                 line.Y1 = convertCoordY(y);
-                line.Y2 = convertCoordY(y + 0.5);
+                line.Y2 = convertCoordY(y + 0.2);
             }
             else
             {
                 line.X1 = convertCoordX(x);
-                line.X2 = convertCoordX(x + 0.5);
+                line.X2 = convertCoordX(x + 0.2);
                 line.Y1 = convertCoordY(y);
-                line.Y2 = convertCoordY(y - 1);
+                line.Y2 = convertCoordY(y - 0.5);
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
@@ -79,16 +79,16 @@ namespace InteractivePoster.Finction
             if (orientation == Orientation.Horizontal)
             {
                 line.X1 = convertCoordX(x);
-                line.X2 = convertCoordX(x - 1);
+                line.X2 = convertCoordX(x - 0.5);
                 line.Y1 = convertCoordY(y);
-                line.Y2 = convertCoordY(y - 0.5);
+                line.Y2 = convertCoordY(y - 0.2);
             }
             else 
             {
                 line.X1 = convertCoordX(x);
-                line.X2 = convertCoordX(x - 0.5);
+                line.X2 = convertCoordX(x - 0.2);
                 line.Y1 = convertCoordY(y);
-                line.Y2 = convertCoordY(y - 1);
+                line.Y2 = convertCoordY(y - 0.5);
             }
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);

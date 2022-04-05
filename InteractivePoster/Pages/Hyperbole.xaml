@@ -4,9 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InteractivePoster.Pages" xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
-      mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="800"
-      Title="Hyperbole" Background="#F1D3BC">
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="Hyperbole" Background="#F1D3BC" >
 
     <Page.Resources>
         <Style x:Key="Heading" TargetType="TextBlock">
@@ -107,7 +106,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="800"/>
             </Grid.ColumnDefinitions>
             <ScrollViewer  Panel.ZIndex="1" Grid.Column="1">
                 <StackPanel Margin="20" Background="#262F34">
@@ -265,10 +264,20 @@
                             </StackPanel>
                         </GroupBox>
                     </Grid>
-                    <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <GroupBox Header="Каноническое уравнение:">
                             <controls:FormulaControl x:Name="FormulaHyperbole"/>
                         </GroupBox>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <CheckBox HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"   
+                                      Style="{StaticResource CheckBoxTheme}"
+                                      Content="Каноническое уравнение с учетом вращения"
+                                       IsChecked="{Binding equationforHyperbole}" 
+                                       Click="ChangedHyperboleFormula"/>
+                        </StackPanel>
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
 

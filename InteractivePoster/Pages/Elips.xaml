@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:InteractivePoster.Pages"
        xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" d:DesignWidth="800" 
-      Title="Elips" Background="#F1D3BC" >
+      Title="Elips" Background="#F1D3BC" 
+       MinHeight="500"
+      MinWidth="1000">
 
     <Page.Resources>
         <Style x:Key="Heading" TargetType="TextBlock">
@@ -58,13 +60,6 @@
             </Setter>
         </Style>
 
-
-
-
-
-
-
-
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
@@ -109,7 +104,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="800"/>
             </Grid.ColumnDefinitions>
             <ScrollViewer Panel.ZIndex="1" Grid.Column="1">
                 <StackPanel Background="#262F34"  Margin="20">
@@ -279,7 +274,8 @@
                             </StackPanel>
                         </GroupBox>
                     </Grid>
-                    <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                     
                         <GroupBox Header="Каноническое уравнение:">
                             <Grid>
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
@@ -287,10 +283,21 @@
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <CheckBox HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"   
+                                      Style="{StaticResource CheckBoxTheme}"
+                                      Content="Каноническое уравнение с учетом вращения"
+                                       IsChecked="{Binding equationforElips}" 
+                                       Click="ChangedElipsFormula"
+                                  />
+                                                    
+                        </StackPanel>
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
                 </StackPanel>
-
             </ScrollViewer>
             <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->

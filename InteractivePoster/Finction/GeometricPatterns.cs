@@ -46,9 +46,11 @@ namespace InteractivePoster.Finction
                 PropertyChanged(this, new PropertyChangedEventArgs("MinValue"));
             }
         }
-        public static bool equation { get; set; } = true;
+        public static bool equationforParabola { get; set; } = true;
+        public static bool equationforElips { get; set; } = true;
+        public static bool equationforHyperbole { get; set; } = true;
 
-        
+
     }
     class GeometricPatterns
     {

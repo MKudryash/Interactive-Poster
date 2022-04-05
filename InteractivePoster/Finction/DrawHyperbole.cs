@@ -243,7 +243,20 @@ namespace InteractivePoster.Finction
         {
             return r / 180 * Math.PI;
         }
+        public string CanonicalEquation()
+        {
+            switch (MaxMinCoordinat.equationforHyperbole)
+            {
+                case true:
+                    return @"\frac{(x*cos(" + gradusTransform.ToString() + ")-y*sin(" + gradusTransform.ToString() + ")-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") +
+                @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
+                case false:
+                    return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
 
+                default:
+                    return " ";
+            }
+        }
 
 
 

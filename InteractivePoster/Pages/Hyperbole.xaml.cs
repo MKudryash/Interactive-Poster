@@ -32,8 +32,6 @@ namespace InteractivePoster.Pages
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
-            FormulaHyperbole.Formula = @"\frac{(x*cos("+SlTransform.Value.ToString()+")-y*sin("+ SlTransform.Value.ToString() + ")-(" + slCoordX.Value.ToString("F1")+ @"))^2}{" + slRectangleA.Value.ToString("F1") +
-                @"^2}+ \frac{(x*sin("+SlTransform.Value.ToString()+")+y*cos("+SlTransform.Value.ToString()+")-(" + slCoordY.Value.ToString("F1") +  @"))^2}{" + slRectangleB.Value.ToString("F1") + @"^2} = 1";
             double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
 
 
@@ -50,6 +48,7 @@ namespace InteractivePoster.Pages
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
 
             DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background,SlTransform.Value);
+            FormulaHyperbole.Formula = drawHyperbole.CanonicalEquation();
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -80,6 +79,11 @@ namespace InteractivePoster.Pages
                 soundCircle.Stop();
                 isPlay = true;
             }
+        }
+
+        private void ChangedHyperboleFormula(object sender, RoutedEventArgs e)
+        {
+            UpdateBackPattern(null, null);
         }
     }
 }

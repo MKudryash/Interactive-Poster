@@ -155,7 +155,7 @@
                             <StackPanel>
                                 <RadioButton Height="50" 
                                          Style="{StaticResource MenuButtonThemeParabola}" 
-                                         IsChecked="{Binding equation}" 
+                                         IsChecked="{Binding equationforParabola}" 
                                          Content="Вертикальная"
                                            
                                              Click="ChangedParabola"/>

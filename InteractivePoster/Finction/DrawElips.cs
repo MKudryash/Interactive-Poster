@@ -30,7 +30,8 @@ namespace InteractivePoster.Finction
 
         double sinGradusElpis;
         double cosGradusElpis;
-  
+        double gradusValueElips,rH,rW;
+
         public DrawElips(double x, double y, double rW, double rH, Canvas cv, double gradusValueElips)
         {
             countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
@@ -42,6 +43,9 @@ namespace InteractivePoster.Finction
             this.cv = cv;
             this.x = x;
             this.y = y;
+            this.rH = rH;
+            this.rW = rW;
+            this.gradusValueElips = gradusValueElips;
             sinGradusElpis = Math.Sin(convertRadian(gradusValueElips));
             cosGradusElpis = Math.Cos(convertRadian(gradusValueElips));
 
@@ -211,6 +215,20 @@ namespace InteractivePoster.Finction
         public double convertRadian(double r)
         {
             return r / 180 * Math.PI;
+        }
+        public string CanonicalEquation()
+        {
+            switch (MaxMinCoordinat.equationforElips)
+            {
+                case true:
+                    return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
+              @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+
+                case false:
+                    return @"\frac{(x-(" + x.ToString() + @"))^2}{" + rW.ToString()+ @"^2}+ \frac{(y-(" + y.ToString() + @"))^2}{" + rH.ToString() + @"^2} = 1";
+                default:
+                    return " ";   
+            }
         }
     }
 }

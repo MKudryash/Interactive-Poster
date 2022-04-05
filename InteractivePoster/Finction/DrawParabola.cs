@@ -33,7 +33,7 @@ namespace InteractivePoster.Finction
             PathFigure pathFigure = new PathFigure();
             PathGeometry pathGeometry = new PathGeometry();
             QuadraticBezierSegment quadraticBezierSegment = new QuadraticBezierSegment();
-            if (MaxMinCoordinat.equation) //уравнение вида 2py = x^2
+            if (MaxMinCoordinat.equationforParabola) //уравнение вида 2py = x^2
             {               
                 pathFigure.StartPoint = new Point(convertCoordX(x+maxCorrdinatX / -1), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p+y));           
                 quadraticBezierSegment.Point1 = new Point(convertCoordX(x), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p*(-1)+y));
@@ -57,7 +57,7 @@ namespace InteractivePoster.Finction
         {
             double focus =p/2;
             TextBlock TB = new TextBlock();
-            if (MaxMinCoordinat.equation)
+            if (MaxMinCoordinat.equationforParabola)
             {
                 DrawPoinFocus(x, focus+y, cv);//Отображение фокуса на координатной плоскости
                 TB.Text = "F( " + y.ToString("F1") + "; " + (focus + x).ToString("F1") + ")";
@@ -102,7 +102,7 @@ namespace InteractivePoster.Finction
 
         public string CanonicalEquation()
         {
-            switch (MaxMinCoordinat.equation)
+            switch (MaxMinCoordinat.equationforParabola)
             {
                 case true:
                     if (p > 0)
