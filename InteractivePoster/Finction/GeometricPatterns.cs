@@ -72,7 +72,15 @@ namespace InteractivePoster.Finction
         {
             return maxY / 2 + coord * (-1) * (maxY / countY);
         }
-       public void DrawText(double x, double y, string text)
+        public double convertXCoord(double coord)
+        {
+            return (coord - maxX / 2) * countX / maxX;
+        }
+        public double convertYCoord(double coord)
+        {
+            return (coord - maxY / 2) * countY / maxY*-1;
+        }
+        public void DrawText(double x, double y, string text)
         {
             TextBlock TB = new TextBlock()
             {

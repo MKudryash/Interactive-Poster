@@ -9,7 +9,7 @@ namespace InteractivePoster.Finction
 {
     class DrawCircle : GeometricPatterns
     {
-        Ellipse circle,point;//непосредственно сама окружность
+        Ellipse circle, point;//непосредственно сама окружность
         Line line;
         /// <summary>
         /// Конструктор класса
@@ -18,8 +18,8 @@ namespace InteractivePoster.Finction
         /// <param name="y">Декартова ордината центра окружности</param>
         /// <param name="r">Радиус окружности в декартовой системе</param>
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
-                
 
+        double x, y;
         public DrawCircle(double x, double y, double r, Canvas cv)
         {
             countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
@@ -28,6 +28,8 @@ namespace InteractivePoster.Finction
             maxY = cv.ActualHeight; //получаем высоту канвы     
             radius = r * (maxY / countY);//преобразуем радиус из декартовой системы
             this.cv = cv;
+            this.x = x;
+            this.y = y;
             circle = new Ellipse()//задаем прочие параметры
             {
                 Width = 2 * radius,//ширина и длина по сути равна диаметру окружности
@@ -43,7 +45,7 @@ namespace InteractivePoster.Finction
             string text = "О( " + x.ToString("F1") + "; " + y.ToString("F1") + ")";
             //центр окружности
 
-             point = new Ellipse()//задаем прочие параметры
+            point = new Ellipse()//задаем прочие параметры
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
@@ -59,8 +61,8 @@ namespace InteractivePoster.Finction
 
 
 
-            DrawRadius(x, y , r);
-            DrawText(x, y,text);
+            DrawRadius(x, y, r);
+            DrawText(x, y, text);
         }
 
         void DrawRadius(double x, double y, double r)
@@ -89,39 +91,24 @@ namespace InteractivePoster.Finction
 
         public async void ChangedGradus(object sender, MouseEventArgs e)
         {
-                double x = e.GetPosition(cv).X;
-                double y = e.GetPosition(cv).Y;
+            double x = e.GetPosition(cv).X;
+            double y = e.GetPosition(cv).Y;
+
+            double coordX = convertXCoord(x);
+            double coordY = convertYCoord(y);
+            double p = Math.Atan((coordY - this.y) / (coordX - this.x));
 
 
-
-                double coordX = countX / cv.ActualWidth * (x - cv.ActualWidth / 2);
-                double coordY = -1 * (countY / cv.ActualHeight) * (y - cv.ActualHeight / 2);
-                double p = Math.Abs(Math.Round(Math.Atan(coordX / coordY), 2));
-
-
-                if (coordX > 0)
-                {
-                    if (coordY > 0)
-                    { MaxMinCoordinat.gradusValue= (int)(90 - p * 180 / Math.PI); }
-                    else { MaxMinCoordinat.gradusValue = (int)(270 + (p * 180 / Math.PI)); }
-                }
-                else
-                {
-                    if (coordY > 0)
-                    { MaxMinCoordinat.gradusValue = (int)(90 + p * 180 / Math.PI); }
-                    else { MaxMinCoordinat.gradusValue = (int)(270 - p * 180 / Math.PI); }
-                }
+            if (coordX < this.x) { p = p + Math.PI; }
+            MaxMinCoordinat.gradusValue = (int)((p) * 180 / Math.PI);
         }
 
-      
-
-
-            /// <summary>
-            /// метод для преобразования координаты Х их канвы в декартово значение
-            /// </summary>
-            /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
-            /// <returns>актуальная координата Х на канве</returns>
-            public double convertX(double x)
+        /// <summary>
+        /// метод для преобразования координаты Х их канвы в декартово значение
+        /// </summary>
+        /// <param name="x">декартова координата (как нам надо с точки зрения математики)</param>
+        /// <returns>актуальная координата Х на канве</returns>
+        public double convertX(double x)
         {
             //радиус вычитаем, т.к. по умолчанию передаются координаты левого верхнего угла
             return maxX / 2 + x * (maxX / countX) - radius;
@@ -146,7 +133,7 @@ namespace InteractivePoster.Finction
         }
         public double MaxRadius(double x, double y)
         {
-            return  Math.Abs(x)> Math.Abs(y) ? countX/2-Math.Abs(x) : countX / 2 - Math.Abs(y);
+            return Math.Abs(x) > Math.Abs(y) ? countX / 2 - Math.Abs(x) : countX / 2 - Math.Abs(y);
         }
     }
 }

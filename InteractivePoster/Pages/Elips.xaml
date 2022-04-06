@@ -104,7 +104,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="800"/>
+                <ColumnDefinition Width="850"/>
             </Grid.ColumnDefinitions>
             <ScrollViewer Panel.ZIndex="1" Grid.Column="1">
                 <StackPanel Background="#262F34"  Margin="20">
