@@ -299,7 +299,11 @@
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
                 </StackPanel>
             </ScrollViewer>
-            <Canvas Panel.ZIndex="0" x:Name="Background" Grid.Column="0" SizeChanged="UpdateBackPattern"  Tag="{Binding ElementName=Area,Path=Value}"/>
+            <Canvas Panel.ZIndex="0"
+                    x:Name="Background"
+                    Grid.Column="0" 
+                    SizeChanged="UpdateBackPattern" 
+                    Tag="{Binding ElementName=Area,Path=Value}"/>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
 

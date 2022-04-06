@@ -1,10 +1,9 @@
-﻿<Page x:Class="InteractivePoster.Pages.Circle"
+﻿<Page x:Class="InteractivePoster.BuildPages.BuildCircle"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:InteractivePoster.Pages"
-      xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+      xmlns:local="clr-namespace:InteractivePoster.BuildPages" xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
       Title="Circle" Background="#F1D3BC">
@@ -87,16 +86,7 @@
             MouseUp="MouseUp_Background"
              MouseMove="MouseMove_Background"
             Background="#F1D3BC"/>
-        <Button Panel.ZIndex="1"
-            Click="BuildCircleOpen" 
-            Style="{StaticResource SoundButton}" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-            Grid.Column="0" >
-            <Button.Content>
-                <Image  Source="/Resource/Images/Pen.png"/>
-            </Button.Content>
-        </Button>
+
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
@@ -154,90 +144,86 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Border >
-                                    <TextBox Style="{StaticResource TextBoxForSlider}"
+                                        <TextBox Style="{StaticResource TextBoxForSlider}"
                                 Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Border>
-                                        <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
                             SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
-                        PreviewMouseMove="Area_PreviewMouseMove" 
+                        PreviewMouseDown="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
                                 </Grid>
                             </GroupBox>
 
-                            <!--Смещение по оси абсцисс-->
-                            <GroupBox Header="Смещение по оси абсцисс">
+                            <GroupBox Header="Центр окружности">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBox Style="{StaticResource TextBoxForSlider}"
-                                        Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordX,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
-                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="slCoordX" SmallChange="1" LargeChange="1" Value="0"
-                        Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
-                        PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
+                                    <CheckBox Grid.Column="0" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"  
+                                              IsEnabled="{Binding CenterCircle}"
+                                      Style="{StaticResource  CheckBoxBuild}"
+                                      Content="Центр окружности"
+                                       IsChecked="{Binding CenterCircle}"
+                                              x:Name="CentrCircleCheck"
+                                       />
+                                    <StackPanel Grid.Column="1"  Orientation="Horizontal" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="X:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="10" 
+                                                     Text="{Binding coordCX}"
+                                                     Style="{StaticResource TextBoxForSlider}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="Y:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="10" 
+                                                     Text="{Binding coordCY}"
+                                                     Style="{StaticResource TextBoxForSlider}"/>
+                                        </StackPanel>
+                                    </StackPanel>
                                 </Grid>
                             </GroupBox>
-
-                            <!--Смещение по оси ординат-->
-                            <GroupBox Header="Смещение по оси ординат">
+                            <GroupBox Header="Центр окружности">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBox   Style="{StaticResource TextBoxForSlider}"
-                                        Grid.Column="0"  Margin="0,0,5,0" Text="{Binding ElementName=slCoordY,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
-                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="slCoordY" SmallChange="1" LargeChange="1" Value="0" 
-                        Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" 
-                        PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
+                                    <CheckBox Grid.Column="0" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"   
+                                      Style="{StaticResource  CheckBoxBuild}"
+                                      Content="Радиус окружности"
+                                              IsEnabled="{Binding RadiusCircle}"
+                                       IsChecked="{Binding RadiusCircle}" 
+                                                x:Name="RadiusCircleCheck"
+                                      />
+                                    <StackPanel Grid.Column="1"  Orientation="Horizontal" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Width="80" Text="Радиус:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="10" 
+                                                     Text="{Binding circleR}"
+                                                     Style="{StaticResource TextBoxForSlider}"/>
+                                        </StackPanel>
+                                    </StackPanel>
                                 </Grid>
                             </GroupBox>
-
-
-                            <!--Радиус окружности-->
-                            <GroupBox Header="Радиус окружности">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBox  Style="{StaticResource TextBoxForSlider}"
-                                        Grid.Column="0" Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
-                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="slRadius" SmallChange="1" LargeChange="1" Value="1" 
-                        Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
-                                </Grid>
-                            </GroupBox>
-
-
-                            <!--Точка M (в градусах)-->
-                            <GroupBox Header="Точка M (в градусах)">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBox  Style="{StaticResource TextBoxForSlider}"
-                                        Grid.Column="0" Text="{Binding ElementName=SlPoint,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="{Binding GradusValue}" 
-                        Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency="1"/>
-                                </Grid>
-                            </GroupBox>
-
+                            <Button Content="Очистить поле" 
+                                    Style="{StaticResource  ClearStyle}"
+                                    Command="{Binding clearCanvasCommand}"/>
                         </StackPanel>
 
                     </GroupBox>
 
                 </Grid>
-                <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!--<StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <GroupBox Header="Каноническое уравнение:">
                         <Grid>
                             <controls:FormulaControl 
@@ -245,11 +231,11 @@
                                 />
                         </Grid>
                     </GroupBox>
-                </StackPanel>
+                </StackPanel>-->
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
             </StackPanel>
         </ScrollViewer>
-       
+
 
 
     </Grid>

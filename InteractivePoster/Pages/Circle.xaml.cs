@@ -1,4 +1,5 @@
-﻿using InteractivePoster.Finction;
+﻿using InteractivePoster.BuildPages;
+using InteractivePoster.Finction;
 using System;
 using System.IO;
 using System.Media;
@@ -98,6 +99,11 @@ namespace InteractivePoster.Pages
                 c.ChangedGradus(sender, e);
             }
             UpdateBackPattern(null, null);
+        }
+
+        private void BuildCircleOpen(object sender, RoutedEventArgs e)
+        {
+            LoadPage.MainFrame.Navigate(new BuildCircle());
         }
     }
 }
