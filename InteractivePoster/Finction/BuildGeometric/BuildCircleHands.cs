@@ -21,7 +21,6 @@ namespace InteractivePoster.Finction.BuildGeometric
         public event PropertyChangedEventHandler PropertyChanged;
         Ellipse pointForCircle;
         List<Ellipse> PointForEllipse { get; set; } = new List<Ellipse>();
-      //  List<Line> lineRadius { get; set; } = new List<Line>();
 
         //вспомогательные перменные для построение в ручную
         public static Canvas cv { get; set; }
@@ -74,16 +73,20 @@ namespace InteractivePoster.Finction.BuildGeometric
 
             PointForEllipse.Add(pointForCircle);
             cv.Children.Add(pointForCircle);
-            i++;
             pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(coordCX)-3);
             pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(coordCY)-3);
 
             CenterCircle = false;
             RadiusCircle = true;
+            Property();
+        }
+        public void Property()
+        {
             PropertyChanged(this, new PropertyChangedEventArgs("CenterCircle"));
             PropertyChanged(this, new PropertyChangedEventArgs("RadiusCircle"));
             PropertyChanged(this, new PropertyChangedEventArgs("coordCX"));
             PropertyChanged(this, new PropertyChangedEventArgs("coordCY"));
+            PropertyChanged(this, new PropertyChangedEventArgs("circleR"));
         }
         Line line;
         public void GetPointRadius(MouseEventArgs e)
@@ -99,17 +102,15 @@ namespace InteractivePoster.Finction.BuildGeometric
                 Y1 = buildCircleHand.convertCoordY(coordCY),
                 Y2 = e.GetPosition(cv).Y
             };
-            circleR = Math.Sqrt(Math.Pow(buildCircleHand.convertYCoord(e.GetPosition(cv).Y) - buildCircleHand.convertYCoord(centreY), 2)
-                + Math.Pow(buildCircleHand.convertXCoord(e.GetPosition(cv).X) - buildCircleHand.convertXCoord(centreX), 2));
-        //    radius = Math.Sqrt(Math.Pow(e.GetPosition(cv).X - centreX, 2) + Math.Pow(e.GetPosition(cv).Y - centreY, 2));
-
+            circleR = Math.Round( Math.Sqrt(Math.Pow(buildCircleHand.convertYCoord(e.GetPosition(cv).Y) - buildCircleHand.convertYCoord(centreY), 2)
+                + Math.Pow(buildCircleHand.convertXCoord(e.GetPosition(cv).X) - buildCircleHand.convertXCoord(centreX), 2)),2);
+            //    radius = Math.Sqrt(Math.Pow(e.GetPosition(cv).X - centreX, 2) + Math.Pow(e.GetPosition(cv).Y - centreY, 2));
+            Property();
 
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-         //   lineRadius.Add(line);
             cv.Children.Add(line);
           flag=true;
         }
-        int i = 0;
         public void BuildCirclePoint(MouseEventArgs e)
         {
             BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
@@ -139,17 +140,12 @@ namespace InteractivePoster.Finction.BuildGeometric
                 Fill = Brushes.Black,
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
-            };
-            
+            };            
             PointForEllipse.Add(pointForCircle);
             cv.Children.Add(pointForCircle);
-            i++;
             pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(circleX));
             pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(circleY));
         }
-
-        List<double> Mouse = new List<double>();
-        List<double> MouseXY = new List<double>();
 
         public RoutedCommand clearCanvasCommand { get; set; } = new RoutedCommand();
         public CommandBinding clearCanvasBinding;
@@ -171,14 +167,9 @@ namespace InteractivePoster.Finction.BuildGeometric
             coordCX = 0;
             coordCY = 0;
             circleR = 0;
-            i = 0;
             flag = false;
             CenterCircle = true;
-            PropertyChanged(this, new PropertyChangedEventArgs("CenterCircle"));
-            PropertyChanged(this, new PropertyChangedEventArgs("CenterCircle"));
-            PropertyChanged(this, new PropertyChangedEventArgs("coordCX"));
-            PropertyChanged(this, new PropertyChangedEventArgs("coordCY"));
-            PropertyChanged(this, new PropertyChangedEventArgs("circleR"));
+            Property();           
         }
     }
     class BuildCircleHand : GeometricPatterns
