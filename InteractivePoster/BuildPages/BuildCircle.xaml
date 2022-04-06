@@ -149,7 +149,7 @@
                                     </Border>
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
                             SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
-                        PreviewMouseDown="Area_PreviewMouseMove" 
+                        PreviewMouseUp="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
                                 </Grid>
                             </GroupBox>

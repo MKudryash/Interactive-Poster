@@ -90,7 +90,16 @@ namespace InteractivePoster.BuildPages
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            UpdateBackPattern(null,null);
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите изменить масштаб области?\n Текущие данные пропадут!", "Предупреждение", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                UpdateBackPattern(null, null);
+            }
+            else
+            {
+                Area.Value = count;
+            }
+            
         }
 
         private void ComeBack(object sender, RoutedEventArgs e)
