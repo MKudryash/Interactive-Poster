@@ -215,7 +215,7 @@
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Рассотяние между фокусами">
-                                <Grid>
+                                <Grid IsEnabled="{Binding parametrC}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
@@ -239,17 +239,23 @@
                                             <TextBlock Width="80" Text="С:"
                                                        VerticalAlignment="Center"/>
                                             <TextBox Margin="10" 
-                                                     Text="{Binding GetC}"
+                                                    Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"
                                                      Style="{StaticResource TextBoxForSlider}"/>
                                         </StackPanel>
                                     </StackPanel>
-                                    <Button 
-                                        Content="ОК"
-                                        Grid.Row="1"
-                                        Grid.ColumnSpan="2"
-                                        Click="Button_Click"/>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"                            
+                                            Grid.ColumnSpan="2"
+                                            Grid.Row="1"
+                                            x:Name="slRadius" 
+                                            SmallChange="1" 
+                                            LargeChange="1" 
+                                            Value="{Binding GetC}" 
+                                            Maximum="10"
+                   PreviewMouseMove="MouseMoveChangeC"
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
+
                                 </Grid>
-                                
+
                             </GroupBox>
                             <GroupBox Header="Координаты фокусов">
                                 <Grid>
@@ -257,7 +263,7 @@
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                   
+
                                     <StackPanel Grid.Column="1"  Orientation="Horizontal" 
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center">
@@ -268,7 +274,7 @@
                                                      Text="{Binding focusOne}"
                                                      Style="{StaticResource TextBoxForSlider}"
                                                      Width="80"/>
-                                                                                    
+
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <TextBlock Text="F2:"

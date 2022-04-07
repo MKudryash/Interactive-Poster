@@ -28,7 +28,7 @@ namespace InteractivePoster.BuildPages
         {
             InitializeComponent();
             DataContext = BEH;
-           // CommandBindings.Add(BCH.clearCanvasBinding);
+           CommandBindings.Add(BEH.clearCanvasBinding);
         }
 
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
@@ -92,9 +92,10 @@ namespace InteractivePoster.BuildPages
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+
+        private void MouseMoveChangeC(object sender, MouseEventArgs e)
         {
-            BEH.parametrC = false;
             BEH.FocusDraw();
         }
 

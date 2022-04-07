@@ -16,6 +16,8 @@ namespace InteractivePoster.Finction.BuildGeometric
         public event PropertyChangedEventHandler PropertyChanged;
         public static Canvas cv { get; set; }
         public Canvas GetCanvas { get => cv; set { cv = value; } }
+        List<Ellipse> FocusPoint { get; set; } = new List<Ellipse>();
+        List<Ellipse> PointForEllipse { get; set; } = new List<Ellipse>();
         Line line;
 
         public bool mouseDown = false;
@@ -33,7 +35,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         public bool centerElips { get; set; } = true;
         public bool exs { get; set; } = true;
         public bool parametrC { get; set; } = false;
-        public double c=1;
+        public double c = 1;
 
         public double GetC
         {
@@ -70,7 +72,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             coordCX = Math.Round(buildCircleHand.convertXCoord(centreX), 1);
             coordCY = Math.Round(buildCircleHand.convertYCoord(centreY), 1);
 
-           
+
             pointForElipse = new Ellipse()
             {
                 Width = 6,
@@ -80,10 +82,10 @@ namespace InteractivePoster.Finction.BuildGeometric
                 StrokeThickness = 1
             };
 
+            PointForEllipse.Add(pointForElipse);
             cv.Children.Add(pointForElipse);
             pointForElipse.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(coordCX) - 3);
             pointForElipse.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(coordCY) - 3);
-
             centerElips = false;
             parametrC = true;
             Property();
@@ -97,14 +99,29 @@ namespace InteractivePoster.Finction.BuildGeometric
             PropertyChanged(this, new PropertyChangedEventArgs("focusOne"));
             PropertyChanged(this, new PropertyChangedEventArgs("focusTwo"));
         }
-     public  void FocusDraw()
+        Ellipse Focus;
+        public void FocusDraw()
         {
             BuildElipsHand beh = new BuildElipsHand(cv);
+
+            foreach (var item in FocusPoint)
+            {
+                cv.Children.Remove(item);
+            }
+            cv.Children.Remove(line);
+            FocusPoint.Clear();
             if (exs)
             {
-                beh.DrawPoinFocus(coordCX + c, coordCY);
+                Focus = new Ellipse();
+                Focus = beh.DrawPoinFocus(coordCX + c, coordCY);
+                FocusPoint.Add(Focus);
+                cv.Children.Add(Focus);
+
                 focusOne = $"{coordCX + c}; {coordCY}";
-                beh.DrawPoinFocus(coordCX - c, coordCY);
+                Focus = new Ellipse();
+                Focus = beh.DrawPoinFocus(coordCX - c, coordCY);
+                FocusPoint.Add(Focus);
+                cv.Children.Add(Focus);
                 focusTwo = $"{coordCX - c}; {coordCY}";
                 line = new Line
                 {
@@ -119,10 +136,21 @@ namespace InteractivePoster.Finction.BuildGeometric
                 line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
                 cv.Children.Add(line);
             }
-            else 
+            else
             {
-                beh.DrawPoinFocus(coordCX, coordCY + c);
-                beh.DrawPoinFocus(coordCX, coordCY - c);
+                Focus = new Ellipse();
+                Focus = beh.DrawPoinFocus(coordCX, coordCY + c);
+                FocusPoint.Add(Focus);
+                cv.Children.Add(Focus);
+
+                focusOne = $"{coordCX}; {coordCY + c}";
+                Focus = new Ellipse();
+                Focus = beh.DrawPoinFocus(coordCX, coordCY - c);
+                FocusPoint.Add(Focus);
+                cv.Children.Add(Focus);
+                focusTwo = $"{coordCX}; {coordCY - c}";
+
+
                 line = new Line
                 {
                     X1 = beh.convertCoordX(coordCX),
@@ -139,7 +167,34 @@ namespace InteractivePoster.Finction.BuildGeometric
             flag = true;
             Property();
         }
+        public RoutedCommand clearCanvasCommand { get; set; } = new RoutedCommand();
+        public CommandBinding clearCanvasBinding;
+        public BuildElipsHands()
+        {
+            clearCanvasBinding = new CommandBinding(clearCanvasCommand);
+            clearCanvasBinding.Executed += ClearCanvasBinding_Executed; ;
+        }
 
+        private void ClearCanvasBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            parametrC = false;
+            foreach (var item in FocusPoint)
+            {
+                cv.Children.Remove(item);
+            }
+            foreach (var item in PointForEllipse)
+            {
+                cv.Children.Remove(item);
+            }
+            FocusPoint.Clear();
+            PointForEllipse.Clear();
+            cv.Children.Remove(line);
+            coordCX = 0;
+            coordCY = 0;
+            flag = false;
+            centerElips = true;
+            Property();
+        }
     }
     class BuildElipsHand : GeometricPatterns
     {
@@ -156,7 +211,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             return x > y ? Math.Sqrt(Math.Pow(x, 2) - Math.Pow(y, 2)) : Math.Sqrt(Math.Pow(y, 2) - Math.Pow(x, 2));
         }
         Ellipse PointFocus;
-       public void DrawPoinFocus(double x, double y)
+        public Ellipse DrawPoinFocus(double x, double y)
         {
 
             PointFocus = new Ellipse()//задаем прочие параметры
@@ -167,11 +222,9 @@ namespace InteractivePoster.Finction.BuildGeometric
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
             };
-
-            cv.Children.Add(PointFocus);//помещаем на канву
-                                        //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
+            return PointFocus;
         }
         /// <summary>
         /// метод для преобразования градусов в радиан

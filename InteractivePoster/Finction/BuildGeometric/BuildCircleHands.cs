@@ -17,7 +17,7 @@ namespace InteractivePoster.Finction.BuildGeometric
     {
         public event PropertyChangedEventHandler PropertyChanged;
         Ellipse pointForCircle;
-        List<Ellipse> PointForEllipse { get; set; } = new List<Ellipse>();
+        List<Ellipse> PointForCircle { get; set; } = new List<Ellipse>();
         List<double> Point = new List<double>();
 
         //вспомогательные перменные для построение в ручную
@@ -79,7 +79,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                 StrokeThickness = 1
             };
 
-            PointForEllipse.Add(pointForCircle);
+            PointForCircle.Add(pointForCircle);
 
             cv.Children.Add(pointForCircle);
             pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(coordCX) - 3);
@@ -157,7 +157,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
             };
-            PointForEllipse.Add(pointForCircle);
+            PointForCircle.Add(pointForCircle);
             cv.Children.Add(pointForCircle);
             pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(circleX));
             pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(circleY));
@@ -174,11 +174,11 @@ namespace InteractivePoster.Finction.BuildGeometric
         private void ClearCanvasBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             CenterCircle = false;
-            foreach (var item in PointForEllipse)
+            foreach (var item in PointForCircle)
             {
                 cv.Children.Remove(item);
             }
-            PointForEllipse.Clear();
+            PointForCircle.Clear();
             Point.Clear();
             cv.Children.Remove(line);
             coordCX = 0;
@@ -203,7 +203,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                     StrokeThickness = 1
                 };
 
-                PointForEllipse.Add(pointForCircle);
+                PointForCircle.Add(pointForCircle);
                 cv.Children.Add(pointForCircle);
                 pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(Point[0]) - 3);
                 pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(Point[1]) - 3);
@@ -230,7 +230,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                         Stroke = Brushes.Black,
                         StrokeThickness = 1
                     };
-                    PointForEllipse.Add(pointForCircle);
+                    PointForCircle.Add(pointForCircle);
                     cv.Children.Add(pointForCircle);
                     pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(Point[i]));
                     pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(Point[i + 1]));
