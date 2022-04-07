@@ -41,7 +41,9 @@ namespace InteractivePoster.BuildPages
             {
                 if (BCH.RadiusCircle)
                 {
+                    BCH.isMouseDownRadius = false;
                     BCH.GetPointRadius(e);
+                    //    UpdateBackPattern(null, null);
                     RadiusCircleCheck.IsChecked = false;
                 }
 
@@ -51,14 +53,14 @@ namespace InteractivePoster.BuildPages
                     BCH.CenterCircle = false;
                     RadiusCircleCheck.IsChecked = true;
                 }
-            }
-               
+            }              
            
         }
 
         private void MouseUp_Background(object sender, MouseButtonEventArgs e)
         {
             BCH.MouseDown = false;
+            BCH.IsMouseDownRadius = false;
         }
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
@@ -67,6 +69,12 @@ namespace InteractivePoster.BuildPages
             {
                 BCH.BuildCirclePoint(e);
             }
+            //if (BCH.IsMouseDownRadius)
+            //{
+            //    BCH.GetPointRadius(e);
+            //    UpdateBackPattern(null, null);
+            //  //  RadiusCircleCheck.IsChecked = false;
+            //}
 
         }
 

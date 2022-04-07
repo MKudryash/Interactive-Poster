@@ -28,6 +28,15 @@ namespace InteractivePoster.Finction.BuildGeometric
         public Canvas GetCanvas { get => cv; set { cv = value; } }
 
         public bool mouseDown = false;
+        public bool isMouseDownRadius = false;
+        public bool IsMouseDownRadius
+        {
+            get { return isMouseDownRadius; }
+            set
+            {
+                isMouseDownRadius = value;
+            }
+        }
         public bool MouseDown
         {
             get { return mouseDown; }
@@ -114,7 +123,11 @@ namespace InteractivePoster.Finction.BuildGeometric
             Property();
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
-            flag = true;
+            if (!isMouseDownRadius)
+            {
+                flag = true;
+                CenterCircle = false;
+            }
         }
         public void BuildCirclePoint(MouseEventArgs e)
         {
