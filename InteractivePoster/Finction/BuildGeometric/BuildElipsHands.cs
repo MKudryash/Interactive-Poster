@@ -107,12 +107,12 @@ namespace InteractivePoster.Finction.BuildGeometric
         {
             if (exs)
             {
-                a = thread/2;
+                a = thread-c;
                 b = Math.Sqrt(a * a - c * c);
             }
             else
             {
-                b = thread/2;
+                b = thread-c;
                 a = Math.Sqrt(b * b - c * c);
             }
         
