@@ -218,6 +218,8 @@ namespace InteractivePoster.Finction
         }
         public string CanonicalEquation()
         {
+          
+            if (x == 0 || y == 0) MaxMinCoordinat.equationforElips = false;
             if (gradusValueElips > 0)
             { MaxMinCoordinat.equationforElips = true; }
             else
@@ -228,13 +230,22 @@ namespace InteractivePoster.Finction
             {
                 case true:
                     {
-                        
+                        if (x == 0 && y == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + "))^2}{" + rW.ToString("F1") +
+                 @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        if (y == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
+                  @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        if (x == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + "))^2}{" + rW.ToString("F1") +
+                 @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                         return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
                   @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                     }
 
                 case false:
-                    return @"\frac{(x-(" + x.ToString() + @"))^2}{" + rW.ToString()+ @"^2}+ \frac{(y-(" + y.ToString() + @"))^2}{" + rH.ToString() + @"^2} = 1";
+                    if (x == 0 && y == 0) return @"\frac{(x)^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y)^2}{" + rH.ToString("F1") + @"^2} = 1";
+                    if (y == 0)  return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y)^2}{" + rH.ToString("F1") + @"^2} = 1";                  
+                    if (x == 0) return @"\frac{(x)^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                   
+                    return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                 default:
                     return " ";   
             }

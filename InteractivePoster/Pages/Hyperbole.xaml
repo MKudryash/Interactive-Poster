@@ -266,18 +266,12 @@
                     </Grid>
                     <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <GroupBox Header="Каноническое уравнение:">
-                            <controls:FormulaControl x:Name="FormulaHyperbole"/>
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+
+                                <controls:FormulaControl x:Name="FormulaHyperbole"/>
+                            </StackPanel>
                         </GroupBox>
-                        <StackPanel Orientation="Horizontal"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center">
-                            <CheckBox HorizontalAlignment="Center" 
-                                  VerticalAlignment="Center"   
-                                      Style="{StaticResource CheckBoxTheme}"
-                                      Content="Каноническое уравнение с учетом вращения"
-                                       IsChecked="{Binding equationforHyperbole}" 
-                                       Click="ChangedHyperboleFormula"/>
-                        </StackPanel>
+                       
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
 

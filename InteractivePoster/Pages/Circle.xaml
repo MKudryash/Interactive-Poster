@@ -240,9 +240,11 @@
                 <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <GroupBox Header="Каноническое уравнение:">
                         <Grid>
-                            <controls:FormulaControl 
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                <controls:FormulaControl 
                                x:Name="FormulaCircle" 
                                 />
+                            </StackPanel>
                         </Grid>
                     </GroupBox>
                 </StackPanel>

@@ -33,8 +33,7 @@ namespace InteractivePoster.Pages
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             SlPoint.Value = MMC.GradusValue;
             double countY = Math.Round( Background.ActualHeight/ (Background.ActualWidth / count));
-            FormulaCircle.Formula = @"(x-(" + slCoordX.Value.ToString("F1") + @"))^2+ (y-(" + slCoordY.Value.ToString("F1") + @"))^2 = " + slRadius.Value.ToString("F1") + @"^2";
-
+          
             Background.Children.Clear();
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
@@ -49,6 +48,7 @@ namespace InteractivePoster.Pages
             // наша целевая окружность
          c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
            MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
+            FormulaCircle.Formula = c.CanonicalEquation();
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)

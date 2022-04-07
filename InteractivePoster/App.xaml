@@ -345,6 +345,7 @@
                     <Setter Property="Background" Value="#262F34"/>
                 </Trigger>
             </Style.Triggers>
-        </Style>
+        </Style>       
+
     </Application.Resources>
 </Application>

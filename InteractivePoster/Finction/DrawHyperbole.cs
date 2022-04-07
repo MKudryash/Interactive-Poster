@@ -245,14 +245,29 @@ namespace InteractivePoster.Finction
         }
         public string CanonicalEquation()
         {
+            if (x == 0 || y == 0) MaxMinCoordinat.equationforHyperbole = false;
+            if (gradusTransform > 0)
+            { MaxMinCoordinat.equationforHyperbole = true; }
+            else
+            {
+                MaxMinCoordinat.equationforHyperbole = false;
+            }
             switch (MaxMinCoordinat.equationforHyperbole)
             {
                 case true:
+                    if (x == 0 && y == 0) return @"\frac{(x*cos(" + gradusTransform.ToString() + ")-y*sin(" + gradusTransform.ToString() + "))^2}{" + a.ToString("F1") +
+                @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + "))^2}{" + b.ToString("F1") + @"^2} = 1";
+                    if (y == 0) return @"\frac{(x*cos(" + gradusTransform.ToString() + ")-y*sin(" + gradusTransform.ToString() + ")-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") +
+                @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + "))^2}{" + b.ToString("F1") + @"^2} = 1";
+                    if (x == 0) return @"\frac{(x*cos(" + gradusTransform.ToString() + ")-y*sin(" + gradusTransform.ToString() + "))^2}{" + a.ToString("F1") +
+                @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
                     return @"\frac{(x*cos(" + gradusTransform.ToString() + ")-y*sin(" + gradusTransform.ToString() + ")-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") +
                 @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
-                case false:
+                case false:                   
+                    if (x == 0 && y == 0) return @"\frac{(x)^2}{" + a.ToString("F1") + @"^2}+ \frac{(y)^2}{" + b.ToString("F1") + @"^2} = 1";
+                    if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") + @"^2}+ \frac{(y)^2}{" + b.ToString("F1") + @"^2} = 1";
+                    if (x == 0) return @"\frac{(x)^2}{" + a.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
                     return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
-
                 default:
                     return " ";
             }

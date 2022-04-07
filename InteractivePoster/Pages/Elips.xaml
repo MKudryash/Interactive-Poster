@@ -282,19 +282,7 @@
                                     <controls:FormulaControl x:Name="Formula" />
                                 </StackPanel>
                             </Grid>
-                        </GroupBox>
-                        <StackPanel Orientation="Horizontal"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center">
-                            <CheckBox HorizontalAlignment="Center" 
-                                  VerticalAlignment="Center"   
-                                      Style="{StaticResource CheckBoxTheme}"
-                                      Content="Каноническое уравнение с учетом вращения"
-                                       IsChecked="{Binding equationforElips}" 
-                                       Click="ChangedElipsFormula"
-                                  />
-                                                    
-                        </StackPanel>
+                        </GroupBox>                       
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
                 </StackPanel>
