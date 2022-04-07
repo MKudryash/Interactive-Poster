@@ -15,7 +15,7 @@ namespace InteractivePoster.Finction
     {
 
         double x, p, y, maxCorrdinatX = -15;
-        public DrawParabola(double x, double y,  Canvas cv,double p)
+        public DrawParabola(double x, double y, Canvas cv, double p)
         {
             this.p = p;
             this.x = x;
@@ -26,6 +26,7 @@ namespace InteractivePoster.Finction
             maxX = cv.ActualWidth; //получаем ширину канвы
             maxY = cv.ActualHeight; //получаем высоту канвы     
             FocusParabola(cv);
+            DrawDirectrix();
             //DrawByPoint();
         }
         public PathGeometry Parabola()
@@ -34,47 +35,82 @@ namespace InteractivePoster.Finction
             PathGeometry pathGeometry = new PathGeometry();
             QuadraticBezierSegment quadraticBezierSegment = new QuadraticBezierSegment();
             if (MaxMinCoordinat.equationforParabola) //уравнение вида 2py = x^2
-            {               
-                pathFigure.StartPoint = new Point(convertCoordX(x+maxCorrdinatX / -1), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p+y));           
-                quadraticBezierSegment.Point1 = new Point(convertCoordX(x), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p*(-1)+y));
-                quadraticBezierSegment.Point2 = new Point(convertCoordX(x + maxCorrdinatX), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p+y));
-                pathFigure.Segments.Add(quadraticBezierSegment);                
-                pathGeometry.Figures.Add(pathFigure);               
-                return pathGeometry;
-            }
-            else //уравнение вида 2px= y^2
             {
-                pathFigure.StartPoint = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p + x), convertCoordY(y+ maxCorrdinatX / -1));
-                quadraticBezierSegment.Point1 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p * (-1) + x), convertCoordY(y));
-                quadraticBezierSegment.Point2 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p + x), convertCoordY(y+ maxCorrdinatX));
+                pathFigure.StartPoint = new Point(convertCoordX(x + maxCorrdinatX / -1), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p + y));
+                quadraticBezierSegment.Point1 = new Point(convertCoordX(x), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p * (-1) + y));
+                quadraticBezierSegment.Point2 = new Point(convertCoordX(x + maxCorrdinatX), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p + y));
                 pathFigure.Segments.Add(quadraticBezierSegment);
                 pathGeometry.Figures.Add(pathFigure);
                 return pathGeometry;
             }
-            
-        }
-        void FocusParabola(Canvas cv)
-        {
-            double focus =p/2;
-            TextBlock TB = new TextBlock();
-            if (MaxMinCoordinat.equationforParabola)
+            else //уравнение вида 2px= y^2
             {
-                DrawPoinFocus(x, focus+y, cv);//Отображение фокуса на координатной плоскости
-                TB.Text = "F( " + y.ToString("F1") + "; " + (focus + x).ToString("F1") + ")";
-                TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
-                TB.SetValue(Canvas.TopProperty, convertCoordY(focus+y));
+                pathFigure.StartPoint = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p + x), convertCoordY(y + maxCorrdinatX / -1));
+                quadraticBezierSegment.Point1 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p * (-1) + x), convertCoordY(y));
+                quadraticBezierSegment.Point2 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p + x), convertCoordY(y + maxCorrdinatX));
+                pathFigure.Segments.Add(quadraticBezierSegment);
+                pathGeometry.Figures.Add(pathFigure);
+                return pathGeometry;
+            }
+
+        }
+        Line line;
+        void DrawDirectrix()
+        {
+            if (!MaxMinCoordinat.equationforParabola)
+            {
+                line = new Line()
+                {
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 2,
+                    StrokeDashArray = { 4, 3 },
+                    SnapsToDevicePixels = true,
+                    Y1 = 0,
+                    Y2 = maxY,
+                    X1 = convertCoordX(-p / 2),
+                    X2 = convertCoordX(-p / 2)
+                };
             }
             else
             {
-                DrawPoinFocus(focus+x, y, cv);//Отображение фокуса на координатной плоскости
+                line = new Line()
+                {
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 2,
+                    StrokeDashArray = { 4, 3 },
+                    SnapsToDevicePixels = true,
+                    Y1 = convertCoordY(-p / 2),
+                    Y2 = convertCoordY(-p / 2),
+                    X1 = 0,
+                    X2 = maxX
+                };
+            }
+
+            line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+            cv.Children.Add(line);
+        }
+        void FocusParabola(Canvas cv)
+        {
+            double focus = p / 2;
+            TextBlock TB = new TextBlock();
+            if (MaxMinCoordinat.equationforParabola)
+            {
+                DrawPoinFocus(x, focus + y, cv);//Отображение фокуса на координатной плоскости
+                TB.Text = "F( " + y.ToString("F1") + "; " + (focus + x).ToString("F1") + ")";
+                TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
+                TB.SetValue(Canvas.TopProperty, convertCoordY(focus + y));
+            }
+            else
+            {
+                DrawPoinFocus(focus + x, y, cv);//Отображение фокуса на координатной плоскости
                 TB.Text = "F( " + (focus + x).ToString("F1") + "; " + y.ToString("F1") + ")";
-                TB.SetValue(Canvas.LeftProperty, convertCoordX(focus+x));
+                TB.SetValue(Canvas.LeftProperty, convertCoordX(focus + x));
                 TB.SetValue(Canvas.TopProperty, convertCoordY(y));
             }
-            cv.Children.Add(TB);            
+            cv.Children.Add(TB);
             TB.TextWrapping = System.Windows.TextWrapping.Wrap;
             TB.Width = double.NaN;
-           // TB.FontSize = maxX / count * 0.5;
+            // TB.FontSize = maxX / count * 0.5;
 
         }
         Ellipse PointFocus;
@@ -86,7 +122,7 @@ namespace InteractivePoster.Finction
                 Height = (maxX / countX) * 0.2,
                 Fill = Brushes.Black,
                 Stroke = Brushes.Black,
-                StrokeThickness = 1
+                StrokeThickness = 3
             };
 
             cv.Children.Add(PointFocus);//помещаем на канву
@@ -95,11 +131,6 @@ namespace InteractivePoster.Finction
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
         }
 
-
-
-        Ellipse point;
-        Line lines;
-
         public string CanonicalEquation()
         {
             switch (MaxMinCoordinat.equationforParabola)
@@ -107,10 +138,17 @@ namespace InteractivePoster.Finction
                 case true:
                     if (p > 0)
                     {
-                        return @"(x- (" + x.ToString("F1") + "))^2= 2p(y- (" + y.ToString("F1") + "))"; 
+                        if (x == 0 && y == 0) return @"(x)^2= 2p(y)";
+                        if (y == 0) return @"(x- (" + x.ToString("F1") + "))^2= 2p(y)";
+                        if (x == 0) return @"(x)^2= 2p(y- (" + y.ToString("F1") + "))";
+
+                        return @"(x- (" + x.ToString("F1") + "))^2= 2p(y- (" + y.ToString("F1") + "))";
                     };
                     if (p < 0)
                     {
+                        if (x == 0 && y == 0) return @"(x)^2= -2p(y)";
+                        if (y == 0) return @"(x- (" + x.ToString("F1") + "))^2= -2p(y)";
+                        if (x == 0) return @"(x)^2= -2p(y- (" + y.ToString("F1") + "))";
                         return @"(x- (" + x.ToString("F1") + "))^2= -2p(y- (" + y.ToString("F1") + "))";
                     };
                     break;
@@ -118,10 +156,16 @@ namespace InteractivePoster.Finction
                 case false:
                     if (p > 0)
                     {
+                        if (x == 0 && y == 0) return @"(y)^2= 2p(x)";
+                        if (y == 0) return @"(y)^2= 2p(x- (" + x.ToString("F1") + "))";
+                        if (x == 0) return @"(y - (" + y.ToString("F1") + "))^2= 2p(x)";
                         return @"(y - (" + y.ToString("F1") + "))^2= 2p(x- (" + x.ToString("F1") + "))";
                     };
                     if (p < 0)
                     {
+                        if (x == 0 && y == 0) return @"(y)^2= -2p(x)";
+                        if (y == 0) return @"(y - (" + y.ToString("F1") + "))^2= -2p(x)";
+                        if (x == 0) return @"(y - (" + y.ToString("F1") + "))^2= -2p(x)";
                         return @"(y - (" + y.ToString("F1") + "))^2= -2p(x- (" + x.ToString("F1") + "))";
                     };
                     break;
