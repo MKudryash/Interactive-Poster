@@ -13,9 +13,6 @@ using System.Windows.Media;
 
 namespace InteractivePoster.Finction.BuildGeometric
 {
-
-
-
     class BuildCircleHands : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -129,7 +126,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                 CenterCircle = false;
             }
         }
-        public void BuildCirclePoint(MouseEventArgs e)
+        public async void BuildCirclePoint(MouseEventArgs e)
         {
             BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
             double x = e.GetPosition(cv).X;

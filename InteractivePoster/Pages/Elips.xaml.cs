@@ -1,4 +1,5 @@
-﻿using InteractivePoster.Finction;
+﻿using InteractivePoster.BuildPages;
+using InteractivePoster.Finction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,11 @@ namespace InteractivePoster.Pages
         private void ChangedElipsFormula(object sender, RoutedEventArgs e)
         {
             UpdateBackPattern(null, null);
+        }
+
+        private void BuildElipsOpen(object sender, RoutedEventArgs e)
+        {
+            LoadPage.MainFrame.Navigate(new BiuldElipse());
         }
     }
 }

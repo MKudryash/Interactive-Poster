@@ -106,6 +106,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="850"/>
             </Grid.ColumnDefinitions>
+            <Button Panel.ZIndex="1"
+            Click="BuildElipsOpen" 
+            Style="{StaticResource SoundButton}" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+            Grid.Column="0" >
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Pen.png"/>
+                </Button.Content>
+            </Button>
             <ScrollViewer Panel.ZIndex="1" Grid.Column="1">
                 <StackPanel Background="#262F34"  Margin="20">
                     <Grid>

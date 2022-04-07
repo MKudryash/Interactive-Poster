@@ -318,6 +318,38 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
+               TargetType="CheckBox"
+               x:Key="CheckBoxBuildForElips">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.3"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20"
+                                Width="150" Height="40">
+                            <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+                              TextAlignment="Center" 
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       Foreground="#262F34"    Width="150"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="ClearStyle"
                TargetType="Button">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
@@ -345,7 +377,34 @@
                     <Setter Property="Background" Value="#262F34"/>
                 </Trigger>
             </Style.Triggers>
-        </Style>       
+        </Style>
+
+        <Style BasedOn ="{StaticResource {x:Type ToggleButton}}"
+               TargetType="RadioButton"
+               x:Key="BuildRBElips">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20">
+                            <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+                              TextAlignment="Center" 
+                                       FontSize="25"
+                                       Foreground="#262F34" Width="150"                            />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Application.Resources>
 </Application>

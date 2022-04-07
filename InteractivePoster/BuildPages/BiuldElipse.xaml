@@ -3,12 +3,299 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:InteractivePoster.BuildPages"
+      xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="800"
+      Background="#F1D3BC"
       Title="BiuldElipse">
 
+
+    <Page.Resources>
+        <Style x:Key="Heading" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#F1D3BC"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid Background="#F1D3BC">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border  Grid.Row="0" BorderBrush="#262F34" Background="#262F34">
+                                <TextBlock Style="{StaticResource Heading}"  Height="50" TextAlignment="Center" >
+                                    <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
+                                </TextBlock>
+                            </Border>
+
+                            <Border  Grid.Row="1" BorderThickness="5 0 5 5" BorderBrush="#262F34" Background="#F1D3BC">
+                                <ContentPresenter Margin="4"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+
+            </Setter>
+            <Setter Property="Header">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Border  Width="300"  CornerRadius="5"  >
+                                <StackPanel Margin="10 0" HorizontalAlignment="Center" >
+                                    <TextBlock Style="{StaticResource Heading}" Foreground="#F1D3BC" Text="Масштаб области" 
+                                      />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="42"/>
+        </Style>
+    </Page.Resources>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="500"/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas 
+            Panel.ZIndex="0"
+            x:Name="Background"
+            Grid.Column="0"
+            SizeChanged="UpdateBackPattern" 
+            Tag="{Binding ElementName=Area,Path=Value}"
+            MouseDown="MouseDown_Background"
+            MouseUp="MouseUp_Background"
+             MouseMove="MouseMove_Background"
+            Background="#F1D3BC"/>
+
+        <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
+            <StackPanel Panel.ZIndex="1" Margin="20" Background="#262F34">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                        Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Элипс"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
+                            <Button Command="{Binding SoundPlayCommand}" Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                                <Button.Content>
+                                    <Image  Source="/Resource/Images/Sound.png"/>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <StackPanel Style="{StaticResource HideTheopry}">
+                            <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, сумма расстояний от каждой из которых до двух данных точек этой плоскости, называемых
+                                 <Run Foreground="#F34A4A"> фокусами</Run>
+                                   , есть величина постоянная, большая, чем расстояние между фокусами./>
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
+                            <controls:FormulaControl HorizontalAlignment="Center" 
+                                Formula="\frac{(x-x_0)^2}{a^2} + \frac{(y-y_0)^2}{b^2} = 1"
+                                                     Background="#F1D3BC"/>
+                            <TextBlock Style="{StaticResource Heading}" Text="Расстояние между фокусами вычисляется по формуле: "/>
+                            <controls:FormulaControl HorizontalAlignment="Center" 
+                                Formula="c = \sqrt{a^2+b^2}, a>b" Background="#F1D3BC"/>
+                            <controls:FormulaControl HorizontalAlignment="Center" 
+                                Formula="c = \sqrt{b^2-a^2}, b>a" Background="#F1D3BC"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <GroupBox Grid.Row="1">
+                        <GroupBox.Header>
+                            <Border  CornerRadius="5" >
+                                <StackPanel Margin="10 0">
+                                    <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"
+                                        />
+                                </StackPanel>
+                            </Border>
+                        </GroupBox.Header>
+                        <StackPanel Margin="5">
+
+                            <!--Масштаб области-->
+                            <GroupBox Header="Масштаб области">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border >
+                                        <TextBox Style="{StaticResource TextBoxForSlider}"
+                                Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Border>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
+                            SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
+                        PreviewMouseMove="Area_PreviewMouseMove" 
+                        IsSnapToTickEnabled="True" TickFrequency="2"/>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Header="Центр элипса">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox Grid.Column="0" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"  
+                                              IsEnabled="{Binding centerElips}"
+                                      Style="{StaticResource  CheckBoxBuild}"
+                                      Content="Центр элипса"
+                                       IsChecked="{Binding centerElips}"
+                                              x:Name="CentrCircleCheck"
+                                       />
+                                    <StackPanel Grid.Column="1"  Orientation="Horizontal" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="X:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="7" 
+                                                     Text="{Binding coordCX}"
+                                                     Style="{StaticResource TextBoxForSlider}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="Y:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="7" 
+                                                     Text="{Binding coordCY}"
+                                                     Style="{StaticResource TextBoxForSlider}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Эксцентриситет">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <RadioButton Grid.Column="0" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"  
+                                              IsEnabled="{Binding exs}"
+                                      Style="{StaticResource  BuildRBElips}"
+                                      Content="a&gt;b"
+                                       IsChecked="{Binding exs}"                                             
+                                       />
+                                    <RadioButton Grid.Column="1" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"  
+                                      Style="{StaticResource  BuildRBElips}"
+                                      Content="a&lt;b"                                           
+                                       />
+
+
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Рассотяние между фокусами">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <CheckBox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"   
+                                      Style="{StaticResource  CheckBoxBuild}"
+                                      Content="Параметр С"
+                                              IsEnabled="{Binding }"
+                                       IsChecked="{Binding parametrC}" 
+                                                x:Name="RadiusCircleCheck"
+                                      />
+                                    <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Width="80" Text="С:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="10" 
+                                                     Text="{Binding GetC}"
+                                                     Style="{StaticResource TextBoxForSlider}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Button 
+                                        Content="ОК"
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="2"
+                                        Click="Button_Click"/>
+                                </Grid>
+                                
+                            </GroupBox>
+                            <GroupBox Header="Координаты фокусов">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                   
+                                    <StackPanel Grid.Column="1"  Orientation="Horizontal" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="F1:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="10" 
+                                                     Text="{Binding focusOne}"
+                                                     Style="{StaticResource TextBoxForSlider}"
+                                                     Width="80"/>
+                                                                                    
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="F2:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="10" 
+                                                     Text="{Binding focusTwo}"
+                                                     Style="{StaticResource TextBoxForSlider}"
+                                                     Width="80"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+
+                            </GroupBox>
+                            <Button Content="Очистить поле" 
+                                    Style="{StaticResource  ClearStyle}"
+                                    Command="{Binding clearCanvasCommand}"/>
+                        </StackPanel>
+
+                    </GroupBox>
+
+                </Grid>
+
+                <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
+            </StackPanel>
+        </ScrollViewer>
+
+
+
     </Grid>
 </Page>
