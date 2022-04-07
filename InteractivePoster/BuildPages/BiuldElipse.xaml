@@ -236,26 +236,65 @@
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" >
-                                            <TextBlock Width="80" Text="С:"
+                                            <TextBlock Width="80" Text="2*С:"
                                                        VerticalAlignment="Center"/>
                                             <TextBox Margin="10" 
-                                                    Text="{Binding ElementName=slRadius,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"
+                                                    Text="{Binding ElementName=ParametrC,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"
                                                      Style="{StaticResource TextBoxForSlider}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}"                            
                                             Grid.ColumnSpan="2"
                                             Grid.Row="1"
-                                            x:Name="slRadius" 
+                                            x:Name="ParametrC" 
                                             SmallChange="1" 
                                             LargeChange="1" 
                                             Value="{Binding GetC}" 
                                             Maximum="10"
                    PreviewMouseMove="MouseMoveChangeC"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
-
                                 </Grid>
-
+                            </GroupBox>
+                            <GroupBox Header="Длина нити">
+                                <Grid IsEnabled="{Binding parametrC}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <CheckBox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"   
+                                      Style="{StaticResource  CheckBoxBuild}"
+                                      Content="Длина нити"
+                                              IsEnabled="{Binding }"
+                                       IsChecked="{Binding parametrC}" 
+                                                
+                                      />
+                                    <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Width="80" Text="Lenght:"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Margin="10" 
+                                                    Text="{Binding ElementName=lengthThread,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"
+                                                     Style="{StaticResource TextBoxForSlider}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}"                            
+                                            Grid.ColumnSpan="2"
+                                            Grid.Row="1"
+                                            Name="lengthThread"
+                                            SmallChange="1" 
+                                            LargeChange="1" 
+                                            Value="{Binding GetThread}" 
+                                            Minimum="{Binding Minimum}"
+                   PreviewMouseMove="MouseMoveChangeLine"
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
+                                </Grid>
                             </GroupBox>
                             <GroupBox Header="Координаты фокусов">
                                 <Grid>

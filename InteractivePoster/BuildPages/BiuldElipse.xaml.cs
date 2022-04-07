@@ -79,12 +79,16 @@ namespace InteractivePoster.BuildPages
 
         private void MouseUp_Background(object sender, MouseButtonEventArgs e)
         {
-
+            BEH.MouseDown = false;
         }
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-
+            if (BEH.MouseDown)
+            {
+                BEH.FindRadius();
+                BEH.BouildElipse(e);
+            }
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -97,6 +101,11 @@ namespace InteractivePoster.BuildPages
         private void MouseMoveChangeC(object sender, MouseEventArgs e)
         {
             BEH.FocusDraw();
+        }
+
+        private void MouseMoveChangeLine(object sender, MouseEventArgs e)
+        {
+
         }
 
         private void ComeBack(object sender, RoutedEventArgs e)

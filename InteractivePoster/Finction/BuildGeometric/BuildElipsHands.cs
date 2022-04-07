@@ -37,11 +37,26 @@ namespace InteractivePoster.Finction.BuildGeometric
         public bool parametrC { get; set; } = false;
         public double c = 1;
 
+        public double cc=1;
         public double GetC
         {
-            get => c;
-            set { c = value; }
+            get
+            {
+                c = cc / 2;
+                return cc;
+            }
+            set { cc = value;c = cc / 2; PropertyChanged(this, new PropertyChangedEventArgs("Minimum")); }
         }
+        public double thread = 1.1;
+
+        public double min =1.1;
+        public double Minimum { get => min= cc + 0.1;} 
+        public double GetThread
+        {
+            get => thread;
+            set { thread = value; PropertyChanged(this, new PropertyChangedEventArgs("GetThread")); }
+        }
+        
         public bool onePoint { get; set; } = false;
         public double coordCX { get; set; } = 0;
         public double coordCY { get; set; } = 0;
@@ -71,8 +86,6 @@ namespace InteractivePoster.Finction.BuildGeometric
             centreY = e.GetPosition(buildCircleHand.cv).Y;
             coordCX = Math.Round(buildCircleHand.convertXCoord(centreX), 1);
             coordCY = Math.Round(buildCircleHand.convertYCoord(centreY), 1);
-
-
             pointForElipse = new Ellipse()
             {
                 Width = 6,
@@ -81,7 +94,6 @@ namespace InteractivePoster.Finction.BuildGeometric
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
             };
-
             PointForEllipse.Add(pointForElipse);
             cv.Children.Add(pointForElipse);
             pointForElipse.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(coordCX) - 3);
@@ -90,6 +102,58 @@ namespace InteractivePoster.Finction.BuildGeometric
             parametrC = true;
             Property();
         }
+        double a, b;
+        public void FindRadius()
+        {
+            if (exs)
+            {
+                a = thread/2;
+                b = Math.Sqrt(a * a - c * c);
+            }
+            else
+            {
+                b = thread/2;
+                a = Math.Sqrt(b * b - c * c);
+            }
+        
+        }
+        public void BouildElipse(MouseEventArgs e)
+        {
+            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
+            double x = e.GetPosition(cv).X;
+            double y = e.GetPosition(cv).Y;
+
+
+            double coordX = buildCircleHand.convertXCoord(x);
+            double coordY = buildCircleHand.convertYCoord(y);
+
+
+            double p = Math.Atan((coordY - coordCY) / (coordX - coordCX));
+
+
+            if (coordX < coordCX) { p = p + Math.PI; }
+
+
+            double circleX = coordCX  + (a * Math.Cos(p));
+            double circleY = coordCY  + (b * Math.Sin(p)) ;
+
+            //Point.Add(circleX);
+            //Point.Add(circleY);
+
+            pointForElipse = new Ellipse()
+            {
+                Width = 3,
+                Height = 3,
+                Fill = Brushes.Black,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1
+            };
+            PointForEllipse.Add(pointForElipse);
+            cv.Children.Add(pointForElipse);
+            pointForElipse.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(circleX));
+            pointForElipse.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(circleY));
+        }
+
         public void Property()
         {
             PropertyChanged(this, new PropertyChangedEventArgs("centerElips"));
@@ -191,6 +255,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             cv.Children.Remove(line);
             coordCX = 0;
             coordCY = 0;
+            focusOne = focusTwo = string.Empty;
             flag = false;
             centerElips = true;
             Property();
