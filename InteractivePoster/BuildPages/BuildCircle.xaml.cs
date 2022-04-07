@@ -67,6 +67,7 @@ namespace InteractivePoster.BuildPages
             {
                 BCH.BuildCirclePoint(e);
             }
+
         }
 
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
@@ -76,6 +77,7 @@ namespace InteractivePoster.BuildPages
             BCH.GetCanvas = Background;
 
             Background.Children.Clear();
+
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
             {
@@ -86,20 +88,12 @@ namespace InteractivePoster.BuildPages
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
+            BCH.DrawPoint();
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите изменить масштаб области?\n Текущие данные пропадут!", "Предупреждение", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
-            {
-                UpdateBackPattern(null, null);
-            }
-            else
-            {
-                Area.Value = count;
-            }
-            
+                UpdateBackPattern(null, null);            
         }
 
         private void ComeBack(object sender, RoutedEventArgs e)
