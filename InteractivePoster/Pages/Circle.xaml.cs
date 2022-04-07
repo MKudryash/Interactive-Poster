@@ -24,7 +24,8 @@ namespace InteractivePoster.Pages
         public Circle()
         {
             InitializeComponent();
-            DataContext = MMC;           
+            DataContext = MMC;
+            CommandBindings.Add(MMC.SoundPlayBinding);
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
@@ -33,7 +34,10 @@ namespace InteractivePoster.Pages
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             SlPoint.Value = MMC.GradusValue;
             double countY = Math.Round( Background.ActualHeight/ (Background.ActualWidth / count));
-          
+            MMC.GetCanvas = Background;
+            MMC.nameSound = "CircleSound";
+
+
             Background.Children.Clear();
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
@@ -63,24 +67,7 @@ namespace InteractivePoster.Pages
 
         MediaElement soundCircle = new MediaElement();
         bool isPlay = true;
-        private void PlaySound(object sender, RoutedEventArgs e)
-        {
-            soundCircle.LoadedBehavior = MediaState.Manual;
-            soundCircle.Source = new Uri("Resource\\Sounds\\CircleSound.mp3", UriKind.RelativeOrAbsolute);
-            soundCircle.Position = TimeSpan.Zero;
-            if (isPlay)
-            {
-                Background.Children.Add(soundCircle);
-                soundCircle.Play();
-                isPlay = false;
-            }
-            else
-            {
-                Background.Children.Remove(soundCircle);
-                soundCircle.Stop();
-                isPlay = true;
-            }
-        }
+
         bool isMouse = false;
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
         {

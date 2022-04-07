@@ -57,11 +57,6 @@
             </Setter>
         </Style>
 
-
-
-
-
-
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
@@ -124,7 +119,7 @@
                                     <ColumnDefinition Width="30"/>
                                 </Grid.ColumnDefinitions>
                                 <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Гипербола"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
-                                <Button Click="PlaySound" Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                                <Button Command="{Binding SoundPlayCommand}" Style="{StaticResource SoundButton}"  Grid.Column="1" >
                                     <Button.Content>
                                         <Image  Source="/Resource/Images/Sound.png"/>
                                     </Button.Content>

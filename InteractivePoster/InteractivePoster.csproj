@@ -61,6 +61,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="BuildPages\BiuldElipse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BuildPages\BuildCircle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,10 +77,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BuildPages\BiuldElipse.xaml.cs">
+      <DependentUpon>BiuldElipse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BuildPages\BuildCircle.xaml.cs">
       <DependentUpon>BuildCircle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Finction\BuildGeometric\BuildCircleHands.cs" />
+    <Compile Include="Finction\BuildGeometric\BuildElipsHands.cs" />
     <Compile Include="Finction\DrawCircle.cs" />
     <Compile Include="Finction\DrawElips.cs" />
     <Compile Include="Finction\DrawHyperbole.cs" />
@@ -173,10 +181,18 @@
     <Resource Include="Resource\Images\Hyperbole.png" />
     <Resource Include="Resource\Images\Parabola.png" />
     <Resource Include="Resource\Images\Pen.png" />
-    <Content Include="Resource\Sounds\CircleSound.mp3" />
-    <Content Include="Resource\Sounds\ElipsSound.mp3" />
-    <Content Include="Resource\Sounds\HyperboleSound.mp3" />
-    <Content Include="Resource\Sounds\ParabolaSound.mp3" />
+    <Content Include="Resource\Sounds\CircleSound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Sounds\ElipsSound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Sounds\HyperboleSound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Sounds\ParabolaSound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -53,8 +54,40 @@ namespace InteractivePoster.Finction
         public static bool equationforParabola { get; set; } = true;
         public static bool equationforElips { get; set; } = true;
         public static bool equationforHyperbole { get; set; } = true;
-    
-        
+
+        public string nameSound { get; set; }
+        public static Canvas cv { get; set; }
+        public Canvas GetCanvas { get => cv; set { cv = value; } }
+
+        public RoutedCommand SoundPlayCommand { get; set; } = new RoutedCommand();
+        public CommandBinding SoundPlayBinding;
+
+        public MaxMinCoordinat()
+        {
+            SoundPlayBinding = new CommandBinding(SoundPlayCommand);
+            SoundPlayBinding.Executed += SoundPlayBinding_Executed; ;
+
+        }
+        MediaElement soundCircle = new MediaElement();
+        bool isPlay = true;
+        private void SoundPlayBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            soundCircle.LoadedBehavior = MediaState.Manual;
+            soundCircle.Source = new Uri($"Resource\\Sounds\\{nameSound}.mp3", UriKind.RelativeOrAbsolute);
+            soundCircle.Position = TimeSpan.Zero;
+            if (isPlay)
+            {
+                cv.Children.Add(soundCircle);
+                soundCircle.Play();
+                isPlay = false;
+            }
+            else
+            {
+                cv.Children.Remove(soundCircle);
+                soundCircle.Stop();
+                isPlay = true;
+            }
+        }
     }
     class GeometricPatterns
     {

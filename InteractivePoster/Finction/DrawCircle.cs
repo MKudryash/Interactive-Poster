@@ -19,7 +19,7 @@ namespace InteractivePoster.Finction
         /// <param name="r">Радиус окружности в декартовой системе</param>
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
 
-        double x, y;
+        double x, y,r;
         public DrawCircle(double x, double y, double r, Canvas cv)
         {
             countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
@@ -30,6 +30,7 @@ namespace InteractivePoster.Finction
             this.cv = cv;
             this.x = x;
             this.y = y;
+            this.r = r;
             circle = new Ellipse()//задаем прочие параметры
             {
                 Width = 2 * radius,//ширина и длина по сути равна диаметру окружности
@@ -137,10 +138,10 @@ namespace InteractivePoster.Finction
         }
         public string CanonicalEquation()
         {
-            if (x == 0 && y == 0) return @"(x)^2+ (y)^2 = " + radius.ToString("F1") + @"^2";
-            if (y == 0) return @"(x-(" + x.ToString("F1") + @"))^2+ (y)^2 = " + radius.ToString("F1") + @"^2";
-            if (x == 0) return @"(x)^2+ (y-(" + y.ToString("F1") + @"))^2 = " + radius.ToString("F1") + @"^2";
-            return @"(x-(" + x.ToString("F1") + @"))^2+ (y-(" + y.ToString("F1") + @"))^2 = " + radius.ToString("F1") + @"^2"; 
+            if (x == 0 && y == 0) return @"(x)^2+ (y)^2 = " + r.ToString("F1") + @"^2";
+            if (y == 0) return @"(x-(" + x.ToString("F1") + @"))^2+ (y)^2 = " + r.ToString("F1") + @"^2";
+            if (x == 0) return @"(x)^2+ (y-(" + y.ToString("F1") + @"))^2 = " + r.ToString("F1") + @"^2";
+            return @"(x-(" + x.ToString("F1") + @"))^2+ (y-(" + y.ToString("F1") + @"))^2 = " + r.ToString("F1") + @"^2"; 
         }
     }
 }

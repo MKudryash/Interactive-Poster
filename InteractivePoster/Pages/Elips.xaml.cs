@@ -27,6 +27,7 @@ namespace InteractivePoster.Pages
         {
             InitializeComponent();
             DataContext = MMC;
+            CommandBindings.Add(MMC.SoundPlayBinding);
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
@@ -34,7 +35,8 @@ namespace InteractivePoster.Pages
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             MMC.GradusValue = (int)SlPoint.Value;
             double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
-
+            MMC.GetCanvas = Background;
+            MMC.nameSound = "ElipsSound";
 
             Background.Children.Clear();
             //просто добавляем на канву объекты наших созданных классов            
@@ -63,24 +65,7 @@ namespace InteractivePoster.Pages
         }
         MediaElement soundCircle = new MediaElement();
         bool isPlay = true;
-        private void PlaySound(object sender, RoutedEventArgs e)
-        {
-            soundCircle.LoadedBehavior = MediaState.Manual;
-            soundCircle.Source = new Uri("Resource\\Sounds\\ElipsSound.mp3", UriKind.RelativeOrAbsolute);
-            soundCircle.Position = TimeSpan.Zero;
-            if (isPlay)
-            {
-                Background.Children.Add(soundCircle);
-                soundCircle.Play();
-                isPlay = false;
-            }
-            else
-            {
-                Background.Children.Remove(soundCircle);
-                soundCircle.Stop();
-                isPlay = true;
-            }
-        }
+
 
         private void ChangedElipsFormula(object sender, RoutedEventArgs e)
         {

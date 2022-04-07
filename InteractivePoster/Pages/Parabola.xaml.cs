@@ -27,13 +27,15 @@ namespace InteractivePoster.Pages
         {
             InitializeComponent();
             DataContext = MMC;
+            CommandBindings.Add(MMC.SoundPlayBinding);
         }
 
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы       
             double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
-
+            MMC.GetCanvas = Background;
+            MMC.nameSound = "ParabolaSound";
             Background.Children.Clear();
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)

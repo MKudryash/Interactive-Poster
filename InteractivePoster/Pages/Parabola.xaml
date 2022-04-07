@@ -124,7 +124,7 @@
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
                             <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Парабола"  Style="{StaticResource CheckBoxContext}" Width="auto"/>
-                            <Button Click="PlaySound" Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                            <Button Command="{Binding SoundPlayCommand}" Style="{StaticResource SoundButton}"  Grid.Column="1" >
                                 <Button.Content>
                                     <Image  Source="/Resource/Images/Sound.png"/>
                                 </Button.Content>
