@@ -290,7 +290,7 @@
                                             Name="lengthThread"
                                             SmallChange="1" 
                                             LargeChange="1" 
-                                            Value="{Binding GetThread}" 
+                                            Value="{Binding GetThread, UpdateSourceTrigger=PropertyChanged}" 
                                             Minimum="{Binding Minimum}"
                    PreviewMouseMove="MouseMoveChangeLine"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>

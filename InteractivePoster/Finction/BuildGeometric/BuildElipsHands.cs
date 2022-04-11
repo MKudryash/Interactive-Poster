@@ -50,7 +50,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                 PropertyChanged(this, new PropertyChangedEventArgs("GetThread"));
             }
         }
-        public double thread = 1.1;
+        public double thread = 1.3;
 
         public double min = 1.3;
         public double Minimum { get => min = cc + 0.3; }
@@ -341,28 +341,56 @@ namespace InteractivePoster.Finction.BuildGeometric
             cv.Children.Remove(threadLine);
             cv.Children.Remove(threadLinetwo);
             BuildElipsHand beh = new BuildElipsHand(cv);
-            threadLine = new Line()
+            if (exs)
             {
-                X1 = beh.convertCoordX(coordCX +c),
-                X2 = beh.convertCoordX(x),
-                Y1 = beh.convertCoordY(coordCY),
-                Y2 = beh.convertCoordY(y),
-                Stroke = Brushes.Black,
-                StrokeThickness = 1,
-                SnapsToDevicePixels = true
-            };
+                threadLine = new Line()
+                {
+                    X1 = beh.convertCoordX(coordCX + c),
+                    X2 = beh.convertCoordX(x),
+                    Y1 = beh.convertCoordY(coordCY),
+                    Y2 = beh.convertCoordY(y),
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 1,
+                    SnapsToDevicePixels = true
+                };
+               
+                threadLinetwo = new Line()
+                {
+                    X1 = beh.convertCoordX(coordCX - c),
+                    X2 = beh.convertCoordX(x),
+                    Y1 = beh.convertCoordY(coordCY),
+                    Y2 = beh.convertCoordY(y),
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 1,
+                    SnapsToDevicePixels = true
+                };
+            }
+            else
+            {
+                threadLine = new Line()
+                {
+                    X1 = beh.convertCoordX(coordCX),
+                    X2 = beh.convertCoordX(x),
+                    Y1 = beh.convertCoordY(coordCY+c),
+                    Y2 = beh.convertCoordY(y),
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 1,
+                    SnapsToDevicePixels = true
+                };
+
+                threadLinetwo = new Line()
+                {
+                    X1 = beh.convertCoordX(coordCX),
+                    X2 = beh.convertCoordX(x),
+                    Y1 = beh.convertCoordY(coordCY-c),
+                    Y2 = beh.convertCoordY(y),
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 1,
+                    SnapsToDevicePixels = true
+                };
+            }
             threadLine.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(threadLine);
-            threadLinetwo = new Line()
-            {
-                X1 = beh.convertCoordX(coordCX - c),
-                X2 = beh.convertCoordX(x),
-                Y1 = beh.convertCoordY(coordCY),
-                Y2 = beh.convertCoordY(y),
-                Stroke = Brushes.Black,
-                StrokeThickness = 1,
-                SnapsToDevicePixels = true
-            };
             threadLinetwo.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(threadLinetwo);
         }
