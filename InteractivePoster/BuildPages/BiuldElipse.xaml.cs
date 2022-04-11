@@ -49,7 +49,7 @@ namespace InteractivePoster.BuildPages
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
-           // BCH.DrawPoint();
+            BEH.DrawPoint();
         }
 
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
@@ -59,20 +59,11 @@ namespace InteractivePoster.BuildPages
                 BEH.MouseDown = true;
             }
             else
-            {
-                //if (BCH.RadiusCircle)
-                //{
-                //    BCH.isMouseDownRadius = false;
-                //    BCH.GetPointRadius(e);
-                //    //    UpdateBackPattern(null, null);
-                //    RadiusCircleCheck.IsChecked = false;
-                //}
+            { 
 
                 if (BEH.centerElips)
                 {
                     BEH.GetCenterPoint(e);
-                   // BCH.CenterCircle = false;
-                   // RadiusCircleCheck.IsChecked = true;
                 }
             }
         }
@@ -87,13 +78,13 @@ namespace InteractivePoster.BuildPages
             if (BEH.MouseDown)
             {
                 BEH.FindRadius();
-                BEH.BouildElipse(e);
+                BEH.BuildElipse(e);
             }
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-
+            UpdateBackPattern(null,null );
         }
 
 
