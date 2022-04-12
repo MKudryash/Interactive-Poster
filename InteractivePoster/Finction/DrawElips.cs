@@ -94,7 +94,7 @@ namespace InteractivePoster.Finction
         {
             double aa = Math.Atan(rH/rW * Math.Tan(convertRadian(MaxMinCoordinat.gradusValue)));
 
-            if (MaxMinCoordinat.gradusValue < 270 && MaxMinCoordinat.gradusValue > 90) { aa = aa + Math.PI; }           
+            if (MaxMinCoordinat.gradusValue <= 270 && MaxMinCoordinat.gradusValue >= 90) { aa = aa + Math.PI; }           
             
 
             double circleX = x + (rW * Math.Sin(aa)) * cosGradusElpis + (rH * Math.Cos(aa)) * sinGradusElpis;

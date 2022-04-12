@@ -142,7 +142,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             double c = 180 / Math.PI * p;
             double aa = Math.Atan(a / b * Math.Tan(p));
             //c = 180 / Math.PI * aa;
-            if (c < 270 && c > 90) { aa = aa + Math.PI; }
+            if (c <= 270 && c >= 90) { aa = aa + Math.PI; }
 
             double circleX = coordCX + (a * Math.Cos(aa));
             double circleY = coordCY + (b * Math.Sin(aa));
