@@ -86,15 +86,19 @@ namespace InteractivePoster.Finction
 
 
             FocusElips(rW, rH, gradusValueElips);//Отрисовка и подсчет Фокусов
-            DrawRadius(rW, rH, gradusValueElips);//ОТрисовка радиуса Элипса
+            DrawRadius(rW, rH);//Отрисовка радиуса Элипса
         }
       
 
-        void DrawRadius(double rW, double rH, double gradusValueElips)
+        void DrawRadius(double rW, double rH)
         {
+            double aa = Math.Atan(rH/rW * Math.Tan(convertRadian(MaxMinCoordinat.gradusValue)));
 
-            double circleX = x + (rW * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))) * cosGradusElpis + (rH * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))) * sinGradusElpis;
-            double circleY = y + (rH * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue))) * cosGradusElpis - (rW * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue))) * sinGradusElpis;
+            if (MaxMinCoordinat.gradusValue < 270 && MaxMinCoordinat.gradusValue > 90) { aa = aa + Math.PI; }           
+            
+
+            double circleX = x + (rW * Math.Sin(aa)) * cosGradusElpis + (rH * Math.Cos(aa)) * sinGradusElpis;
+            double circleY = y + (rH * Math.Cos(aa)) * cosGradusElpis - (rW * Math.Sin(aa)) * sinGradusElpis;
 
             line = new Line()
             {

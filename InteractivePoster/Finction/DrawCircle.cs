@@ -138,9 +138,9 @@ namespace InteractivePoster.Finction
         }
         public string CanonicalEquation()
         {
-            if (x == 0 && y == 0) return @"(x)^2+ (y)^2 = " + r.ToString("F1") + @"^2";
-            if (y == 0) return @"(x-(" + x.ToString("F1") + @"))^2+ (y)^2 = " + r.ToString("F1") + @"^2";
-            if (x == 0) return @"(x)^2+ (y-(" + y.ToString("F1") + @"))^2 = " + r.ToString("F1") + @"^2";
+            if (x == 0 && y == 0) return @"x^2+ y^2 = " + r.ToString("F1") + @"^2";
+            if (y == 0) return @"(x-(" + x.ToString("F1") + @"))^2+ y^2 = " + r.ToString("F1") + @"^2";
+            if (x == 0) return @"x^2+ (y-(" + y.ToString("F1") + @"))^2 = " + r.ToString("F1") + @"^2";
             return @"(x-(" + x.ToString("F1") + @"))^2+ (y-(" + y.ToString("F1") + @"))^2 = " + r.ToString("F1") + @"^2"; 
         }
     }

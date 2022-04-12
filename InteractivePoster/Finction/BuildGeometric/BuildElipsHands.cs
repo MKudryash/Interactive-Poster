@@ -43,6 +43,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         {
             get
             {
+                PropertyChanged(this, new PropertyChangedEventArgs("GetThread"));
                 c = cc / 2;
                 return cc;
             }
@@ -125,23 +126,26 @@ namespace InteractivePoster.Finction.BuildGeometric
         }
         public void BuildElipse(MouseEventArgs e)
         {
-            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
+            BuildElipsHand beh = new BuildElipsHand(cv);
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
 
 
-            double coordX = buildCircleHand.convertXCoord(x);
-            double coordY = buildCircleHand.convertYCoord(y);
+            double coordX = beh.convertXCoord(x);
+            double coordY = beh.convertYCoord(y);
 
 
             double p = Math.Atan((coordY - coordCY) / (coordX - coordCX));
 
-
+         
             if (coordX < coordCX) { p = p + Math.PI; }
+            double c = 180 / Math.PI * p;
+            double aa = Math.Atan(a / b * Math.Tan(p));
+            //c = 180 / Math.PI * aa;
+            if (c < 270 && c > 90) { aa = aa + Math.PI; }
 
-
-            double circleX = coordCX + (a * Math.Cos(p));
-            double circleY = coordCY + (b * Math.Sin(p));
+            double circleX = coordCX + (a * Math.Cos(aa));
+            double circleY = coordCY + (b * Math.Sin(aa));
 
             Point.Add(circleX);
             Point.Add(circleY);
@@ -156,8 +160,8 @@ namespace InteractivePoster.Finction.BuildGeometric
             };
             PointForEllipse.Add(pointForElipse);
             cv.Children.Add(pointForElipse);
-            pointForElipse.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(circleX));
-            pointForElipse.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(circleY));
+            pointForElipse.SetValue(Canvas.LeftProperty, beh.convertCoordX(circleX));
+            pointForElipse.SetValue(Canvas.TopProperty, beh.convertCoordY(circleY));
             DrawThread(circleX, circleY);
         }
 
