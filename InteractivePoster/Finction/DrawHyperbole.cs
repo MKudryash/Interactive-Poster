@@ -264,9 +264,9 @@ namespace InteractivePoster.Finction
                     return @"\frac{(x*cos(" + gradusTransform.ToString() + ")-y*sin(" + gradusTransform.ToString() + ")-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") +
                 @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
                 case false:                   
-                    if (x == 0 && y == 0) return @"\frac{(x)^2}{" + a.ToString("F1") + @"^2}+ \frac{(y)^2}{" + b.ToString("F1") + @"^2} = 1";
-                    if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") + @"^2}+ \frac{(y)^2}{" + b.ToString("F1") + @"^2} = 1";
-                    if (x == 0) return @"\frac{(x)^2}{" + a.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
+                    if (x == 0 && y == 0) return @"\frac{x^2}{" + a.ToString("F1") + @"^2}+ \frac{y^2}{" + b.ToString("F1") + @"^2} = 1";
+                    if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") + @"^2}+ \frac{y^2}{" + b.ToString("F1") + @"^2} = 1";
+                    if (x == 0) return @"\frac{x^2}{" + a.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
                     return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
                 default:
                     return " ";

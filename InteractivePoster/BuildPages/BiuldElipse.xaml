@@ -138,7 +138,7 @@
                                 </StackPanel>
                             </Border>
                         </GroupBox.Header>
-                        <StackPanel Margin="5">
+                        <StackPanel IsEnabled="{Binding EnableSP}" Margin="5">
 
                             <!--Масштаб области-->
                             <GroupBox Header="Масштаб области">

@@ -138,17 +138,17 @@ namespace InteractivePoster.Finction
                 case true:
                     if (p > 0)
                     {
-                        if (x == 0 && y == 0) return @"(x)^2= 2p(y)";
-                        if (y == 0) return @"(x- (" + x.ToString("F1") + "))^2= 2p(y)";
-                        if (x == 0) return @"(x)^2= 2p(y- (" + y.ToString("F1") + "))";
+                        if (x == 0 && y == 0) return @"x^2= 2p*y";
+                        if (y == 0) return @"(x- (" + x.ToString("F1") + "))^2= 2p*y";
+                        if (x == 0) return @"x^2= 2p(y- (" + y.ToString("F1") + "))";
 
                         return @"(x- (" + x.ToString("F1") + "))^2= 2p(y- (" + y.ToString("F1") + "))";
                     };
                     if (p < 0)
                     {
-                        if (x == 0 && y == 0) return @"(x)^2= -2p(y)";
-                        if (y == 0) return @"(x- (" + x.ToString("F1") + "))^2= -2p(y)";
-                        if (x == 0) return @"(x)^2= -2p(y- (" + y.ToString("F1") + "))";
+                        if (x == 0 && y == 0) return @"x^2= -2p*y";
+                        if (y == 0) return @"(x- (" + x.ToString("F1") + "))^2= -2p*y";
+                        if (x == 0) return @"x^2= -2p(y- (" + y.ToString("F1") + "))";
                         return @"(x- (" + x.ToString("F1") + "))^2= -2p(y- (" + y.ToString("F1") + "))";
                     };
                     break;
@@ -156,16 +156,16 @@ namespace InteractivePoster.Finction
                 case false:
                     if (p > 0)
                     {
-                        if (x == 0 && y == 0) return @"(y)^2= 2p(x)";
-                        if (y == 0) return @"(y)^2= 2p(x- (" + x.ToString("F1") + "))";
-                        if (x == 0) return @"(y - (" + y.ToString("F1") + "))^2= 2p(x)";
+                        if (x == 0 && y == 0) return @"y^2= 2p*x";
+                        if (y == 0) return @"y^2= 2p(x- (" + x.ToString("F1") + "))";
+                        if (x == 0) return @"(y - (" + y.ToString("F1") + "))^2= 2p*x";
                         return @"(y - (" + y.ToString("F1") + "))^2= 2p(x- (" + x.ToString("F1") + "))";
                     };
                     if (p < 0)
                     {
-                        if (x == 0 && y == 0) return @"(y)^2= -2p(x)";
-                        if (y == 0) return @"(y - (" + y.ToString("F1") + "))^2= -2p(x)";
-                        if (x == 0) return @"(y - (" + y.ToString("F1") + "))^2= -2p(x)";
+                        if (x == 0 && y == 0) return @"y^2= -2p*x";
+                        if (y == 0) return @"(y - (" + x.ToString("F1") + "))^2= -2p*x";
+                        if (x == 0) return @"(y - (" + y.ToString("F1") + "))^2= -2p*x";
                         return @"(y - (" + y.ToString("F1") + "))^2= -2p(x- (" + x.ToString("F1") + "))";
                     };
                     break;

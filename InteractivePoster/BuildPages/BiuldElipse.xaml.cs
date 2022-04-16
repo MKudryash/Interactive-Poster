@@ -77,6 +77,7 @@ namespace InteractivePoster.BuildPages
         {
             if (BEH.MouseDown)
             {
+                BEH.parametrC = false;
                 BEH.FindRadius();
                 BEH.BuildElipse(e);
             }

@@ -245,9 +245,9 @@ namespace InteractivePoster.Finction
                     }
 
                 case false:
-                    if (x == 0 && y == 0) return @"\frac{(x)^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y)^2}{" + rH.ToString("F1") + @"^2} = 1";
-                    if (y == 0)  return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y)^2}{" + rH.ToString("F1") + @"^2} = 1";                  
-                    if (x == 0) return @"\frac{(x)^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                    if (x == 0 && y == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
+                    if (y == 0)  return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";                  
+                    if (x == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                    
                     return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                 default:

@@ -42,20 +42,21 @@ namespace InteractivePoster.Finction.BuildGeometric
         public double GetC
         {
             get
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs("GetThread"));
+            {               
                 c = cc / 2;
+                thread = cc + 0.3;
                 return cc;
             }
             set { cc = value; c = cc / 2; PropertyChanged(this, new PropertyChangedEventArgs("Minimum"));
                 PropertyChanged(this, new PropertyChangedEventArgs("GetThread"));
             }
         }
+        
         public double thread = 1.3;
 
         public double min = 1.3;
-        public double Minimum { get => min = cc + 0.3; }
-        public double GetThread
+        public double Minimum { get {  PropertyChanged(this, new PropertyChangedEventArgs("GetThread"));return min = cc + 0.3; } }
+    public double GetThread
         {
             get => thread;
             set { thread = value;}
@@ -112,6 +113,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         double a, b;
         public void FindRadius()
         {
+           
             if (exs)
             {
                 a = thread - c;
@@ -421,6 +423,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             focusOne = focusTwo = string.Empty;
             flag = false;
             centerElips = true;
+           
             Property();
         }
     }
