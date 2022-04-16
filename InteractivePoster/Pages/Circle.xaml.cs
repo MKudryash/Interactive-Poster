@@ -65,8 +65,7 @@ namespace InteractivePoster.Pages
             LoadPage.MainFrame.GoBack();
         }
 
-        MediaElement soundCircle = new MediaElement();
-        bool isPlay = true;
+    
 
         bool isMouse = false;
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)

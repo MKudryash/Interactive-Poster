@@ -242,7 +242,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBox Style="{StaticResource TextBoxForSlider}"
                                             Grid.Column="0" Text="{Binding ElementName=slRadiusH,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"/>
-                                         
+
                                         <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="slRadiusH" SmallChange="1" LargeChange="1" Value="5" 
                         Minimum="0" Maximum="{Binding maxRadius}" PreviewMouseMove="Area_PreviewMouseMove"
@@ -261,7 +261,7 @@
                                         <TextBox Style="{StaticResource TextBoxForSlider}"
                                                  Grid.Column="0" Text="{Binding ElementName=SlPoint,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                         <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1" Value="45" 
+                        Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1"  Value="{Binding GradusValue}" 
                         Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency="1"/>
                                     </Grid>
@@ -285,14 +285,14 @@
                         </GroupBox>
                     </Grid>
                     <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                     
+
                         <GroupBox Header="Каноническое уравнение:">
                             <Grid>
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                                     <controls:FormulaControl x:Name="Formula" />
                                 </StackPanel>
                             </Grid>
-                        </GroupBox>                       
+                        </GroupBox>
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
                 </StackPanel>
@@ -301,7 +301,11 @@
                     x:Name="Background"
                     Grid.Column="0" 
                     SizeChanged="UpdateBackPattern" 
-                    Tag="{Binding ElementName=Area,Path=Value}"/>
+                    Tag="{Binding ElementName=Area,Path=Value}"
+                    MouseDown="MouseDown_Background"
+                    MouseUp="MouseUp_Background"
+                    MouseMove="MouseMove_Background"
+                    Background="#F1D3BC"/>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
 

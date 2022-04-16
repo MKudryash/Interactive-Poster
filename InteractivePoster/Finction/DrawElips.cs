@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -97,8 +98,8 @@ namespace InteractivePoster.Finction
             if (MaxMinCoordinat.gradusValue <= 270 && MaxMinCoordinat.gradusValue > 90) { aa = aa + Math.PI; }           
             
 
-            double circleX = x + (rW * Math.Sin(aa)) * cosGradusElpis + (rH * Math.Cos(aa)) * sinGradusElpis;
-            double circleY = y + (rH * Math.Cos(aa)) * cosGradusElpis - (rW * Math.Sin(aa)) * sinGradusElpis;
+            double circleX = x + (rW * Math.Cos(aa)) * cosGradusElpis + (rH * Math.Sin(aa)) * sinGradusElpis;
+            double circleY = y + (rH * Math.Sin(aa)) * cosGradusElpis - (rW * Math.Cos(aa)) * sinGradusElpis;
 
             line = new Line()
             {
@@ -190,7 +191,21 @@ namespace InteractivePoster.Finction
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
         }
+        public async void ChangedGradus(object sender, MouseEventArgs e)
+        {
+            double x = e.GetPosition(cv).X;
+            double y = e.GetPosition(cv).Y;
 
+            double coordX = convertXCoord(x);
+            double coordY = convertYCoord(y);
+
+            double p = Math.Atan((coordY - this.y) / (coordX - this.x));
+
+
+            if (coordX < this.x) { p = p + Math.PI; }
+            MaxMinCoordinat.gradusValue = (int)(180 / Math.PI * p);
+           
+        }
         /// <summary>
         /// метод для преобразования координаты Х их канвы в декартово значение
         /// </summary>

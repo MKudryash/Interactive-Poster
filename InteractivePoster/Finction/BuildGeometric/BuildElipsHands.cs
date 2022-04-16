@@ -437,10 +437,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             maxX = cv.ActualWidth; //получаем ширину канвы
             maxY = cv.ActualHeight; //получаем высоту канвы    
         }
-        public double FindFocusElips(double x, double y)
-        {
-            return x > y ? Math.Sqrt(Math.Pow(x, 2) - Math.Pow(y, 2)) : Math.Sqrt(Math.Pow(y, 2) - Math.Pow(x, 2));
-        }
+       
         Ellipse PointFocus;
         public Ellipse DrawPoinFocus(double x, double y)
         {
