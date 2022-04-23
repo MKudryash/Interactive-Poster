@@ -49,7 +49,7 @@ namespace InteractivePoster.BuildPages
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
-            BEH.DrawPoint();
+            
         }
 
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
@@ -57,6 +57,7 @@ namespace InteractivePoster.BuildPages
             if (BEH.flag)
             {
                 BEH.MouseDown = true;
+                BEH.StartDraw(e);
             }
             else
             { 
@@ -77,6 +78,7 @@ namespace InteractivePoster.BuildPages
         {
             if (BEH.MouseDown)
             {
+                Background.Children.Remove(BEH.currentPath);
                 BEH.parametrC = false;
                 BEH.FindRadius();
                 BEH.BuildElipse(e);

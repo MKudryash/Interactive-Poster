@@ -18,7 +18,8 @@ namespace InteractivePoster.Finction.BuildGeometric
         public event PropertyChangedEventHandler PropertyChanged;
         Ellipse pointForCircle;
         List<Ellipse> PointForCircle { get; set; } = new List<Ellipse>();
-        List<double> Point = new List<double>();
+        List<Path> pathFigure { get; set; } = new List<Path>();
+       
 
         //вспомогательные перменные для построение в ручную
         public static Canvas cv { get; set; }
@@ -67,9 +68,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             centreY = e.GetPosition(buildCircleHand.cv).Y;
             coordCX = Math.Round(buildCircleHand.convertXCoord(centreX), 1);
             coordCY = Math.Round(buildCircleHand.convertYCoord(centreY), 1);
-
-            Point.Add(coordCX);
-            Point.Add(coordCY);
+           
             pointForCircle = new Ellipse()
             {
                 Width = 6,
@@ -116,7 +115,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             };
             circleR = Math.Round(Math.Sqrt(Math.Pow(buildCircleHand.convertYCoord(e.GetPosition(cv).Y) - buildCircleHand.convertYCoord(centreY), 2)
                 + Math.Pow(buildCircleHand.convertXCoord(e.GetPosition(cv).X) - buildCircleHand.convertXCoord(centreX), 2)), 2);
-            //    radius = Math.Sqrt(Math.Pow(e.GetPosition(cv).X - centreX, 2) + Math.Pow(e.GetPosition(cv).Y - centreY, 2));
+           
             Property();
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
             cv.Children.Add(line);
@@ -145,24 +144,45 @@ namespace InteractivePoster.Finction.BuildGeometric
 
             double circleX = coordCX + circleR * Math.Cos(p);
             double circleY = coordCY + circleR * Math.Sin(p);
-
-            Point.Add(circleX);
-            Point.Add(circleY);
-
-            pointForCircle = new Ellipse()
-            {
-                Width = 3,
-                Height = 3,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
-                StrokeThickness = 1
-            };
-            PointForCircle.Add(pointForCircle);
-            cv.Children.Add(pointForCircle);
-            pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(circleX));
-            pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(circleY));
+          
+            Point ppp = new Point(buildCircleHand.convertCoordX(circleX), buildCircleHand.convertCoordY(circleY));
+            currentFigure.Segments.Add(new LineSegment(ppp, isStroked: true));
+            currentPath.Data = new PathGeometry() { Figures = { currentFigure } };
+            cv.Children.Add(currentPath);
+            pathFigure.Add(currentPath);          
         }
+       
+       
+        public Point startPoint;                                          
+        Brush currentBrush = Brushes.Black;
+        PathFigure currentFigure;                                 
+        public Path currentPath = null;
+        
+        public void StartDraw(MouseEventArgs e)
+        {
+            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
+            double x = e.GetPosition(cv).X;
+            double y = e.GetPosition(cv).Y;
+            double coordX = buildCircleHand.convertXCoord(x);
+            double coordY = buildCircleHand.convertYCoord(y);
+            double p = Math.Atan((coordY - coordCY) / (coordX - coordCX));
+            if (coordX < coordCX) { p = p + Math.PI; }
 
+
+            double circleX = coordCX + circleR * Math.Cos(p);
+            double circleY = coordCY + circleR * Math.Sin(p);
+           startPoint  = new Point(buildCircleHand.convertCoordX(circleX), buildCircleHand.convertCoordY(circleY));
+            currentFigure = new PathFigure() { StartPoint = startPoint };
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path()
+            {
+                Stroke = currentBrush,
+                StrokeThickness = 2,
+                Data = new PathGeometry() { Figures = { currentFigure } }
+            };          
+            cv.Children.Add(path);
+            currentPath = path;
+            pathFigure.Add(currentPath);
+        }
         public RoutedCommand clearCanvasCommand { get; set; } = new RoutedCommand();
         public CommandBinding clearCanvasBinding;
         public BuildCircleHands()
@@ -178,8 +198,13 @@ namespace InteractivePoster.Finction.BuildGeometric
             {
                 cv.Children.Remove(item);
             }
+            foreach (var item in pathFigure)
+            {
+                cv.Children.Remove(item);
+            }
+           
             PointForCircle.Clear();
-            Point.Clear();
+          
             cv.Children.Remove(line);
             coordCX = 0;
             coordCY = 0;
@@ -189,59 +214,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             Property();
         }
 
-        public void DrawPoint()
-        {
-            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
-            try
-            {
-                pointForCircle = new Ellipse()
-                {
-                    Width = 6,
-                    Height = 6,
-                    Fill = Brushes.Black,
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 1
-                };
-
-                PointForCircle.Add(pointForCircle);
-                cv.Children.Add(pointForCircle);
-                pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(Point[0]) - 3);
-                pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(Point[1]) - 3);
-                line = new Line()
-                {
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 3,
-                    SnapsToDevicePixels = true,
-                    X1 = buildCircleHand.convertCoordX(Point[0]),
-                    X2 = buildCircleHand.convertCoordX(coordCirX),
-                    Y1 = buildCircleHand.convertCoordY(Point[1]),
-                    Y2 = buildCircleHand.convertCoordY(coordCirY)
-                };
-
-                line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-                cv.Children.Add(line);
-                for (int i = 2; i < Point.Count - 1; i += 2)
-                {
-                    pointForCircle = new Ellipse()
-                    {
-                        Width = 3,
-                        Height = 3,
-                        Fill = Brushes.Black,
-                        Stroke = Brushes.Black,
-                        StrokeThickness = 1
-                    };
-                    PointForCircle.Add(pointForCircle);
-                    cv.Children.Add(pointForCircle);
-                    pointForCircle.SetValue(Canvas.LeftProperty, buildCircleHand.convertCoordX(Point[i]));
-                    pointForCircle.SetValue(Canvas.TopProperty, buildCircleHand.convertCoordY(Point[i + 1]));
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-           
-        }
+      
 
     }
     class BuildCircleHand : GeometricPatterns

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -18,7 +19,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         public Canvas GetCanvas { get => cv; set { cv = value; } }
         List<Ellipse> FocusPoint { get; set; } = new List<Ellipse>();
         List<Ellipse> PointForEllipse { get; set; } = new List<Ellipse>();
-        List<double> Point { get; set; } = new List<double>();
+        List<Path> pathFigure { get; set; } = new List<Path>();
         Line line;
 
         public bool mouseDown = false;
@@ -104,8 +105,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             cv.Children.Add(pointForElipse);
             pointForElipse.SetValue(Canvas.LeftProperty, beh.convertCoordX(coordCX) - 3);
             pointForElipse.SetValue(Canvas.TopProperty, beh.convertCoordY(coordCY) - 3);
-            Point.Add(coordCX);
-            Point.Add(coordCY);
+
             centerElips = false;
             parametrC = true;
             Property();
@@ -148,24 +148,53 @@ namespace InteractivePoster.Finction.BuildGeometric
             double circleX = coordCX + (a * Math.Cos(aa));
             double circleY = coordCY + (b * Math.Sin(aa));
 
-            Point.Add(circleX);
-            Point.Add(circleY);
-
-            pointForElipse = new Ellipse()
-            {
-                Width = 3,
-                Height = 3,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
-                StrokeThickness = 1
-            };
-            PointForEllipse.Add(pointForElipse);
-            cv.Children.Add(pointForElipse);
-            pointForElipse.SetValue(Canvas.LeftProperty, beh.convertCoordX(circleX));
-            pointForElipse.SetValue(Canvas.TopProperty, beh.convertCoordY(circleY));
+            Point ppp = new Point(beh.convertCoordX(circleX), beh.convertCoordY(circleY));
+            currentFigure.Segments.Add(new LineSegment(ppp, isStroked: true));
+            currentPath.Data = new PathGeometry() { Figures = { currentFigure } };
+            cv.Children.Add(currentPath);
+            pathFigure.Add(currentPath);            
             DrawThread(circleX, circleY);
         }
+        public Point startPoint;
+        Brush currentBrush = Brushes.Black;
+        PathFigure currentFigure;
+        public Path currentPath = null;
 
+        public void StartDraw(MouseEventArgs e)
+        {
+            FindRadius();
+            BuildElipsHand beh = new BuildElipsHand(cv);
+            double x = e.GetPosition(cv).X;
+            double y = e.GetPosition(cv).Y;
+
+
+            double coordX = beh.convertXCoord(x);
+            double coordY = beh.convertYCoord(y);
+
+
+            double p = Math.Atan((coordY - coordCY) / (coordX - coordCX));
+
+
+            if (coordX < coordCX) { p = p + Math.PI; }
+            double c = 180 / Math.PI * p;
+            double aa = Math.Atan(a / b * Math.Tan(p));
+            if (c <= 270 && c > 90) { aa = aa + Math.PI; }
+
+            double circleX = coordCX + (a * Math.Cos(aa));
+            double circleY = coordCY + (b * Math.Sin(aa));
+
+            startPoint = new Point(beh.convertCoordX(circleX), beh.convertCoordY(circleY));
+            currentFigure = new PathFigure() { StartPoint = startPoint };
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path()
+            {
+                Stroke = currentBrush,
+                StrokeThickness = 2,
+                Data = new PathGeometry() { Figures = { currentFigure } }
+            };
+            cv.Children.Add(path);
+            currentPath = path;
+            pathFigure.Add(currentPath);
+        }
         public void Property()
         {
             PropertyChanged(this, new PropertyChangedEventArgs("centerElips"));
@@ -252,94 +281,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             clearCanvasBinding = new CommandBinding(clearCanvasCommand);
             clearCanvasBinding.Executed += ClearCanvasBinding_Executed; ;
         }
-        public void DrawPoint()
-        {
-            BuildElipsHand beh = new BuildElipsHand(cv);
-            try
-            {
-                pointForElipse = new Ellipse()
-                {
-                    Width = 6,
-                    Height = 6,
-                    Fill = Brushes.Black,
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 1
-                };
-
-                PointForEllipse.Add(pointForElipse);
-                cv.Children.Add(pointForElipse);
-                pointForElipse.SetValue(Canvas.LeftProperty, beh.convertCoordX(Point[0]) - 3);
-                pointForElipse.SetValue(Canvas.TopProperty, beh.convertCoordY(Point[1]) - 3);
-
-                if (exs)
-                {
-                    Focus = new Ellipse();
-                    Focus = beh.DrawPoinFocus(coordCX + c, coordCY);
-                    FocusPoint.Add(Focus);
-                    cv.Children.Add(Focus);
-
-                    Focus = new Ellipse();
-
-                    Focus = beh.DrawPoinFocus(coordCX - c, coordCY);
-                    FocusPoint.Add(Focus);
-                    cv.Children.Add(Focus);
-                    line = new Line
-                    {
-                        X1 = beh.convertCoordX(coordCX + c),
-                        X2 = beh.convertCoordX(coordCX - c),
-                        Y1 = beh.convertCoordY(coordCY),
-                        Y2 = beh.convertCoordY(coordCY),
-                        Stroke = Brushes.Black,
-                        StrokeThickness = 2,
-                        SnapsToDevicePixels = true
-                    };
-                }
-                else
-                {
-                    Focus = new Ellipse();
-                    Focus = beh.DrawPoinFocus(coordCX, coordCY + c);
-                    FocusPoint.Add(Focus);
-
-                    Focus = new Ellipse();
-
-                    Focus = beh.DrawPoinFocus(coordCX, coordCY - c);
-                    FocusPoint.Add(Focus);
-                    cv.Children.Add(Focus);
-                    line = new Line
-                    {
-                        X1 = beh.convertCoordX(coordCX),
-                        X2 = beh.convertCoordX(coordCX),
-                        Y1 = beh.convertCoordY(coordCY + c),
-                        Y2 = beh.convertCoordY(coordCY - c),
-                        Stroke = Brushes.Black,
-                        StrokeThickness = 2,
-                        SnapsToDevicePixels = true
-                    };
-                }
-                line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-                cv.Children.Add(line);
-                for (int i = 6; i < Point.Count - 1; i += 2)
-                {
-                    pointForElipse = new Ellipse()
-                    {
-                        Width = 3,
-                        Height = 3,
-                        Fill = Brushes.Black,
-                        Stroke = Brushes.Black,
-                        StrokeThickness = 1
-                    };
-                    PointForEllipse.Add(pointForElipse);
-                    cv.Children.Add(pointForElipse);
-                    pointForElipse.SetValue(Canvas.LeftProperty, beh.convertCoordX(Point[i]));
-                    pointForElipse.SetValue(Canvas.TopProperty, beh.convertCoordY(Point[i + 1]));
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
+      
         Line threadLine, threadLinetwo;
         public void DrawThread(double x, double y)
         {
@@ -412,9 +354,12 @@ namespace InteractivePoster.Finction.BuildGeometric
             {
                 cv.Children.Remove(item);
             }
+            foreach (var item in pathFigure)
+            {
+                cv.Children.Remove(item);
+            }
             FocusPoint.Clear();
             PointForEllipse.Clear();
-            Point.Clear();
             cv.Children.Remove(line);
             cv.Children.Remove(threadLine);
             cv.Children.Remove(threadLinetwo);
@@ -422,8 +367,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             coordCY = 0;
             focusOne = focusTwo = string.Empty;
             flag = false;
-            centerElips = true;
-           
+            centerElips = true;           
             Property();
         }
     }

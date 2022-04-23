@@ -60,11 +60,10 @@ namespace InteractivePoster.Finction
             point.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
             point.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
 
-
-
             DrawRadius(x, y, r);
-            DrawText(x, y, text);
-        }
+            DrawText(x, y, text);           
+        }   
+      
 
         void DrawRadius(double x, double y, double r)
         {

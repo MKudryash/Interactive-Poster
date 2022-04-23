@@ -35,7 +35,8 @@ namespace InteractivePoster.BuildPages
         {
             if (BCH.flag)
             {
-                BCH.MouseDown = true;
+                BCH.MouseDown = true;               
+                BCH.StartDraw(e);
             }
             else
             {
@@ -43,7 +44,7 @@ namespace InteractivePoster.BuildPages
                 {
                     BCH.isMouseDownRadius = false;
                     BCH.GetPointRadius(e);
-                    //    UpdateBackPattern(null, null);
+
                     RadiusCircleCheck.IsChecked = false;
                 }
 
@@ -53,8 +54,8 @@ namespace InteractivePoster.BuildPages
                     BCH.CenterCircle = false;
                     RadiusCircleCheck.IsChecked = true;
                 }
-            }              
-           
+            }
+
         }
 
         private void MouseUp_Background(object sender, MouseButtonEventArgs e)
@@ -63,19 +64,13 @@ namespace InteractivePoster.BuildPages
             BCH.IsMouseDownRadius = false;
         }
 
-        private void MouseMove_Background(object sender, MouseEventArgs e)
+        private async void MouseMove_Background(object sender, MouseEventArgs e)
         {
             if (BCH.MouseDown)
             {
-                BCH.BuildCirclePoint(e);
+                    Background.Children.Remove(BCH.currentPath);                  
+                    BCH.BuildCirclePoint(e);                   
             }
-            //if (BCH.IsMouseDownRadius)
-            //{
-            //    BCH.GetPointRadius(e);
-            //    UpdateBackPattern(null, null);
-            //  //  RadiusCircleCheck.IsChecked = false;
-            //}
-
         }
 
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
@@ -96,12 +91,12 @@ namespace InteractivePoster.BuildPages
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
-            BCH.DrawPoint();
+           
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-                UpdateBackPattern(null, null);            
+            UpdateBackPattern(null, null);
         }
 
         private void ComeBack(object sender, RoutedEventArgs e)
