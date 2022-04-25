@@ -27,7 +27,6 @@ namespace InteractivePoster.Finction
             maxY = cv.ActualHeight; //получаем высоту канвы     
             FocusParabola(cv);
             DrawDirectrix();
-            //DrawByPoint();
         }
         public PathGeometry Parabola()
         {
@@ -67,8 +66,8 @@ namespace InteractivePoster.Finction
                     SnapsToDevicePixels = true,
                     Y1 = 0,
                     Y2 = maxY,
-                    X1 = convertCoordX(-p / 2),
-                    X2 = convertCoordX(-p / 2)
+                    X1 = convertCoordX(x-p / 2),
+                    X2 = convertCoordX(x-p / 2)
                 };
             }
             else
@@ -79,8 +78,8 @@ namespace InteractivePoster.Finction
                     StrokeThickness = 2,
                     StrokeDashArray = { 4, 3 },
                     SnapsToDevicePixels = true,
-                    Y1 = convertCoordY(-p / 2),
-                    Y2 = convertCoordY(-p / 2),
+                    Y1 = convertCoordY(y-p / 2),
+                    Y2 = convertCoordY(y-p / 2),
                     X1 = 0,
                     X2 = maxX
                 };
@@ -110,7 +109,6 @@ namespace InteractivePoster.Finction
             cv.Children.Add(TB);
             TB.TextWrapping = System.Windows.TextWrapping.Wrap;
             TB.Width = double.NaN;
-            // TB.FontSize = maxX / count * 0.5;
 
         }
         Ellipse PointFocus;
