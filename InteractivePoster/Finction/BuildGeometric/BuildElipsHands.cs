@@ -109,6 +109,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             centerElips = false;
             parametrC = true;
             Property();
+            FocusDraw();
         }
         double a, b;
         public void FindRadius()
