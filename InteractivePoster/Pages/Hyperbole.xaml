@@ -259,6 +259,25 @@
                             </StackPanel>
                         </GroupBox>
                     </Grid>
+                    <CheckBox   Margin="30,0,0,0"  x:Name="Element_Circle" Content="Видимость объектов"
+                                Style="{StaticResource CheckBoxContext}"
+                                Width="auto"/>
+
+
+                    <StackPanel Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">
+                        <CheckBox IsChecked="{Binding ElementHyperboleRectangle }"
+                        Content="Прямоугольник" 
+                        Style="{StaticResource ElementHide}"
+                              />
+                        <CheckBox IsChecked="{Binding ElementHyperboleAssim }"
+                        Content="Асимптоты" 
+                        Style="{StaticResource ElementHide}"
+                              />
+                        <CheckBox Content="Фокусы" 
+                              IsChecked="{Binding ElementHyperboleFocus }"                             
+                              Style="{StaticResource ElementHide}"/>
+
+                    </StackPanel>
                     <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <GroupBox Header="Каноническое уравнение:">
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">

@@ -18,6 +18,7 @@ namespace InteractivePoster.Finction
         double sinGradusHyperbole, gradusTransform;
         double cosGradusHyperbole;
         Rectangle rectangle;
+        TextBlock textBlock;
         Line line;
         double x, y, a, b;
         public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double gradusTransform)
@@ -44,7 +45,8 @@ namespace InteractivePoster.Finction
             double mX = (a + 1) * cosGradusHyperbole + Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * sinGradusHyperbole + x;
             double mY = (a + 1) * sinGradusHyperbole * -1 + Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * cosGradusHyperbole + y;
 
-            DrawText(mX , mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
+            textBlock =  DrawText(mX, mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
+            cv.Children.Add(textBlock);
             PointFocus = new Ellipse()//задаем прочие параметры
             {
                 Width = (maxX / countX) * 0.2,
@@ -58,6 +60,8 @@ namespace InteractivePoster.Finction
                                         //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
+
+
             CalculationPoinHyperbole();
 
         }
@@ -80,7 +84,15 @@ namespace InteractivePoster.Finction
             rotateTransform.Angle = gradusTransform;//поворот на количетсво градусов  
             line.RenderTransform = rotateTransform;
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-            cv.Children.Add(line);
+
+            if (MaxMinCoordinat.ElementHyperboleAssim)
+            {
+                cv.Children.Add(line);
+            }
+            else
+            {
+                cv.Children.Remove(line);
+            }
             line = new Line()
             {
                 Stroke = Brushes.Black,
@@ -94,26 +106,34 @@ namespace InteractivePoster.Finction
             };
             line.RenderTransform = rotateTransform;
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-            cv.Children.Add(line);
+
+            if (MaxMinCoordinat.ElementHyperboleAssim)
+            {
+                cv.Children.Add(line);
+            }
+            else
+            {
+                cv.Children.Remove(line);
+            }
         }
 
         void CalculationPoinHyperbole()
         {
-            int razmer = (int)(countX / 2-a);
+            int razmer = (int)(countX / 2 - a);
             double h = 0.1;
             razmer = razmer == 0 ? 1 : razmer;
-            double[,] massPoint = new double[razmer*10*2+1, 2];
+            double[,] massPoint = new double[razmer * 10 * 2 + 1, 2];
             int countforPoint = 0;
-            double pointX = razmer*-1;
-            double pointXTwo =0;
+            double pointX = razmer * -1;
+            double pointXTwo = 0;
 
-            for (double i = 0; i < razmer *10+1; i++)
+            for (double i = 0; i < razmer * 10 + 1; i++)
             {
-                pointX = Math.Round(pointX,2);
-                massPoint[countforPoint, 0] = Math.Round(pointX + x,2) - a;
+                pointX = Math.Round(pointX, 2);
+                massPoint[countforPoint, 0] = Math.Round(pointX + x, 2) - a;
                 massPoint[countforPoint, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointX - a, 2) / (a * a)), 2) - 1)) + y;
-                massPoint[countforPoint+razmer*10, 0] = Math.Round(pointXTwo + x, 2) - a;
-                massPoint[countforPoint+razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo - a, 2) / (a * a)), 2) - 1))*-1 + y;
+                massPoint[countforPoint + razmer * 10, 0] = Math.Round(pointXTwo + x, 2) - a;
+                massPoint[countforPoint + razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo - a, 2) / (a * a)), 2) - 1)) * -1 + y;
                 pointXTwo -= h;
                 pointX += h;
                 countforPoint++;
@@ -128,7 +148,7 @@ namespace InteractivePoster.Finction
                 pointX = Math.Round(pointX, 2);
                 massPoint[countforPoint, 0] = Math.Round(Math.Abs(pointX) + x, 2) + a;
                 massPoint[countforPoint, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(pointX) + a, 2) / (a * a)), 2) - 1)) + y;
-                massPoint[countforPoint + razmer * 10, 0] = Math.Round(pointXTwo+ x, 2) + a;
+                massPoint[countforPoint + razmer * 10, 0] = Math.Round(pointXTwo + x, 2) + a;
                 massPoint[countforPoint + razmer * 10, 1] = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(pointXTwo + a, 2) / (a * a)), 2) - 1)) * -1 + y;
                 pointX += h;
                 pointXTwo += h;
@@ -140,14 +160,14 @@ namespace InteractivePoster.Finction
         {
             Canvas canvaFotPoint = new Canvas();
             int countForPoint = 0;
-            for (double i = 0; i < massPoint.Length/2-1; i++)
+            for (double i = 0; i < massPoint.Length / 2 - 1; i++)
             {
                 line = new Line()
                 {
                     X1 = convertCoordX(massPoint[countForPoint, 0]),
                     Y1 = convertCoordY(massPoint[countForPoint, 1]),
-                    X2 = convertCoordX(massPoint[countForPoint+1,0]),
-                    Y2 = convertCoordY(massPoint[countForPoint+1, 1]),
+                    X2 = convertCoordX(massPoint[countForPoint + 1, 0]),
+                    Y2 = convertCoordY(massPoint[countForPoint + 1, 1]),
                     Stroke = Brushes.Black,
                     StrokeThickness = 3
                 };
@@ -155,14 +175,14 @@ namespace InteractivePoster.Finction
 
                 countForPoint++;
                 RotateTransform rotateTransform = new RotateTransform();
-                rotateTransform.CenterX = maxX / 2 + x * (maxX / countX); 
+                rotateTransform.CenterX = maxX / 2 + x * (maxX / countX);
                 rotateTransform.CenterY = maxY / 2 + y * (-1) * (maxY / countY);
-                rotateTransform.Angle = gradusTransform; 
+                rotateTransform.Angle = gradusTransform;
                 canvaFotPoint.RenderTransform = rotateTransform;
             }
             cv.Children.Add(canvaFotPoint);
 
-        }        
+        }
 
         void DrawRectangle(double x, double y, Canvas cv, double gradusTransform)
         {
@@ -183,25 +203,47 @@ namespace InteractivePoster.Finction
                 RenderTransform = rotateTransform
             };
 
-            cv.Children.Add(rectangle);//помещаем на канву
-                                       //в нужную точку канвы
             rectangle.SetValue(Canvas.LeftProperty, convertX(x));
             rectangle.SetValue(Canvas.TopProperty, convertY(y));
+            if (MaxMinCoordinat.ElementHyperboleRectangle)
+            {
+                cv.Children.Add(rectangle);
+            }
+            else
+            {
+                cv.Children.Remove(rectangle);
+            }
         }
-        
+
         void FocusHyperbole()
         {
+
             double c = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
 
             string text = "F1( " + (x + c * cosGradusHyperbole).ToString("F1") + "; " + (y - c * sinGradusHyperbole).ToString("F1") + ")";
-            DrawPoinFocus(x + c * cosGradusHyperbole, y - c * sinGradusHyperbole);
-            DrawText(x + c * cosGradusHyperbole, y - c * sinGradusHyperbole, text);
+            Ellipse pointF1 = DrawPoinFocus(x + c * cosGradusHyperbole, y - c * sinGradusHyperbole);
+            TextBlock F1 = DrawText(x + c * cosGradusHyperbole, y - c * sinGradusHyperbole, text);
             text = "F2( " + (x - c * cosGradusHyperbole).ToString("F1") + "; " + (y + c * sinGradusHyperbole).ToString("F1") + ")";
-            DrawPoinFocus(x - c * cosGradusHyperbole, y + c * sinGradusHyperbole);
-            DrawText(x - c * cosGradusHyperbole, y + c * sinGradusHyperbole, text);
+            Ellipse pointF2 = DrawPoinFocus(x - c * cosGradusHyperbole, y + c * sinGradusHyperbole);
+            TextBlock F2 = DrawText(x - c * cosGradusHyperbole, y + c * sinGradusHyperbole, text);
+
+            if (MaxMinCoordinat.ElementHyperboleFocus)
+            {
+                cv.Children.Add(pointF1);
+                cv.Children.Add(pointF2);
+                cv.Children.Add(F1);
+                cv.Children.Add(F2);
+            }
+            else
+            {
+                cv.Children.Remove(pointF1);
+                cv.Children.Remove(pointF2);
+                cv.Children.Remove(F1);
+                cv.Children.Remove(F2);
+            }
         }
         Ellipse PointFocus;
-        void DrawPoinFocus(double x, double y)
+        private Ellipse DrawPoinFocus(double x, double y)
         {
 
             PointFocus = new Ellipse()//задаем прочие параметры
@@ -212,11 +254,9 @@ namespace InteractivePoster.Finction
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
             };
-
-            cv.Children.Add(PointFocus);//помещаем на канву
-                                        //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
+            return PointFocus;
         }
 
         /// <summary>
@@ -263,7 +303,7 @@ namespace InteractivePoster.Finction
                 @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
                     return @"\frac{(x*cos(" + gradusTransform.ToString() + ")-y*sin(" + gradusTransform.ToString() + ")-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") +
                 @"^2}+ \frac{(x*sin(" + gradusTransform.ToString() + ")+y*cos(" + gradusTransform.ToString() + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
-                case false:                   
+                case false:
                     if (x == 0 && y == 0) return @"\frac{x^2}{" + a.ToString("F1") + @"^2}+ \frac{y^2}{" + b.ToString("F1") + @"^2} = 1";
                     if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") + @"^2}+ \frac{y^2}{" + b.ToString("F1") + @"^2} = 1";
                     if (x == 0) return @"\frac{x^2}{" + a.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";

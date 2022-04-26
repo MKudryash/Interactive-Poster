@@ -99,6 +99,13 @@ namespace InteractivePoster.Finction
         public static bool ElementElipsePoint { get; set; } = true; 
         public static bool ElementElipseFocus { get; set; } = true;
 
+        public static bool ElementParabolaD { get; set; } = true;
+        public static bool ElementParabolaFocus { get; set; } = true;
+
+        public static bool ElementHyperboleRectangle { get; set; } = true;
+        public static bool ElementHyperboleFocus { get; set; } = true; 
+        public static bool ElementHyperboleAssim { get; set; } = true;
+
 
     }
     class GeometricPatterns

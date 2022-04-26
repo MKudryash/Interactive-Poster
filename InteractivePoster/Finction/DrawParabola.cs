@@ -84,35 +84,55 @@ namespace InteractivePoster.Finction
                     X2 = maxX
                 };
             }
-
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-            cv.Children.Add(line);
+            if (MaxMinCoordinat.ElementParabolaD)
+            {
+                cv.Children.Add(line);
+            }
+            else
+            {
+                cv.Children.Remove(line);
+            }
+            
+            
         }
         void FocusParabola(Canvas cv)
         {
             double focus = p / 2;
             TextBlock TB = new TextBlock();
+            Ellipse ellipse = new Ellipse();
+
             if (MaxMinCoordinat.equationforParabola)
             {
-                DrawPoinFocus(x, focus + y, cv);//Отображение фокуса на координатной плоскости
+                ellipse =  DrawPoinFocus(x, focus + y, cv);//Отображение фокуса на координатной плоскости
                 TB.Text = "F( " + y.ToString("F1") + "; " + (focus + x).ToString("F1") + ")";
                 TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
                 TB.SetValue(Canvas.TopProperty, convertCoordY(focus + y));
             }
             else
             {
-                DrawPoinFocus(focus + x, y, cv);//Отображение фокуса на координатной плоскости
+                ellipse = DrawPoinFocus(focus + x, y, cv);//Отображение фокуса на координатной плоскости
                 TB.Text = "F( " + (focus + x).ToString("F1") + "; " + y.ToString("F1") + ")";
                 TB.SetValue(Canvas.LeftProperty, convertCoordX(focus + x));
                 TB.SetValue(Canvas.TopProperty, convertCoordY(y));
             }
-            cv.Children.Add(TB);
+           
             TB.TextWrapping = System.Windows.TextWrapping.Wrap;
             TB.Width = double.NaN;
 
+            if (MaxMinCoordinat.ElementParabolaFocus)
+            {
+                cv.Children.Add(TB);
+                cv.Children.Add(ellipse);
+            }
+            else
+            {
+                cv.Children.Remove(TB);
+                cv.Children.Remove(ellipse);
+            }
         }
         Ellipse PointFocus;
-        void DrawPoinFocus(double x, double y, Canvas cv)
+        private Ellipse DrawPoinFocus(double x, double y, Canvas cv)
         {
             PointFocus = new Ellipse()//задаем прочие параметры
             {
@@ -123,10 +143,10 @@ namespace InteractivePoster.Finction
                 StrokeThickness = 3
             };
 
-            cv.Children.Add(PointFocus);//помещаем на канву
-                                        //в нужную точку канвы
+          
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
+            return PointFocus;
         }
 
         public string CanonicalEquation()
