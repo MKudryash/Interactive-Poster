@@ -31,7 +31,7 @@ namespace InteractivePoster.Finction
 
         double sinGradusElpis;
         double cosGradusElpis;
-        double gradusValueElips,rH,rW;
+        double gradusValueElips, rH, rW;
 
         public DrawElips(double x, double y, double rW, double rH, Canvas cv, double gradusValueElips)
         {
@@ -60,10 +60,12 @@ namespace InteractivePoster.Finction
 
             };
             //вращение круга
-            RotateTransform rotateTransform = new RotateTransform() { 
-            CenterX = radiusW,
-            CenterY = radiusH,
-            Angle = gradusValueElips};
+            RotateTransform rotateTransform = new RotateTransform()
+            {
+                CenterX = radiusW,
+                CenterY = radiusH,
+                Angle = gradusValueElips
+            };
             circle.RenderTransform = rotateTransform;
 
 
@@ -75,28 +77,45 @@ namespace InteractivePoster.Finction
 
 
             string text = "О( " + x.ToString("F1") + "; " + y.ToString("F1") + ")";
-            DrawText(x, y, text);//Центр окружности
-            text = "A1( " + (x + rW * cosGradusElpis).ToString("F1") + "; " + (y - rW * sinGradusElpis).ToString("F1") + ")";
-            DrawText(x + rW * cosGradusElpis, y - rW * sinGradusElpis, text);//Точка А1
-            text = "A2( " + (x - rW * cosGradusElpis).ToString("F1") + "; " + (y + rW * sinGradusElpis).ToString("F1") + ")";
-            DrawText(x - rW * cosGradusElpis, y + rW * sinGradusElpis, text);//Точка А2
-            text = "B1( " + (x - rH * sinGradusElpis).ToString("F1") + "; " + (y + rH * cosGradusElpis).ToString("F1") + ")";
-            DrawText(x + rH * sinGradusElpis, y + rH * cosGradusElpis, text);//Точка В1
-            text = "B2( " + (x + rH * sinGradusElpis).ToString("F1") + "; " + (y - rH * cosGradusElpis).ToString("F1") + ")";
-            DrawText(x - rH * sinGradusElpis, y - rH * cosGradusElpis, text);//Точка В2
+            TextBlock centre = DrawText(x, y, text);//Центр окружности
+            cv.Children.Add(centre);
 
-
+            PointRadius();
             FocusElips(rW, rH, gradusValueElips);//Отрисовка и подсчет Фокусов
             DrawRadius(rW, rH);//Отрисовка радиуса Элипса
         }
-      
 
+        private void PointRadius()
+        {
+            string text = "A1( " + (x + rW * cosGradusElpis).ToString("F1") + "; " + (y - rW * sinGradusElpis).ToString("F1") + ")";
+            TextBlock A1 = DrawText(x + rW * cosGradusElpis, y - rW * sinGradusElpis, text);//Точка А1
+            text = "A2( " + (x - rW * cosGradusElpis).ToString("F1") + "; " + (y + rW * sinGradusElpis).ToString("F1") + ")";
+            TextBlock A2 = DrawText(x - rW * cosGradusElpis, y + rW * sinGradusElpis, text);//Точка А2
+            text = "B1( " + (x - rH * sinGradusElpis).ToString("F1") + "; " + (y + rH * cosGradusElpis).ToString("F1") + ")";
+            TextBlock B1 = DrawText(x + rH * sinGradusElpis, y + rH * cosGradusElpis, text);//Точка В1
+            text = "B2( " + (x + rH * sinGradusElpis).ToString("F1") + "; " + (y - rH * cosGradusElpis).ToString("F1") + ")";
+            TextBlock B2 = DrawText(x - rH * sinGradusElpis, y - rH * cosGradusElpis, text);//Точка В2
+            if (MaxMinCoordinat.ElementElipseRadius)
+            {
+                cv.Children.Add(A1);
+                cv.Children.Add(A2);
+                cv.Children.Add(B1);
+                cv.Children.Add(B2);
+            }
+            else
+            {
+                cv.Children.Remove(A1);
+                cv.Children.Remove(A2);
+                cv.Children.Remove(B1);
+                cv.Children.Remove(B2);
+            }
+        }
         void DrawRadius(double rW, double rH)
         {
-            double aa = Math.Atan(rH/rW * Math.Tan(convertRadian(MaxMinCoordinat.gradusValue)));
+            double aa = Math.Atan(rH / rW * Math.Tan(convertRadian(MaxMinCoordinat.gradusValue)));
 
-            if (MaxMinCoordinat.gradusValue <= 270 && MaxMinCoordinat.gradusValue > 90) { aa = aa + Math.PI; }           
-            
+            if (MaxMinCoordinat.gradusValue <= 270 && MaxMinCoordinat.gradusValue > 90) { aa = aa + Math.PI; }
+
 
             double circleX = x + (rW * Math.Cos(aa)) * cosGradusElpis + (rH * Math.Sin(aa)) * sinGradusElpis;
             double circleY = y + (rH * Math.Sin(aa)) * cosGradusElpis - (rW * Math.Cos(aa)) * sinGradusElpis;
@@ -112,12 +131,26 @@ namespace InteractivePoster.Finction
                 Y2 = convertCoordY(circleY),
             };
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-            cv.Children.Add(line);
             string text = "M( " + circleX.ToString("F1") + "; " + circleY.ToString("F1") + ")";
-            DrawText(circleX, circleY, text);
+            TextBlock textBlock = DrawText(circleX, circleY, text);
+
+            if (MaxMinCoordinat.ElementElipsePoint)
+            {
+                cv.Children.Add(line);
+                cv.Children.Add(textBlock);
+            }
+            else
+            {
+                cv.Children.Remove(line);
+                cv.Children.Remove(textBlock);
+            }
+
+
         } //Орисовка радиуса + текст с точкой на окружности
         void FocusElips(double rW, double rH, double gradusValueElips)
         {
+            TextBlock F1 = new TextBlock();
+            TextBlock F2 = new TextBlock();
             double c = FindFocusElips(rW, rH);
             if (rW == rH)
             {
@@ -129,10 +162,10 @@ namespace InteractivePoster.Finction
                 {
                     string text = "F1( " + (x + c * cosGradusElpis).ToString("F1") + "; " + (y - c * sinGradusElpis).ToString("F1") + ")";
                     DrawPoinFocus(x + c * cosGradusElpis, y - c * sinGradusElpis);
-                    DrawText(x + c * cosGradusElpis, y - c * sinGradusElpis, text);
+                    F1 = DrawText(x + c * cosGradusElpis, y - c * sinGradusElpis, text);
                     text = "F2( " + (x - c * cosGradusElpis).ToString("F1") + "; " + (y + c * sinGradusElpis).ToString("F1") + ")";
                     DrawPoinFocus(x - c * cosGradusElpis, y + c * sinGradusElpis);
-                    DrawText(x - c * cosGradusElpis, y + c * sinGradusElpis, text);
+                    F2 = DrawText(x - c * cosGradusElpis, y + c * sinGradusElpis, text);
                     line = new Line
                     {
                         X1 = convertCoordX(x + rW * cosGradusElpis),
@@ -143,19 +176,18 @@ namespace InteractivePoster.Finction
                         StrokeThickness = 2,
                         SnapsToDevicePixels = true
                     };
-                   
-                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-                    cv.Children.Add(line);
+
+                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);                  
 
                 }
                 else
                 {
                     string text = "F2( " + (x - c * sinGradusElpis).ToString("F1") + "; " + (y - c * cosGradusElpis).ToString("F1") + ")";
                     DrawPoinFocus(x - c * sinGradusElpis, y - c * cosGradusElpis);
-                    DrawText(x - c * sinGradusElpis, y - c * cosGradusElpis, text);
+                   F1 =  DrawText(x - c * sinGradusElpis, y - c * cosGradusElpis, text);
                     text = "F1( " + (x + c * sinGradusElpis).ToString("F1") + "; " + (y + c * cosGradusElpis).ToString("F1") + ")";
                     DrawPoinFocus(x + c * sinGradusElpis, y + c * cosGradusElpis);
-                    DrawText(x + c * sinGradusElpis, y + c * cosGradusElpis, text);
+                   F2 =  DrawText(x + c * sinGradusElpis, y + c * cosGradusElpis, text);
                     line = new Line
                     {
                         X1 = convertCoordX(x + rH * sinGradusElpis),
@@ -166,11 +198,22 @@ namespace InteractivePoster.Finction
                         StrokeThickness = 2,
                         SnapsToDevicePixels = true
                     };
-                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-                    cv.Children.Add(line);
+                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);                  
 
                 }
-               
+
+                if (MaxMinCoordinat.ElementElipseFocus)
+                {
+                    cv.Children.Add(line);
+                    cv.Children.Add(F1);
+                    cv.Children.Add(F2);
+                }
+                else
+                {
+                    cv.Children.Remove(line);
+                    cv.Children.Remove(F1);
+                    cv.Children.Remove(F2);
+                }
             }
         }
         Ellipse PointFocus;
@@ -204,7 +247,7 @@ namespace InteractivePoster.Finction
 
             if (coordX < this.x) { p = p + Math.PI; }
             MaxMinCoordinat.gradusValue = (int)(180 / Math.PI * p);
-           
+
         }
         /// <summary>
         /// метод для преобразования координаты Х их канвы в декартово значение
@@ -237,7 +280,7 @@ namespace InteractivePoster.Finction
         }
         public string CanonicalEquation()
         {
-          
+
             if (x == 0 || y == 0) MaxMinCoordinat.equationforElips = false;
             if (gradusValueElips > 0)
             { MaxMinCoordinat.equationforElips = true; }
@@ -261,12 +304,12 @@ namespace InteractivePoster.Finction
 
                 case false:
                     if (x == 0 && y == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
-                    if (y == 0)  return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";                  
+                    if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
                     if (x == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
-                   
+
                     return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                 default:
-                    return " ";   
+                    return " ";
             }
         }
     }

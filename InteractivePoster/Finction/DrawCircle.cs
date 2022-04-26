@@ -61,15 +61,16 @@ namespace InteractivePoster.Finction
             point.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
 
             DrawRadius(x, y, r);
-            DrawText(x, y, text);           
+            //надпись центра окружности
+           TextBlock textBlock =  DrawText(x, y, text);
+            cv.Children.Add(textBlock);
         }   
       
 
         void DrawRadius(double x, double y, double r)
         {
-
-            double circleX = x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue));
-            double circleY = y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue));
+           double circleX = x + r * Math.Cos(convertRadian(MaxMinCoordinat.gradusValue));
+           double circleY = y + r * Math.Sin(convertRadian(MaxMinCoordinat.gradusValue));
 
             line = new Line()
             {
@@ -83,10 +84,32 @@ namespace InteractivePoster.Finction
             line.Y2 = convertCoordY(circleY);
 
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-            cv.Children.Add(line);
             string text = "M( " + circleX.ToString("F1") + "; " + circleY.ToString("F1") + ")";
-            DrawText(circleX, circleY, text);
+            PointOnCircle(circleX, circleY, text);
+            if (MaxMinCoordinat.ElementCircle)
+            {                
+                cv.Children.Add(line);                           
+            }
+            else
+            {
+                cv.Children.Remove(line);               
+            }
         } //Орисовка радиуса + текст с точкой на окружности
+
+        private void PointOnCircle(double circleX, double circleY, string text)
+        {
+            TextBlock textBlock = DrawText(circleX, circleY, text);
+            if (MaxMinCoordinat.ElementCirclePoint)
+            {
+                
+                cv.Children.Add(textBlock);
+            }
+            else
+            {
+                cv.Children.Remove(textBlock);
+            }
+
+        }
 
 
         public async void ChangedGradus(object sender, MouseEventArgs e)

@@ -155,10 +155,10 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Border >
-                                    <TextBox Style="{StaticResource TextBoxForSlider}"
+                                        <TextBox Style="{StaticResource TextBoxForSlider}"
                                 Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </Border>
-                                        <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
                             SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
                         PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
@@ -237,7 +237,26 @@
 
                     </GroupBox>
 
+
                 </Grid>
+
+
+                <CheckBox   Margin="30,0,0,0"  x:Name="Element_Circle" Content="Видимость объектов"
+                                Style="{StaticResource CheckBoxContext}"
+                                Width="auto"/>
+
+
+                <StackPanel Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">
+                    <CheckBox IsChecked="{Binding ElementCirclePoint }"
+                        Content="Точка на окружности" 
+                        Style="{StaticResource ElementHide}"
+                              />
+                    <CheckBox Content="Радиус окружности" 
+                              IsChecked="{Binding ElementCircle }"                             
+                              Style="{StaticResource ElementHide}"/>
+                </StackPanel>
+
+
                 <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <GroupBox Header="Каноническое уравнение:">
                         <Grid>
@@ -252,7 +271,7 @@
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
             </StackPanel>
         </ScrollViewer>
-       
+
 
 
     </Grid>

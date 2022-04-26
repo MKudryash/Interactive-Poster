@@ -88,6 +88,18 @@ namespace InteractivePoster.Finction
                 isPlay = true;
             }
         }
+
+
+
+        public static bool ElementCircle { get; set; } = true;
+        public static bool ElementCirclePoint { get; set; } = true;
+
+
+        public static bool ElementElipseRadius { get; set; } = true;
+        public static bool ElementElipsePoint { get; set; } = true; 
+        public static bool ElementElipseFocus { get; set; } = true;
+
+
     }
     class GeometricPatterns
     {
@@ -113,7 +125,7 @@ namespace InteractivePoster.Finction
         {
             return (coord - maxY / 2) * countY / maxY*-1;
         }
-        public void DrawText(double x, double y, string text)
+        public TextBlock DrawText(double x, double y, string text)
         {
             TextBlock TB = new TextBlock()
             {
@@ -121,10 +133,10 @@ namespace InteractivePoster.Finction
                 TextWrapping = TextWrapping.Wrap,
                 Width = double.NaN,
                 FontSize =countX
-            };
-            cv.Children.Add(TB);
+            };            
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
+            return TB;
         } //Текст c содержанием точек
 
     }
