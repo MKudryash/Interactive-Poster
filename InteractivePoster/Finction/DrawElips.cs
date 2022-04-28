@@ -134,7 +134,7 @@ namespace InteractivePoster.Finction
             string text = "M( " + circleX.ToString("F1") + "; " + circleY.ToString("F1") + ")";
             TextBlock textBlock = DrawText(circleX, circleY, text);
 
-            if (MaxMinCoordinat.ElementElipsePoint)
+            if (MaxMinCoordinat.elementElipsPoint)
             {
                 cv.Children.Add(line);
                 cv.Children.Add(textBlock);
@@ -151,6 +151,8 @@ namespace InteractivePoster.Finction
         {
             TextBlock F1 = new TextBlock();
             TextBlock F2 = new TextBlock();
+            Ellipse PointsOne = new Ellipse();
+            Ellipse PointsTwo = new Ellipse();
             double c = FindFocusElips(rW, rH);
             if (rW == rH)
             {
@@ -161,10 +163,10 @@ namespace InteractivePoster.Finction
                 if (rW > rH)
                 {
                     string text = "F1( " + (x + c * cosGradusElpis).ToString("F1") + "; " + (y - c * sinGradusElpis).ToString("F1") + ")";
-                    DrawPoinFocus(x + c * cosGradusElpis, y - c * sinGradusElpis);
+                    PointsOne = DrawPoinFocus(x + c * cosGradusElpis, y - c * sinGradusElpis);
                     F1 = DrawText(x + c * cosGradusElpis, y - c * sinGradusElpis, text);
                     text = "F2( " + (x - c * cosGradusElpis).ToString("F1") + "; " + (y + c * sinGradusElpis).ToString("F1") + ")";
-                    DrawPoinFocus(x - c * cosGradusElpis, y + c * sinGradusElpis);
+                    PointsTwo = DrawPoinFocus(x - c * cosGradusElpis, y + c * sinGradusElpis);
                     F2 = DrawText(x - c * cosGradusElpis, y + c * sinGradusElpis, text);
                     line = new Line
                     {
@@ -177,17 +179,17 @@ namespace InteractivePoster.Finction
                         SnapsToDevicePixels = true
                     };
 
-                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);                  
+                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
 
                 }
                 else
                 {
                     string text = "F2( " + (x - c * sinGradusElpis).ToString("F1") + "; " + (y - c * cosGradusElpis).ToString("F1") + ")";
-                    DrawPoinFocus(x - c * sinGradusElpis, y - c * cosGradusElpis);
-                   F1 =  DrawText(x - c * sinGradusElpis, y - c * cosGradusElpis, text);
+                    PointsOne = DrawPoinFocus(x - c * sinGradusElpis, y - c * cosGradusElpis);
+                    F1 = DrawText(x - c * sinGradusElpis, y - c * cosGradusElpis, text);
                     text = "F1( " + (x + c * sinGradusElpis).ToString("F1") + "; " + (y + c * cosGradusElpis).ToString("F1") + ")";
-                    DrawPoinFocus(x + c * sinGradusElpis, y + c * cosGradusElpis);
-                   F2 =  DrawText(x + c * sinGradusElpis, y + c * cosGradusElpis, text);
+                    PointsTwo = DrawPoinFocus(x + c * sinGradusElpis, y + c * cosGradusElpis);
+                    F2 = DrawText(x + c * sinGradusElpis, y + c * cosGradusElpis, text);
                     line = new Line
                     {
                         X1 = convertCoordX(x + rH * sinGradusElpis),
@@ -198,26 +200,31 @@ namespace InteractivePoster.Finction
                         StrokeThickness = 2,
                         SnapsToDevicePixels = true
                     };
-                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);                  
+                    line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
 
                 }
 
                 if (MaxMinCoordinat.ElementElipseFocus)
                 {
                     cv.Children.Add(line);
+                    cv.Children.Add(PointsOne);
+                    cv.Children.Add(PointsTwo);
                     cv.Children.Add(F1);
                     cv.Children.Add(F2);
                 }
                 else
                 {
                     cv.Children.Remove(line);
+                    cv.Children.Remove(PointsOne);
+                    cv.Children.Remove(PointsTwo);
                     cv.Children.Remove(F1);
                     cv.Children.Remove(F2);
                 }
             }
         }
         Ellipse PointFocus;
-        void DrawPoinFocus(double x, double y)
+
+        Ellipse DrawPoinFocus(double x, double y)
         {
 
             PointFocus = new Ellipse()//задаем прочие параметры
@@ -229,10 +236,9 @@ namespace InteractivePoster.Finction
                 StrokeThickness = 1
             };
 
-            cv.Children.Add(PointFocus);//помещаем на канву
-                                        //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(y + 0.1));
+            return PointFocus;
         }
         public async void ChangedGradus(object sender, MouseEventArgs e)
         {
@@ -288,29 +294,59 @@ namespace InteractivePoster.Finction
             {
                 MaxMinCoordinat.equationforElips = false;
             }
-            switch (MaxMinCoordinat.equationforElips)
+            if (MaxMinCoordinat.SinCos)
             {
-                case true:
-                    {
-                        if (x == 0 && y == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + "))^2}{" + rW.ToString("F1") +
-                 @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
-                        if (y == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
-                  @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
-                        if (x == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + "))^2}{" + rW.ToString("F1") +
-                 @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
-                        return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
-                  @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
-                    }
+                switch (MaxMinCoordinat.equationforElips)
+                {
+                    case true:
+                        {
+                            if (x == 0 && y == 0) return @"\frac{(x*"+Math.Round(Math.Cos(gradusValueElips),2)+ ")-y*" + Math.Round(Math.Sin(gradusValueElips), 2) + "))^2}{" + rW.ToString("F1") +
+                     @"^2}+ \frac{(y*" + Math.Round(Math.Sin(gradusValueElips), 2) + ")+y*" + Math.Round(Math.Cos(gradusValueElips), 2) + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                            if (y == 0) return @"\frac{(x*" + Math.Round(Math.Cos(gradusValueElips), 2) + ")-y*" + Math.Round(Math.Sin(gradusValueElips), 2) + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
+                      @"^2}+ \frac{(y*" + Math.Round(Math.Sin(gradusValueElips), 2) + ")+y*" + Math.Round(Math.Cos(gradusValueElips), 2) + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                            if (x == 0) return @"\frac{(x*" + Math.Round(Math.Cos(gradusValueElips), 2) + ")-y*" + Math.Round(Math.Sin(gradusValueElips), 2) + "))^2}{" + rW.ToString("F1") +
+                     @"^2}+ \frac{(y*" + Math.Round(Math.Sin(gradusValueElips), 2) + ")+y*" + Math.Round(Math.Cos(gradusValueElips), 2) + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                            return @"\frac{(x*" + Math.Round(Math.Cos(gradusValueElips), 2) + ")-y*" + Math.Round(Math.Sin(gradusValueElips), 2) + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
+                      @"^2}+ \frac{(y*" + Math.Round(Math.Sin(gradusValueElips), 2) + ")+y*" + Math.Round(Math.Cos(gradusValueElips), 2) + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        }
 
-                case false:
-                    if (x == 0 && y == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
-                    if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
-                    if (x == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                    case false:
+                        if (x == 0 && y == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        if (x == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
 
-                    return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
-                default:
-                    return " ";
+                        return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                    default:
+                        return " ";
+                }
             }
+            else
+            {
+                switch (MaxMinCoordinat.equationforElips)
+                {
+                    case true:
+                        {
+                            if (x == 0 && y == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + "))^2}{" + rW.ToString("F1") +
+                     @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                            if (y == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
+                      @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + "))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                            if (x == 0) return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + "))^2}{" + rW.ToString("F1") +
+                     @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                            return @"\frac{(x*cos(" + gradusValueElips.ToString() + ")-y*sin(" + gradusValueElips.ToString() + ")-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
+                      @"^2}+ \frac{(y*sin(" + gradusValueElips.ToString() + ")+y*cos(" + gradusValueElips.ToString() + ")-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        }
+
+                    case false:
+                        if (x == 0 && y == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        if (y == 0) return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{y^2}{" + rH.ToString("F1") + @"^2} = 1";
+                        if (x == 0) return @"\frac{x^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+
+                        return @"\frac{(x-(" + x.ToString("F1") + @"))^2}{" + rW.ToString("F1") + @"^2}+ \frac{(y-(" + y.ToString("F1") + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                    default:
+                        return " ";
+                }
+            }
+
         }
     }
 }

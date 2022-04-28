@@ -252,7 +252,7 @@
 
 
                                 <!--Точка M (в градусах)-->
-                                <GroupBox Header="Точка M (в градусах)">
+                                <GroupBox Header="Точка M (в градусах)"  IsEnabled="{Binding ElementElipsePoint, UpdateSourceTrigger=PropertyChanged}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"/>
@@ -263,7 +263,8 @@
                                         <Slider Style="{StaticResource MediaPlayerSliderStyle}"
                         Grid.Column="1" x:Name="SlPoint" SmallChange="1" LargeChange="1"  Value="{Binding GradusValue}" 
                         Minimum="0" Maximum="360" PreviewMouseMove="Area_PreviewMouseMove"
-                        IsSnapToTickEnabled="True" TickFrequency="1"/>
+                        IsSnapToTickEnabled="True" TickFrequency="1"
+                                               />
                                     </Grid>
                                 </GroupBox>
                                 <!--Вращение-->
@@ -295,13 +296,16 @@
                         Content="Точки" 
                         Style="{StaticResource ElementHide}"/>
                         <CheckBox Content="Точка на элипсе" 
-                              IsChecked="{Binding ElementElipsePoint }"                             
+                              IsChecked="{Binding ElementElipsePoint,UpdateSourceTrigger=PropertyChanged}"                             
                               Style="{StaticResource ElementHide}"/>
                         <CheckBox Content="Фокусы" 
                               IsChecked="{Binding ElementElipseFocus }"                             
                               Style="{StaticResource ElementHide}"/>
                     </StackPanel>
-                    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Margin="20" 
+                                Orientation="Vertical" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
 
                         <GroupBox Header="Каноническое уравнение:">
                             <Grid>
@@ -311,8 +315,15 @@
                             </Grid>
                         </GroupBox>
                     </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                        <CheckBox Style="{StaticResource ElementHide}" 
+                                  Content="Подсчет синусов и косинусов"
+                                  IsChecked="{Binding SinCos}"/>
+                    </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
                 </StackPanel>
+                
             </ScrollViewer>
             <Canvas Panel.ZIndex="0"
                     x:Name="Background"

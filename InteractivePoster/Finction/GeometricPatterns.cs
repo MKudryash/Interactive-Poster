@@ -94,9 +94,17 @@ namespace InteractivePoster.Finction
         public static bool ElementCircle { get; set; } = true;
         public static bool ElementCirclePoint { get; set; } = true;
 
+        public static bool elementElipsPoint { get; set; } = true;
 
         public static bool ElementElipseRadius { get; set; } = true;
-        public static bool ElementElipsePoint { get; set; } = true; 
+        public bool ElementElipsePoint 
+        { get=> elementElipsPoint;
+            set
+            {
+                elementElipsPoint = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ElementElipsePoint"));
+            }
+            }
         public static bool ElementElipseFocus { get; set; } = true;
 
         public static bool ElementParabolaD { get; set; } = true;
@@ -106,7 +114,7 @@ namespace InteractivePoster.Finction
         public static bool ElementHyperboleFocus { get; set; } = true; 
         public static bool ElementHyperboleAssim { get; set; } = true;
 
-
+        public static bool SinCos { get; set; } = false;
     }
     class GeometricPatterns
     {
