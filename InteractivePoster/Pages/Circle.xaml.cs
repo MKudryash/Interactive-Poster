@@ -91,5 +91,10 @@ namespace InteractivePoster.Pages
         {
             LoadPage.MainFrame.Navigate(new BuildCircle());
         }
+
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            UpdateBackPattern(null, null);
+        }
     }
 }

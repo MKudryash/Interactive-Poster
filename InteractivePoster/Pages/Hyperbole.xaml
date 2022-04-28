@@ -268,14 +268,17 @@
                         <CheckBox IsChecked="{Binding ElementHyperboleRectangle }"
                         Content="Прямоугольник" 
                         Style="{StaticResource ElementHide}"
+                                   Click="SinCos"
                               />
                         <CheckBox IsChecked="{Binding ElementHyperboleAssim }"
                         Content="Асимптоты" 
                         Style="{StaticResource ElementHide}"
+                                   Click="SinCos"
                               />
                         <CheckBox Content="Фокусы" 
                               IsChecked="{Binding ElementHyperboleFocus }"                             
-                              Style="{StaticResource ElementHide}"/>
+                              Style="{StaticResource ElementHide}"
+                                   Click="SinCos"/>
 
                     </StackPanel>
                     <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -286,6 +289,13 @@
                             </StackPanel>
                         </GroupBox>
                        
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                        <CheckBox Style="{StaticResource ElementHide}" 
+                                  Content="Подсчет синусов и косинусов"
+                                  IsChecked="{Binding SinCosHyperbole}"
+                                  Click="SinCos"/>
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
 

@@ -96,5 +96,10 @@ namespace InteractivePoster.Pages
                 
             }
         }
+
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            UpdateBackPattern(null, null);
+        }
     }
 }

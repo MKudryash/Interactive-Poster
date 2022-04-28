@@ -94,5 +94,10 @@ namespace InteractivePoster.Pages
         {
             LoadPage.MainFrame.Navigate(new BiuldElipse());
         }
+
+        private void SinCos(object sender, RoutedEventArgs e)
+        {
+            UpdateBackPattern(null, null);
+        }
     }
 }

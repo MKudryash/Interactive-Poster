@@ -87,5 +87,10 @@ namespace InteractivePoster.Pages
         {
             UpdateBackPattern(null, null);
         }
+
+        private void SinCos(object sender, RoutedEventArgs e)
+        {
+            UpdateBackPattern(null, null);
+        }
     }
 }

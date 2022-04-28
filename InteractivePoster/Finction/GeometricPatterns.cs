@@ -114,7 +114,8 @@ namespace InteractivePoster.Finction
         public static bool ElementHyperboleFocus { get; set; } = true; 
         public static bool ElementHyperboleAssim { get; set; } = true;
 
-        public static bool SinCos { get; set; } = false;
+        public static bool SinCosEllipse { get; set; } = false;
+        public static bool SinCosHyperbole { get; set; } = false;
     }
     class GeometricPatterns
     {

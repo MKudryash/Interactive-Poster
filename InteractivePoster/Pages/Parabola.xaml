@@ -247,10 +247,12 @@
                     <CheckBox IsChecked="{Binding ElementParabolaFocus }"
                         Content="Фокус" 
                         Style="{StaticResource ElementHide}"
+                               Click="Update"
                               />
                     <CheckBox Content="Директриса" 
                               IsChecked="{Binding ElementParabolaD }"                             
-                              Style="{StaticResource ElementHide}"/>
+                              Style="{StaticResource ElementHide}"
+                               Click="Update"/>
                     
                 </StackPanel>
                 <GroupBox Header="Каноническое уравнение:">

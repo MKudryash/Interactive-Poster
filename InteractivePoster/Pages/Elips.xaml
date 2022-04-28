@@ -294,13 +294,16 @@
                                 MouseMove="Area_PreviewMouseMove">
                         <CheckBox IsChecked="{Binding ElementElipseRadius }"
                         Content="Точки" 
-                        Style="{StaticResource ElementHide}"/>
+                        Style="{StaticResource ElementHide}"
+                                   Click="SinCos"/>
                         <CheckBox Content="Точка на элипсе" 
                               IsChecked="{Binding ElementElipsePoint,UpdateSourceTrigger=PropertyChanged}"                             
-                              Style="{StaticResource ElementHide}"/>
+                              Style="{StaticResource ElementHide}"
+                                   Click="SinCos"/>
                         <CheckBox Content="Фокусы" 
                               IsChecked="{Binding ElementElipseFocus }"                             
-                              Style="{StaticResource ElementHide}"/>
+                              Style="{StaticResource ElementHide}"
+                                  Click="SinCos"/>
                     </StackPanel>
                     <StackPanel Margin="20" 
                                 Orientation="Vertical" 
@@ -319,7 +322,8 @@
                                 VerticalAlignment="Center">
                         <CheckBox Style="{StaticResource ElementHide}" 
                                   Content="Подсчет синусов и косинусов"
-                                  IsChecked="{Binding SinCos}"/>
+                                  IsChecked="{Binding SinCosEllipse}"
+                                  Click="SinCos"/>
                     </StackPanel>
                     <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
                 </StackPanel>

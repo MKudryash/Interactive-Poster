@@ -294,7 +294,7 @@ namespace InteractivePoster.Finction
             {
                 MaxMinCoordinat.equationforElips = false;
             }
-            if (MaxMinCoordinat.SinCos)
+            if (MaxMinCoordinat.SinCosEllipse)
             {
                 switch (MaxMinCoordinat.equationforElips)
                 {

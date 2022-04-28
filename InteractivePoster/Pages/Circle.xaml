@@ -250,10 +250,12 @@
                     <CheckBox IsChecked="{Binding ElementCirclePoint }"
                         Content="Точка на окружности" 
                         Style="{StaticResource ElementHide}"
+                              Click="Update"
                               />
                     <CheckBox Content="Радиус окружности" 
                               IsChecked="{Binding ElementCircle }"                             
-                              Style="{StaticResource ElementHide}"/>
+                              Style="{StaticResource ElementHide}"
+                                  Click="Update"/>
                 </StackPanel>
 
 
