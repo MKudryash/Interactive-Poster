@@ -303,7 +303,7 @@ namespace InteractivePoster.Finction
                     @"^2}+ \frac{(x*" + Math.Round(Math.Sin(gradusTransform), 2) + ")+y*" + Math.Round(Math.Cos(gradusTransform), 2) + "))^2}{" + b.ToString("F1") + @"^2} = 1";
                         if (x == 0) return @"\frac{(x*" + Math.Round(Math.Cos(gradusTransform), 2) + ")-y*" + Math.Round(Math.Sin(gradusTransform), 2) + "))^2}{" + a.ToString("F1") +
                     @"^2}+ \frac{(x*" + Math.Round(Math.Sin(gradusTransform), 2) + ")+y*" + Math.Round(Math.Cos(gradusTransform), 2) + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
-                        return @"\frac{(x*" + Math.Round(Math.Cos(gradusTransform), 2) + ")-y*sin(" + gradusTransform.ToString() + ")-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") +
+                        return @"\frac{(x*" + Math.Round(Math.Cos(gradusTransform), 2) + ")-y*" + Math.Round(Math.Sin(gradusTransform), 2) + ")-(" + x.ToString("F1") + @"))^2}{" + a.ToString("F1") +
                     @"^2}+ \frac{(x*" + Math.Round(Math.Sin(gradusTransform), 2) + ")+y*" + Math.Round(Math.Cos(gradusTransform), 2) + ")-(" + y.ToString("F1") + @"))^2}{" + b.ToString("F1") + @"^2} = 1";
                     case false:
                         if (x == 0 && y == 0) return @"\frac{x^2}{" + a.ToString("F1") + @"^2}+ \frac{y^2}{" + b.ToString("F1") + @"^2} = 1";

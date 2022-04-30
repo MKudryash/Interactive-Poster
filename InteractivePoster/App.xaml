@@ -56,7 +56,7 @@
                TargetType="CheckBox"
                x:Key="CheckBoxContext">           
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="10"/>
+           
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -70,11 +70,38 @@
                                        FontSize="26"
                                        FontWeight="Bold"
                                        Foreground="#F34A4A" 
-                                       Background="Transparent" />
+                                       Background="Transparent" 
+                                       HorizontalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style  x:Key="Arrow" TargetType="Image">
+            <Setter Property="Width" Value="30"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=Circle_Header, Path=IsChecked}"
+                        Value="True">
+                    <Setter Property="Source" Value="/Resource/Images/ArrowUp.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=Circle_Header, Path=IsChecked}"
+                        Value="False">
+                    <Setter Property="Source" Value="/Resource/Images/ArrowDown.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style  x:Key="ArrowTwo" TargetType="Image">
+            <Setter Property="Width" Value="30"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=Element_Circle, Path=IsChecked}"
+                        Value="True">
+                    <Setter Property="Source" Value="/Resource/Images/ArrowUp.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=Element_Circle, Path=IsChecked}"
+                        Value="False">
+                    <Setter Property="Source" Value="/Resource/Images/ArrowDown.png"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style  x:Key="HideTheopry" TargetType="StackPanel">
             <Style.Triggers>

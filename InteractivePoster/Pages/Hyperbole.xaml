@@ -115,13 +115,26 @@
                         Margin="10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="30"/>
                                 </Grid.ColumnDefinitions>
-                                <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Гипербола"  Style="{StaticResource CheckBoxContext}" Width="auto" FontSize="25"/>
-                                <Button Command="{Binding SoundPlayCommand}" Style="{StaticResource SoundButton}"  Grid.Column="1" >
+                                <CheckBox     
+                                        x:Name="Circle_Header" 
+                                        Content="Гипербола"  
+                                        Style="{StaticResource CheckBoxContext}" 
+                                        Width="auto"
+                                          Grid.Column="1"/>
+                                <Image  Grid.Column="0"
+                                    Style="{StaticResource Arrow}"
+                                    HorizontalAlignment="Left"/>
+                                <Button Command="{Binding SoundPlayCommand}" 
+                                    Style="{StaticResource SoundButton}" 
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center">
                                     <Button.Content>
-                                        <Image  Source="/Resource/Images/Sound.png"/>
+                                        <Image  
+                                        Source="/Resource/Images/Sound.png"/>
                                     </Button.Content>
                                 </Button>
                             </Grid>
@@ -259,9 +272,20 @@
                             </StackPanel>
                         </GroupBox>
                     </Grid>
-                    <CheckBox   Margin="30,0,0,0"  x:Name="Element_Circle" Content="Видимость объектов"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="1"
+                          x:Name="Element_Circle" Content="Видимость объектов"
                                 Style="{StaticResource CheckBoxContext}"
                                 Width="auto"/>
+                        <Image  Grid.Column="0"
+                                    Style="{StaticResource ArrowTwo}"
+                                    HorizontalAlignment="Center"/>
+
+                    </Grid>
 
 
                     <StackPanel Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">

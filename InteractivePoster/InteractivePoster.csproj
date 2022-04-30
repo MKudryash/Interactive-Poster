@@ -181,6 +181,8 @@
     <Resource Include="Resource\Images\Hyperbole.png" />
     <Resource Include="Resource\Images\Parabola.png" />
     <Resource Include="Resource\Images\Pen.png" />
+    <Resource Include="Resource\Images\ArrowDown.png" />
+    <Resource Include="Resource\Images\ArrowUp.png" />
     <Content Include="Resource\Sounds\CircleSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
