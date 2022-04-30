@@ -116,6 +116,9 @@ namespace InteractivePoster.Finction
 
         public static bool SinCosEllipse { get; set; } = false;
         public static bool SinCosHyperbole { get; set; } = false;
+
+
+        public bool DrawPen { get; set; } = false;
     }
     class GeometricPatterns
     {
@@ -153,7 +156,8 @@ namespace InteractivePoster.Finction
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
             return TB;
-        } //Текст c содержанием точек
+        } //Текст c содержанием точек     
 
+        
     }
 }

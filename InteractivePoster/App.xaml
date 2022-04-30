@@ -77,6 +77,28 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
+               TargetType="CheckBox"
+               x:Key="DrawPen">
+            <Setter Property="BorderThickness" Value="0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20">
+                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
+                                        Width="40" 
+                                        Height="40" 
+                                       HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style  x:Key="Arrow" TargetType="Image">
             <Setter Property="Width" Value="30"/>
             <Style.Triggers>

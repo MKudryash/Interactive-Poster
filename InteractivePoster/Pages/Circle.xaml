@@ -97,6 +97,7 @@
                 <Image  Source="/Resource/Images/Pen.png"/>
             </Button.Content>
         </Button>
+
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
@@ -255,9 +256,9 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="*"/>                        
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="1"
+                    <CheckBox Grid.Column="1"
                           x:Name="Element_Circle" Content="Видимость объектов"
                                 Style="{StaticResource CheckBoxContext}"
                                 Width="auto"/>

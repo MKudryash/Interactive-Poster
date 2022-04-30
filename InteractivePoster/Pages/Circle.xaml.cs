@@ -33,7 +33,7 @@ namespace InteractivePoster.Pages
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             MMC.MaxMinValueCoordinat = count / 2 - 1;//Максимальные и минамальные сдвиги по координатной плоскости
             SlPoint.Value = MMC.GradusValue;
-            double countY = Math.Round( Background.ActualHeight/ (Background.ActualWidth / count));
+            double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
             MMC.GetCanvas = Background;
             MMC.nameSound = "CircleSound";
 
@@ -47,11 +47,11 @@ namespace InteractivePoster.Pages
             }
             DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background);
             DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
-           lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
-           lineY.DrawArrow(0, countY/2, Orientation.Vertical, 3, Background);
+            lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
+            lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
-         c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
-           MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
+            c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background);
+            MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
             FormulaCircle.Formula = c.CanonicalEquation();
         }
 
@@ -65,7 +65,7 @@ namespace InteractivePoster.Pages
             LoadPage.MainFrame.GoBack();
         }
 
-    
+
 
         bool isMouse = false;
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
@@ -96,5 +96,7 @@ namespace InteractivePoster.Pages
         {
             UpdateBackPattern(null, null);
         }
+
+
     }
 }

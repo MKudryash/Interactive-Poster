@@ -38,7 +38,6 @@ namespace InteractivePoster.Finction
                 Stroke = Brushes.Black,
                 StrokeThickness = 3
             };
-
             cv.Children.Add(circle);//помещаем на канву
             //в нужную точку канвы
             circle.SetValue(Canvas.LeftProperty, convertX(x));
@@ -64,8 +63,9 @@ namespace InteractivePoster.Finction
             //надпись центра окружности
            TextBlock textBlock =  DrawText(x, y, text);
             cv.Children.Add(textBlock);
-        }   
-      
+           
+        }
+
 
         void DrawRadius(double x, double y, double r)
         {
