@@ -150,7 +150,8 @@
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
                             SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
                         PreviewMouseMove="Area_PreviewMouseMove" 
-                        IsSnapToTickEnabled="True" TickFrequency="2"/>
+                        IsSnapToTickEnabled="True" TickFrequency="2"
+                                            IsEnabled="{Binding CenterCircle}"/>
                                 </Grid>
                             </GroupBox>
 
