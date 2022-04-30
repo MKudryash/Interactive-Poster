@@ -124,15 +124,17 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
-                            <CheckBox  Grid.Column="1"
-                                       x:Name="Circle_Header" 
-                                       Content="Парабола"  
-                                       Style="{StaticResource CheckBoxContext}" 
-                                       Width="auto"/>
-                            <Image  Grid.Column="0"
+                            <CheckBox     Panel.ZIndex="1"
+                                        x:Name="Circle_Header" 
+                                        Content="Парабола"  
+                                        Style="{StaticResource CheckBoxContext}" 
+                                        Width="auto"
+                                          Grid.ColumnSpan="3"/>
+                            <Image Panel.ZIndex="0"  
                                     Style="{StaticResource Arrow}"
                                     HorizontalAlignment="Left"/>
                             <Button Command="{Binding SoundPlayCommand}" 
+                                    Panel.ZIndex="2"
                                     Style="{StaticResource SoundButton}" 
                                     Grid.Column="2"
                                     HorizontalAlignment="Center">
@@ -251,21 +253,24 @@
                         </StackPanel>
                     </GroupBox>
                 </Grid>
+                <StackPanel Margin="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="1"
+                    <CheckBox Grid.ColumnSpan="2"
+                              Panel.ZIndex="1"
                           x:Name="Element_Circle" Content="Видимость объектов"
                                 Style="{StaticResource CheckBoxContext}"
                                 Width="auto"/>
                     <Image  Grid.Column="0"
+                            Panel.ZIndex="0"
                                     Style="{StaticResource ArrowTwo}"
                                     HorizontalAlignment="Center"/>
 
                 </Grid>
-
+                </StackPanel>
 
                 <StackPanel Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">
                     <CheckBox IsChecked="{Binding ElementParabolaFocus }"
