@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InteractivePoster.Pages"
        xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" d:DesignWidth="800" 
-      Title="Elips" Background="#F1D3BC" 
+      Title="Elips" Background="{StaticResource ThreeColor}" 
        MinHeight="500"
       MinWidth="1000">
 
@@ -17,26 +17,26 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#F1D3BC"/>
+            <Setter Property="Foreground" Value="{StaticResource ThreeColor}"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
         <Style TargetType="{x:Type GroupBox}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="GroupBox">
-                        <Grid Background="#F1D3BC">
+                        <Grid Background="{StaticResource ThreeColor}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <Border  Grid.Row="0" BorderBrush="#262F34" Background="#262F34">
+                            <Border  Grid.Row="0" BorderBrush="#262F34" Background="{StaticResource OneColor}">
                                 <TextBlock Style="{StaticResource Heading}"  Height="50" TextAlignment="Center" >
                                     <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
                                 </TextBlock>
                             </Border>
 
-                            <Border  Grid.Row="1" BorderThickness="5 0 5 5" BorderBrush="#262F34" Background="#F1D3BC">
+                            <Border  Grid.Row="1" BorderThickness="5 0 5 5" BorderBrush="{StaticResource OneColor}" Background="{StaticResource ThreeColor}">
                                 <ContentPresenter Margin="4"/>
                             </Border>
                         </Grid>
@@ -117,7 +117,7 @@
                 </Button.Content>
             </Button>
             <ScrollViewer Panel.ZIndex="1" Grid.Column="1">
-                <StackPanel Background="#262F34"  Margin="20">
+                <StackPanel Background="{StaticResource OneColor}"  Margin="20">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -154,19 +154,21 @@
                                 </Button>
                             </Grid>
                             <StackPanel Style="{StaticResource HideTheopry}">
-                                <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, сумма расстояний от каждой из которых до двух данных точек этой плоскости, называемых
-                                 <Run Foreground="#F34A4A"> фокусами</Run>
+                                <TextBlock Foreground="{StaticResource ThreeColor}" 
+                                           x:Name="AboutCircle"
+                                           Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, сумма расстояний от каждой из которых до двух данных точек этой плоскости, называемых
+                                 <Run Foreground="{StaticResource TwoColor}"> фокусами</Run>
                                    , есть величина постоянная, большая, чем расстояние между фокусами./>
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                 <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="\frac{(x-x_0)^2}{a^2} + \frac{(y-y_0)^2}{b^2} = 1"
-                                                     Background="#F1D3BC"/>
+                                                     Background="{StaticResource ThreeColor}"/>
                                 <TextBlock Style="{StaticResource Heading}" Text="Расстояние между фокусами вычисляется по формуле: "/>
                                 <controls:FormulaControl HorizontalAlignment="Center" 
-                                Formula="c = \sqrt{a^2+b^2}, a>b" Background="#F1D3BC"/>
+                                Formula="c = \sqrt{a^2+b^2}, a>b" Background="{StaticResource ThreeColor}"/>
                                 <controls:FormulaControl HorizontalAlignment="Center" 
-                                Formula="c = \sqrt{b^2-a^2}, b>a" Background="#F1D3BC"/>
+                                Formula="c = \sqrt{b^2-a^2}, b>a" Background="{StaticResource ThreeColor}"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -175,7 +177,9 @@
                             <GroupBox.Header>
                                 <Border  CornerRadius="5" >
                                     <StackPanel Margin="10 0">
-                                        <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления" FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"
+                                        <TextBlock Style="{StaticResource Heading}" FontSize="28" 
+                                                   Text="Элементы управления" 
+                                                   FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"
                                         />
                                     </StackPanel>
                                 </Border>
@@ -366,7 +370,7 @@
                     MouseDown="MouseDown_Background"
                     MouseUp="MouseUp_Background"
                     MouseMove="MouseMove_Background"
-                    Background="#F1D3BC"/>
+                    Background="{StaticResource ThreeColor}"/>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
 

@@ -6,6 +6,10 @@
              StartupUri="MainWindow.xaml"
              >
     <Application.Resources>
+        <SolidColorBrush x:Key="OneColor" Color="#262F34" />
+        <SolidColorBrush x:Key="TwoColor" Color="#F34A4A" />
+        <SolidColorBrush x:Key="ThreeColor" Color="#F1D3BC" />
+
         <Style BasedOn ="{StaticResource {x:Type Button}}"
                TargetType="Button"
                x:Key="MenuButtonTheme">
@@ -45,7 +49,7 @@
                             <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
                               TextAlignment="Center" 
                                        FontSize="25"
-                                       Foreground="#262F34"                             />
+                                       Foreground="{StaticResource OneColor}"                             />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -69,7 +73,7 @@
                                          FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"      
                                        FontSize="26"
                                        FontWeight="Bold"
-                                       Foreground="#F34A4A" 
+                                       Foreground="{StaticResource TwoColor}" 
                                        Background="Transparent" 
                                        HorizontalAlignment="Center"/>
                         </Border>
@@ -153,7 +157,7 @@
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#262F34"/>
+            <Setter Property="Foreground" Value="{StaticResource OneColor}"/>
             <Setter Property="Background" Value="#F1D3BC"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -166,15 +170,15 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#F1D3BC"/>
+                    <Setter Property="Background" Value="{StaticResource ThreeColor}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="controls:FormulaControl" x:Key="FormulaStyle">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="#262F34"/>
-            <Setter Property="Background" Value="#F1D3BC"/>
+            <Setter Property="Foreground" Value="{StaticResource OneColor}"/>
+            <Setter Property="Background" Value="{StaticResource ThreeColor}"/>
         </Style>
         <Style x:Key="SoundButton"  TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent" />
@@ -205,7 +209,7 @@
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="#262F34"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OneColor}"/>
             <Setter Property="Width" Value="45"/>
             <Setter Property="Height" Value="30"/>
         </Style>
@@ -237,7 +241,7 @@
           UseLayoutRounding="True">
                 <Path x:Name="grip"
               VerticalAlignment="Center"
-                      Fill="#262F34"
+                      Fill="{StaticResource OneColor}"
               SnapsToDevicePixels="True"
               Stretch="Fill"
               UseLayoutRounding="True">
@@ -268,7 +272,7 @@
                     Height="5.0"
                     Margin="5,0"
                     VerticalAlignment="center"
-                    Background="#F34A4A" />
+                    Background="{StaticResource TwoColor}" />
                     <Border x:Name="TrackDarkener"
                     Grid.Row="1"
                     Width="{Binding ActualWidth, ElementName=RightRepeatButton}"
@@ -276,7 +280,7 @@
                     Margin="5,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Background="#615049" />
+                    Background="{StaticResource OneColor}" />
                     <Track x:Name="PART_Track"
                    Grid.Row="1">
                         <Track.DecreaseRepeatButton>
@@ -339,7 +343,7 @@
                               TextAlignment="Center" 
                                        FontSize="18"
                                        VerticalAlignment="Center"
-                                       Foreground="#F1D3BC"    Width="300"/>
+                                       Foreground="{StaticResource ThreeColor}"    Width="300"/>
                         </Border>
 
                     </ControlTemplate>
@@ -371,7 +375,7 @@
                               TextAlignment="Center" 
                                        FontSize="18"
                                        VerticalAlignment="Center"
-                                       Foreground="#F1D3BC"    Width="400"/>
+                                       Foreground="{StaticResource ThreeColor}"    Width="400"/>
                         </Border>
                        
                     </ControlTemplate>
@@ -403,7 +407,7 @@
                               TextAlignment="Center" 
                                        FontSize="18"
                                        VerticalAlignment="Center"
-                                       Foreground="#262F34"    Width="200"/>
+                                       Foreground="{StaticResource OneColor}"    Width="200"/>
                         </Border>
 
                     </ControlTemplate>
@@ -435,7 +439,7 @@
                               TextAlignment="Center" 
                                        FontSize="18"
                                        VerticalAlignment="Center"
-                                       Foreground="#262F34"    Width="150"/>
+                                       Foreground="{StaticResource OneColor}"    Width="150"/>
                         </Border>
 
                     </ControlTemplate>
@@ -447,9 +451,9 @@
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#F1D3BC"/>
-            <Setter Property="Background" Value="#262F34"/>
-            <Setter Property="BorderBrush" Value="#F1D3BC"/>
+            <Setter Property="Foreground" Value="{StaticResource ThreeColor}"/>
+            <Setter Property="Background" Value="{StaticResource OneColor}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ThreeColor}"/>
             <Setter Property="Width" Value="250"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="0,10,0,0"/>
@@ -466,7 +470,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#262F34"/>
+                    <Setter Property="Background" Value="{StaticResource OneColor}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -491,7 +495,7 @@
                             <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
                               TextAlignment="Center" 
                                        FontSize="25"
-                                       Foreground="#262F34" Width="150"                            />
+                                       Foreground="{StaticResource OneColor}" Width="150"                            />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
