@@ -21,7 +21,7 @@ namespace InteractivePoster.Finction
         TextBlock textBlock;
         Line line;
         double x, y, a, b;
-        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double gradusTransform)
+        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double gradusTransform,double pointRight, double pointLeft)
         {
             this.x = x;
             this.y = y;
@@ -42,10 +42,66 @@ namespace InteractivePoster.Finction
             DrawRectangle(x, y, cv, gradusTransform);
             FocusHyperbole();
             DrawAsymptotes(gradusTransform);
-            double mX = (a + 1) * cosGradusHyperbole + Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * sinGradusHyperbole + x;
-            double mY = (a + 1) * sinGradusHyperbole * -1 + Math.Sqrt(Math.Pow(b, 2) * (((Math.Pow(a + 1, 2)) / (a * a)) - 1)) * cosGradusHyperbole + y;
 
-            textBlock = DrawText(mX, mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
+            MovePointRight(pointRight);
+            MovePointLeft(pointLeft);
+
+            CalculationPoinHyperbole();
+
+        }
+
+        void MovePointLeft(double y)
+        {
+            double mX = 0, mY = 0,xx,yy;
+            if (y <= 0)
+            {
+                xx = (Math.Abs(y) + a) * -1;
+                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(xx), 2) / (a * a)), 2) - 1));
+                mX = xx*cosGradusHyperbole+yy*sinGradusHyperbole + this.x;               
+                mY = -xx*sinGradusHyperbole+yy*cosGradusHyperbole+ this.y;
+            }
+            else
+            {
+                xx = (y + a) * -1 + this.x;
+                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(xx, 2) / (a * a)), 2) - 1)) * -1 + this.y;
+                mX = xx * cosGradusHyperbole + yy * sinGradusHyperbole + this.x;
+                mY = -xx * sinGradusHyperbole + yy * cosGradusHyperbole + this.y;
+            }
+
+            textBlock = DrawText(mX, mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");            
+            PointFocus = new Ellipse()//задаем прочие параметры
+            {
+                Width = (maxX / countX) * 0.2,
+                Height = (maxX / countX) * 0.2,
+                Fill = Brushes.Black,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1
+            };
+           
+            cv.Children.Add(PointFocus);//помещаем на канву
+            cv.Children.Add(textBlock);
+            PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
+            PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
+        }
+        void MovePointRight(double y)
+        {
+            double mX=0, mY=0,xx,yy;
+            if (y <= 0)
+            {
+                xx = Math.Abs(y) + a + this.x;
+                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(xx), 2) / (a * a)), 2) - 1)) + this.y;
+                mX = xx * cosGradusHyperbole + yy * sinGradusHyperbole + this.x;
+                mY = -xx * sinGradusHyperbole + yy * cosGradusHyperbole + this.y;
+            }
+            else
+            {
+                xx = y + a + this.x;
+                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(xx, 2) / (a * a)), 2) - 1)) * -1 + this.y;
+                mX = xx * cosGradusHyperbole + yy * sinGradusHyperbole + this.x;
+                mY = -xx * sinGradusHyperbole + yy * cosGradusHyperbole + this.y;
+            }            
+
+            textBlock = DrawText(mX, mY, "N( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
             cv.Children.Add(textBlock);
             PointFocus = new Ellipse()//задаем прочие параметры
             {
@@ -55,15 +111,10 @@ namespace InteractivePoster.Finction
                 Stroke = Brushes.Black,
                 StrokeThickness = 1
             };
-
             cv.Children.Add(PointFocus);//помещаем на канву
                                         //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
-
-
-            CalculationPoinHyperbole();
-
         }
         void DrawAsymptotes(double gradusTransform)
         {

@@ -271,8 +271,35 @@
                         IsSnapToTickEnabled="True" TickFrequency="1"/>
                                     </Grid>
                                 </GroupBox>
+                                <GroupBox Header="Перемещение точки по гиперболе левая ветвь">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                        Grid.Column="1" x:Name="slCoordPointL" SmallChange="1" LargeChange="1" Value="-8" 
+                        Minimum="{Binding minPoint}" Maximum="{Binding maxPoint}" 
+                        PreviewMouseMove="Area_PreviewMouseMove"
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Перемещение точки по гиперболе правая ветвь">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                        Grid.Column="1" x:Name="slCoordPointR" SmallChange="1" LargeChange="1" Value="-8" 
+                        Minimum="{Binding minPoint}" Maximum="{Binding maxPoint}" 
+                        PreviewMouseMove="Area_PreviewMouseMove"
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
+                                    </Grid>
+                                </GroupBox>
                             </StackPanel>
                         </GroupBox>
+                        
                     </Grid>
 
                     <StackPanel Margin="10">

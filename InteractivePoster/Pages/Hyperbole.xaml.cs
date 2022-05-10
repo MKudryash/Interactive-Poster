@@ -34,7 +34,14 @@ namespace InteractivePoster.Pages
         {
             count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
             double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
-
+            if (MaxMinCoordinat.equationforParabola)
+            {
+                MMC.MaxMinPoint = countY / 2;
+            }
+            else
+            {
+                MMC.MaxMinPoint = count / 2;
+            }
             MMC.GetCanvas = Background;
             MMC.nameSound = "HyperboleSound";
             Background.Children.Clear();
@@ -49,7 +56,7 @@ namespace InteractivePoster.Pages
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
 
-            DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background,SlTransform.Value);
+            DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, slRectangleA.Value, slRectangleB.Value, Background,SlTransform.Value,slCoordPointR.Value,slCoordPointL.Value);
             FormulaHyperbole.Formula = drawHyperbole.CanonicalEquation();
         }
 
