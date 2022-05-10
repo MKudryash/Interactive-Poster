@@ -195,7 +195,7 @@
                                     <TextBox Style="{StaticResource TextBoxForSlider}"
                                 Grid.Column="0"  Text="{Binding ElementName=SlParametrParabola,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:#0.0}'}"/>
                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="SlParametrParabola" 
-                            SmallChange="2" LargeChange="2" Value="2" Minimum="-10" Maximum="10"
+                            SmallChange="2" LargeChange="2" Value="0.5" Minimum="-10" Maximum="10"
                         PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
                                 </Grid>
@@ -259,8 +259,8 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                      <Slider Style="{StaticResource MediaPlayerSliderStyle}"
-                        Grid.Column="1" x:Name="slCoordPoint" SmallChange="1" LargeChange="1" Value="-10" 
-                        Minimum="-10" Maximum="10" 
+                        Grid.Column="1" x:Name="slCoordPoint" SmallChange="1" LargeChange="1" Value="-8" 
+                        Minimum="{Binding minPoint}" Maximum="{Binding maxPoint}" 
                         PreviewMouseMove="Area_PreviewMouseMove"
                         IsSnapToTickEnabled="True" TickFrequency=".1"/>
                                 </Grid>

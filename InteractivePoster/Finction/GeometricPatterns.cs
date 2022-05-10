@@ -17,6 +17,20 @@ namespace InteractivePoster.Finction
         public event PropertyChangedEventHandler PropertyChanged;
         public double MaxValue { get; set; } = 9;
         public double MinValue { get; set; } = -9;
+
+        public double MaxMinPoint
+        {
+            set
+            {
+                maxPoint = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("maxPoint"));
+                minPoint = value * (-1);
+                PropertyChanged(this, new PropertyChangedEventArgs("minPoint"));
+            }
+        }
+        public double maxPoint { get; set; } = 8;
+        public double minPoint { get; set; } = -8;
+
         public double maxRadius { get; set; } = 10;
         public static int gradusValue { get; set; } = 45;
         public string FormalaElips { get; set; }
@@ -97,21 +111,22 @@ namespace InteractivePoster.Finction
         public static bool elementElipsPoint { get; set; } = true;
 
         public static bool ElementElipseRadius { get; set; } = true;
-        public bool ElementElipsePoint 
-        { get=> elementElipsPoint;
+        public bool ElementElipsePoint
+        {
+            get => elementElipsPoint;
             set
             {
                 elementElipsPoint = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("ElementElipsePoint"));
             }
-            }
+        }
         public static bool ElementElipseFocus { get; set; } = true;
 
         public static bool ElementParabolaD { get; set; } = true;
         public static bool ElementParabolaFocus { get; set; } = true;
 
         public static bool ElementHyperboleRectangle { get; set; } = true;
-        public static bool ElementHyperboleFocus { get; set; } = true; 
+        public static bool ElementHyperboleFocus { get; set; } = true;
         public static bool ElementHyperboleAssim { get; set; } = true;
 
         public static bool SinCosEllipse { get; set; } = false;
@@ -142,7 +157,7 @@ namespace InteractivePoster.Finction
         }
         public double convertYCoord(double coord)
         {
-            return (coord - maxY / 2) * countY / maxY*-1;
+            return (coord - maxY / 2) * countY / maxY * -1;
         }
         public TextBlock DrawText(double x, double y, string text)
         {
@@ -151,13 +166,13 @@ namespace InteractivePoster.Finction
                 Text = text,
                 TextWrapping = TextWrapping.Wrap,
                 Width = double.NaN,
-                FontSize =countX
-            };            
+                FontSize = countX
+            };
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));
             return TB;
         } //Текст c содержанием точек     
 
-        
+
     }
 }

@@ -25,6 +25,9 @@ namespace InteractivePoster.Finction
             countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
             maxX = cv.ActualWidth; //получаем ширину канвы
             maxY = cv.ActualHeight; //получаем высоту канвы     
+
+
+
             FocusParabola(cv);
             DrawDirectrix();
             MovePoint(point);
@@ -36,18 +39,19 @@ namespace InteractivePoster.Finction
             QuadraticBezierSegment quadraticBezierSegment = new QuadraticBezierSegment();
             if (MaxMinCoordinat.equationforParabola) //уравнение вида 2py = x^2
             {
-                pathFigure.StartPoint = new Point(convertCoordX(x + maxCorrdinatX / -1), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p + y));
-                quadraticBezierSegment.Point1 = new Point(convertCoordX(x), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p * (-1) + y));
-                quadraticBezierSegment.Point2 = new Point(convertCoordX(x + maxCorrdinatX), convertCoordY(Math.Pow(maxCorrdinatX, 2) / 2 * p + y));
+              
+                pathFigure.StartPoint = new Point(convertCoordX(x + maxCorrdinatX / -1), convertCoordY(Math.Pow(maxCorrdinatX, 2) / (2 * p) + y));
+                quadraticBezierSegment.Point1 = new Point(convertCoordX(x), convertCoordY(Math.Pow(maxCorrdinatX, 2) / (2 * p) * (-1) + y));
+                quadraticBezierSegment.Point2 = new Point(convertCoordX(x + maxCorrdinatX), convertCoordY(Math.Pow(maxCorrdinatX, 2) / (2 * p) + y));
                 pathFigure.Segments.Add(quadraticBezierSegment);
                 pathGeometry.Figures.Add(pathFigure);
                 return pathGeometry;
             }
             else //уравнение вида 2px= y^2
             {
-                pathFigure.StartPoint = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p + x), convertCoordY(y + maxCorrdinatX / -1));
-                quadraticBezierSegment.Point1 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p * (-1) + x), convertCoordY(y));
-                quadraticBezierSegment.Point2 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / 2 * p + x), convertCoordY(y + maxCorrdinatX));
+                pathFigure.StartPoint = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / (2 * p) + x), convertCoordY(y + maxCorrdinatX / -1));
+                quadraticBezierSegment.Point1 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / (2 * p) * (-1) + x), convertCoordY(y));
+                quadraticBezierSegment.Point2 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / (2 * p) + x), convertCoordY(y + maxCorrdinatX));
                 pathFigure.Segments.Add(quadraticBezierSegment);
                 pathGeometry.Figures.Add(pathFigure);
                 return pathGeometry;
@@ -59,30 +63,65 @@ namespace InteractivePoster.Finction
         void MovePoint(double y)
         {
             double mX, mY;
+
             if (!MaxMinCoordinat.equationforParabola)
             {
-                if (y <= 0)
+                if (p>0)
                 {
-                    mX = x + Math.Abs(y);
-                    mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y)), 2);
+                    if (y <= 0)
+                    {
+                        mX = x + Math.Abs(y);
+                        mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2);
+                    }
+                    else
+                    {
+                        mX = x + y;
+                        mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
+                    }
                 }
                 else
                 {
-                    mX = x + Math.Abs(y);
-                    mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y)), 2)) / -1 ;
+
+                    if (y <= 0)
+                    {
+                        mX = x + y;
+                        mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2);
+                    }
+                    else
+                    {
+                        mX = x + y*-1;
+                        mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
+                    }
                 }
+               
             }
             else
             {
-                if (y >= 0)
+                if (p>0)
                 {
-                    mX = x + Math.Round(Math.Sqrt(y), 2);
-                    mY = this.y + y;
+                    if (y >= 0)
+                    {
+                        mX = x + Math.Round(Math.Sqrt(y * 2 * p), 2);
+                        mY = this.y + y;
+                    }
+                    else
+                    {
+                        mX = (x + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
+                        mY = this.y + Math.Abs(y);
+                    }
                 }
                 else
                 {
-                    mX = (x + Math.Round(Math.Sqrt(Math.Abs(y)), 2)) / -1;
-                    mY = this.y + Math.Abs(y);
+                    if (y >= 0)
+                    {
+                        mX = x + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2);
+                        mY = this.y + y/-1;
+                    }
+                    else
+                    {
+                        mX = (x + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
+                        mY = this.y + y;
+                    }
                 }
             }
            

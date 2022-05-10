@@ -36,6 +36,16 @@ namespace InteractivePoster.Pages
             double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
             MMC.GetCanvas = Background;
             MMC.nameSound = "ParabolaSound";
+            if (MaxMinCoordinat.equationforParabola)
+            {
+                MMC.MaxMinPoint = countY / 2;
+            }
+            else
+            {
+                MMC.MaxMinPoint = count / 2;
+            }
+          
+
             Background.Children.Clear();
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
