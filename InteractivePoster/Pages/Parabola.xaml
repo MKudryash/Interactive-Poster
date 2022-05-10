@@ -252,7 +252,19 @@
                                 </Grid>
                             </GroupBox>
 
-
+                            <GroupBox Header="Перемещение точки по параболе">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                     <Slider Style="{StaticResource MediaPlayerSliderStyle}"
+                        Grid.Column="1" x:Name="slCoordPoint" SmallChange="1" LargeChange="1" Value="-10" 
+                        Minimum="-10" Maximum="10" 
+                        PreviewMouseMove="Area_PreviewMouseMove"
+                        IsSnapToTickEnabled="True" TickFrequency=".1"/>
+                                </Grid>
+                            </GroupBox>
                         </StackPanel>
                     </GroupBox>
                 </Grid>

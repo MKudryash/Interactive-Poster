@@ -48,7 +48,7 @@ namespace InteractivePoster.Pages
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
 
-            DrawParabola drawParabola = new DrawParabola(slCoordX.Value, slCoordY.Value, Background,SlParametrParabola.Value);
+            DrawParabola drawParabola = new DrawParabola(slCoordX.Value, slCoordY.Value, Background,SlParametrParabola.Value, slCoordPoint.Value);
             Path path = new Path();
             path.Data = drawParabola.Parabola();
             path.Stroke = Brushes.Black;

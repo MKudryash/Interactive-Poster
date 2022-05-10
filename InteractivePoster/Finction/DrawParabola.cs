@@ -15,7 +15,7 @@ namespace InteractivePoster.Finction
     {
 
         double x, p, y, maxCorrdinatX = -15;
-        public DrawParabola(double x, double y, Canvas cv, double p)
+        public DrawParabola(double x, double y, Canvas cv, double p,double point)
         {
             this.p = p;
             this.x = x;
@@ -27,6 +27,7 @@ namespace InteractivePoster.Finction
             maxY = cv.ActualHeight; //получаем высоту канвы     
             FocusParabola(cv);
             DrawDirectrix();
+            MovePoint(point);
         }
         public PathGeometry Parabola()
         {
@@ -54,6 +55,53 @@ namespace InteractivePoster.Finction
 
         }
         Line line;
+        TextBlock textBlock;
+        void MovePoint(double y)
+        {
+            double mX, mY;
+            if (!MaxMinCoordinat.equationforParabola)
+            {
+                if (y <= 0)
+                {
+                    mX = x + Math.Abs(y);
+                    mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y)), 2);
+                }
+                else
+                {
+                    mX = x + Math.Abs(y);
+                    mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y)), 2)) / -1 ;
+                }
+            }
+            else
+            {
+                if (y >= 0)
+                {
+                    mX = x + Math.Round(Math.Sqrt(y), 2);
+                    mY = this.y + y;
+                }
+                else
+                {
+                    mX = (x + Math.Round(Math.Sqrt(Math.Abs(y)), 2)) / -1;
+                    mY = this.y + Math.Abs(y);
+                }
+            }
+           
+            textBlock = DrawText(mX, mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
+            cv.Children.Add(textBlock);
+            PointFocus = new Ellipse()//задаем прочие параметры
+            {
+                Width = (maxX / countX) * 0.2,
+                Height = (maxX / countX) * 0.2,
+                Fill = Brushes.Black,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1
+            };
+
+            cv.Children.Add(PointFocus);//помещаем на канву
+                                        //в нужную точку канвы
+            PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
+            PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
+        }
         void DrawDirectrix()
         {
             if (!MaxMinCoordinat.equationforParabola)
