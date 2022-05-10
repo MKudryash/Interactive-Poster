@@ -62,68 +62,75 @@ namespace InteractivePoster.Finction
         TextBlock textBlock;
         void MovePoint(double y)
         {
-            double mX, mY;
+            double mX=0, mY=0;
 
-            if (!MaxMinCoordinat.equationforParabola)
+            switch (MaxMinCoordinat.equationforParabola)
             {
-                if (p>0)
-                {
-                    if (y <= 0)
+                case true:
                     {
-                        mX = x + Math.Abs(y);
-                        mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2);
+                        if (p > 0)
+                        {
+                            if (y >= 0)
+                            {
+                                mX = x + Math.Round(Math.Sqrt(y * 2 * p), 2);
+                                mY = this.y + y;
+                            }
+                            else
+                            {
+                                mX = (x + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
+                                mY = this.y + Math.Abs(y);
+                            }
+                        }
+                        else
+                        {
+                            if (y >= 0)
+                            {
+                                mX = x + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2);
+                                mY = this.y + y / -1;
+                            }
+                            else
+                            {
+                                mX = (x + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
+                                mY = this.y + y;
+                            }
+                        }
                     }
-                    else
+                    break;
+                case false:
                     {
-                        mX = x + y;
-                        mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
-                    }
-                }
-                else
-                {
+                        if (p > 0)
+                        {
+                            if (y <= 0)
+                            {
+                                mX = x + Math.Abs(y);
+                                mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2);
+                            }
+                            else
+                            {
+                                mX = x + y;
+                                mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
+                            }
+                        }
+                        else
+                        {
 
-                    if (y <= 0)
-                    {
-                        mX = x + y;
-                        mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2);
+                            if (y <= 0)
+                            {
+                                mX = x + y;
+                                mY = this.y + +Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2);
+                            }
+                            else
+                            {
+                                mX = x + y * -1;
+                                mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
+                            }
+                        }
                     }
-                    else
-                    {
-                        mX = x + y*-1;
-                        mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
-                    }
-                }
-               
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                if (p>0)
-                {
-                    if (y >= 0)
-                    {
-                        mX = x + Math.Round(Math.Sqrt(y * 2 * p), 2);
-                        mY = this.y + y;
-                    }
-                    else
-                    {
-                        mX = (x + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
-                        mY = this.y + Math.Abs(y);
-                    }
-                }
-                else
-                {
-                    if (y >= 0)
-                    {
-                        mX = x + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2);
-                        mY = this.y + y/-1;
-                    }
-                    else
-                    {
-                        mX = (x + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
-                        mY = this.y + y;
-                    }
-                }
-            }
+           
            
             textBlock = DrawText(mX, mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
             cv.Children.Add(textBlock);
