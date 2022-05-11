@@ -62,8 +62,8 @@ namespace InteractivePoster.Finction
             }
             else
             {
-                xx = (y + a) * -1 + this.x;
-                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(xx, 2) / (a * a)), 2) - 1)) * -1 + this.y;
+                xx = (y + a) * -1;
+                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(xx, 2) / (a * a)), 2) - 1)) * -1;
                 mX = xx * cosGradusHyperbole + yy * sinGradusHyperbole + this.x;
                 mY = -xx * sinGradusHyperbole + yy * cosGradusHyperbole + this.y;
             }
@@ -88,15 +88,15 @@ namespace InteractivePoster.Finction
             double mX=0, mY=0,xx,yy;
             if (y <= 0)
             {
-                xx = Math.Abs(y) + a + this.x;
-                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(xx), 2) / (a * a)), 2) - 1)) + this.y;
+                xx = Math.Abs(y) + a;
+                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(Math.Abs(xx), 2) / (a * a)), 2) - 1)) ;
                 mX = xx * cosGradusHyperbole + yy * sinGradusHyperbole + this.x;
                 mY = -xx * sinGradusHyperbole + yy * cosGradusHyperbole + this.y;
             }
             else
             {
-                xx = y + a + this.x;
-                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(xx, 2) / (a * a)), 2) - 1)) * -1 + this.y;
+                xx = y + a ;
+                yy = Math.Sqrt(Math.Pow(b, 2) * (Math.Round((Math.Pow(xx, 2) / (a * a)), 2) - 1)) * -1 ;
                 mX = xx * cosGradusHyperbole + yy * sinGradusHyperbole + this.x;
                 mY = -xx * sinGradusHyperbole + yy * cosGradusHyperbole + this.y;
             }            
