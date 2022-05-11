@@ -77,7 +77,7 @@ namespace InteractivePoster.Finction
                             }
                             else
                             {
-                                mX = (x + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
+                                mX = x + (Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
                                 mY = this.y + Math.Abs(y);
                             }
                         }
@@ -90,7 +90,7 @@ namespace InteractivePoster.Finction
                             }
                             else
                             {
-                                mX = (x + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
+                                mX = x + (Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
                                 mY = this.y + y;
                             }
                         }
@@ -108,7 +108,7 @@ namespace InteractivePoster.Finction
                             else
                             {
                                 mX = x + y;
-                                mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
+                                mY = this.y + (Math.Round(Math.Sqrt(Math.Abs(y) * 2 * p), 2)) / -1;
                             }
                         }
                         else
@@ -122,7 +122,7 @@ namespace InteractivePoster.Finction
                             else
                             {
                                 mX = x + y * -1;
-                                mY = (this.y + Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
+                                mY = this.y + (Math.Round(Math.Sqrt(Math.Abs(y * 2 * p)), 2)) / -1;
                             }
                         }
                     }
