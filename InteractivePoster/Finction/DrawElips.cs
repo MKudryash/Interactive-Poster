@@ -26,19 +26,17 @@ namespace InteractivePoster.Finction
 
         double radiusW;
         double radiusH;
-        double x;
-        double y;
 
         double sinGradusElpis;
         double cosGradusElpis;
         double gradusValueElips, rH, rW;
 
-        public DrawElips(double x, double y, double rW, double rH, Canvas cv, double gradusValueElips)
+        public DrawElips(double x, double y, double rW, double rH, Canvas cv, double gradusValueElips,Canvas canvas)
         {
-            countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
-            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
-            maxX = cv.ActualWidth; //получаем ширину канвы
-            maxY = cv.ActualHeight; //получаем высоту канвы     
+            countX = Convert.ToDouble(canvas.Tag);//получаем масштабы области
+            countY = Math.Round(canvas.ActualHeight / (canvas.ActualWidth / countX));
+            maxX = canvas.ActualWidth; //получаем ширину канвы
+            maxY = canvas.ActualHeight; //получаем высоту канвы     
             radiusW = rW * (maxX / countX);//преобразуем радиус из декартовой системы
             radiusH = rH * (maxY / countY);//преобразуем радиус из декартовой системы
             this.cv = cv;

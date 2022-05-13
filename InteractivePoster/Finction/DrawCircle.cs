@@ -11,6 +11,7 @@ namespace InteractivePoster.Finction
     {
         Ellipse circle, point;//непосредственно сама окружность
         Line line;
+
         /// <summary>
         /// Конструктор класса
         /// </summary>
@@ -20,12 +21,12 @@ namespace InteractivePoster.Finction
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
 
         double x, y,r;
-        public DrawCircle(double x, double y, double r, Canvas cv)
+        public DrawCircle(double x, double y, double r, Canvas cv,Canvas canvas)
         {
-            countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
-            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
-            maxX = cv.ActualWidth; //получаем ширину канвы
-            maxY = cv.ActualHeight; //получаем высоту канвы     
+            countX = Convert.ToDouble(canvas.Tag);//получаем масштабы области
+            countY = Math.Round(canvas.ActualHeight / (canvas.ActualWidth / countX));
+            maxX = canvas.ActualWidth; //получаем ширину канвы
+            maxY = canvas.ActualHeight; //получаем высоту канвы     
             radius = r * (maxY / countY);//преобразуем радиус из декартовой системы
             this.cv = cv;
             this.x = x;

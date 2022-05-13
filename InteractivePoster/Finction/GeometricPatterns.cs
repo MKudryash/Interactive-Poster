@@ -137,11 +137,8 @@ namespace InteractivePoster.Finction
     }
     class GeometricPatterns
     {
-        public double maxX;
-        public double maxY;
-        public double countX;
-        public double countY;
-        public double radius;
+        public double maxX,x,y, maxY, countX, countY, radius;
+
         public Canvas cv;
         public double convertCoordX(double coord)
         {

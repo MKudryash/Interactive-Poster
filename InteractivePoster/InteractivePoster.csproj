@@ -85,12 +85,15 @@
     </Compile>
     <Compile Include="Finction\BuildGeometric\BuildCircleHands.cs" />
     <Compile Include="Finction\BuildGeometric\BuildElipsHands.cs" />
+    <Compile Include="Finction\Commands.cs" />
     <Compile Include="Finction\DrawCircle.cs" />
     <Compile Include="Finction\DrawElips.cs" />
     <Compile Include="Finction\DrawHyperbole.cs" />
     <Compile Include="Finction\DrawParabola.cs" />
     <Compile Include="Finction\DrawСoordinateLine.cs" />
     <Compile Include="Finction\GeometricPatterns.cs" />
+    <Compile Include="Finction\Paint.cs" />
+    <Compile Include="Finction\UndoRedo.cs" />
     <Compile Include="LoadPage.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -184,6 +187,9 @@
     <Resource Include="Resource\Images\ArrowDown.png" />
     <Resource Include="Resource\Images\ArrowUp.png" />
     <Resource Include="Resource\Images\PenTwo.png" />
+    <Resource Include="Resource\Images\Record.png" />
+    <Resource Include="Resource\Images\Forward.png" />
+    <Resource Include="Resource\Images\Return.png" />
     <Content Include="Resource\Sounds\CircleSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

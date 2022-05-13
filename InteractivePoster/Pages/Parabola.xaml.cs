@@ -50,11 +50,11 @@ namespace InteractivePoster.Pages
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
             {
-                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background);
-                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background);
+                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background,Background);
+                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background,Background);
             }
-            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background);
-            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background);
+            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background,Background);
+            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background,Background);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
 

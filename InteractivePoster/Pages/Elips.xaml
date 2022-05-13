@@ -106,16 +106,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="850"/>
             </Grid.ColumnDefinitions>
-            <Button Panel.ZIndex="1"
-            Click="BuildElipsOpen" 
-            Style="{StaticResource SoundButton}" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-            Grid.Column="0" >
-                <Button.Content>
-                    <Image  Source="/Resource/Images/Pen.png"/>
-                </Button.Content>
-            </Button>
+
             <ScrollViewer Panel.ZIndex="1" Grid.Column="1">
                 <StackPanel Background="{StaticResource OneColor}"  Margin="20">
                     <Grid>
@@ -362,15 +353,64 @@
                 </StackPanel>
                 
             </ScrollViewer>
-            <Canvas Panel.ZIndex="0"
-                    x:Name="Background"
-                    Grid.Column="0" 
-                    SizeChanged="UpdateBackPattern" 
-                    Tag="{Binding ElementName=Area,Path=Value}"
-                    MouseDown="MouseDown_Background"
-                    MouseUp="MouseUp_Background"
-                    MouseMove="MouseMove_Background"
-                    Background="{StaticResource ThreeColor}"/>
+            <Canvas
+            Panel.ZIndex="0"
+            x:Name="PaintCanvas"
+            Grid.Column="0"
+            SizeChanged="UpdateBackPattern"            
+            MouseDown="MouseDown_Background"
+            MouseUp="MouseUp_Background"
+            MouseMove="MouseMove_Background"
+            Tag="{Binding ElementName=Area,Path=Value}"
+            Background="{StaticResource ThreeColor}">
+                <Canvas            
+            x:Name="Background"
+            />
+            </Canvas>
+            <Button Panel.ZIndex="1"
+            Click="BuildElipsOpen" 
+            Style="{StaticResource SoundButton}" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+            Grid.Column="0" >
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Pen.png"/>
+                </Button.Content>
+            </Button>
+            <CheckBox Content="/Resource/Images/Record.png"
+                  VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                  x:Name="PaintDraw"
+                 Grid.Column="0" 
+                  Panel.ZIndex="1"
+                  Margin="0,30,0,0"
+                  Style="{StaticResource DrawPen}"
+                 />
+            <Button Panel.ZIndex="1"
+            Click="Undo" 
+                x:Name="undoBtn"
+            Style="{StaticResource UndoRedoButton}" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="0,60,0,0"
+            Grid.Column="0" >
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Return.png"/>
+                </Button.Content>
+            </Button>
+            <Button Panel.ZIndex="1"
+            Click="Redo" 
+                x:Name="redoBtn"
+            Style="{StaticResource UndoRedoButton}" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="0,90,0,0"
+            Grid.Column="0">
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Forward.png"/>
+                </Button.Content>
+            </Button>
+
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
 

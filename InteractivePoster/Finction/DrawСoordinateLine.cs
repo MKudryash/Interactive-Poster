@@ -18,13 +18,14 @@ namespace InteractivePoster.Finction
         /// <param name="orientation">непосредственно сама ориентация</param>
         /// <param name="th">толщина границы</param>
         /// <param name="cv">объект канвы, на котором будет нарисована линия</param>
-        public DrawСoordinateLine(double coord, Orientation orientation, double th, Canvas cv)
+        /// <param name="canvas">объект канвы, с которого беруться параметры</param>
+        public DrawСoordinateLine(double coord, Orientation orientation, double th, Canvas cv,Canvas canvas)
         {
             this.orientation = orientation;
-            countX = Convert.ToDouble(cv.Tag);
-            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
-            maxX = cv.ActualWidth;
-            maxY = cv.ActualHeight;
+            countX = Convert.ToDouble(canvas.Tag);
+            countY = Math.Round(canvas.ActualHeight / (canvas.ActualWidth / countX));
+            maxX = canvas.ActualWidth;
+            maxY = canvas.ActualHeight;
             line = new Line()
             {
                 Stroke = Brushes.Black,
