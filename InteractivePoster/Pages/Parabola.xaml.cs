@@ -23,18 +23,21 @@ namespace InteractivePoster.Pages
     {
         double count;
         MaxMinCoordinat MMC = new MaxMinCoordinat();
+        Paint paint;
+        MouseButtonState previousMouseEvent = new MouseButtonState();
         public Parabola()
         {
             InitializeComponent();
             DataContext = MMC;
             CommandBindings.Add(MMC.SoundPlayBinding);
+            paint = new Paint(PaintCanvas);
         }
 
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
-            count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы       
-            double countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
-            MMC.GetCanvas = Background;
+            count = Convert.ToDouble(PaintCanvas.Tag);//вынимаем информацию о количестве клеток из самой канвы       
+            double countY = Math.Round(PaintCanvas.ActualHeight / (PaintCanvas.ActualWidth / count));
+            MMC.GetCanvas = PaintCanvas;
             MMC.nameSound = "ParabolaSound";
             if (MaxMinCoordinat.equationforParabola)
             {
@@ -50,15 +53,15 @@ namespace InteractivePoster.Pages
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
             {
-                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background,Background);
-                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background,Background);
+                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background, PaintCanvas);
+                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background, PaintCanvas);
             }
-            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background,Background);
-            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background,Background);
+            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background, PaintCanvas);
+            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background, PaintCanvas);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
 
-            DrawParabola drawParabola = new DrawParabola(slCoordX.Value, slCoordY.Value, Background,SlParametrParabola.Value, slCoordPoint.Value);
+            DrawParabola drawParabola = new DrawParabola(slCoordX.Value, slCoordY.Value, Background,SlParametrParabola.Value, slCoordPoint.Value,PaintCanvas);
             Path path = new Path();
             path.Data = drawParabola.Parabola();
             path.Stroke = Brushes.Black;
@@ -109,6 +112,50 @@ namespace InteractivePoster.Pages
 
         private void Update(object sender, RoutedEventArgs e)
         {
+            UpdateBackPattern(null, null);
+        }
+
+        private void Redo(object sender, RoutedEventArgs e)
+        {
+            paint.Redo();
+        }
+
+        private void Undo(object sender, RoutedEventArgs e)
+        {
+            paint.Undo();
+        }
+
+        bool isMouse = false;
+        private void MouseDown_Background(object sender, MouseButtonEventArgs e)
+        {
+            isMouse = true;
+            paint.StartDraw(e);
+        }
+
+        private void MouseUp_Background(object sender, MouseButtonEventArgs e)
+        {
+            isMouse = false;
+        }
+
+        private void MouseMove_Background(object sender, MouseEventArgs e)
+        {
+            if ((bool)PaintDraw.IsChecked)
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    PaintCanvas.Children.Remove(paint.currentPath);
+
+                    paint.BuildPoint(e);
+                }
+                else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+                {
+                    paint.rr();
+
+                }
+                previousMouseEvent = e.LeftButton;
+
+            }
+            else
             UpdateBackPattern(null, null);
         }
     }

@@ -20,8 +20,8 @@ namespace InteractivePoster.Finction
         Rectangle rectangle;
         TextBlock textBlock;
         Line line;
-        double x, y, a, b;
-        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double gradusTransform,double pointRight, double pointLeft)
+        double a, b;
+        public DrawHyperbole(double x, double y, double a, double b, Canvas cv, double gradusTransform,double pointRight, double pointLeft,Canvas canvas)
         {
             this.x = x;
             this.y = y;
@@ -33,13 +33,13 @@ namespace InteractivePoster.Finction
             sinGradusHyperbole = Math.Sin(convertRadian(gradusTransform));
             cosGradusHyperbole = Math.Cos(convertRadian(gradusTransform));
 
-            countX = Convert.ToDouble(cv.Tag);//получаем масштабы области
-            countY = Math.Round(cv.ActualHeight / (cv.ActualWidth / countX));
-            maxX = cv.ActualWidth; //получаем ширину канвы
-            maxY = cv.ActualHeight; //получаем высоту канвы        
+            countX = Convert.ToDouble(canvas.Tag);//получаем масштабы области
+            countY = Math.Round(canvas.ActualHeight / (canvas.ActualWidth / countX));
+            maxX = canvas.ActualWidth; //получаем ширину канвы
+            maxY = canvas.ActualHeight; //получаем высоту канвы        
             rectangleA = a * (maxX / countX);//преобразуем ширину прямоугольника из декартовой системы
             rectangleB = b * (maxY / countY);//преобразуем высоту прямоугольника из декартовой системы
-            DrawRectangle(x, y, cv, gradusTransform);
+            DrawRectangle(x, y, gradusTransform);
             FocusHyperbole();
             DrawAsymptotes(gradusTransform);
 
@@ -235,7 +235,7 @@ namespace InteractivePoster.Finction
 
         }
 
-        void DrawRectangle(double x, double y, Canvas cv, double gradusTransform)
+        void DrawRectangle(double x, double y, double gradusTransform)
         {
             RotateTransform rotateTransform = new RotateTransform() //вращение прямоугольника
             {
