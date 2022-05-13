@@ -129,5 +129,10 @@ namespace InteractivePoster.Pages
         {
             paint.Undo();
         }
+
+        private void ClearAll(object sender, RoutedEventArgs e)
+        {
+            paint.ClearAll();
+        }
     }
 }

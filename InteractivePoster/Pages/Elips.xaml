@@ -367,49 +367,50 @@
             x:Name="Background"
             />
             </Canvas>
-            <Button Panel.ZIndex="1"
+           
+            <StackPanel Panel.ZIndex="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Grid.Column="0"
+                    Orientation="Vertical">
+                <Button 
             Click="BuildElipsOpen" 
             Style="{StaticResource SoundButton}" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-            Grid.Column="0" >
+               >
                 <Button.Content>
                     <Image  Source="/Resource/Images/Pen.png"/>
                 </Button.Content>
             </Button>
-            <CheckBox Content="/Resource/Images/Record.png"
-                  VerticalAlignment="Top"
-                   HorizontalAlignment="Right"
-                  x:Name="PaintDraw"
-                 Grid.Column="0" 
-                  Panel.ZIndex="1"
-                  Margin="0,30,0,0"
+                <CheckBox Content="/Resource/Images/Record.png"                  
+                  x:Name="PaintDraw"                
                   Style="{StaticResource DrawPen}"
                  />
-            <Button Panel.ZIndex="1"
+                <Button 
             Click="Undo" 
                 x:Name="undoBtn"
             Style="{StaticResource UndoRedoButton}" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-                Margin="0,60,0,0"
-            Grid.Column="0" >
-                <Button.Content>
-                    <Image  Source="/Resource/Images/Return.png"/>
-                </Button.Content>
-            </Button>
-            <Button Panel.ZIndex="1"
+                >
+                    <Button.Content>
+                        <Image  Source="/Resource/Images/Return.png"/>
+                    </Button.Content>
+                </Button>
+                <Button
             Click="Redo" 
                 x:Name="redoBtn"
             Style="{StaticResource UndoRedoButton}" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-                Margin="0,90,0,0"
-            Grid.Column="0">
-                <Button.Content>
-                    <Image  Source="/Resource/Images/Forward.png"/>
-                </Button.Content>
-            </Button>
+               >
+                    <Button.Content>
+                        <Image  Source="/Resource/Images/Forward.png"/>
+                    </Button.Content>
+                </Button>
+                <Button 
+            Click="ClearAll" 
+            Style="{StaticResource UndoRedoButton}" >
+                    <Button.Content>
+                        <Image  Source="/Resource/Images/Basket.png"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
 
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 

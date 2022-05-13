@@ -190,6 +190,7 @@
     <Resource Include="Resource\Images\Record.png" />
     <Resource Include="Resource\Images\Forward.png" />
     <Resource Include="Resource\Images\Return.png" />
+    <Resource Include="Resource\Images\Basket.png" />
     <Content Include="Resource\Sounds\CircleSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

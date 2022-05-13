@@ -147,5 +147,10 @@ namespace InteractivePoster.Pages
 
             UpdateBackPattern(null, null);
         }
+
+        private void ClearAll(object sender, RoutedEventArgs e)
+        {
+            paint.ClearAll();
+        }
     }
 }
