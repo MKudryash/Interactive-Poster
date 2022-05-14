@@ -13,7 +13,7 @@ using Path = System.Windows.Shapes.Path;
 
 namespace InteractivePoster.Finction
 {
-    class Paint:GeometricPatterns
+    class Paint : GeometricPatterns
     {
         public Point startPoint;
         Brush currentBrush = Brushes.Black;
@@ -27,12 +27,12 @@ namespace InteractivePoster.Finction
         }
         public void BuildPoint(MouseEventArgs e)
         {
-           
+
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
 
 
-            Point ppp = new Point(x,y);
+            Point ppp = new Point(x, y);
             currentFigure.Segments.Add(new LineSegment(ppp, isStroked: true));
             currentPath.Data = new PathGeometry() { Figures = { currentFigure } };
             cv.Children.Add(currentPath);
@@ -51,24 +51,25 @@ namespace InteractivePoster.Finction
         public void Undo()
         {
             undo_redo.Undo(1);
-        }  public void Redo()
+        }
+        public void Redo()
         {
             undo_redo.Redo(1);
         }
-      
+
 
         public void StartDraw(MouseEventArgs e)
         {
-           
+
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
-            
+
             startPoint = new Point(x, y);
             currentFigure = new PathFigure() { StartPoint = startPoint };
             Path path = new Path()
             {
                 Stroke = currentBrush,
-                StrokeThickness = 2,
+                StrokeThickness = 3,
                 Data = new PathGeometry() { Figures = { currentFigure } }
             };
             cv.Children.Add(path);
@@ -79,9 +80,19 @@ namespace InteractivePoster.Finction
         public void rr()
         {
             DrawWithPencilCommand command = new DrawWithPencilCommand(currentPath, cv);
+            currentPath.MouseLeftButtonDown += RemoveObj;
             undo_redo.AddComand(command);
             currentFigure = null;
             currentPath = null;
+        }
+        DrawWithPencilCommand commands;
+        public void RemoveObj(object sender, MouseEventArgs e)
+        {
+            var Path = sender as Path;
+            if (Path == null)
+                return;
+            commands = new DrawWithPencilCommand(Path, cv);
+            commands.UnExecute();
         }
     }
 }

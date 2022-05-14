@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Shapes;
 
 namespace InteractivePoster.Finction
 {
@@ -45,5 +47,7 @@ namespace InteractivePoster.Finction
             undoCommands.Push(command);
             redoCommands.Clear();
         }
+
+
     }
 }
