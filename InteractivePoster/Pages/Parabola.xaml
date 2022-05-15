@@ -162,6 +162,7 @@
             <CheckBox Content="/Resource/Images/Eraser.png"
                   MouseLeftButtonDown="Eraser"
                   x:Name="EraserCB"
+                       IsChecked="{Binding Eraser}"
                   Style="{StaticResource EraserStyle}"
                  />
         </StackPanel>

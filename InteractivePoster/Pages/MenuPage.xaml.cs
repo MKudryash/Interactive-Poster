@@ -47,5 +47,10 @@ namespace InteractivePoster.Pages
             }
 
         }
+
+        private void OpenPaint(object sender, RoutedEventArgs e)
+        {
+            LoadPage.MainFrame.Navigate(new PaintPage());
+        }
     }
 }

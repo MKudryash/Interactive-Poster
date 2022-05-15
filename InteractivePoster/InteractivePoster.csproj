@@ -38,6 +38,7 @@
     <ApplicationIcon>IconPoster.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -51,7 +52,6 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="WpfMath, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WpfMath.0.11.0\lib\net452\WpfMath.dll</HintPath>
     </Reference>
@@ -115,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PaintPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Parabola.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +136,9 @@
     </Compile>
     <Compile Include="Pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PaintPage.xaml.cs">
+      <DependentUpon>PaintPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Parabola.xaml.cs">
       <DependentUpon>Parabola.xaml</DependentUpon>

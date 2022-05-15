@@ -18,6 +18,8 @@ namespace InteractivePoster.Finction
         public double MaxValue { get; set; } = 9;
         public double MinValue { get; set; } = -9;
 
+        public static bool Eraser { get; set; } = false;
+
         public double MaxMinPoint
         {
             set

@@ -137,6 +137,7 @@
             <CheckBox Content="/Resource/Images/Eraser.png"
                   MouseLeftButtonDown="Eraser"
                   x:Name="EraserCB"
+                      IsChecked="{Binding Eraser}"
                   Style="{StaticResource EraserStyle}"
                  />
         </StackPanel>
@@ -342,7 +343,7 @@
                 </StackPanel>
 
 
-                
+
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
             </StackPanel>
         </ScrollViewer>

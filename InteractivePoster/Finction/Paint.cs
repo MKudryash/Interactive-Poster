@@ -31,12 +31,19 @@ namespace InteractivePoster.Finction
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
 
+            try
+            {
+                Point ppp = new Point(x, y);
+                currentFigure.Segments.Add(new LineSegment(ppp, isStroked: true));
+                currentPath.Data = new PathGeometry() { Figures = { currentFigure } };
+                cv.Children.Add(currentPath);
+                pathFigure.Add(currentPath);
+            }
+            catch (Exception)
+            {
 
-            Point ppp = new Point(x, y);
-            currentFigure.Segments.Add(new LineSegment(ppp, isStroked: true));
-            currentPath.Data = new PathGeometry() { Figures = { currentFigure } };
-            cv.Children.Add(currentPath);
-            pathFigure.Add(currentPath);
+            }
+
         }
 
         public void ClearAll()
@@ -88,11 +95,15 @@ namespace InteractivePoster.Finction
         DrawWithPencilCommand commands;
         public void RemoveObj(object sender, MouseEventArgs e)
         {
-            var Path = sender as Path;
-            if (Path == null)
-                return;
-            commands = new DrawWithPencilCommand(Path, cv);
-            commands.UnExecute();
+            if (MaxMinCoordinat.Eraser)
+            {
+                var Path = sender as Path;
+                if (Path == null)
+                    return;
+                commands = new DrawWithPencilCommand(Path, cv);
+                commands.UnExecute();
+            }
+
         }
     }
 }

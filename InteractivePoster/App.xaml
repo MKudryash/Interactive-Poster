@@ -459,6 +459,40 @@
         </Style>
         <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
                TargetType="CheckBox"
+               x:Key="CoordStyle">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.3"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20"
+                                Width="100" Height="40"
+                                 VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+                              TextAlignment="Center" 
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       Foreground="Black"    Width="100"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
+               TargetType="CheckBox"
                x:Key="CheckBoxBuild">
             <Style.Triggers>
                 <Trigger Property="IsChecked" Value="False">
