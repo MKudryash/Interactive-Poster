@@ -24,47 +24,57 @@ namespace InteractivePoster.BuildPages
     {
         double count, countY;
         BuildElipsHands BEH = new BuildElipsHands();
+        Paint paint;
+        MouseButtonState previousMouseEvent = new MouseButtonState();
         public BiuldElipse()
         {
             InitializeComponent();
             DataContext = BEH;
-           CommandBindings.Add(BEH.clearCanvasBinding);
+            CommandBindings.Add(BEH.clearCanvasBinding);
+            paint = new Paint(PaintCanvas);
         }
 
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
-            count = Convert.ToDouble(Background.Tag);//вынимаем информацию о количестве клеток из самой канвы  
-            countY = Math.Round(Background.ActualHeight / (Background.ActualWidth / count));
+            count = Convert.ToDouble(PaintCanvas.Tag);//вынимаем информацию о количестве клеток из самой канвы  
+            countY = Math.Round(PaintCanvas.ActualHeight / (PaintCanvas.ActualWidth / count));
             BEH.GetCanvas = Background;
+            BEH.GetCanvass = PaintCanvas;
 
             Background.Children.Clear();
 
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
             {
-                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background,Background);
-                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background,Background);
+                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background, PaintCanvas);
+                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background, PaintCanvas);
             }
-            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background,Background);
-            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background,Background);
+            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background, PaintCanvas);
+            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background, PaintCanvas);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
-            
+
         }
 
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
         {
-            if (BEH.flag)
+            if ((bool)PaintDraw.IsChecked)
             {
-                BEH.MouseDown = true;
-                BEH.StartDraw(e);
+                paint.StartDraw(e);
             }
             else
-            { 
-
-                if (BEH.centerElips)
+            {
+                if (BEH.flag)
                 {
-                    BEH.GetCenterPoint(e);
+                    BEH.MouseDown = true;
+                    BEH.StartDraw(e);
+                }
+                else
+                {
+                    if (BEH.centerElips)
+                    {
+                        BEH.GetCenterPoint(e);
+                    }
                 }
             }
         }
@@ -76,7 +86,24 @@ namespace InteractivePoster.BuildPages
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if (BEH.MouseDown)
+            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked)
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    PaintCanvas.Children.Remove(paint.currentPath);
+
+                    paint.BuildPoint(e);
+                }
+                else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+                {
+                    paint.rr();
+
+                }
+                previousMouseEvent = e.LeftButton;
+
+            }
+            else
+               if (BEH.MouseDown && !(bool)EraserCB.IsChecked)
             {
                 Background.Children.Remove(BEH.currentPath);
                 BEH.parametrC = false;
@@ -87,7 +114,7 @@ namespace InteractivePoster.BuildPages
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            UpdateBackPattern(null,null );
+            UpdateBackPattern(null, null);
         }
 
 
@@ -100,6 +127,26 @@ namespace InteractivePoster.BuildPages
         private void MouseMoveChangeLine(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void Redo(object sender, RoutedEventArgs e)
+        {
+            paint.Redo();
+        }
+
+        private void Undo(object sender, RoutedEventArgs e)
+        {
+            paint.Undo();
+        }
+
+        private void ClearAll(object sender, RoutedEventArgs e)
+        {
+            paint.ClearAll();
+        }
+
+        private void Eraser(object sender, MouseButtonEventArgs e)
+        {
+            paint.RemoveObj(sender, e);
         }
 
         private void ComeBack(object sender, RoutedEventArgs e)

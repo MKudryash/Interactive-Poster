@@ -76,16 +76,61 @@
             <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas 
+        <Canvas
             Panel.ZIndex="0"
-            x:Name="Background"
+            x:Name="PaintCanvas"
             Grid.Column="0"
-            SizeChanged="UpdateBackPattern" 
-            Tag="{Binding ElementName=Area,Path=Value}"
+            SizeChanged="UpdateBackPattern"            
             MouseDown="MouseDown_Background"
             MouseUp="MouseUp_Background"
-             MouseMove="MouseMove_Background"
-            Background="#F1D3BC"/>
+            MouseMove="MouseMove_Background"
+            Tag="{Binding ElementName=Area,Path=Value}"
+            Background="{StaticResource ThreeColor}">
+            <Canvas            
+            x:Name="Background"
+            />
+        </Canvas>
+        <StackPanel Panel.ZIndex="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Grid.Column="0"
+                    Orientation="Vertical">
+            
+            <CheckBox Content="/Resource/Images/Record.png"                  
+                  x:Name="PaintDraw"                
+                  Style="{StaticResource DrawPen}"
+                 />
+            <Button 
+            Click="Undo" 
+                x:Name="undoBtn"
+            Style="{StaticResource UndoRedoButton}" 
+                >
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Return.png"/>
+                </Button.Content>
+            </Button>
+            <Button
+            Click="Redo" 
+                x:Name="redoBtn"
+            Style="{StaticResource UndoRedoButton}" 
+               >
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Forward.png"/>
+                </Button.Content>
+            </Button>
+            <Button 
+            Click="ClearAll" 
+            Style="{StaticResource UndoRedoButton}" >
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Basket.png"/>
+                </Button.Content>
+            </Button>
+            <CheckBox Content="/Resource/Images/Eraser.png"
+                  MouseLeftButtonDown="Eraser"
+                  x:Name="EraserCB"
+                  Style="{StaticResource EraserStyle}"
+                 />
+        </StackPanel>
 
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
@@ -210,7 +255,7 @@
                                             <TextBlock Width="80" Text="Радиус:"
                                                        VerticalAlignment="Center"/>
                                             <TextBox Margin="10" 
-                                                     Text="{Binding circleR}"
+                                                     Text="{Binding circleR,StringFormat=N2}"
                                                      Style="{StaticResource TextBoxForSlider}"/>
                                         </StackPanel>
                                     </StackPanel>

@@ -141,9 +141,6 @@
                  />
         </StackPanel>
 
-        <Path>
-            
-        </Path>
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">

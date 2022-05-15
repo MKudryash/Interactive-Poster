@@ -23,7 +23,9 @@ namespace InteractivePoster.Finction.BuildGeometric
 
         //вспомогательные перменные для построение в ручную
         public static Canvas cv { get; set; }
+        public static Canvas cvs { get; set; }
         public Canvas GetCanvas { get => cv; set { cv = value; } }
+        public Canvas GetCanvass { get => cvs; set { cvs = value; } }
 
         public bool mouseDown = false;
         public bool isMouseDownRadius = false;
@@ -63,7 +65,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         double centreX, centreY,coordCirX, coordCirY;
         public void GetCenterPoint(MouseEventArgs e)
         {
-            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
+            BuildCircleHand buildCircleHand = new BuildCircleHand(cvs);
             centreX = e.GetPosition(buildCircleHand.cv).X;
             centreY = e.GetPosition(buildCircleHand.cv).Y;
             coordCX = Math.Round(buildCircleHand.convertXCoord(centreX), 1);
@@ -99,7 +101,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         Line line;
         public void GetPointRadius(MouseEventArgs e)
         {
-            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
+            BuildCircleHand buildCircleHand = new BuildCircleHand(cvs);
             coordCirX = buildCircleHand.convertXCoord( e.GetPosition(cv).X);
             coordCirY = buildCircleHand.convertYCoord( e.GetPosition(cv).Y);
 
@@ -114,7 +116,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                 Y2 = e.GetPosition(cv).Y
             };
             circleR = Math.Round(Math.Sqrt(Math.Pow(buildCircleHand.convertYCoord(e.GetPosition(cv).Y) - buildCircleHand.convertYCoord(centreY), 2)
-                + Math.Pow(buildCircleHand.convertXCoord(e.GetPosition(cv).X) - buildCircleHand.convertXCoord(centreX), 2)), 2);
+                + Math.Pow(buildCircleHand.convertXCoord(e.GetPosition(cv).X) - buildCircleHand.convertXCoord(centreX), 2)), 6);
            
             Property();
             line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
@@ -127,7 +129,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         }
         public async void BuildCirclePoint(MouseEventArgs e)
         {
-            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
+            BuildCircleHand buildCircleHand = new BuildCircleHand(cvs);
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
 
@@ -160,7 +162,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         
         public void StartDraw(MouseEventArgs e)
         {
-            BuildCircleHand buildCircleHand = new BuildCircleHand(cv);
+            BuildCircleHand buildCircleHand = new BuildCircleHand(cvs);
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
             double coordX = buildCircleHand.convertXCoord(x);

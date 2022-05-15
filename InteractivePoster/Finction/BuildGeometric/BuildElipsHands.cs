@@ -16,7 +16,9 @@ namespace InteractivePoster.Finction.BuildGeometric
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public static Canvas cv { get; set; }
+        public static Canvas cvs { get; set; }
         public Canvas GetCanvas { get => cv; set { cv = value; } }
+        public Canvas GetCanvass { get => cvs; set { cvs = value; } }
         List<Ellipse> FocusPoint { get; set; } = new List<Ellipse>();
         List<Ellipse> PointForEllipse { get; set; } = new List<Ellipse>();
         List<Path> pathFigure { get; set; } = new List<Path>();
@@ -87,7 +89,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         Ellipse pointForElipse;
         public void GetCenterPoint(MouseEventArgs e)
         {
-            BuildElipsHand beh = new BuildElipsHand(cv);
+            BuildElipsHand beh = new BuildElipsHand(cvs);
 
             centreX = e.GetPosition(beh.cv).X;
             centreY = e.GetPosition(beh.cv).Y;
@@ -129,7 +131,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         }
         public void BuildElipse(MouseEventArgs e)
         {
-            BuildElipsHand beh = new BuildElipsHand(cv);
+            BuildElipsHand beh = new BuildElipsHand(cvs);
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
 
@@ -164,7 +166,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         public void StartDraw(MouseEventArgs e)
         {
             FindRadius();
-            BuildElipsHand beh = new BuildElipsHand(cv);
+            BuildElipsHand beh = new BuildElipsHand(cvs);
             double x = e.GetPosition(cv).X;
             double y = e.GetPosition(cv).Y;
 
@@ -208,7 +210,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         Ellipse Focus;
         public void FocusDraw()
         {
-            BuildElipsHand beh = new BuildElipsHand(cv);
+            BuildElipsHand beh = new BuildElipsHand(cvs);
 
 
             foreach (var item in FocusPoint)
@@ -288,7 +290,7 @@ namespace InteractivePoster.Finction.BuildGeometric
         {
             cv.Children.Remove(threadLine);
             cv.Children.Remove(threadLinetwo);
-            BuildElipsHand beh = new BuildElipsHand(cv);
+            BuildElipsHand beh = new BuildElipsHand(cvs);
             if (exs)
             {
                 threadLine = new Line()
