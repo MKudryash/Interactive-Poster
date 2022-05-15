@@ -30,7 +30,7 @@
                             </Grid.RowDefinitions>
 
                             <Border  Grid.Row="0" BorderBrush="#262F34" Background="{StaticResource OneColor}">
-                                <TextBlock Style="{StaticResource Heading}"  Height="50" TextAlignment="Center" >
+                                <TextBlock Style="{StaticResource Heading}"  Height="35" TextAlignment="Center" >
                                     <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
                                 </TextBlock>
                             </Border>
@@ -159,6 +159,11 @@
                     <Image  Source="/Resource/Images/Basket.png"/>
                 </Button.Content>
             </Button>
+            <CheckBox Content="/Resource/Images/Eraser.png"
+                  MouseLeftButtonDown="Eraser"
+                  x:Name="EraserCB"
+                  Style="{StaticResource EraserStyle}"
+                 />
         </StackPanel>
         <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 
@@ -167,6 +172,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -207,13 +213,26 @@
 параболы и обозначается буквой p.</TextBlock>
                         </StackPanel>
                     </StackPanel>
-
-                    <GroupBox Grid.Row="1">
+                    <StackPanel Grid.Row="1"
+                                Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <GroupBox Header="Каноническое уравнение:">
+                            <Grid>
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <controls:FormulaControl 
+                               x:Name="Formula" 
+                                     Scale="28"
+                                />
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                    <GroupBox Grid.Row="2">
                         <GroupBox.Header>
                             <Border  CornerRadius="5" >
                                 <StackPanel Margin="10 0">
-                                    <TextBlock Style="{StaticResource Heading}" FontSize="28" Text="Элементы управления "  FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"
-                                        />
+                                    <TextBlock Style="{StaticResource Heading}" 
+                                               FontSize="28" Text="Элементы управления "  
+                                               FontFamily="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo" />
                                 </StackPanel>
                             </Border>
                         </GroupBox.Header>
@@ -221,14 +240,14 @@
                         <StackPanel Margin="5">
 
 
-                            <StackPanel>
-                                <RadioButton Height="50" 
+                            <StackPanel Height="125">
+                                <RadioButton 
                                          Style="{StaticResource MenuButtonThemeParabola}" 
                                          IsChecked="{Binding equationforParabola}" 
                                          Content="Вертикальная"
                                            
                                              Click="ChangedParabola"/>
-                                <RadioButton Height="50" 
+                                <RadioButton  
                                          Style="{StaticResource MenuButtonThemeParabola}" 
                                          Content="Горизонтальная"
                                               Click="ChangedParabola"/>
@@ -350,13 +369,7 @@
                                Click="Update"/>
                     
                 </StackPanel>
-                <GroupBox Header="Каноническое уравнение:">
-                    <Grid>
-                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-                            <controls:FormulaControl x:Name="Formula" />
-                        </StackPanel>
-                    </Grid>
-                </GroupBox>
+               
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
 
             </StackPanel>

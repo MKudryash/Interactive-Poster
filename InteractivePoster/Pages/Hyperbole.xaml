@@ -28,7 +28,7 @@
                             </Grid.RowDefinitions>
 
                             <Border  Grid.Row="0" BorderBrush="#262F34" Background="{StaticResource OneColor}">
-                                <TextBlock Style="{StaticResource Heading}"  Height="50" TextAlignment="Center" >
+                                <TextBlock Style="{StaticResource Heading}"  Height="35" TextAlignment="Center" >
                                     <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
                                 </TextBlock>
                             </Border>
@@ -110,6 +110,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0"
@@ -160,8 +161,20 @@
                                     , если ее полуоси равны: a = b</TextBlock>
                             </StackPanel>
                         </StackPanel>
-
-                        <GroupBox Grid.Row="1">
+                        <StackPanel Grid.Row="1"
+                                Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <GroupBox Header="Каноническое уравнение:">
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <controls:FormulaControl 
+                               x:Name="Formula" 
+                                     Scale="28"
+                                />
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                        </StackPanel>
+                        <GroupBox Grid.Row="2">
                             <GroupBox.Header>
                                 <Border  CornerRadius="5" >
                                     <StackPanel Margin="10 0">
@@ -339,15 +352,7 @@
                                    Click="SinCos"/>
 
                     </StackPanel>
-                    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <GroupBox Header="Каноническое уравнение:">
-                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-
-                                <controls:FormulaControl x:Name="FormulaHyperbole"/>
-                            </StackPanel>
-                        </GroupBox>
-                       
-                    </StackPanel>
+                  
                     <StackPanel HorizontalAlignment="Center" 
                                 VerticalAlignment="Center">
                         <CheckBox Style="{StaticResource ElementHide}" 
@@ -410,6 +415,11 @@
                         <Image  Source="/Resource/Images/Basket.png"/>
                     </Button.Content>
                 </Button>
+                <CheckBox Content="/Resource/Images/Eraser.png"
+                  MouseLeftButtonDown="Eraser"
+                  x:Name="EraserCB"
+                  Style="{StaticResource EraserStyle}"
+                 />
             </StackPanel>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
 

@@ -45,10 +45,12 @@
                         <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 Background="Transparent"
-                                CornerRadius="20">
+                                CornerRadius="20"
+                                Height="40"
+                                Margin="0">
                             <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
                               TextAlignment="Center" 
-                                       FontSize="25"
+                                       FontSize="22"
                                        Foreground="{StaticResource OneColor}"                             />
                         </Border>
                     </ControlTemplate>
@@ -81,7 +83,45 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
+               TargetType="CheckBox"
+               x:Key="EraserStyle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=PaintDraw, Path=IsChecked}"
+                        Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=PaintDraw, Path=IsChecked}"
+                        Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
 
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.3"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20"
+                                Width="35"
+                                Height="35">
+                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
+                                        Width="30" 
+                                        Height="30" 
+                                       HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
                TargetType="CheckBox"
                x:Key="DrawPen">
@@ -532,6 +572,22 @@
                                        FontSize="25"
                                        Foreground="{StaticResource OneColor}" Width="150"                            />
                         </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type controls:FormulaControl}}"
+               TargetType="controls:FormulaControl"
+               x:Name="FormulaStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:FormulaControl">
+                        <TextBlock Text="{Binding Path=Formula, RelativeSource={RelativeSource TemplatedParent}}"
+                                       TextAlignment="Center" 
+                                       FontSize="50"
+                                       VerticalAlignment="Center"
+                                       Foreground="{StaticResource ThreeColor}"    Width="300"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

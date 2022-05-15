@@ -83,7 +83,7 @@ namespace InteractivePoster.Pages
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if ((bool)PaintDraw.IsChecked)
+            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
@@ -100,7 +100,7 @@ namespace InteractivePoster.Pages
 
             }
             else
-               if (isMouse)
+              if (isMouse && !(bool)EraserCB.IsChecked)
                 c.ChangedGradus(sender, e);
 
             UpdateBackPattern(null, null);
@@ -133,6 +133,11 @@ namespace InteractivePoster.Pages
         private void ClearAll(object sender, RoutedEventArgs e)
         {
             paint.ClearAll();
+        }
+
+        private void Eraser(object sender, MouseButtonEventArgs e)
+        {
+            paint.RemoveObj(sender, e);
         }
     }
 }

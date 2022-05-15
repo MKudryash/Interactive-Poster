@@ -56,7 +56,7 @@ namespace InteractivePoster.Pages
             // наша целевая окружность
             c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background,PaintCanvas);
             MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
-            FormulaCircle.Formula = c.CanonicalEquation();
+            Formula.Formula = c.CanonicalEquation();
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -102,8 +102,8 @@ namespace InteractivePoster.Pages
                     previousMouseEvent = e.LeftButton;
                     
                 }
-                else
-                if(isMouse)
+                else 
+                if(isMouse && !(bool)EraserCB.IsChecked)
                 c.ChangedGradus(sender, e);
             
             UpdateBackPattern(null, null);

@@ -31,8 +31,8 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <Border  Grid.Row="0" BorderBrush="{StaticResource OneColor}" Background="{StaticResource OneColor}">
-                                <TextBlock Style="{StaticResource Heading}"  Height="50" TextAlignment="Center" >
+                            <Border VerticalAlignment="Center"   Grid.Row="0" BorderBrush="{StaticResource OneColor}" Background="{StaticResource OneColor}">
+                                <TextBlock Style="{StaticResource Heading}"  Height="35" TextAlignment="Center" VerticalAlignment="Center">
                                     <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
                                 </TextBlock>
                             </Border>
@@ -137,7 +137,7 @@
             <CheckBox Content="/Resource/Images/Eraser.png"
                   MouseLeftButtonDown="Eraser"
                   x:Name="EraserCB"
-                  Style="{StaticResource DrawPen}"
+                  Style="{StaticResource EraserStyle}"
                  />
         </StackPanel>
 
@@ -152,6 +152,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -195,8 +196,20 @@
                                                      Background="{StaticResource ThreeColor}"/>
                         </StackPanel>
                     </StackPanel>
-
-                    <GroupBox Grid.Row="1">
+                    <StackPanel Grid.Row="1"
+                                Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <GroupBox Header="Каноническое уравнение:">
+                            <Grid>
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <controls:FormulaControl 
+                               x:Name="Formula" 
+                                     Scale="28"
+                                />
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                    <GroupBox Grid.Row="2">
                         <GroupBox.Header>
                             <Border  CornerRadius="5" >
                                 <StackPanel Margin="10 0">
@@ -332,17 +345,7 @@
                 </StackPanel>
 
 
-                <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <GroupBox Header="Каноническое уравнение:">
-                        <Grid>
-                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-                                <controls:FormulaControl 
-                               x:Name="FormulaCircle" 
-                                />
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-                </StackPanel>
+                
                 <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
             </StackPanel>
         </ScrollViewer>

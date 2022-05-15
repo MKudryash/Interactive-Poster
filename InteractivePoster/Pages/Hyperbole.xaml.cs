@@ -62,7 +62,7 @@ namespace InteractivePoster.Pages
 
             DrawHyperbole drawHyperbole = new DrawHyperbole(slCoordX.Value, slCoordY.Value, 
                 slRectangleA.Value, slRectangleB.Value, Background,SlTransform.Value,slCoordPointR.Value,slCoordPointL.Value,PaintCanvas);
-            FormulaHyperbole.Formula = drawHyperbole.CanonicalEquation();
+            Formula.Formula = drawHyperbole.CanonicalEquation();
         }
 
         private void Area_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -127,7 +127,7 @@ namespace InteractivePoster.Pages
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if ((bool)PaintDraw.IsChecked)
+            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
@@ -143,14 +143,17 @@ namespace InteractivePoster.Pages
                 previousMouseEvent = e.LeftButton;
 
             }
-            
-
             UpdateBackPattern(null, null);
         }
 
         private void ClearAll(object sender, RoutedEventArgs e)
         {
             paint.ClearAll();
+        }
+
+        private void Eraser(object sender, MouseButtonEventArgs e)
+        {
+            paint.RemoveObj(sender, e);
         }
     }
 }
