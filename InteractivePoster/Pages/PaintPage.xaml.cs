@@ -49,7 +49,7 @@ namespace InteractivePoster.Pages
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if ( !(bool)EraserCB.IsChecked)
+            if (!(bool)EraserCB.IsChecked)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
@@ -88,7 +88,7 @@ namespace InteractivePoster.Pages
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
             count = Convert.ToDouble(PaintCanvas.Tag);//вынимаем информацию о количестве клеток из самой канвы  
-           
+
             double countY = Math.Round(PaintCanvas.ActualHeight / (PaintCanvas.ActualWidth / count));
 
             Background.Children.Clear();
@@ -119,6 +119,14 @@ namespace InteractivePoster.Pages
             else
                 Background.Visibility = Visibility.Collapsed;
             UpdateBackPattern(null, null);
+        }
+
+        private void colorPicker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (colorPicker.SelectedColor != null)
+            {
+                paint.GetBrush(new SolidColorBrush((Color)colorPicker.SelectedColor));
+            }
         }
     }
 }

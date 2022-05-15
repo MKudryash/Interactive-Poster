@@ -73,7 +73,13 @@
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
                     VerticalAlignment="Top">
-            <Button Content="Рисовашка" Click="OpenPaint"/>
+            <Button Click="OpenPaint"
+                    
+            Style="{StaticResource SoundButton}">
+                <Button.Content>
+                    <Image  Source="/Resource/Images/Palette.png"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

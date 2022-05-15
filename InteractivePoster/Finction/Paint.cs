@@ -16,10 +16,15 @@ namespace InteractivePoster.Finction
     class Paint : GeometricPatterns
     {
         public Point startPoint;
-        Brush currentBrush = Brushes.Black;
+        public  Brush currentBrush = Brushes.Black;
         PathFigure currentFigure;
         public Path currentPath = null;
         List<Path> pathFigure { get; set; } = new List<Path>();
+        public void GetBrush(Brush Cb)
+        {
+            currentBrush = Cb;
+        }
+
 
         public Paint(Canvas cv)
         {
