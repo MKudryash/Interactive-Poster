@@ -92,7 +92,7 @@ namespace InteractivePoster.Finction
         public void rr()
         {
             DrawWithPencilCommand command = new DrawWithPencilCommand(currentPath, cv);
-            currentPath.MouseLeftButtonDown += RemoveObj;
+            currentPath.MouseMove += RemoveObj;
             undo_redo.AddComand(command);
             currentFigure = null;
             currentPath = null;
@@ -102,7 +102,7 @@ namespace InteractivePoster.Finction
         {
             if (MaxMinCoordinat.Eraser)
             {
-                var Path = sender as Path;
+                var Path = Mouse.DirectlyOver as Path;
                 if (Path == null)
                     return;
                 commands = new DrawWithPencilCommand(Path, cv);

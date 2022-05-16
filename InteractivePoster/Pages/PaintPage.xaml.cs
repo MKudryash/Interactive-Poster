@@ -62,6 +62,10 @@ namespace InteractivePoster.Pages
                 }
                 previousMouseEvent = e.LeftButton;
             }
+            if ((bool)EraserCB.IsChecked)
+            {
+                paint.RemoveObj(sender,e);
+            }
         }
 
 

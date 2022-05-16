@@ -23,13 +23,13 @@ namespace InteractivePoster.Pages
         Paint paint;
         DrawCircle c;
         MouseButtonState previousMouseEvent = new MouseButtonState();
-        
+
         public Circle()
         {
             InitializeComponent();
             DataContext = MMC;
             CommandBindings.Add(MMC.SoundPlayBinding);
-            paint= new Paint(PaintCanvas);
+            paint = new Paint(PaintCanvas);
         }
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)
         {
@@ -46,15 +46,15 @@ namespace InteractivePoster.Pages
             //просто добавляем на канву объекты наших созданных классов            
             for (double i = -count / 2; i < count / 2; i++)
             {
-                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background,PaintCanvas);
-                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background,PaintCanvas);
+                DrawСoordinateLine lineH = new DrawСoordinateLine(i, Orientation.Horizontal, 1, Background, PaintCanvas);
+                DrawСoordinateLine lineV = new DrawСoordinateLine(i, Orientation.Vertical, 1, Background, PaintCanvas);
             }
-            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background,PaintCanvas);
-            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background,PaintCanvas);
+            DrawСoordinateLine lineX = new DrawСoordinateLine(0, Orientation.Horizontal, 3, Background, PaintCanvas);
+            DrawСoordinateLine lineY = new DrawСoordinateLine(0, Orientation.Vertical, 3, Background, PaintCanvas);
             lineX.DrawArrow(count / 2, 0, Orientation.Horizontal, 3, Background);
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
             // наша целевая окружность
-            c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background,PaintCanvas);
+            c = new DrawCircle(slCoordX.Value, slCoordY.Value, slRadius.Value, Background, PaintCanvas);
             MMC.MaxRadius = (int)c.MaxRadius(slCoordX.Value, slCoordY.Value);
             Formula.Formula = c.CanonicalEquation();
         }
@@ -75,7 +75,7 @@ namespace InteractivePoster.Pages
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
         {
             isMouse = true;
-                paint.StartDraw(e);
+            paint.StartDraw(e);
 
         }
 
@@ -86,26 +86,32 @@ namespace InteractivePoster.Pages
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-                if ((bool)PaintDraw.IsChecked&&!(bool)EraserCB.IsChecked && isMouse)
+            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked && isMouse)
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
                 {
-                    if (e.LeftButton == MouseButtonState.Pressed)
-                    {
-                        PaintCanvas.Children.Remove(paint.currentPath);
+                    PaintCanvas.Children.Remove(paint.currentPath);
 
-                        paint.BuildPoint(e);
-                    }
-                    else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
-                    {
-                        paint.rr();
-
-                    }
-                    previousMouseEvent = e.LeftButton;
-                    
+                    paint.BuildPoint(e);
                 }
-                else 
-                if(isMouse && !(bool)EraserCB.IsChecked)
+                else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+                {
+                    paint.rr();
+
+                }
+                previousMouseEvent = e.LeftButton;
+
+            }
+            else
+              if ((bool)EraserCB.IsChecked && isMouse)
+            {
+                paint.RemoveObj(sender, e);
+            }
+            else
+        if (isMouse && !(bool)EraserCB.IsChecked)
                 c.ChangedGradus(sender, e);
-            
+
+
             UpdateBackPattern(null, null);
         }
 
@@ -137,7 +143,7 @@ namespace InteractivePoster.Pages
 
         private void Eraser(object sender, MouseButtonEventArgs e)
         {
-            paint.RemoveObj(sender,e);
+            paint.RemoveObj(sender, e);
         }
     }
 }
