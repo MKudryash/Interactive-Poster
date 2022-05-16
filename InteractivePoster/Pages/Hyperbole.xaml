@@ -162,7 +162,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="1"
-                                Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                Margin="10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <GroupBox Header="Каноническое уравнение:">
                                 <Grid>
                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
@@ -173,6 +173,13 @@
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
+                            <StackPanel HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                                <CheckBox Style="{StaticResource ElementHide}" 
+                                  Content="Подсчет синусов и косинусов"
+                                  IsChecked="{Binding SinCosHyperbole}"
+                                  Click="SinCos"/>
+                            </StackPanel>
                         </StackPanel>
                         <GroupBox Grid.Row="2">
                             <GroupBox.Header>
@@ -353,14 +360,10 @@
 
                     </StackPanel>
                   
-                    <StackPanel HorizontalAlignment="Center" 
-                                VerticalAlignment="Center">
-                        <CheckBox Style="{StaticResource ElementHide}" 
-                                  Content="Подсчет синусов и косинусов"
-                                  IsChecked="{Binding SinCosHyperbole}"
-                                  Click="SinCos"/>
-                    </StackPanel>
-                    <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
+                   
+                    <Button Click="ComeBack"
+                            Style="{StaticResource BackButton}"
+                            Margin="0,0,0,30" HorizontalAlignment="Center" Content=" Назад "/>
 
                 </StackPanel>
             </ScrollViewer>
