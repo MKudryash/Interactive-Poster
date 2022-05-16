@@ -49,7 +49,7 @@ namespace InteractivePoster.Pages
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if (!(bool)EraserCB.IsChecked)
+            if (!(bool)EraserCB.IsChecked&&isMouse)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {

@@ -144,7 +144,7 @@ namespace InteractivePoster.Pages
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked)
+            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked && isMouse)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
