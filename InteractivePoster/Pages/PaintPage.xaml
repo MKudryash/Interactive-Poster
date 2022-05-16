@@ -130,8 +130,8 @@
                  />
         </StackPanel>
 
-        <StackPanel Grid.Column="1">
-            <StackPanel Orientation="Horizontal" >
+        <StackPanel Grid.Column="1" Background="White">
+            <StackPanel Orientation="Vertical" >
                 <CheckBox  Style="{StaticResource CoordStyle}"
                           Content="Сетка"
                            IsChecked="False"
@@ -160,6 +160,10 @@
                                           SelectedColor="Black"
                                           MouseLeftButtonUp="colorPicker_MouseLeftButtonUp"  />
             </ToolBar>
+            <Button Click="ComeBack" 
+                            Style="{StaticResource  BackButtonPaint}"
+                            Margin="0,30" 
+                            HorizontalAlignment="Center" Content=" Назад "/>
         </StackPanel>
     </Grid>
 </Page>
