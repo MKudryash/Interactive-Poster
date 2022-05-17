@@ -38,7 +38,9 @@ namespace InteractivePoster.Pages
         bool isMouse = false;
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
         {
+          
             isMouse = true;
+
             paint.StartDraw(e);
         }
 
@@ -132,5 +134,14 @@ namespace InteractivePoster.Pages
                 paint.GetBrush(new SolidColorBrush((Color)colorPicker.SelectedColor));
             }
         }
+
+        private void PaintCanvas_StylusDown(object sender, StylusDownEventArgs e)
+        {
+            isMouse = true;
+
+            paint.StartDrawStylus(e);
+        }
+
+
     }
 }

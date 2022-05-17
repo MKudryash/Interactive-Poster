@@ -83,6 +83,7 @@
             MouseDown="MouseDown_Background"
             MouseUp="MouseUp_Background"
             MouseMove="MouseMove_Background"
+            StylusDown="PaintCanvas_StylusDown"
             Tag="{Binding ElementName=Area,Path=Value}"
             Background="White">
             <Canvas            
@@ -125,12 +126,17 @@
             <CheckBox Content="/Resource/Images/Eraser.png"
                   MouseLeftButtonDown="Eraser"
                   x:Name="EraserCB"
-                       IsChecked="{Binding Eraser}"
+                  IsChecked="{Binding Eraser}"
                   Style="{StaticResource EraserStyle}"
                  />
+            <CheckBox Content="/Resource/Images/Pen.png"
+                  Style="{StaticResource PenStyle}"
+                  x:Name="PenselP"
+                 />
         </StackPanel>
-
-        <StackPanel Grid.Column="1" Background="White">
+        <Border Grid.Column="1" BorderBrush="{StaticResource OneColor}"
+               BorderThickness="2" Margin="5">
+        <StackPanel  Background="White" >
             <StackPanel Orientation="Vertical" >
                 <CheckBox  Style="{StaticResource CoordStyle}"
                           Content="Сетка"
@@ -165,5 +171,6 @@
                             Margin="0,30" 
                             HorizontalAlignment="Center" Content=" Назад "/>
         </StackPanel>
+        </Border>
     </Grid>
 </Page>
