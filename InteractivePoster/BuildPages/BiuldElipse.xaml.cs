@@ -58,6 +58,7 @@ namespace InteractivePoster.BuildPages
 
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
         {
+            isMouse = true;
             if ((bool)PaintDraw.IsChecked)
             {
                 paint.StartDraw(e);
@@ -82,11 +83,13 @@ namespace InteractivePoster.BuildPages
         private void MouseUp_Background(object sender, MouseButtonEventArgs e)
         {
             BEH.MouseDown = false;
+            isMouse = false;
         }
-
+        bool isMouse = false;
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked)
+            MaxMinCoordinat.Eraser = false;
+            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked&&isMouse)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
@@ -94,13 +97,17 @@ namespace InteractivePoster.BuildPages
 
                     paint.BuildPoint(e);
                 }
-                else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
-                {
-                    paint.rr();
+            }
+            if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+            {
+                paint.rr();
 
-                }
-                previousMouseEvent = e.LeftButton;
-
+            }
+            previousMouseEvent = e.LeftButton;
+            if ((bool)EraserCB.IsChecked && isMouse)
+            {
+                MaxMinCoordinat.Eraser = true;
+                paint.RemoveObj(sender, e);
             }
             else
                if (BEH.MouseDown && !(bool)EraserCB.IsChecked)

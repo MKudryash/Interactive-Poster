@@ -90,21 +90,17 @@ namespace InteractivePoster.Pages
                     PaintCanvas.Children.Remove(paint.currentPath);
 
                     paint.BuildPoint(e);
-                }
-                else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
-                {
-                    paint.rr();
-
-                }
-                previousMouseEvent = e.LeftButton;
-
+                } 
             }
-            else if ((bool)EraserCB.IsChecked && isMouse)
+            else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+            {
+                paint.rr();
+            }
+            previousMouseEvent = e.LeftButton;
+            if ((bool)EraserCB.IsChecked && isMouse)
             {
                 paint.RemoveObj(sender, e);
-            }
-            else
-            if (isMouse && !(bool)EraserCB.IsChecked)
+            } else if (isMouse && !(bool)PaintDraw.IsChecked)
                 c.ChangedGradus(sender, e);
 
             UpdateBackPattern(null, null);

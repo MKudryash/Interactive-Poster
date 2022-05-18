@@ -1,0 +1,139 @@
+﻿<Page x:Class="InteractivePoster.Pages.ToolPaint"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InteractivePoster.Pages" xmlns:colorPalette="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="150" d:DesignWidth="400"
+      MinWidth="400" MinHeight="120"
+      Title="ToolPaint">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Кисть">
+            <StackPanel>
+                <ToolBar>
+                    <colorPalette:ColorPicker x:Name="colorPicker"
+                                          Width="150" Height="30"
+                                          SelectedColor="Black"
+                                          MouseLeftButtonUp="colorPicker_MouseLeftButtonUp"  />
+                </ToolBar>
+                <GroupBox Header="Толщина линии">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border >
+                            <TextBox Style="{StaticResource TextBoxForSlider}"
+                                Grid.Column="0"
+                                     Width="30"
+                                     Height="30"
+                                     Text="{Binding ElementName=ThiknessPero,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="ThiknessPero" 
+                            SmallChange="1"
+                                LargeChange="1"
+                                Value="3" Minimum="3" Maximum="10"
+                        IsSnapToTickEnabled="True" TickFrequency="1"/>
+                    </Grid>
+                </GroupBox>
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Доска" Grid.Column="1">
+            <StackPanel>
+                <StackPanel Orientation="Vertical" >
+                    <CheckBox  Style="{StaticResource CoordStyle}"
+                          Content="Сетка"
+                           IsChecked="False"
+                           x:Name="CoordinateLine"/>
+                </StackPanel>
+                <GroupBox Header="Масштаб области" Visibility="{Binding ElementName=Background, Path=Visibility}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border >
+                            <TextBox Style="{StaticResource TextBoxForSlider}"
+                                Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
+                            SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
+                        PreviewMouseMove="Area_PreviewMouseMove" 
+                        IsSnapToTickEnabled="True" TickFrequency="2"/>
+                    </Grid>
+                </GroupBox>
+
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Инструменты" Grid.Column="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Column="1" Grid.Row="0">
+                    <Button Grid.Column="0" Grid.Row="0"
+                    Click="Undo" 
+                    Style="{StaticResource UndoRedoButton}">
+                        <Button.Content>
+                            <Image  Source="/Resource/Images/Return.png"/>
+                        </Button.Content>
+                    </Button>
+                </DockPanel>
+                        <Button Grid.Column="0" Grid.Row="0"
+                    Click="Undo" 
+                    x:Name="undoBtn"
+                    Style="{StaticResource UndoRedoButton}">
+                            <Button.Content>
+                                <Image  Source="/Resource/Images/Return.png"/>
+                            </Button.Content>
+                        </Button>
+                <Button  Grid.Column="0" Grid.Row="1"
+                        Click="Redo" 
+                        x:Name="redoBtn"
+                        Style="{StaticResource UndoRedoButton}" >
+                            <Button.Content>
+                                <Image  Source="/Resource/Images/Forward.png"/>
+                            </Button.Content>
+                        </Button>
+
+                <Button  Grid.Column="1" Grid.Row="1"
+            Click="ClearAll" 
+            Style="{StaticResource UndoRedoButton}" >
+                            <Button.Content>
+                                <Image  Source="/Resource/Images/Basket.png"/>
+                            </Button.Content>
+                        </Button>
+
+                        <RadioButton Content="/Resource/Images/Eraser.png"
+                  MouseLeftButtonDown="Eraser"
+                  x:Name="EraserCB"
+                  IsChecked="{Binding Eraser}"
+                  Style="{StaticResource EraserStyles}"
+                                      Grid.Column="2" Grid.Row="0"
+                 />
+                        <RadioButton Content="/Resource/Images/Pen.png"
+                  Style="{StaticResource PenStyles}"
+                  x:Name="PenselP"  Grid.Column="2" Grid.Row="1"
+                 />               
+                
+            </Grid>
+        
+        </GroupBox>
+
+    </Grid>
+</Page>

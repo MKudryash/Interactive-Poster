@@ -60,9 +60,9 @@
 
         <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
                TargetType="CheckBox"
-               x:Key="CheckBoxContext">           
+               x:Key="CheckBoxContext">
             <Setter Property="BorderThickness" Value="0"/>
-           
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -87,14 +87,6 @@
                TargetType="CheckBox"
                x:Key="EraserStyle">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=PenselP, Path=IsChecked}"
-                        Value="True">
-                    <Setter Property="IsChecked" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=PenselP, Path=IsChecked}"
-                        Value="False">
-                    <Setter Property="IsChecked" Value="True"/>
-                </DataTrigger>
                 <DataTrigger Binding="{Binding ElementName=PaintDraw, Path=IsChecked}"
                         Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -135,11 +127,11 @@
                TargetType="CheckBox"
                x:Key="PenStyle">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=EraserCB, Path=IsChecked}"
+                <DataTrigger Binding="{Binding ElementName=EraserCB, Path=IsChecked,Mode=TwoWay}"
                         Value="True">
                     <Setter Property="IsChecked" Value="False"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=EraserCB, Path=IsChecked}"
+                <DataTrigger Binding="{Binding ElementName=EraserCB, Path=IsChecked,Mode=TwoWay}"
                         Value="False">
                     <Setter Property="IsChecked" Value="True"/>
                 </DataTrigger>
@@ -170,6 +162,91 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+
+
+
+
+        <Style BasedOn ="{StaticResource {x:Type RadioButton}}"
+               TargetType="RadioButton"
+               x:Key="EraserStyles">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=PaintDraw, Path=IsChecked}"
+                        Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=PaintDraw, Path=IsChecked}"
+                        Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+
+
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.3"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20"
+                               >
+                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
+                                        
+                                       HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style BasedOn ="{StaticResource {x:Type RadioButton}}"
+               TargetType="RadioButton"
+               x:Key="PenStyles">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=EraserCB, Path=IsChecked,Mode=TwoWay}"
+                        Value="True">
+                    <Setter Property="IsChecked" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=EraserCB, Path=IsChecked,Mode=TwoWay}"
+                        Value="False">
+                    <Setter Property="IsChecked" Value="True"/>
+                </DataTrigger>
+
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.3"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20"
+                                Width="35"
+                                Height="35">
+                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
+                                        Width="30" 
+                                        Height="30" 
+                                       HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
         <Style BasedOn ="{StaticResource {x:Type CheckBox}}"
                TargetType="CheckBox"
                x:Key="DrawPen">
@@ -273,7 +350,7 @@
         </Style>
         <Style TargetType="Button" x:Key="BackButton">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="35"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="{StaticResource OneColor}"/>
             <Setter Property="Background" Value="#F1D3BC"/>
@@ -320,7 +397,6 @@
         <Style x:Key="UndoRedoButton"  TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Width" Value="30"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">

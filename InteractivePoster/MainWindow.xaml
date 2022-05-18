@@ -9,9 +9,30 @@
         MinHeight="610"
       MinWidth="780" WindowStartupLocation="CenterScreen"
         WindowState="Maximized"  FontSize="18" WindowStyle="ToolWindow" >
- 
+
     <Grid>
-        <Frame Name="frmMain" NavigationUIVisibility="Hidden"></Frame>
-      
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="0"
+               Grid.Column="0"
+               x:Name="ToolPainFrame"
+               Panel.ZIndex="2"
+               NavigationUIVisibility="Hidden"></Frame>
+        <Frame Name="frmMain" Grid.ColumnSpan="2" Grid.Row="1" 
+               NavigationUIVisibility="Hidden"
+               Panel.ZIndex="0"
+               ></Frame>
+        <Frame Name="NavigateFrame" Grid.Column="1" Grid.Row="0" 
+               NavigationUIVisibility="Hidden"
+               Panel.ZIndex="0"
+               ></Frame>
+
     </Grid>
 </Window>

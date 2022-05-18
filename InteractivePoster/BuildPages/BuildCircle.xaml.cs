@@ -36,6 +36,7 @@ namespace InteractivePoster.BuildPages
 
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
         {
+            isMouse = true;
             if ((bool)PaintDraw.IsChecked)
             {
                 paint.StartDraw(e);
@@ -69,15 +70,18 @@ namespace InteractivePoster.BuildPages
 
         }
 
+        bool isMouse = false;
         private void MouseUp_Background(object sender, MouseButtonEventArgs e)
         {
             BCH.MouseDown = false;
+            isMouse = false;
             BCH.IsMouseDownRadius = false;
         }
 
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
-            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked)
+            MaxMinCoordinat.Eraser = false;
+            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked&& isMouse)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
@@ -85,19 +89,24 @@ namespace InteractivePoster.BuildPages
 
                     paint.BuildPoint(e);
                 }
-                else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
-                {
-                    paint.rr();
-
-                }
-                previousMouseEvent = e.LeftButton;
-
+            }          
+             if ((bool)EraserCB.IsChecked && isMouse)
+            {
+                MaxMinCoordinat.Eraser = true;
+                paint.RemoveObj(sender, e);
             }
-            else if (BCH.MouseDown && !(bool)EraserCB.IsChecked)
+            
+            if (BCH.MouseDown && !(bool)EraserCB.IsChecked)
             {
                 Background.Children.Remove(BCH.currentPath);
                 BCH.BuildCirclePoint(e);
             }
+            if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+            {
+                paint.rr();
+            }
+            previousMouseEvent = e.LeftButton;
+           
         }
 
         private void UpdateBackPattern(object sender, SizeChangedEventArgs e)

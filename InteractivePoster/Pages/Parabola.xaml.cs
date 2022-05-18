@@ -151,15 +151,14 @@ namespace InteractivePoster.Pages
                     PaintCanvas.Children.Remove(paint.currentPath);
 
                     paint.BuildPoint(e);
-                }
-                else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
-                {
-                    paint.rr();
-
-                }
-                previousMouseEvent = e.LeftButton;
+                }             
+            }
+            else if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+            {
+                paint.rr();
 
             }
+            previousMouseEvent = e.LeftButton;
             if ((bool)EraserCB.IsChecked && isMouse)
             {
                 paint.RemoveObj(sender, e);

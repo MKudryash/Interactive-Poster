@@ -102,19 +102,25 @@ namespace InteractivePoster.Finction
         public void rr()
         {
             DrawWithPencilCommand command = new DrawWithPencilCommand(currentPath, cv);
-            currentPath.MouseMove += RemoveObj;
-            undo_redo.AddComand(command);
-            currentFigure = null;
-            currentPath = null;
+            if (currentPath!=null)
+            {
+                currentPath.MouseMove += RemoveObj;
+                undo_redo.AddComand(command);
+                currentFigure = null;
+                currentPath = null;
+            }
+            
         }
         DrawWithPencilCommand commands;
         public void RemoveObj(object sender, MouseEventArgs e)
         {
-            var Path = Mouse.DirectlyOver as Path;
-            if (Path == null)
-                return;
-            commands = new DrawWithPencilCommand(Path, cv);
-            commands.UnExecute();
+           if( MaxMinCoordinat.Eraser){
+                var Path = Mouse.DirectlyOver as Path;
+                if (Path == null)
+                    return;
+                commands = new DrawWithPencilCommand(Path, cv);
+                commands.UnExecute();
+            }
         }
     }
 }

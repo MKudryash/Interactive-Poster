@@ -14,6 +14,8 @@ namespace InteractivePoster
             InitializeComponent();
             frmMain.Navigate(new MenuPage());
             LoadPage.MainFrame = frmMain;
+            ToolPainFrame.Navigate(new ToolPaint());
+            NavigateFrame.Navigate(new BackPage());
         }
 
 
