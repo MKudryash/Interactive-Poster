@@ -104,7 +104,7 @@
             Style="{StaticResource UndoRedoButton}" 
                 >
                 <Button.Content>
-                    <Image  Source="/Resource/Images/Return.png"/>
+                    <Image Width="30" Source="/Resource/Images/Return.png"/>
                 </Button.Content>
             </Button>
             <Button
@@ -113,14 +113,14 @@
             Style="{StaticResource UndoRedoButton}" 
                >
                 <Button.Content>
-                    <Image  Source="/Resource/Images/Forward.png"/>
+                    <Image Width="30" Source="/Resource/Images/Forward.png"/>
                 </Button.Content>
             </Button>
             <Button 
             Click="ClearAll" 
             Style="{StaticResource UndoRedoButton}" >
                 <Button.Content>
-                    <Image  Source="/Resource/Images/Basket.png"/>
+                    <Image Width="30" Source="/Resource/Images/Basket.png"/>
                 </Button.Content>
             </Button>
             <CheckBox Content="/Resource/Images/Eraser.png"
