@@ -12,6 +12,8 @@
 
 
     <Page.Resources>
+
+        
         <Style x:Key="Heading" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
@@ -164,9 +166,11 @@
                                             Stretch="None"/>
                         </ToggleButton.Background>
                     </ToggleButton>
-                    <StackPanel Panel.ZIndex="1" Margin="15"
+                    <Border Panel.ZIndex="1" Margin="15"
                             Grid.Column="1" x:Name="ElementStack"
-                        Background="{StaticResource OneColor}" >
+                            CornerRadius="10"
+                        Background="{StaticResource OneColor}">
+                    <StackPanel  >
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
@@ -366,6 +370,7 @@
 
                         <!--<Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>-->
                     </StackPanel>
+                    </Border>
                 </DockPanel>
             </ScrollViewer>
         </Grid>

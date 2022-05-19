@@ -126,8 +126,12 @@
                                             Stretch="None"/>
                             </ToggleButton.Background>
                         </ToggleButton>
-                        <StackPanel Background="{StaticResource OneColor}"  Margin="20"
-                                    x:Name="ElementStack">
+                        
+                        <Border Panel.ZIndex="1" Margin="15"
+                                CornerRadius="10"
+                            Grid.Column="1" x:Name="ElementStack"
+                        Background="{StaticResource OneColor}">
+                        <StackPanel>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
@@ -381,6 +385,7 @@
                             Margin="0,0,0,30" 
                             HorizontalAlignment="Center" Content=" Назад "/>-->
                         </StackPanel>
+                        </Border>
                     </DockPanel>
                 </ScrollViewer>
             </Grid>
