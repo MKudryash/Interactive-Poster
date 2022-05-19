@@ -229,6 +229,8 @@
     <Resource Include="Resource\Images\Basket.png" />
     <Resource Include="Resource\Images\Eraser.png" />
     <Resource Include="Resource\Images\Palette.png" />
+    <Resource Include="Resource\Images\tgBtn_default.png" />
+    <Resource Include="Resource\Images\tgBtn_MouseOver.png" />
     <Content Include="Resource\Sounds\CircleSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

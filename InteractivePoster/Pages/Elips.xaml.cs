@@ -139,5 +139,34 @@ namespace InteractivePoster.Pages
         {
             paint.RemoveObj(sender, e);
         }
+        double h;
+        private async void TgBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+            double column = 30;
+            for (int i = 0; i < 10; i++)
+            {
+                ColumnForElement.Width = new GridLength(column);
+                GridCanvas.Width = column;
+                column += h;
+                await System.Threading.Tasks.Task.Delay(50);
+            }
+            ElementStack.Visibility = Visibility.Visible;
+        }
+
+        private async void TgBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            double column = ColumnForElement.ActualWidth;
+            h = (column - 30) / 10;
+            for (int i = 0; i < 10; i++)
+            {
+                ColumnForElement.Width = new GridLength(column);
+                GridCanvas.Width = column;
+                column -= h;
+                await System.Threading.Tasks.Task.Delay(50);
+            }
+            ElementStack.Visibility = Visibility.Collapsed;
+            GridCanvas.Width = 35;
+        }
     }
 }
