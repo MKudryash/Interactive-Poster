@@ -381,9 +381,9 @@
                             </StackPanel>
 
 
-                            <Button Click="ComeBack"
+                            <!--<Button Click="ComeBack"
                             Style="{StaticResource BackButton}"
-                            Margin="0,0,0,30" HorizontalAlignment="Center" Content=" Назад "/>
+                            Margin="0,0,0,30" HorizontalAlignment="Center" Content=" Назад "/>-->
 
                         </StackPanel>
                     </DockPanel>

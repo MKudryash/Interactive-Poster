@@ -364,7 +364,7 @@
 
 
 
-                        <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
+                        <!--<Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>-->
                     </StackPanel>
                 </DockPanel>
             </ScrollViewer>
