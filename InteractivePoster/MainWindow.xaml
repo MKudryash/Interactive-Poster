@@ -10,29 +10,55 @@
       MinWidth="780" WindowStartupLocation="CenterScreen"
         WindowState="Maximized"  FontSize="18" WindowStyle="ToolWindow" >
 
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="BackgrounButton">
+            <Setter Property="Background"  Value="{StaticResource ThreeColor}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ThreeColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="130"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button Grid.Row="0" Panel.ZIndex="1" Style="{StaticResource BackgrounButton}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <Frame Grid.Row="0"
-               Grid.Column="0"
+                <Frame 
                x:Name="ToolPainFrame"
                Panel.ZIndex="2"
-               NavigationUIVisibility="Hidden"></Frame>
-        <Frame Name="frmMain" Grid.ColumnSpan="2" Grid.Row="1" 
-               NavigationUIVisibility="Hidden"
-               Panel.ZIndex="0"
-               ></Frame>
-        <Frame Name="NavigateFrame" Grid.Column="1" Grid.Row="0" 
-               NavigationUIVisibility="Hidden"
-               Panel.ZIndex="0"
-               ></Frame>
+                    Grid.Column="0"
+               NavigationUIVisibility="Hidden" >
+                    
+                </Frame>
+                <Button Click="ComeBack" BorderThickness="1"
+                Grid.Column="1"
+                Style="{StaticResource BackButton}"
+                Height="50" Width="250"
+                HorizontalAlignment="Center" Content=" Назад "/>
+            </Grid>
+        </Button>
 
+        <Frame Name="frmMain" Grid.Row="1" Panel.ZIndex="0" 
+               NavigationUIVisibility="Hidden"
+               ></Frame>
     </Grid>
 </Window>

@@ -15,9 +15,19 @@ namespace InteractivePoster
             frmMain.Navigate(new MenuPage());
             LoadPage.MainFrame = frmMain;
             ToolPainFrame.Navigate(new ToolPaint());
-            NavigateFrame.Navigate(new BackPage());
         }
 
-
+        private void ComeBack(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                LoadPage.MainFrame.GoBack();
+            }
+            catch (System.Exception)
+            {
+                //
+            }
+          
+        }
     }
 }
