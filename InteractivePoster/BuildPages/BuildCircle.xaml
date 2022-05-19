@@ -262,7 +262,7 @@
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
-                            <Button Content="Очистить поле" 
+                            <Button Content="Удалить окружность" 
                                     Style="{StaticResource  ClearStyle}"
                                     Command="{Binding clearCanvasCommand}"/>
                         </StackPanel>

@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="Основы аналитической геометрии. Кривые второго порядка"
         MinHeight="610"
-      MinWidth="780" WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"  FontSize="18" WindowStyle="ToolWindow" >
+      MinWidth="800" WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"  FontSize="18" WindowStyle="ToolWindow"
+        Width="1200">
 
     <Window.Resources>
         <Style TargetType="Button" x:Key="BackgrounButton">
@@ -17,7 +18,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -32,27 +33,43 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="130"/>
+            <RowDefinition x:Name="GridRow" Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Panel.ZIndex="1" Style="{StaticResource BackgrounButton}">
+        <Button  x:Name="GridHide" Grid.Row="0" Panel.ZIndex="1" Style="{StaticResource BackgrounButton}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="800"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-                <Frame 
+                <ToggleButton x:Name="TgBtn"
+                                      Grid.Column="0"
+                                      VerticalAlignment="Top"
+                                      Height="30"
+                                      Width="30"
+                                      BorderThickness="0"
+                                      Style="{StaticResource tb_style}" 
+                                      Unchecked="TgBtn_Unchecked"
+                                      Checked="TgBtn_Checked">
+                        <ToggleButton.Background>
+                            <ImageBrush ImageSource="/Resource/Images/tgBtn_default.png"
+                                            Stretch="None"/>
+                        </ToggleButton.Background>
+                    </ToggleButton>
+                    <StackPanel Grid.Column="1" x:Name="PaintStack">
+                    <Frame 
                x:Name="ToolPainFrame"
                Panel.ZIndex="2"
-                    Grid.Column="0"
-               NavigationUIVisibility="Hidden" >
-                    
-                </Frame>
-                <Button Click="ComeBack" BorderThickness="1"
+               NavigationUIVisibility="Hidden"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                    </Frame>
+                </StackPanel>
+                <Button x:Name="ButtonBack" Click="ComeBack" BorderThickness="1"
                         BorderBrush="{StaticResource OneColor}"
-                Grid.Column="1"
-                Style="{StaticResource BackButton}"
+                Grid.Column="2"
+                        
                 Height="50" Width="250"
                 HorizontalAlignment="Center" Content=" Назад "/>
             </Grid>

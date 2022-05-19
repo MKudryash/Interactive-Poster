@@ -159,7 +159,7 @@ namespace InteractivePoster.Pages
         private async void TgBtn_Checked(object sender, RoutedEventArgs e)
         {
             double column = ColumnForElement.ActualWidth;
-            h = (column - 30) / 10;
+            h = column/ 10;
             for (int i = 0; i < 10; i++)
             {
                 ColumnForElement.Width = new GridLength(column);
@@ -168,7 +168,7 @@ namespace InteractivePoster.Pages
                 await System.Threading.Tasks.Task.Delay(50);
             }
             ElementStack.Visibility = Visibility.Collapsed;
-            GridCanvas.Width = 35;
+            GridCanvas.Width = 30;
         }
     }
 }
