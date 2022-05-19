@@ -50,6 +50,7 @@
                     
                 </Frame>
                 <Button Click="ComeBack" BorderThickness="1"
+                        BorderBrush="{StaticResource OneColor}"
                 Grid.Column="1"
                 Style="{StaticResource BackButton}"
                 Height="50" Width="250"

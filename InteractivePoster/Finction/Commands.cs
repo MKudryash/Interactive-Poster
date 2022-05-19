@@ -8,38 +8,24 @@ using System.Windows.Shapes;
 
 namespace InteractivePoster.Finction
 {
+  
     interface ICommand
     {
         void Execute();
         void UnExecute();
     }
-
-    public class DrawCommand : ICommand
+    public class Icommands
     {
-        private Shape shape;
-        private Canvas canvas;
 
-        public DrawCommand(Shape shape, Canvas canvas)
-        {
-            this.shape = shape;
-            this.canvas = canvas;
-        }
-
-        public void Execute()
-        {
-            canvas.Children.Add(this.shape);
-        }
-
-        public void UnExecute()
-        {
-            canvas.Children.Remove(this.shape);
-        }
+      public  Path figure { get; set; }
+       public Canvas canvas { get; set; }
     }
 
     public class DrawWithPencilCommand : ICommand
     {
         private Path figure;
         private Canvas canvas;
+
 
         public DrawWithPencilCommand(Path figure, Canvas canvas)
         {
@@ -49,6 +35,7 @@ namespace InteractivePoster.Finction
 
         public void Execute()
         {
+
             canvas.Children.Add(this.figure);
         }
 

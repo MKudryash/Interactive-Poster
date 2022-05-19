@@ -96,7 +96,7 @@
                     HorizontalAlignment="Right"
                     Grid.Column="0"
                     Orientation="Vertical">
-            <Button 
+            <Button  Width="30"
             Click="BuildCircleOpen" 
             Style="{StaticResource SoundButton}">
                 <Button.Content>
@@ -104,12 +104,12 @@
                 </Button.Content>
             </Button>
             <CheckBox Content="/Resource/Images/Record.png"
-                  
+                  Width="30"
                   x:Name="PaintDraw"
                 
                   Style="{StaticResource DrawPen}"
                  />
-            <Button 
+            <Button  Width="30"
             Click="Undo" 
                 x:Name="undoBtn"
             Style="{StaticResource UndoRedoButton}" 
@@ -119,7 +119,7 @@
                 </Button.Content>
             </Button>
             <Button
-            Click="Redo" 
+            Click="Redo"  Width="30"
                 x:Name="redoBtn"
             Style="{StaticResource UndoRedoButton}" 
                >
@@ -128,13 +128,14 @@
                 </Button.Content>
             </Button>
             <Button 
-            Click="ClearAll" 
+            Click="ClearAll" Width="30"
             Style="{StaticResource UndoRedoButton}" >
+                
                 <Button.Content>
                     <Image  Source="/Resource/Images/Basket.png"/>
                 </Button.Content>
             </Button>
-            <CheckBox Content="/Resource/Images/Eraser.png"
+            <CheckBox Width="30" Content="/Resource/Images/Eraser.png"
                   MouseLeftButtonDown="Eraser"
                   x:Name="EraserCB"
                       IsChecked="{Binding Eraser}"

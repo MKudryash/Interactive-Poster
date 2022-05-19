@@ -105,11 +105,11 @@ namespace InteractivePoster.Finction
             if (currentPath!=null)
             {
                 currentPath.MouseMove += RemoveObj;
-                undo_redo.AddComand(command);
+                Icommands icommands = new Icommands() { canvas = cv,figure = currentPath};
+                undo_redo.AddComand(command, icommands);
                 currentFigure = null;
                 currentPath = null;
-            }
-            
+            }            
         }
         DrawWithPencilCommand commands;
         public void RemoveObj(object sender, MouseEventArgs e)
@@ -119,6 +119,7 @@ namespace InteractivePoster.Finction
                 if (Path == null)
                     return;
                 commands = new DrawWithPencilCommand(Path, cv);
+                undo_redo.removePath(Path,1);
                 commands.UnExecute();
             }
         }
