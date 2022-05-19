@@ -5,17 +5,166 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InteractivePoster.Pages" xmlns:colorPalette="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
-      d:DesignHeight="150" d:DesignWidth="800"
-      MinWidth="800" MinHeight="150"
+      d:DesignHeight="130" d:DesignWidth="800"
+      MinWidth="800" MinHeight="130"
       Title="ToolPaint">
 
-    <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <GroupBox Header="Кисть" Height="130" Margin="30,5">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5"
+                                Width="22"
+                                Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                    
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" >
+            <StackPanel Orientation="Horizontal">
+                <Button Grid.Column="0" Grid.Row="0"
+                    Click="Undo" 
+                    Style="{StaticResource UndoRedoButton}">
+                    <Button.Content>
+                        <Image  Source="/Resource/Images/Return.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button  Grid.Column="0" Grid.Row="1"
+                        Click="Redo" 
+                        x:Name="redoBtn"
+                        Style="{StaticResource UndoRedoButton}" >
+                    <Button.Content>
+                        <Image  Source="/Resource/Images/Forward.png"/>
+                    </Button.Content>
+                </Button>
+                
+                <Button  Grid.Column="1" Grid.Row="1"
+            Style="{StaticResource UndoRedoButton}" >
+                    <Button.Content>
+                        <Image  Source="/Resource/Images/Grid.png"/>
+                    </Button.Content>
+                </Button>
+                <Button  Grid.Column="1" Grid.Row="1"
+            Click="ClearAll" 
+            Style="{StaticResource UndoRedoButton}" >
+                    <Button.Content>
+                        <Image  Source="/Resource/Images/Basket.png"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <GroupBox Width="150" Height="100" Header="Инструменты">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Content="/Resource/Images/Eraser.png"
+                  MouseLeftButtonDown="Eraser"
+                  x:Name="EraserCB"
+                  IsChecked="{Binding Eraser}"
+                  Style="{StaticResource EraserStyles}"
+                                      Grid.Column="0"/>
+                    <RadioButton Content="/Resource/Images/Pen.png"
+                  Style="{StaticResource PenStyles}"
+                  x:Name="PenselP"  Grid.Column="1"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Margin="20,0,20,0" Width="200" Height="100" Header="Размер">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Толщина линии" Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border >
+                                <TextBox Style="{StaticResource TextBoxForSlider}"
+                                Grid.Column="0"
+                                     Width="30"
+                                     Height="30"
+                                     Text="{Binding ElementName=ThiknessPero,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            </Border>
+                            <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="ThiknessPero" 
+                            SmallChange="1"
+                                LargeChange="1"
+                                Value="3" Minimum="3" Maximum="10"
+                        IsSnapToTickEnabled="True" TickFrequency="1"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Header="Масштаб области" Visibility="{Binding ElementName=Background, Path=Visibility}" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border >
+                                <TextBox Style="{StaticResource TextBoxForSlider}"
+                                Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            </Border>
+                            <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
+                            SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
+                        PreviewMouseMove="Area_PreviewMouseMove" 
+                        IsSnapToTickEnabled="True" TickFrequency="2"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Цвет" Width="200" Height="100">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Margin="5" Width="22" Height="22" BorderThickness="0" Background="Black" />
+                        <Button Margin="5" Width="22" Height="22" BorderThickness="0" Background="Red" />
+                        <Button Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF0500FF" />
+                        <Button Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF05FF00" />
+                        <Button Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FFFFF500" />
+                        <Button Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF00FFF0" />
+                     
+                    </StackPanel>
+                    <colorPalette:ColorPicker x:Name="colorPicker"
+                                          Width="150" Height="30"
+                                          SelectedColor="Black"
+                                          Margin="5"
+                                          Grid.Row="1"
+                                          MouseLeftButtonUp="colorPicker_MouseLeftButtonUp"  />
+
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+       
+        
+        <!--<GroupBox Header="Кисть" Height="130" Margin="30,5">
             <StackPanel>
                 <colorPalette:ColorPicker x:Name="colorPicker"
                                           Width="150" Height="30"
@@ -133,7 +282,7 @@
                 
             </Grid>
         
-        </GroupBox>
+        </GroupBox>-->
 
     </Grid>
 </Page>

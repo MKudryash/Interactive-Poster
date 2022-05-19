@@ -73,8 +73,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill  = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
                 StrokeThickness = 1
             };
            
@@ -107,8 +107,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
                 StrokeThickness = 1
             };
             cv.Children.Add(PointFocus);//помещаем на канву
@@ -120,7 +120,7 @@ namespace InteractivePoster.Finction
         {
             line = new Line()
             {
-                Stroke = Brushes.Black,
+                Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
                 StrokeThickness = 2,
                 StrokeDashArray = { 4, 3 },
                 SnapsToDevicePixels = true,
@@ -146,7 +146,7 @@ namespace InteractivePoster.Finction
             }
             line = new Line()
             {
-                Stroke = Brushes.Black,
+                Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
                 StrokeThickness = 2,
                 StrokeDashArray = { 4, 3 },
                 SnapsToDevicePixels = true,
@@ -219,7 +219,7 @@ namespace InteractivePoster.Finction
                     Y1 = convertCoordY(massPoint[countForPoint, 1]),
                     X2 = convertCoordX(massPoint[countForPoint + 1, 0]),
                     Y2 = convertCoordY(massPoint[countForPoint + 1, 1]),
-                    Stroke = Brushes.Black,
+                    Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
                     StrokeThickness = 3
                 };
                 canvaFotPoint.Children.Add(line);
@@ -248,7 +248,7 @@ namespace InteractivePoster.Finction
             {
                 Width = 2 * rectangleA,//ширина и длина по сути равна диаметру окружности
                 Height = 2 * rectangleB,
-                Stroke = Brushes.Black,
+                Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
                 StrokeThickness = 2,
                 StrokeDashArray = { 4, 3 },
                 RenderTransform = rotateTransform
@@ -301,8 +301,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
                 StrokeThickness = 1
             };
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));

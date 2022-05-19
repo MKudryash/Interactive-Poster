@@ -138,8 +138,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
                 StrokeThickness = 1
             };
 
@@ -154,7 +154,7 @@ namespace InteractivePoster.Finction
             {
                 line = new Line()
                 {
-                    Stroke = Brushes.Black,
+                    Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
                     StrokeThickness = 2,
                     StrokeDashArray = { 4, 3 },
                     SnapsToDevicePixels = true,
@@ -168,7 +168,7 @@ namespace InteractivePoster.Finction
             {
                 line = new Line()
                 {
-                    Stroke = Brushes.Black,
+                    Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
                     StrokeThickness = 2,
                     StrokeDashArray = { 4, 3 },
                     SnapsToDevicePixels = true,
@@ -232,8 +232,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
                 StrokeThickness = 3
             };
 

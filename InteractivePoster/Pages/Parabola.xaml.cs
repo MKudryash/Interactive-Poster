@@ -65,7 +65,7 @@ namespace InteractivePoster.Pages
             DrawParabola drawParabola = new DrawParabola(slCoordX.Value, slCoordY.Value, Background,SlParametrParabola.Value, slCoordPoint.Value,PaintCanvas);
             Path path = new Path();
             path.Data = drawParabola.Parabola();
-            path.Stroke = Brushes.Black;
+            path.Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94));
             path.StrokeThickness = 3;
 
             Background.Children.Add(path);
