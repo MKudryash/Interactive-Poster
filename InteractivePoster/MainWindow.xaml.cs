@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace InteractivePoster
 {
@@ -69,6 +70,8 @@ namespace InteractivePoster
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["Figure"] = new SolidColorBrush(Color.FromRgb(248, 94, 94));
+            Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver.png", UriKind.RelativeOrAbsolute)));
             if (WindowGrid.ActualWidth!=0)
             {
                 WindowGrid.Width = WindowGrid.ActualWidth + 1;
@@ -81,6 +84,8 @@ namespace InteractivePoster
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Color.FromRgb(244, 213, 187));
             Application.Current.Resources["Figure"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Colors.Black);
+            Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default_two.png",UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver_two.png", UriKind.RelativeOrAbsolute)));
             WindowGrid.Width = WindowGrid.ActualWidth+1;
         }
     }

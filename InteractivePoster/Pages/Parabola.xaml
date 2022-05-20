@@ -182,11 +182,9 @@
                                       BorderThickness="0"
                                       Style="{StaticResource tb_style}" 
                                       Unchecked="TgBtn_Unchecked"
-                                      Checked="TgBtn_Checked">
-                        <ToggleButton.Background>
-                            <ImageBrush ImageSource="/Resource/Images/tgBtn_default.png"
-                                            Stretch="None"/>
-                        </ToggleButton.Background>
+                                      Checked="TgBtn_Checked"
+                                   Background="{DynamicResource tgBtn_default}">
+
                     </ToggleButton>
                     <Border Panel.ZIndex="1" Margin="15"
                                 CornerRadius="10"
