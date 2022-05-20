@@ -227,7 +227,7 @@
                                         </Button>
                                     </Grid>
                                     <StackPanel Style="{StaticResource HideTheopry}">
-                                        <TextBlock Foreground="#F1D3BC" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">
+                                        <TextBlock Foreground="{DynamicResource ThreeColor}" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">
                          - это множество всех точек плоскости, каждая из
 которых одинаково удалена от данной точки, называемой <Run Foreground="{StaticResource TwoColor}"> фокусом</Run>, и данной
 прямой, называемой <Run Foreground="{StaticResource TwoColor}"> директрисой.</Run><LineBreak></LineBreak> 

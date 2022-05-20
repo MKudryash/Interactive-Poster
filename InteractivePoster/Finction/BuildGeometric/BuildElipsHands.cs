@@ -15,6 +15,8 @@ namespace InteractivePoster.Finction.BuildGeometric
     class BuildElipsHands : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        public static SolidColorBrush colorTools { get; set; } = (SolidColorBrush)Application.Current.Resources["Tools"];
+        public static SolidColorBrush colorFigure { get; set; } = (SolidColorBrush)Application.Current.Resources["Figure"];
         public static Canvas cv { get; set; }
         public static Canvas cvs { get; set; }
         public Canvas GetCanvas { get => cv; set { cv = value; } }
@@ -99,8 +101,8 @@ namespace InteractivePoster.Finction.BuildGeometric
             {
                 Width = 6,
                 Height = 6,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill = colorFigure,
+                Stroke = colorFigure,
                 StrokeThickness = 1
             };
             PointForEllipse.Add(pointForElipse);
@@ -159,7 +161,7 @@ namespace InteractivePoster.Finction.BuildGeometric
             DrawThread(circleX, circleY);
         }
         public Point startPoint;
-        Brush currentBrush = Brushes.Black;
+        Brush currentBrush = colorFigure;
         PathFigure currentFigure;
         public Path currentPath = null;
 
@@ -239,7 +241,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                     X2 = beh.convertCoordX(coordCX - c),
                     Y1 = beh.convertCoordY(coordCY),
                     Y2 = beh.convertCoordY(coordCY),
-                    Stroke = Brushes.Black,
+                    Stroke = colorTools,
                     StrokeThickness = 2,
                     SnapsToDevicePixels = true
                 };
@@ -267,7 +269,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                     X2 = beh.convertCoordX(coordCX),
                     Y1 = beh.convertCoordY(coordCY + c),
                     Y2 = beh.convertCoordY(coordCY - c),
-                    Stroke = Brushes.Black,
+                    Stroke = colorTools,
                     StrokeThickness = 2,
                     SnapsToDevicePixels = true
                 };
@@ -299,7 +301,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                     X2 = beh.convertCoordX(x),
                     Y1 = beh.convertCoordY(coordCY),
                     Y2 = beh.convertCoordY(y),
-                    Stroke = Brushes.Black,
+                    Stroke = colorTools,
                     StrokeThickness = 1,
                     SnapsToDevicePixels = true
                 };
@@ -310,7 +312,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                     X2 = beh.convertCoordX(x),
                     Y1 = beh.convertCoordY(coordCY),
                     Y2 = beh.convertCoordY(y),
-                    Stroke = Brushes.Black,
+                    Stroke = colorTools,
                     StrokeThickness = 1,
                     SnapsToDevicePixels = true
                 };
@@ -323,7 +325,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                     X2 = beh.convertCoordX(x),
                     Y1 = beh.convertCoordY(coordCY+c),
                     Y2 = beh.convertCoordY(y),
-                    Stroke = Brushes.Black,
+                    Stroke = colorTools,
                     StrokeThickness = 1,
                     SnapsToDevicePixels = true
                 };
@@ -334,7 +336,7 @@ namespace InteractivePoster.Finction.BuildGeometric
                     X2 = beh.convertCoordX(x),
                     Y1 = beh.convertCoordY(coordCY-c),
                     Y2 = beh.convertCoordY(y),
-                    Stroke = Brushes.Black,
+                    Stroke = colorTools,
                     StrokeThickness = 1,
                     SnapsToDevicePixels = true
                 };
@@ -393,8 +395,8 @@ namespace InteractivePoster.Finction.BuildGeometric
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill = colorFigure,
+                Stroke = colorFigure,
                 StrokeThickness = 1
             };
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(x - 0.1));

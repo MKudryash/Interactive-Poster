@@ -19,7 +19,9 @@ namespace InteractivePoster.Finction.BuildGeometric
         Ellipse pointForCircle;
         List<Ellipse> PointForCircle { get; set; } = new List<Ellipse>();
         List<Path> pathFigure { get; set; } = new List<Path>();
-       
+        public static SolidColorBrush colorTools { get; set; } = (SolidColorBrush)Application.Current.Resources["Tools"];
+        public static SolidColorBrush colorFigure { get; set; } = (SolidColorBrush)Application.Current.Resources["Figure"];
+
 
         //вспомогательные перменные для построение в ручную
         public static Canvas cv { get; set; }
@@ -75,8 +77,8 @@ namespace InteractivePoster.Finction.BuildGeometric
             {
                 Width = 6,
                 Height = 6,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Black,
+                Fill = colorFigure,
+                Stroke = colorFigure,
                 StrokeThickness = 1
             };
 
@@ -107,7 +109,7 @@ namespace InteractivePoster.Finction.BuildGeometric
 
             line = new Line()
             {
-                Stroke = Brushes.Black,
+                Stroke = colorTools,
                 StrokeThickness = 3,
                 SnapsToDevicePixels = true,
                 X1 = buildCircleHand.convertCoordX(coordCX),
@@ -156,7 +158,7 @@ namespace InteractivePoster.Finction.BuildGeometric
        
        
         public Point startPoint;                                          
-        Brush currentBrush = Brushes.Black;
+        Brush currentBrush = colorFigure;
         PathFigure currentFigure;                                 
         public Path currentPath = null;
         
