@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InteractivePoster.BuildPages" xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
-      Title="Circle" Background="#F1D3BC">
+      Title="Circle" Background="{DynamicResource ThreeColor}">
 
 
 
@@ -17,7 +17,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#F1D3BC"/>
+            <Setter Property="Foreground" Value="{DynamicResource ThreeColor}"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
         <Style TargetType="{x:Type GroupBox}">
@@ -36,7 +36,7 @@
                                 </TextBlock>
                             </Border>
 
-                            <Border  Grid.Row="1" BorderThickness="5 0 5 5" BorderBrush="#262F34" Background="#F1D3BC">
+                            <Border  Grid.Row="1" BorderThickness="5 0 5 5" BorderBrush="#262F34" Background="{DynamicResource ThreeColor}">
                                 <ContentPresenter Margin="4"/>
                             </Border>
                         </Grid>
@@ -50,7 +50,8 @@
                         <Grid>
                             <Border  Width="300"  CornerRadius="5"  >
                                 <StackPanel Margin="10 0" HorizontalAlignment="Center" >
-                                    <TextBlock Style="{StaticResource Heading}" Foreground="#F1D3BC" Text="Масштаб области" 
+                                    <TextBlock Style="{StaticResource Heading}"
+                                               Foreground="{DynamicResource ThreeColor}" Text="Масштаб области" 
                                       />
                                 </StackPanel>
                             </Border>
@@ -85,7 +86,7 @@
             MouseUp="MouseUp_Background"
             MouseMove="MouseMove_Background"
             Tag="{Binding ElementName=Area,Path=Value}"
-            Background="{StaticResource ThreeColor}">
+            Background="{DynamicResource ThreeColor}">
             <Canvas            
             x:Name="Background"
             />
@@ -95,7 +96,7 @@
                     HorizontalAlignment="Right"
                     Grid.Column="0"
                     Orientation="Vertical">
-            
+
             <CheckBox Content="/Resource/Images/Record.png"                  
                   x:Name="PaintDraw"                
                   Style="{StaticResource DrawPen}"
@@ -266,20 +267,8 @@
                                     Style="{StaticResource  ClearStyle}"
                                     Command="{Binding clearCanvasCommand}"/>
                         </StackPanel>
-
                     </GroupBox>
-
                 </Grid>
-                <!--<StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <GroupBox Header="Каноническое уравнение:">
-                        <Grid>
-                            <controls:FormulaControl 
-                               x:Name="FormulaCircle" 
-                                />
-                        </Grid>
-                    </GroupBox>
-                </StackPanel>-->
-                <Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>
             </StackPanel>
         </ScrollViewer>
 

@@ -68,10 +68,18 @@
                 </StackPanel>
                 <Button x:Name="ButtonBack" Click="ComeBack" BorderThickness="1"
                         BorderBrush="{StaticResource OneColor}"
+                        Background="{DynamicResource TwoColor}"
                 Grid.Column="2"
                         
                 Height="50" Width="250"
                 HorizontalAlignment="Center" Content=" Назад "/>
+                <StackPanel Grid.Column="2">
+                    <RadioButton Content="One Theme"
+                                 IsChecked="True"
+                                 Checked="RadioButton_Checked"
+                                 Unchecked="RadioButton_Unchecked"/>
+                    <RadioButton Content="Two Theme"/>
+                </StackPanel>
             </Grid>
         </Button>
 

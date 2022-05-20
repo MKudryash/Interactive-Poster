@@ -1,6 +1,7 @@
 ﻿using InteractivePoster.Pages;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace InteractivePoster
 {
@@ -59,6 +60,18 @@ namespace InteractivePoster
             }
             PaintStack.Visibility = Visibility.Collapsed;
             ButtonBack.Visibility = Visibility.Collapsed;
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(0,172,193));
+            Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.White);
+        }
+
+        private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(243, 95, 74));
+            Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Color.FromRgb(244,213,187));
         }
     }
 }

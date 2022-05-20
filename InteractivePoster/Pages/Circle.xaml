@@ -7,7 +7,7 @@
       xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
-      Title="Circle" Background="{StaticResource ThreeColor}">
+      Title="Circle" Background="{DynamicResource ThreeColor}">
 
 
 
@@ -20,14 +20,14 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="{StaticResource ThreeColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ThreeColor}"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
         <Style TargetType="{x:Type GroupBox}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="GroupBox">
-                        <Grid Background="{StaticResource ThreeColor}">
+                        <Grid Background="{DynamicResource ThreeColor}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
@@ -40,7 +40,7 @@
                             </Border>
 
                             <Border  Grid.Row="1" BorderThickness="5 0 5 5" BorderBrush="{StaticResource OneColor}"
-                                     Background="{StaticResource ThreeColor}">
+                                     Background="{DynamicResource ThreeColor}">
                                 <ContentPresenter Margin="4"/>
                             </Border>
                         </Grid>
@@ -54,7 +54,9 @@
                         <Grid>
                             <Border  Width="300"  CornerRadius="5"  >
                                 <StackPanel Margin="10 0" HorizontalAlignment="Center" >
-                                    <TextBlock Style="{StaticResource Heading}" Foreground="{StaticResource ThreeColor}" Text="Масштаб области" 
+                                    <TextBlock Style="{StaticResource Heading}"
+                                               Foreground="{DynamicResource ThreeColor}"
+                                               Text="Масштаб области" 
                                       />
                                 </StackPanel>
                             </Border>
@@ -88,7 +90,7 @@
             MouseUp="MouseUp_Background"
             MouseMove="MouseMove_Background"
             Tag="{Binding ElementName=Area,Path=Value}"
-            Background="{StaticResource ThreeColor}">
+            Background="{DynamicResource ThreeColor}">
                 <Canvas            
             x:Name="Background"
             />

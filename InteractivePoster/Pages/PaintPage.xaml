@@ -89,7 +89,7 @@
             <Canvas            
             x:Name="Background"
                 Visibility="Collapsed"
-                Background="{StaticResource ThreeColor}"
+                Background="{DynamicResource ThreeColor}"
             />
         </Canvas>
 
