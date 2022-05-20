@@ -15,6 +15,7 @@ namespace InteractivePoster.Finction
     public class MaxMinCoordinat : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public double MaxValue { get; set; } = 9;
         public double MinValue { get; set; } = -9;
 
@@ -137,9 +138,12 @@ namespace InteractivePoster.Finction
 
         public bool DrawPen { get; set; } = false;
     }
-    class GeometricPatterns
+   public class GeometricPatterns
     {
         public double maxX,x,y, maxY, countX, countY, radius;
+
+        public SolidColorBrush colorTools { get; set; } = (SolidColorBrush)Application.Current.Resources["Tools"];
+        public SolidColorBrush colorFigure { get; set; } = (SolidColorBrush)Application.Current.Resources["Figure"];
 
         public Canvas cv;
         public double convertCoordX(double coord)

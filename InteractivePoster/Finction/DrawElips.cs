@@ -53,7 +53,7 @@ namespace InteractivePoster.Finction
             {
                 Width = 2 * radiusW,//ширина и длина по сути равна диаметру окружности
                 Height = 2 * radiusH,
-                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Stroke = colorFigure,
                 StrokeThickness = 3
 
             };
@@ -75,8 +75,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
-                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Fill = colorFigure,
+                Stroke = colorFigure,
                 StrokeThickness = 1
             };
 
@@ -135,7 +135,7 @@ namespace InteractivePoster.Finction
 
             line = new Line()
             {
-                Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
+                Stroke = colorTools,
                 StrokeThickness = 3,
                 SnapsToDevicePixels = true,
                 X1 = convertCoordX(x),
@@ -187,7 +187,7 @@ namespace InteractivePoster.Finction
                         X2 = convertCoordX(x - rW * cosGradusElpis),
                         Y1 = convertCoordY(y - rW * sinGradusElpis),
                         Y2 = convertCoordY(y + rW * sinGradusElpis),
-                        Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                        Stroke = colorFigure,
                         StrokeThickness = 2,
                         SnapsToDevicePixels = true
                     };
@@ -209,7 +209,7 @@ namespace InteractivePoster.Finction
                         X2 = convertCoordX(x - rH * sinGradusElpis),
                         Y1 = convertCoordY(y + rH * cosGradusElpis),
                         Y2 = convertCoordY(y - rH * cosGradusElpis),
-                        Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                        Stroke = colorFigure,
                         StrokeThickness = 2,
                         SnapsToDevicePixels = true
                     };
@@ -244,8 +244,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill  = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
-                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Fill  = colorFigure,
+                Stroke = colorFigure,
                 StrokeThickness = 1
             };
 

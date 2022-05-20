@@ -11,6 +11,11 @@
         <SolidColorBrush x:Key="TwoColor" Color="#00ACC1" />
         <SolidColorBrush x:Key="ThreeColor" Color="White" />
 
+        <SolidColorBrush x:Key="Figure" Color="#F85E5E" />
+        <SolidColorBrush x:Key="Tools" Color="#6CA5FA" />
+        
+        
+
         <Style BasedOn ="{StaticResource {x:Type Button}}"
                TargetType="Button"
                x:Key="MenuButtonTheme">

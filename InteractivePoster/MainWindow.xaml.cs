@@ -1,4 +1,6 @@
-﻿using InteractivePoster.Pages;
+﻿using InteractivePoster.Finction;
+using InteractivePoster.Pages;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,11 +26,11 @@ namespace InteractivePoster
             {
                 LoadPage.MainFrame.GoBack();
             }
-            catch (System.Exception)
+            catch 
             {
                 //
             }
-          
+
         }
 
         double h;
@@ -44,7 +46,7 @@ namespace InteractivePoster
                 column += h;
                 await System.Threading.Tasks.Task.Delay(50);
             }
-           
+
         }
 
         private async void TgBtn_Checked(object sender, RoutedEventArgs e)
@@ -61,17 +63,25 @@ namespace InteractivePoster
             PaintStack.Visibility = Visibility.Collapsed;
             ButtonBack.Visibility = Visibility.Collapsed;
         }
-
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(0,172,193));
+            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(0, 172, 193));
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["Tools"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
+            Application.Current.Resources["Figure"] = new SolidColorBrush(Color.FromRgb(248, 94, 94));
+            if (WindowGrid.ActualWidth!=0)
+            {
+                WindowGrid.Width = WindowGrid.ActualWidth + 1;
+            }
         }
 
         private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(243, 95, 74));
-            Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Color.FromRgb(244,213,187));
+            Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Color.FromRgb(244, 213, 187));
+            Application.Current.Resources["Figure"] = new SolidColorBrush(Colors.Black);
+            Application.Current.Resources["Tools"] = new SolidColorBrush(Colors.Black);
+            WindowGrid.Width = WindowGrid.ActualWidth+1;
         }
     }
 }

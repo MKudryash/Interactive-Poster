@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InteractivePoster.Finction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,15 +33,21 @@ namespace InteractivePoster.Pages
             {
                 case "CircleTag":
                     LoadPage.MainFrame.Navigate(new Circle());
+                  
                     break;
                 case "ElipsTag":
                     LoadPage.MainFrame.Navigate(new Elips());
+                   
                     break;
                 case "HyperboleTag":
                     LoadPage.MainFrame.Navigate(new Hyperbole());
+                
+
                     break;
                 case "ParabolaTag":
                     LoadPage.MainFrame.Navigate(new Parabola());
+                 
+
                     break;
                 default:
                     break;

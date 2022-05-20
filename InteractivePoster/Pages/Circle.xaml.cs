@@ -112,6 +112,7 @@ namespace InteractivePoster.Pages
         private void BuildCircleOpen(object sender, RoutedEventArgs e)
         {
             LoadPage.MainFrame.Navigate(new BuildCircle());
+           
         }
 
         private void Update(object sender, RoutedEventArgs e)

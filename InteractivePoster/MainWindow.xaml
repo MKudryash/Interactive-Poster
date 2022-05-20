@@ -31,7 +31,7 @@
         </Style>
 
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="WindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition x:Name="GridRow" Height="150"/>
             <RowDefinition Height="*"/>

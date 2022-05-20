@@ -63,12 +63,7 @@ namespace InteractivePoster.Pages
             lineY.DrawArrow(0, countY / 2, Orientation.Vertical, 3, Background);
 
             DrawParabola drawParabola = new DrawParabola(slCoordX.Value, slCoordY.Value, Background,SlParametrParabola.Value, slCoordPoint.Value,PaintCanvas);
-            Path path = new Path();
-            path.Data = drawParabola.Parabola();
-            path.Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94));
-            path.StrokeThickness = 3;
-
-            Background.Children.Add(path);
+            
 
             Formula.Formula = drawParabola.CanonicalEquation();
             string latex = drawParabola.CanonicalEquation();

@@ -113,6 +113,7 @@ namespace InteractivePoster.Pages
         private void BuildElipsOpen(object sender, RoutedEventArgs e)
         {
             LoadPage.MainFrame.Navigate(new BiuldElipse());
+
         }
 
         private void SinCos(object sender, RoutedEventArgs e)

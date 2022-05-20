@@ -36,7 +36,7 @@ namespace InteractivePoster.Finction
             {
                 Width = 2 * radius,//ширина и длина по сути равна диаметру окружности
                 Height = 2 * radius,
-                Stroke = new SolidColorBrush(Color.FromRgb(248,94,94)),
+                Stroke = colorFigure,
                 StrokeThickness = 3
             };
             cv.Children.Add(circle);//помещаем на канву
@@ -50,9 +50,9 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
-                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
-                StrokeThickness = 1
+                Fill = colorFigure,
+                Stroke = colorFigure,
+            StrokeThickness = 1
             };
 
             cv.Children.Add(point);//помещаем на канву
@@ -75,7 +75,7 @@ namespace InteractivePoster.Finction
 
             line = new Line()
             {
-                Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
+                Stroke = (SolidColorBrush)Application.Current.Resources["Tools"],
                 StrokeThickness = 3,
                 SnapsToDevicePixels = true
             };

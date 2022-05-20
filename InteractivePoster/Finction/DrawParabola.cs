@@ -27,13 +27,17 @@ namespace InteractivePoster.Finction
             maxY = canvas.ActualHeight; //получаем высоту канвы     
 
 
-
+            Parabola();
             FocusParabola(cv);
             DrawDirectrix();
             MovePoint(point);
         }
-        public PathGeometry Parabola()
+        public void Parabola()
         {
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
+            
+
+           
             PathFigure pathFigure = new PathFigure();
             PathGeometry pathGeometry = new PathGeometry();
             QuadraticBezierSegment quadraticBezierSegment = new QuadraticBezierSegment();
@@ -45,7 +49,7 @@ namespace InteractivePoster.Finction
                 quadraticBezierSegment.Point2 = new Point(convertCoordX(x + maxCorrdinatX), convertCoordY(Math.Pow(maxCorrdinatX, 2) / (2 * p) + y));
                 pathFigure.Segments.Add(quadraticBezierSegment);
                 pathGeometry.Figures.Add(pathFigure);
-                return pathGeometry;
+               
             }
             else //уравнение вида 2px= y^2
             {
@@ -53,9 +57,12 @@ namespace InteractivePoster.Finction
                 quadraticBezierSegment.Point1 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / (2 * p) * (-1) + x), convertCoordY(y));
                 quadraticBezierSegment.Point2 = new Point(convertCoordX(Math.Pow(maxCorrdinatX, 2) / (2 * p) + x), convertCoordY(y + maxCorrdinatX));
                 pathFigure.Segments.Add(quadraticBezierSegment);
-                pathGeometry.Figures.Add(pathFigure);
-                return pathGeometry;
+                pathGeometry.Figures.Add(pathFigure);              
             }
+            path.Data = pathGeometry;
+            path.Stroke = colorFigure;
+            path.StrokeThickness = 3;
+            cv.Children.Add(path);
 
         }
         Line line;
@@ -138,8 +145,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
-                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Fill = colorFigure,
+                Stroke = colorFigure,
                 StrokeThickness = 1
             };
 
@@ -154,7 +161,7 @@ namespace InteractivePoster.Finction
             {
                 line = new Line()
                 {
-                    Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
+                    Stroke = colorTools,
                     StrokeThickness = 2,
                     StrokeDashArray = { 4, 3 },
                     SnapsToDevicePixels = true,
@@ -168,7 +175,7 @@ namespace InteractivePoster.Finction
             {
                 line = new Line()
                 {
-                    Stroke = new SolidColorBrush(Color.FromRgb(108, 165, 250)),
+                    Stroke = colorTools,
                     StrokeThickness = 2,
                     StrokeDashArray = { 4, 3 },
                     SnapsToDevicePixels = true,
@@ -232,8 +239,8 @@ namespace InteractivePoster.Finction
             {
                 Width = (maxX / countX) * 0.2,
                 Height = (maxX / countX) * 0.2,
-                Fill = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
-                Stroke = new SolidColorBrush(Color.FromRgb(248, 94, 94)),
+                Fill = colorFigure,
+                Stroke = colorFigure,
                 StrokeThickness = 3
             };
 
