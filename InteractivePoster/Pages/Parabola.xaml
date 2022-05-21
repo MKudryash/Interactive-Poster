@@ -402,7 +402,6 @@
                                 </RadioButton.Template>
                             </RadioButton>
                             <RadioButton Grid.Column="1"
-                                         IsChecked="True"
                                  Checked="RadioButton_Checked"
                                  Unchecked="RadioButton_Unchecked"
                                          Style="{StaticResource RadioButtonPaint}">

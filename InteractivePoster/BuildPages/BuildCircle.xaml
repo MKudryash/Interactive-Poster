@@ -171,11 +171,6 @@
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <CheckBox   Margin="30,0,0,0"  x:Name="Circle_Header" Content="Окружность"  Style="{StaticResource CheckBoxContext}" Width="auto"/>
-                                        <Button  Click="PlaySound" Style="{StaticResource SoundButton}"  Grid.Column="1" >
-                                            <Button.Content>
-                                                <Image  Source="/Resource/Images/Sound.png"/>
-                                            </Button.Content>
-                                        </Button>
                                     </Grid>
                                     <StackPanel Style="{StaticResource HideTheopry}">
                                         <TextBlock Foreground="{DynamicResource ThreeColor}" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">
