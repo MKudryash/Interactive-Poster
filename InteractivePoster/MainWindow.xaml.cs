@@ -17,7 +17,7 @@ namespace InteractivePoster
         public MainWindow()
         {
             InitializeComponent();
-            frmMain.Navigate(new MenuPage(MMC));
+            frmMain.Navigate(new MenuPage());
             LoadPage.MainFrame = frmMain;
             DataContext = MMC;
         }

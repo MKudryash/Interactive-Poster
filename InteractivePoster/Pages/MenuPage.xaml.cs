@@ -21,11 +21,11 @@ namespace InteractivePoster.Pages
     /// </summary>
     public partial class MenuPage : Page
     {
-        MaxMinCoordinat MMC;
-        public MenuPage(MaxMinCoordinat MMC)
+        
+        public MenuPage()
         {
             InitializeComponent();
-            this.MMC = MMC;
+           
         }
 
         private void ThemeMath(object sender, RoutedEventArgs e)

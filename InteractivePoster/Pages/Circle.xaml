@@ -195,12 +195,6 @@
                     </Button>
 
                     <Button  Grid.Column="1" Grid.Row="1"
-            Style="{StaticResource UndoRedoButton}" >
-                        <Button.Content>
-                            <Image  Source="/Resource/Images/Grid.png"/>
-                        </Button.Content>
-                    </Button>
-                    <Button  Grid.Column="1" Grid.Row="1"
             Click="ClearAll" 
             Style="{StaticResource UndoRedoButton}" >
                         <Button.Content>
@@ -212,7 +206,7 @@
                             Orientation="Horizontal"
                             Name="ButtonStack"
                             Grid.Column="1">
-                    <TextBlock Style="{StaticResource PaintText}"  Text="Вернусь назад"/>
+                    <TextBlock Style="{StaticResource PaintText}"  Text="Вернуться назад" Margin="0,3,0,0" VerticalAlignment="Top"/>
                     <Border BorderBrush="{DynamicResource Border}"
                             BorderThickness="1"
                             Margin="5,0,10,0"
@@ -287,8 +281,9 @@
                         IsSnapToTickEnabled="True" TickFrequency="1"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Style="{StaticResource PaintGroup}" Grid.Row="1" Header="Масштаб области"
-                              FontSize="12" >
+                            <GroupBox Style="{StaticResource PaintGroup}" Grid.Row="1" 
+                                      FontSize="12"
+                                      Header="Масштаб области">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
@@ -296,13 +291,15 @@
                                     </Grid.ColumnDefinitions>
                                     <Border >
                                         <TextBox Style="{StaticResource TextBoxForSliders}"
-                                Grid.Column="0"  Text="{Binding ElementName=Areas,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                    </Border>
-                                    <Slider Style="{StaticResource MediaPlayerSliderStyles}" Grid.Column="1" x:Name="Areas" 
+                                Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Border> 
+                                    <Slider Style="{StaticResource MediaPlayerSliderStyles}" Grid.Column="1" x:Name="Area" 
                             SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
+                        PreviewMouseMove="Area_PreviewMouseMove" 
                         IsSnapToTickEnabled="True" TickFrequency="2"/>
                                 </Grid>
                             </GroupBox>
+                            
                         </Grid>
                     </GroupBox>
                     <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="2" Header="Цвет" Width="200" Height="110"
@@ -333,7 +330,7 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="3" Header="Сменить тему"
+                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="3" Header="Тема приложения"
                               FontSize="18"
                               BorderBrush="{DynamicResource Border}"
                               BorderThickness="2"
@@ -569,22 +566,7 @@
                                         <StackPanel Margin="5">
 
                                             <!--Масштаб области-->
-                                            <GroupBox Header="Масштаб области">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Border >
-                                                        <TextBox Style="{StaticResource TextBoxForSlider}"
-                                Grid.Column="0"  Text="{Binding ElementName=Area,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                                    </Border>
-                                                    <Slider Style="{StaticResource MediaPlayerSliderStyle}" Grid.Column="1" x:Name="Area" 
-                            SmallChange="2" LargeChange="2" Value="20" Minimum="4" Maximum="50"
-                        PreviewMouseMove="Area_PreviewMouseMove" 
-                        IsSnapToTickEnabled="True" TickFrequency="2"/>
-                                                </Grid>
-                                            </GroupBox>
+
 
                                             <!--Смещение по оси абсцисс-->
                                             <GroupBox Header="Смещение по оси абсцисс">

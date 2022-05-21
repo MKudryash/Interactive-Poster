@@ -40,7 +40,7 @@ namespace InteractivePoster.Pages
         {
           
             isMouse = true;
-
+            AreaGB.IsEnabled = false;
             paint.StartDraw(e);
         }
 
@@ -84,6 +84,8 @@ namespace InteractivePoster.Pages
         private void ClearAll(object sender, RoutedEventArgs e)
         {
             paint.ClearAll();
+            AreaGB.IsEnabled = true;
+
         }
 
         private void Eraser(object sender, MouseButtonEventArgs e)
@@ -115,17 +117,67 @@ namespace InteractivePoster.Pages
             UpdateBackPattern(null, null);
         }
 
+        private void PaintCanvas_StylusDown(object sender, StylusDownEventArgs e)
+        {
+            isMouse = true;
+            AreaGB.IsEnabled = false;
+            paint.StartDrawStylus(e);
+        }
 
+        ChangeTheme CT = new ChangeTheme();
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (PaintCanvas != null)
+                CT.Checked(AllGrid);
+        }
         private void CoordinateLine_Click(object sender, RoutedEventArgs e)
         {
             if ((bool)CoordinateLine.IsChecked)
             {
                 Background.Visibility = Visibility.Visible;
+                AreaGB.IsEnabled = true;
             }
             else
+            {
                 Background.Visibility = Visibility.Collapsed;
+                AreaGB.IsEnabled = false;
+            }
             UpdateBackPattern(null, null);
         }
+        private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CT.Unchecked(AllGrid);
+        }
+        double hh;
+        private async void PaintTgBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            row = 30;
+            GridElement.Visibility = Visibility.Visible;
+            PaintElementStack.Visibility = Visibility.Visible;
+            for (int i = 0; i < 10; i++)
+            {
+                GridHide.Height = new GridLength(row);
+
+                row += hh;
+                await System.Threading.Tasks.Task.Delay(50);
+            }
+            GridHide.Height = new GridLength(weirow);
+        }
+        double row, weirow;
+
+
+        private void ChangedStrokeThickness(object sender, MouseEventArgs e)
+        {
+            paint.strokeThickness = (int)ThicknessPero.Value;
+        }
+
+        private void changeColor(object sender, RoutedEventArgs e)
+        {
+            int numberColor = Convert.ToInt32((sender as Button).Tag.ToString());
+            colorPicker.SelectedColor = CT.ChangedColor(numberColor);
+            paint.GetBrush(new SolidColorBrush((Color)colorPicker.SelectedColor));
+        }
+
 
         private void colorPicker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -135,11 +187,26 @@ namespace InteractivePoster.Pages
             }
         }
 
-        private void PaintCanvas_StylusDown(object sender, StylusDownEventArgs e)
+        private async void PaintTgBtn_Checked(object sender, RoutedEventArgs e)
         {
-            isMouse = true;
+            weirow = row = GridHide.ActualHeight;
+            hh = (row - 20) / 10;
+            for (int i = 0; i < 10; i++)
+            {
+                GridHide.Height = new GridLength(row);
 
-            paint.StartDrawStylus(e);
+                row -= hh;
+                await System.Threading.Tasks.Task.Delay(50);
+            }
+            GridElement.Visibility = Visibility.Collapsed;
+            PaintElementStack.Visibility = Visibility.Collapsed;
+            BurgerGridRow.Height = new GridLength(30);
+        }
+    
+
+        private void OpenPaint(object sender, RoutedEventArgs e)
+        {
+            LoadPage.MainFrame.Navigate(new MenuPage());
         }
 
 
