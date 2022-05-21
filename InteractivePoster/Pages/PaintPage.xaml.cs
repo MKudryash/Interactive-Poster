@@ -147,6 +147,7 @@ namespace InteractivePoster.Pages
         private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
         {
             CT.Unchecked(AllGrid);
+            
         }
         double hh;
         private async void PaintTgBtn_Unchecked(object sender, RoutedEventArgs e)

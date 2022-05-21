@@ -148,17 +148,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="Transparent"
-                                CornerRadius="20"
-                                Width="30"
-                                Height="30">
-                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
-                                        Width="25" 
-                                        Height="25" 
+                        <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
+                                        Width="30" 
+                                        Height="30" 
                                        HorizontalAlignment="Center"/>
-                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -316,6 +309,7 @@
                             <GroupBox Style="{StaticResource PaintGroup}" Grid.Row="1" 
                                       FontSize="12"
                                       x:Name="AreaGB"
+                                      IsEnabled="false"
                                       Header="Масштаб области">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -375,7 +369,9 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <RadioButton Style="{StaticResource RadioButtonPaint}">
+                            <RadioButton Style="{StaticResource RadioButtonPaint}"
+                                         Click="RadioButton_Unchecked"
+                                         IsChecked="{Binding ThemeClassic}">
                                 <RadioButton.Template>
                                     <ControlTemplate>
                                         <Border
@@ -407,9 +403,9 @@
                                 </RadioButton.Template>
                             </RadioButton>
                             <RadioButton Grid.Column="1"
-                                         IsChecked="True"
-                                 Checked="RadioButton_Checked"
-                                 Unchecked="RadioButton_Unchecked"
+                                         IsChecked="{Binding ThemeModern}"
+                                Click="RadioButton_Checked"
+                                         
                                          Style="{StaticResource RadioButtonPaint}">
                                 <RadioButton.Template>
                                     <ControlTemplate>
