@@ -1,5 +1,6 @@
 ﻿using InteractivePoster.Finction;
 using InteractivePoster.Finction.BuildGeometric;
+using InteractivePoster.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +38,11 @@ namespace InteractivePoster.BuildPages
         private void MouseDown_Background(object sender, MouseButtonEventArgs e)
         {
             isMouse = true;
-            if ((bool)PaintDraw.IsChecked)
+            if ((bool)PaintRB.IsChecked)
             {
                 paint.StartDraw(e);
+                PaintTgBtn.IsEnabled = false;
+                TgBtn.IsEnabled = false;
             }
             else
             {
@@ -47,9 +50,13 @@ namespace InteractivePoster.BuildPages
                 {
                     BCH.MouseDown = true;
                     BCH.StartDraw(e);
+                    PaintTgBtn.IsEnabled = false;
+                    TgBtn.IsEnabled = false;
                 }
                 else
                 {
+                    PaintTgBtn.IsEnabled = false;
+                    TgBtn.IsEnabled = false;
                     if (BCH.RadiusCircle)
                     {
                         BCH.isMouseDownRadius = false;
@@ -81,31 +88,36 @@ namespace InteractivePoster.BuildPages
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
             MaxMinCoordinat.Eraser = false;
-            if ((bool)PaintDraw.IsChecked && !(bool)EraserCB.IsChecked&& isMouse)
+            if ((bool)PaintRB.IsChecked)
             {
-                if (e.LeftButton == MouseButtonState.Pressed)
+                if (!(bool)EraserCB.IsChecked && isMouse)
                 {
-                    PaintCanvas.Children.Remove(paint.currentPath);
+                    if (e.LeftButton == MouseButtonState.Pressed)
+                    {
+                        PaintCanvas.Children.Remove(paint.currentPath);
 
-                    paint.BuildPoint(e);
+                        paint.BuildPoint(e);
+                    }
                 }
-            }          
-             if ((bool)EraserCB.IsChecked && isMouse)
-            {
-                MaxMinCoordinat.Eraser = true;
-                paint.RemoveObj(sender, e);
+                if ((bool)EraserCB.IsChecked && isMouse)
+                {
+                    MaxMinCoordinat.Eraser = true;
+                    paint.RemoveObj(sender, e);
+                }
+                if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
+                {
+                    paint.rr();
+                }
+                previousMouseEvent = e.LeftButton;
             }
-            
-            if (BCH.MouseDown && !(bool)EraserCB.IsChecked)
+            else
             {
-                Background.Children.Remove(BCH.currentPath);
-                BCH.BuildCirclePoint(e);
-            }
-            if (e.LeftButton == MouseButtonState.Released && previousMouseEvent == MouseButtonState.Pressed)
-            {
-                paint.rr();
-            }
-            previousMouseEvent = e.LeftButton;
+                if (BCH.MouseDown && !(bool)EraserCB.IsChecked)
+                {
+                    Background.Children.Remove(BCH.currentPath);
+                    BCH.BuildCirclePoint(e);
+                }
+            }           
            
         }
 
@@ -156,6 +168,7 @@ namespace InteractivePoster.BuildPages
         private void ClearAll(object sender, RoutedEventArgs e)
         {
             paint.ClearAll();
+            TgBtn.IsEnabled = true;
         }
 
         private void Eraser(object sender, MouseButtonEventArgs e)
@@ -191,6 +204,77 @@ namespace InteractivePoster.BuildPages
             }
             ElementStack.Visibility = Visibility.Collapsed;
             GridCanvas.Width = 30;
+        }
+        ChangeTheme CT = new ChangeTheme();
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            PaintTgBtn.IsEnabled = false;
+        }
+
+        private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            PaintTgBtn.IsEnabled = true;
+        }
+        double hh;
+        private async void PaintTgBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            row = 30;
+            GridElement.Visibility = Visibility.Visible;
+            PaintElementStack.Visibility = Visibility.Visible;
+            for (int i = 0; i < 10; i++)
+            {
+                GridHide.Height = new GridLength(row);
+
+                row += hh;
+                await System.Threading.Tasks.Task.Delay(50);
+            }
+            GridHide.Height = new GridLength(weirow);
+        }
+        double row, weirow;
+
+        private void OpenPaint(object sender, RoutedEventArgs e)
+        {
+            LoadPage.MainFrame.Navigate(new PaintPage());
+        }
+        private void ChangedStrokeThickness(object sender, MouseEventArgs e)
+        {
+            paint.strokeThickness = (int)ThicknessPero.Value;
+        }
+
+        private void changeColor(object sender, RoutedEventArgs e)
+        {
+            int numberColor = Convert.ToInt32((sender as Button).Tag.ToString());
+            colorPicker.SelectedColor = CT.ChangedColor(numberColor);
+            paint.GetBrush(new SolidColorBrush((Color)colorPicker.SelectedColor));
+        }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            PaintTgBtn.IsEnabled = true;
+        }
+
+        private void colorPicker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (colorPicker.SelectedColor != null)
+            {
+                paint.GetBrush(new SolidColorBrush((Color)colorPicker.SelectedColor));
+            }
+        }
+
+        private async void PaintTgBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            weirow = row = GridHide.ActualHeight;
+            hh = (row - 20) / 10;
+            for (int i = 0; i < 10; i++)
+            {
+                GridHide.Height = new GridLength(row);
+
+                row -= hh;
+                await System.Threading.Tasks.Task.Delay(50);
+            }
+            GridElement.Visibility = Visibility.Collapsed;
+            PaintElementStack.Visibility = Visibility.Collapsed;
+            BurgerGridRow.Height = new GridLength(30);
         }
 
         private void PlaySound(object sender, RoutedEventArgs e)
