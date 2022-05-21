@@ -21,6 +21,18 @@ namespace InteractivePoster.Finction
 
         public static bool Eraser { get; set; } = false;
 
+        public  bool StackPaint
+        {
+            get => stackPaint;
+                set
+            {
+                stackPaint = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("stackPaint"));
+            }
+        } 
+
+        public bool stackPaint { get; set; } = false;
+
         public double MaxMinPoint
         {
             set
@@ -138,9 +150,9 @@ namespace InteractivePoster.Finction
 
         public bool DrawPen { get; set; } = false;
     }
-   public class GeometricPatterns
+    public class GeometricPatterns
     {
-        public double maxX,x,y, maxY, countX, countY, radius;
+        public double maxX, x, y, maxY, countX, countY, radius;
 
         public SolidColorBrush colorTools { get; set; } = (SolidColorBrush)Application.Current.Resources["Tools"];
         public SolidColorBrush colorFigure { get; set; } = (SolidColorBrush)Application.Current.Resources["Figure"];

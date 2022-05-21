@@ -54,5 +54,15 @@ namespace InteractivePoster.Pages
         {
 
         }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

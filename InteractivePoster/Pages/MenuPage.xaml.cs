@@ -21,19 +21,22 @@ namespace InteractivePoster.Pages
     /// </summary>
     public partial class MenuPage : Page
     {
-        public MenuPage()
+        MaxMinCoordinat MMC;
+        public MenuPage(MaxMinCoordinat MMC)
         {
             InitializeComponent();
+            this.MMC = MMC;
         }
 
         private void ThemeMath(object sender, RoutedEventArgs e)
         {
             string themePage = (sender as Button).Tag.ToString();
+
             switch (themePage)
             {
                 case "CircleTag":
                     LoadPage.MainFrame.Navigate(new Circle());
-                  
+                    MMC.StackPaint = true;
                     break;
                 case "ElipsTag":
                     LoadPage.MainFrame.Navigate(new Elips());
