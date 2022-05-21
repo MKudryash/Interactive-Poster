@@ -246,7 +246,8 @@
                                  Click="ComeBack"
                                 BorderThickness="0"
                                 Width="20"
-                                Height="20">
+                                Height="20"
+                                 Style="{DynamicResource BackButtonPaint}">
                             <Image  Width="15" Height="15" Source="/Resource/Images/BackPageIcon.png"/>
                         </Button>
                     </Border>

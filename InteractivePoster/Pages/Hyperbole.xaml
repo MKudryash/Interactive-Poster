@@ -242,8 +242,10 @@
                                  Click="ComeBack"
                                 BorderThickness="0"
                                 Width="20"
-                                Height="20">
+                                Height="20"
+                                Style="{DynamicResource BackButtonPaint}">
                             <Image  Width="15" Height="15" Source="/Resource/Images/BackPageIcon.png"/>
+                           
                         </Button>
                     </Border>
 
@@ -448,6 +450,7 @@
                         CornerRadius="3"                        >
                         <Button Style="{DynamicResource OpenPaint}" Click="OpenPaint"
                           >
+                            <Button.Content>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Style="{StaticResource PaintText}" Text="Открыть доску" VerticalAlignment="Center"/>
                                 <Image Source="/Resource/Images/OpenPaint.png"
@@ -455,6 +458,7 @@
                                Height="30"
                                    Margin="20,0,0,0"/>
                             </StackPanel>
+                            </Button.Content>
                         </Button>
                     </Border>
 
