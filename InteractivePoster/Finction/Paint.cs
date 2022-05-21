@@ -19,6 +19,7 @@ namespace InteractivePoster.Finction
         public Brush currentBrush = Brushes.Black;
         PathFigure currentFigure;
         public Path currentPath = null;
+        public int strokeThickness { get; set; } = 3;
         List<Path> pathFigure { get; set; } = new List<Path>();
         public void GetBrush(Brush Cb)
         {
@@ -73,7 +74,7 @@ namespace InteractivePoster.Finction
             Path path = new Path()
             {
                 Stroke = currentBrush,
-                StrokeThickness = 3,
+                StrokeThickness = strokeThickness,
                 Data = new PathGeometry() { Figures = { currentFigure } }
             };
             cv.Children.Add(path);
@@ -91,7 +92,7 @@ namespace InteractivePoster.Finction
             Path path = new Path()
             {
                 Stroke = currentBrush,
-                StrokeThickness = 3,
+                StrokeThickness = strokeThickness,
                 Data = new PathGeometry() { Figures = { currentFigure } }
             };
             cv.Children.Add(path);

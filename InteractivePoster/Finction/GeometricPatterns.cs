@@ -21,17 +21,7 @@ namespace InteractivePoster.Finction
 
         public static bool Eraser { get; set; } = false;
 
-        public  bool StackPaint
-        {
-            get => stackPaint;
-                set
-            {
-                stackPaint = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("stackPaint"));
-            }
-        } 
 
-        public bool stackPaint { get; set; } = false;
 
         public double MaxMinPoint
         {

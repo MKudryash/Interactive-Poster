@@ -36,7 +36,7 @@ namespace InteractivePoster.Pages
             {
                 case "CircleTag":
                     LoadPage.MainFrame.Navigate(new Circle());
-                    MMC.StackPaint = true;
+                    
                     break;
                 case "ElipsTag":
                     LoadPage.MainFrame.Navigate(new Elips());

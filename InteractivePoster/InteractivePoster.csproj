@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Finction\BuildGeometric\BuildCircleHands.cs" />
     <Compile Include="Finction\BuildGeometric\BuildElipsHands.cs" />
+    <Compile Include="Finction\ChangeTheme.cs" />
     <Compile Include="Finction\Commands.cs" />
     <Compile Include="Finction\DrawCircle.cs" />
     <Compile Include="Finction\DrawElips.cs" />
@@ -142,10 +143,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ToolPaint.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\BackPage.xaml.cs">
@@ -168,9 +165,6 @@
     </Compile>
     <Compile Include="Pages\Parabola.xaml.cs">
       <DependentUpon>Parabola.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ToolPaint.xaml.cs">
-      <DependentUpon>ToolPaint.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
