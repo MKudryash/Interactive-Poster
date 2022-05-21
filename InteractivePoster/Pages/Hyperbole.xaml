@@ -486,6 +486,7 @@
                         </ToggleButton>
                         <Border Panel.ZIndex="1" Margin="15"
                                 CornerRadius="10"
+                                Height="1200"
                             Grid.Column="1" x:Name="ElementStack"
                         Background="{StaticResource OneColor}">
                             <StackPanel >
@@ -725,7 +726,10 @@
                               IsChecked="{Binding ElementHyperboleFocus }"                             
                               Style="{StaticResource ElementHide}"
                                    Click="SinCos"/>
-
+                                    <CheckBox Content="Точки" 
+                              IsChecked="{Binding ElementHyperboleFocus }"                             
+                              Style="{StaticResource ElementHide}"
+                                   Click="SinCos"/>
                                 </StackPanel>
 
 

@@ -140,7 +140,7 @@ namespace InteractivePoster.Finction
            
            
             textBlock = DrawText(mX, mY, "M( " + (mX).ToString("F1") + "; " + (mY).ToString("F1") + ")");
-            cv.Children.Add(textBlock);
+            
             PointFocus = new Ellipse()//задаем прочие параметры
             {
                 Width = (maxX / countX) * 0.2,
@@ -150,10 +150,18 @@ namespace InteractivePoster.Finction
                 StrokeThickness = 1
             };
 
-            cv.Children.Add(PointFocus);//помещаем на канву
-                                        //в нужную точку канвы
             PointFocus.SetValue(Canvas.LeftProperty, convertCoordX(mX - 0.1));
             PointFocus.SetValue(Canvas.TopProperty, convertCoordY(mY + 0.1));
+            if (MaxMinCoordinat.ElementParabolaPoint)
+            {
+                cv.Children.Add(textBlock);
+                cv.Children.Add(PointFocus);
+            }
+            else
+            {
+                cv.Children.Remove(textBlock);
+                cv.Children.Remove(PointFocus);
+            }
         }
         void DrawDirectrix()
         {

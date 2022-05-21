@@ -506,6 +506,7 @@
                         </ToggleButton>
                         <Border Panel.ZIndex="1" Margin="15"
                                 CornerRadius="10"
+                                Height="900"
                             Grid.Column="1" x:Name="ElementStack"
                         Background="{StaticResource OneColor}">
                             <StackPanel  >
@@ -692,6 +693,10 @@
                               />
                                     <CheckBox Content="Директриса" 
                               IsChecked="{Binding ElementParabolaD }"                             
+                              Style="{StaticResource ElementHide}"
+                               Click="Update"/>
+                                    <CheckBox Content="Точка" 
+                              IsChecked="{Binding ElementParabolaPoint }"                             
                               Style="{StaticResource ElementHide}"
                                Click="Update"/>
 

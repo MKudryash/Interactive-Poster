@@ -130,10 +130,12 @@ namespace InteractivePoster.Finction
 
         public static bool ElementParabolaD { get; set; } = true;
         public static bool ElementParabolaFocus { get; set; } = true;
+        public static bool ElementParabolaPoint { get; set; } = true;
 
         public static bool ElementHyperboleRectangle { get; set; } = true;
         public static bool ElementHyperboleFocus { get; set; } = true;
         public static bool ElementHyperboleAssim { get; set; } = true;
+        public static bool ElementHyperbolePoint { get; set; } = true;
 
         public static bool SinCosEllipse { get; set; } = false;
         public static bool SinCosHyperbole { get; set; } = false;
