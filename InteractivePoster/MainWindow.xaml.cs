@@ -21,5 +21,7 @@ namespace InteractivePoster
             LoadPage.MainFrame = frmMain;
             DataContext = MMC;
         }
+
+
     }
 }

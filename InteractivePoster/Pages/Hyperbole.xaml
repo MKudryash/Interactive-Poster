@@ -368,7 +368,9 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <RadioButton Style="{StaticResource RadioButtonPaint}">
+                            <RadioButton Style="{StaticResource RadioButtonPaint}"
+                                         IsChecked="{Binding ThemeClassic}"
+                                         Click="RadioButton_Unchecked">
                                 <RadioButton.Template>
                                     <ControlTemplate>
                                         <Border
@@ -400,8 +402,8 @@
                                 </RadioButton.Template>
                             </RadioButton>
                             <RadioButton Grid.Column="1"
-                                 Checked="RadioButton_Checked"
-                                 Unchecked="RadioButton_Unchecked"
+                                         IsChecked="{Binding ThemeModern}"
+                                Click="RadioButton_Checked"
                                          Style="{StaticResource RadioButtonPaint}">
                                 <RadioButton.Template>
                                     <ControlTemplate>

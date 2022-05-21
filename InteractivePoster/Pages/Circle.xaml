@@ -376,6 +376,7 @@
                                 </RadioButton.Template>
                             </RadioButton>
                             <RadioButton Grid.Column="1"
+                                         IsChecked="{Binding ThemeModern}"
                                 Click="RadioButton_Checked"
                                          Style="{StaticResource RadioButtonPaint}">
                                 <RadioButton.Template>

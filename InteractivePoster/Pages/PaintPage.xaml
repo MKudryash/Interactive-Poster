@@ -227,7 +227,7 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="0" HorizontalAlignment="Right"
+                <!--<StackPanel Grid.Row="0" HorizontalAlignment="Right"
                             Orientation="Horizontal"
                             Name="ButtonStack"
                             Grid.Column="1">
@@ -246,7 +246,7 @@
                         </Button>
                     </Border>
 
-                </StackPanel>
+                </StackPanel>-->
                 <Grid Grid.Row="1" x:Name="GridElement"
                       Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -370,8 +370,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <RadioButton Style="{StaticResource RadioButtonPaint}"
-                                         Click="RadioButton_Unchecked"
-                                         IsChecked="{Binding ThemeClassic}">
+                                         IsChecked="{Binding ThemeClassic}"
+                                         Click="RadioButton_Unchecked">
                                 <RadioButton.Template>
                                     <ControlTemplate>
                                         <Border
@@ -403,8 +403,8 @@
                                 </RadioButton.Template>
                             </RadioButton>
                             <RadioButton Grid.Column="1"
+                                         IsChecked="{Binding ThemeModern}"
                                 Click="RadioButton_Checked"
-                                         
                                          Style="{StaticResource RadioButtonPaint}">
                                 <RadioButton.Template>
                                     <ControlTemplate>
