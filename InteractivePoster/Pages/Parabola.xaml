@@ -176,7 +176,6 @@
         </Grid.RowDefinitions>
         <Button Background="{DynamicResource ThreeColor}" 
                 Grid.Row="0"
-                Grid.ColumnSpan="2"
                 
                 Panel.ZIndex="1" Style="{StaticResource BackgrounButton}">
             <Grid>

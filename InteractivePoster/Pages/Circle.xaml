@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InteractivePoster.Pages"
       xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath" xmlns:colorPalette="http://schemas.xceed.com/wpf/xaml/toolkit"
-      mc:Ignorable="d" Height="1200" d:DesignWidth="1400"
+      mc:Ignorable="d" Height="800" d:DesignWidth="800"
       Title="Circle" Background="{DynamicResource ThreeColor}">
 
 
@@ -143,11 +143,10 @@
 
         <Grid.RowDefinitions>
             <RowDefinition  x:Name="GridHide" Height="150"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Button Background="{DynamicResource ThreeColor}" 
                 Grid.Row="0"
-                Grid.ColumnSpan="2"
                 
                 Panel.ZIndex="1" Style="{StaticResource BackgrounButton}">
             <Grid>
@@ -461,7 +460,6 @@
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"
                     Grid.Column="0"
-                    Grid.Row="1"
                     Orientation="Vertical">
                 <Button  Width="30"
             Click="BuildCircleOpen" 
@@ -678,8 +676,7 @@
 
 
 
-                                <!--<Button Click="ComeBack" Style="{StaticResource BackButton}" Margin="0,30" HorizontalAlignment="Center" Content=" Назад "/>-->
-                            </StackPanel>
+                                 </StackPanel>
                         </Border>
                     </DockPanel>
                 </ScrollViewer>

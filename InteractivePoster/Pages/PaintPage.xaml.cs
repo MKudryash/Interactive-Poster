@@ -29,7 +29,13 @@ namespace InteractivePoster.Pages
             InitializeComponent();
             paint = new Paint(PaintCanvas);
             DataContext = MMC;
+            
         }
+        public static RoutedCommand MyCommand = new RoutedCommand();
+        public void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e) {
+            paint.Undo();
+        
+    }
         private void ComeBack(object sender, RoutedEventArgs e)
         {
             LoadPage.MainFrame.GoBack();
@@ -52,6 +58,7 @@ namespace InteractivePoster.Pages
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
             if (!(bool)EraserCB.IsChecked&&isMouse)
+                MyCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
