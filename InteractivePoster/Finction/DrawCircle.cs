@@ -20,7 +20,7 @@ namespace InteractivePoster.Finction
         /// <param name="r">Радиус окружности в декартовой системе</param>
         /// <param name="cv">Объект канвы, на котором появится окружность</param>
 
-        double x, y,r;
+        double r;
         public DrawCircle(double x, double y, double r, Canvas cv,Canvas canvas)
         {
             countX = Convert.ToDouble(canvas.Tag);//получаем масштабы области

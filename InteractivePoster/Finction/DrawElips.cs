@@ -94,7 +94,7 @@ namespace InteractivePoster.Finction
             cv.Children.Add(centre);
 
             PointRadius();
-            FocusElips(rW, rH, gradusValueElips);//Отрисовка и подсчет Фокусов
+            FocusElips(rW, rH);//Отрисовка и подсчет Фокусов
             DrawRadius(rW, rH);//Отрисовка радиуса Элипса
         }
 
@@ -160,7 +160,7 @@ namespace InteractivePoster.Finction
 
 
         } //Орисовка радиуса + текст с точкой на окружности
-        void FocusElips(double rW, double rH, double gradusValueElips)
+        void FocusElips(double rW, double rH)
         {
             TextBlock F1 = new TextBlock();
             TextBlock F2 = new TextBlock();
