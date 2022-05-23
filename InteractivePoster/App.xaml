@@ -156,7 +156,7 @@
                             <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
                               TextAlignment="Center" 
                                        FontSize="22"
-                                       Foreground="{StaticResource OneColor}"                             />
+                                       Foreground="{DynamicResource Coordinate}"                             />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>

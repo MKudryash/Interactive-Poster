@@ -58,7 +58,6 @@ namespace InteractivePoster.Pages
         private void MouseMove_Background(object sender, MouseEventArgs e)
         {
             if (!(bool)EraserCB.IsChecked&&isMouse)
-                MyCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
@@ -210,7 +209,11 @@ namespace InteractivePoster.Pages
             PaintElementStack.Visibility = Visibility.Collapsed;
             BurgerGridRow.Height = new GridLength(30);
         }
-    
+
+        private void BlackTheme(object sender, RoutedEventArgs e)
+        {
+            CT.BlackTheme(AllGrid);
+        }
 
         private void OpenPaint(object sender, RoutedEventArgs e)
         {
