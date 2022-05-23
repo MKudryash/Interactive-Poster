@@ -324,7 +324,11 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Click="changeColor" Tag="1" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="Black" />
+                                
+                                
+                                <Border CornerRadius="5" Margin="5" Width="22" Height="22" BorderThickness="1" BorderBrush="White" Background="Black">
+                                    <Button Tag="1" Style="{StaticResource ColorButton}" Background="Transparent" Click="changeColor"/>
+                                </Border>
                                 <Button Click="changeColor" Tag="2" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="Red" />
                                 <Button Click="changeColor" Tag="3" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF0500FF" />
                                 <Button Click="changeColor" Tag="4" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF05FF00" />
