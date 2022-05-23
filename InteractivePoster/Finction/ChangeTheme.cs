@@ -15,6 +15,7 @@ namespace InteractivePoster.Finction
         public void Checked(Grid cv)
         {
             Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
+            Application.Current.Resources["Coordinate"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["Figure"] = new SolidColorBrush(Color.FromRgb(248, 94, 94));
@@ -29,12 +30,26 @@ namespace InteractivePoster.Finction
         {
             Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(243, 95, 74));
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Color.FromRgb(244, 213, 187));
+            Application.Current.Resources["Coordinate"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["Figure"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["Border"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default_two.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver_two.png", UriKind.RelativeOrAbsolute)));
             cv.Width = cv.ActualWidth+1;
+        }
+
+        public void BlackTheme(Grid cv)
+        {
+            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.Black);
+            Application.Current.Resources["Coordinate"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["Figure"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["Tools"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["Border"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default_two.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver_two.png", UriKind.RelativeOrAbsolute)));
+            cv.Width = cv.ActualWidth + 1;
         }
         public Color ChangedColor(int numberColor)
         {
