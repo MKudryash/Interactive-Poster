@@ -174,7 +174,8 @@ namespace InteractivePoster.Finction
                 Text = text,
                 TextWrapping = TextWrapping.Wrap,
                 Width = double.NaN,
-                FontSize = countX
+                FontSize = countX,
+                Foreground = (SolidColorBrush)Application.Current.Resources["Coordinate"]
             };
             TB.SetValue(Canvas.LeftProperty, convertCoordX(x));
             TB.SetValue(Canvas.TopProperty, convertCoordY(y));

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -28,7 +29,7 @@ namespace InteractivePoster.Finction
             maxY = canvas.ActualHeight;
             line = new Line()
             {
-                Stroke = Brushes.Black,
+                Stroke = (SolidColorBrush)Application.Current.Resources["Coordinate"],
                 StrokeThickness = th,
                 SnapsToDevicePixels = true
             };
@@ -51,7 +52,7 @@ namespace InteractivePoster.Finction
         {
             line = new Line()
             {
-                Stroke = Brushes.Black,
+                Stroke = (SolidColorBrush)Application.Current.Resources["Coordinate"],
                 StrokeThickness = th,
                 SnapsToDevicePixels = true
             };
@@ -73,7 +74,7 @@ namespace InteractivePoster.Finction
             cv.Children.Add(line);
             line = new Line()
             {
-                Stroke = Brushes.Black,
+                Stroke = (SolidColorBrush)Application.Current.Resources["Coordinate"],
                 StrokeThickness = th,
                 SnapsToDevicePixels = true
             };
