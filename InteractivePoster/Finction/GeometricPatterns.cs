@@ -21,8 +21,9 @@ namespace InteractivePoster.Finction
 
         public static bool Eraser { get; set; } = false;
 
-        public static bool ThemeModern { get; set; } = true;
-        public static bool ThemeClassic { get; set; } = false;
+        public static bool ThemeCoffee { get; set; } = false;
+        public static bool ThemeClassic { get; set; } = true;
+        public static bool ThemeBalck { get; set; } = false;
 
         public double MaxMinPoint
         {

@@ -13,13 +13,12 @@ namespace InteractivePoster
     /// </summary>
     public partial class MainWindow : Window
     {
-        MaxMinCoordinat MMC = new MaxMinCoordinat();
+
         public MainWindow()
         {
             InitializeComponent();
             frmMain.Navigate(new MenuPage());
             LoadPage.MainFrame = frmMain;
-            DataContext = MMC;
         }
 
 

@@ -80,12 +80,14 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="TextBoxForSliders" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="{DynamicResource Coordinate}"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="BorderBrush" Value="{StaticResource OneColor}"/>
             <Setter Property="Width" Value="20"/>
             <Setter Property="Height" Value="16"/>
@@ -522,6 +524,7 @@
         </Style>
 
         <Style x:Key="TextBoxForSlider" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="{DynamicResource Coordinate}"/>

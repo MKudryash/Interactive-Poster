@@ -362,7 +362,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <RadioButton Style="{StaticResource RadioButtonPaint}"
-                                         IsChecked="{Binding ThemeClassic}"
+                                         IsChecked="{Binding ThemeCoffee}"
                                          Click="RadioButton_Unchecked">
                                 <RadioButton.Template>
                                     <ControlTemplate>
@@ -397,7 +397,7 @@
                                 </RadioButton.Template>
                             </RadioButton>
                             <RadioButton Grid.Column="1"
-                                         IsChecked="{Binding ThemeModern}"
+                                         IsChecked="{Binding ThemeClassic}"
                                 Click="RadioButton_Checked"
                                          Style="{StaticResource RadioButtonPaint}">
                                 <RadioButton.Template>
@@ -436,7 +436,7 @@
                                 </RadioButton.Template>
                             </RadioButton>
                             <RadioButton Grid.Column="2"
-                                         IsChecked="{Binding ThemeModern}"
+                                         IsChecked="{Binding ThemeBlack}"
                                 Click="BlackTheme"
                                          Style="{StaticResource RadioButtonPaint}">
                                 <RadioButton.Template>
@@ -500,8 +500,8 @@
         </Button>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition x:Name="ColumnForElement" Width="1*"/>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition x:Name="ColumnForElement" Width="1.2*"/>
             </Grid.ColumnDefinitions>
             <Canvas
             Panel.ZIndex="0"
@@ -532,7 +532,7 @@
                 </Button>
             </StackPanel>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
-            <Grid Width="500" HorizontalAlignment="Right"
+            <Grid Width="600" HorizontalAlignment="Right"
               Grid.Column ="1"
               Grid.Row="1"
               x:Name="GridCanvas">
@@ -592,7 +592,8 @@
                                             </Button>
                                         </Grid>
                                         <StackPanel Style="{StaticResource HideTheopry}">
-                                            <TextBlock Foreground="{StaticResource ThreeColor}" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, равноудаленных от данной точки, называемой 
+                                            <TextBlock Foreground="{DynamicResource HeadingForGroupBox}"
+                                                       x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, равноудаленных от данной точки, называемой 
                                        <Run Foreground="{DynamicResource TwoColor}">центром </Run>
                                 окружности. Расстояние от центра окружности до любой ее точки называется
                                 <Run Foreground="{DynamicResource TwoColor}">радиусом </Run>
