@@ -245,6 +245,11 @@ namespace InteractivePoster.Pages
             }
         }
 
+        private void BlackTheme(object sender, RoutedEventArgs e)
+        {
+            CT.BlackTheme(AllGrid);
+        }
+
         private async void PaintTgBtn_Checked(object sender, RoutedEventArgs e)
         {
             weirow = row = GridHide.ActualHeight;
