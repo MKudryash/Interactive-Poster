@@ -8,13 +8,13 @@
     <Application.Resources>
         
         <SolidColorBrush x:Key="OneColor" Color="#262F34" />
-        <SolidColorBrush x:Key="TwoColor" Color="#00ACC1" />
+        <SolidColorBrush x:Key="TwoColor" Color="#6CA5FA" />
         <SolidColorBrush x:Key="ThreeColor" Color="White" />
 
         <SolidColorBrush x:Key="Figure" Color="#F85E5E" />
         <SolidColorBrush x:Key="Tools" Color="#6CA5FA" />
-        
-        <SolidColorBrush x:Key="Border" Color="#00ACC1" />
+
+        <SolidColorBrush x:Key="Border" Color="#6CA5FA" />
 
 
 
@@ -891,18 +891,18 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background"
                                         TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
+                                        Value="{DynamicResource tb_mouse_over}"/>
                                 <Setter Property="BorderBrush"
                                         TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
+                                        Value="{DynamicResource tb_mouse_over}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="true">
                                 <Setter Property="Background"
                                         TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
+                                        Value="{DynamicResource tb_mouse_over}"/>
                                 <Setter Property="BorderBrush"
                                         TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
+                                        Value="{DynamicResource tb_mouse_over}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

@@ -14,11 +14,11 @@ namespace InteractivePoster.Finction
     {
         public void Checked(Grid cv)
         {
-            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(0, 172, 193));
+            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["Figure"] = new SolidColorBrush(Color.FromRgb(248, 94, 94));
-            Application.Current.Resources["Border"] = new SolidColorBrush(Color.FromRgb(0, 172, 193));
+            Application.Current.Resources["Border"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver.png", UriKind.RelativeOrAbsolute)));
                 cv.Width = cv.ActualWidth+1;

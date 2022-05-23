@@ -425,7 +425,7 @@
                                                 <StackPanel Orientation="Horizontal" Grid.Row="0"
                                                             HorizontalAlignment="Center">
                                                     <Button Style="{DynamicResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#262F34" />
-                                                    <Button Style="{DynamicResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#00ACC1" />
+                                                    <Button Style="{DynamicResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#6CA5FA" />
                                                     <Border
                                                            CornerRadius="5" Margin="5" Width="22" Height="22" BorderThickness="1" BorderBrush="#262F34" Background="White">
                                                     </Border>
