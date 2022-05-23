@@ -529,8 +529,8 @@
         </Button>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition x:Name="ColumnForElement" Width="850"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition x:Name="ColumnForElement" Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid Width="850" HorizontalAlignment="Right"
               Grid.Column ="1"
@@ -596,18 +596,21 @@
                                             <TextBlock Foreground="{DynamicResource HeadingForGroupBox}" 
                                            x:Name="AboutCircle"
                                            Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, сумма расстояний от каждой из которых до двух данных точек этой плоскости, называемых
-                                 <Run Foreground="{StaticResource TwoColor}"> фокусами</Run>
+                                 <Run Foreground="{DynamicResource TwoColor}"> фокусами</Run>
                                    , есть величина постоянная, большая, чем расстояние между фокусами./>
                                             </TextBlock>
                                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="\frac{(x-x_0)^2}{a^2} + \frac{(y-y_0)^2}{b^2} = 1"
-                                                                      Foreground="{DynamicResource Coordinate}"/>
+                                                                      Foreground="{DynamicResource Coordinate}"
+                                                                      Background="{DynamicResource ThreeColor}"/>
                                             <TextBlock Style="{StaticResource Heading}" Text="Расстояние между фокусами вычисляется по формуле: "/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
+                                                                      Background="{DynamicResource ThreeColor}"
                                 Formula="c = \sqrt{a^2+b^2}, a>b" 
                                                                       Foreground="{DynamicResource Coordinate}"/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
+                                                                      Background="{DynamicResource ThreeColor}"
                                 Formula="c = \sqrt{b^2-a^2}, b>a"
                                                                       Foreground="{DynamicResource Coordinate}"/>
                                         </StackPanel>
@@ -627,8 +630,10 @@
                                         </GroupBox>
                                         <StackPanel HorizontalAlignment="Center" 
                                 VerticalAlignment="Center">
-                                            <CheckBox Style="{StaticResource ElementHide}" 
+                                            <CheckBox Style="{StaticResource ElementHides}" 
                                   Content="Подсчет синусов и косинусов"
+                                                     Foreground="White"
+                                                   
                                   IsChecked="{Binding SinCosEllipse}"
                                   Click="SinCos"/>
                                         </StackPanel>

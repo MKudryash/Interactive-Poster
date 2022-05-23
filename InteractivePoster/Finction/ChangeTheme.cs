@@ -28,7 +28,7 @@ namespace InteractivePoster.Finction
             Application.Current.Resources["Redo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Forward.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["Basket"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Basket.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["Pencel"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Pen.png", UriKind.RelativeOrAbsolute)));
-            Application.Current.Resources["BackButtonPage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BackPageIcon.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["BackButtonImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BackPageIcon.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["DoskaImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/OpenPaint.png", UriKind.RelativeOrAbsolute)));
 
                 cv.Width = cv.ActualWidth+1;
@@ -51,7 +51,7 @@ namespace InteractivePoster.Finction
             Application.Current.Resources["Redo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Forward.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["Basket"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Basket.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["Pencel"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Pen.png", UriKind.RelativeOrAbsolute)));
-            Application.Current.Resources["BackButtonPage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BackPageIcon.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["BackButtonImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BackPageIcon.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["DoskaImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/OpenPaint.png", UriKind.RelativeOrAbsolute)));
             cv.Width = cv.ActualWidth+1;
         }
