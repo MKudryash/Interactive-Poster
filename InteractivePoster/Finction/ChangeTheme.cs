@@ -58,13 +58,13 @@ namespace InteractivePoster.Finction
 
         public void BlackTheme(Grid cv)
         {
-            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(231,231,231));
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.Black);
-            Application.Current.Resources["HeadingForGroupBox"] = new SolidColorBrush(Colors.White);
-            Application.Current.Resources["Coordinate"] = new SolidColorBrush(Colors.White);
-            Application.Current.Resources["Figure"] = new SolidColorBrush(Colors.White);
-            Application.Current.Resources["Tools"] = new SolidColorBrush(Colors.White);
-            Application.Current.Resources["Border"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["HeadingForGroupBox"] = new SolidColorBrush(Color.FromRgb(231, 231, 231));
+            Application.Current.Resources["Coordinate"] = new SolidColorBrush(Color.FromRgb(231, 231, 231));
+            Application.Current.Resources["Figure"] = new SolidColorBrush(Color.FromRgb(231, 231, 231));
+            Application.Current.Resources["Tools"] = new SolidColorBrush(Color.FromRgb(231, 231, 231));
+            Application.Current.Resources["Border"] = new SolidColorBrush(Color.FromRgb(231, 231, 231));
             Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default_two.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver_two.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["EraserImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/EraserWhite.png", UriKind.RelativeOrAbsolute)));
