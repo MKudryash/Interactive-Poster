@@ -13,6 +13,7 @@
 
         <SolidColorBrush x:Key="Figure" Color="#F85E5E" />
         <SolidColorBrush x:Key="Tools" Color="#6CA5FA" />
+        <SolidColorBrush x:Key="HeadingForGroupBox" Color="White" />
 
         <SolidColorBrush x:Key="Border" Color="#6CA5FA" />
         

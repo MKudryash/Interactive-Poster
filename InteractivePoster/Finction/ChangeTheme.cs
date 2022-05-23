@@ -17,6 +17,7 @@ namespace InteractivePoster.Finction
             Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["Coordinate"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.White);
+            Application.Current.Resources["HeadingForGroupBox"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["Figure"] = new SolidColorBrush(Color.FromRgb(248, 94, 94));
             Application.Current.Resources["Border"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
@@ -30,6 +31,7 @@ namespace InteractivePoster.Finction
         {
             Application.Current.Resources["TwoColor"] = new SolidColorBrush(Color.FromRgb(243, 95, 74));
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Color.FromRgb(244, 213, 187));
+            Application.Current.Resources["HeadingForGroupBox"] = new SolidColorBrush(Color.FromRgb(244, 213, 187));
             Application.Current.Resources["Coordinate"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["Figure"] = new SolidColorBrush(Colors.Black);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Colors.Black);
@@ -43,6 +45,7 @@ namespace InteractivePoster.Finction
         {
             Application.Current.Resources["TwoColor"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["ThreeColor"] = new SolidColorBrush(Colors.Black);
+            Application.Current.Resources["HeadingForGroupBox"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["Coordinate"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["Figure"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["Tools"] = new SolidColorBrush(Colors.White);
