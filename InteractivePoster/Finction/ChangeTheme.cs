@@ -23,6 +23,14 @@ namespace InteractivePoster.Finction
             Application.Current.Resources["Border"] = new SolidColorBrush(Color.FromRgb(108, 165, 250));
             Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["EraserImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Eraser.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Undo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Return.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Redo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Forward.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Basket"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Basket.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Pencel"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Pen.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["BackButtonPage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BackPageIcon.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["DoskaImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/OpenPaint.png", UriKind.RelativeOrAbsolute)));
+
                 cv.Width = cv.ActualWidth+1;
 
         }
@@ -38,6 +46,13 @@ namespace InteractivePoster.Finction
             Application.Current.Resources["Border"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default_two.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver_two.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["EraserImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Eraser.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Undo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Return.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Redo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Forward.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Basket"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Basket.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Pencel"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/Pen.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["BackButtonPage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BackPageIcon.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["DoskaImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/OpenPaint.png", UriKind.RelativeOrAbsolute)));
             cv.Width = cv.ActualWidth+1;
         }
 
@@ -52,6 +67,13 @@ namespace InteractivePoster.Finction
             Application.Current.Resources["Border"] = new SolidColorBrush(Colors.White);
             Application.Current.Resources["tgBtn_default"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_default_two.png", UriKind.RelativeOrAbsolute)));
             Application.Current.Resources["tb_mouse_over"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/tgBtn_MouseOver_two.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["EraserImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/EraserWhite.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Undo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/ReturnWhite.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Redo"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/ForwardWhite.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Basket"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BasketWhite.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["Pencel"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/PenWhite.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["BackButtonImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/BackPageIconWhite.png", UriKind.RelativeOrAbsolute)));
+            Application.Current.Resources["DoskaImage"] = new ImageBrush(new BitmapImage(new System.Uri("Resource/Images/OpenPaintWhite.png", UriKind.RelativeOrAbsolute)));
             cv.Width = cv.ActualWidth + 1;
         }
         public Color ChangedColor(int numberColor)

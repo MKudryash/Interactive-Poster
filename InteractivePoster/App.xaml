@@ -80,10 +80,9 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="TextBoxForSliders" TargetType="TextBox">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="{DynamicResource Coordinate}"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -298,13 +297,14 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="Transparent"
+                                Background="{TemplateBinding Background}"
                                 CornerRadius="20"
                                 Width="30"
+                                Height="30"
                                >
-                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
+                            <!--<Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
                                         Width="30"
-                                       HorizontalAlignment="Center"/>
+                                       HorizontalAlignment="Center"/>-->
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -336,14 +336,9 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="Transparent"
-                                CornerRadius="20"
+                                Background="{TemplateBinding Background}"
                                 Width="35"
                                 Height="35">
-                            <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"                             
-                                        Width="30" 
-                                        Height="30" 
-                                       HorizontalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -433,9 +428,7 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="Button" x:Key="BackButtonPaint">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="{StaticResource OneColor}"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -503,6 +496,7 @@
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -528,10 +522,9 @@
         </Style>
 
         <Style x:Key="TextBoxForSlider" TargetType="TextBox">
-            <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="{DynamicResource Coordinate}"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -669,7 +662,7 @@
                               TextAlignment="Center" 
                                        FontSize="18"
                                        VerticalAlignment="Center"
-                                       Foreground="{DynamicResource ThreeColor}"    Width="300"/>
+                                       Foreground="{DynamicResource Coordinate}"    Width="300"/>
                         </Border>
 
                     </ControlTemplate>
@@ -881,6 +874,27 @@
                     ImageSource="/Resource/Images/tgBtn_MouseOver.png"/>
         <ImageBrush x:Key="tgBtn_default"
                     ImageSource="/Resource/Images/tgBtn_default.png"/>
+
+        <ImageBrush x:Key="EraserImage"
+                    ImageSource="/Resource/Images/Eraser.png"/>
+        <ImageBrush x:Key="Undo"
+                    ImageSource="/Resource/Images/Return.png"/>
+        <ImageBrush x:Key="Redo"
+                    ImageSource="/Resource/Images/Forward.png"/>
+        <ImageBrush x:Key="Basket"
+                    ImageSource="/Resource/Images/Basket.png"/>
+        <ImageBrush x:Key="Pencel"
+                    ImageSource="/Resource/Images/Pen.png"/>
+        <ImageBrush x:Key="BackButtonImage" 
+                    ImageSource="/Resource/Images/BackPageIcon.png"/>
+        <ImageBrush x:Key="DoskaImage" 
+                    ImageSource="/Resource/Images/OpenPaint.png"/>
+
+
+
+
+
+
         <Style x:Key="tb_style" TargetType="{x:Type ToggleButton}">
             
             <Setter Property="Template">

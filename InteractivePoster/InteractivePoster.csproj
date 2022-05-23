@@ -209,8 +209,6 @@
     <Resource Include="Resource\Images\Pen.png" />
     <Resource Include="Resource\Images\ArrowDown.png" />
     <Resource Include="Resource\Images\ArrowUp.png" />
-    <Resource Include="Resource\Images\PenTwo.png" />
-    <Resource Include="Resource\Images\Record.png" />
     <Resource Include="Resource\Images\Forward.png" />
     <Resource Include="Resource\Images\Return.png" />
     <Resource Include="Resource\Images\Basket.png" />
@@ -223,6 +221,13 @@
     <Resource Include="Resource\Images\tgBtn_MouseOver_two.png" />
     <Resource Include="Resource\Images\OpenPaint.png" />
     <Resource Include="Resource\Images\BackPageIcon.png" />
+    <Resource Include="Resource\Images\BackPageIconWhite.png" />
+    <Resource Include="Resource\Images\BasketWhite.png" />
+    <Resource Include="Resource\Images\EraserWhite.png" />
+    <Resource Include="Resource\Images\ForwardWhite.png" />
+    <Resource Include="Resource\Images\OpenPaintWhite.png" />
+    <Resource Include="Resource\Images\PenWhite.png" />
+    <Resource Include="Resource\Images\ReturnWhite.png" />
     <Content Include="Resource\Sounds\CircleSound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

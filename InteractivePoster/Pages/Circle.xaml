@@ -173,32 +173,28 @@
                             Orientation="Horizontal"
                               HorizontalAlignment="Left"
                             x:Name="PaintElementStack"
-                             Margin="0,5,0,0"
                             Grid.Column="1">
 
                     <Button Grid.Column="0" Grid.Row="0"
                     Click="Undo" 
-                    Style="{StaticResource UndoRedoButton}">
-                        <Button.Content>
-                            <Image  Source="/Resource/Images/Return.png"/>
-                        </Button.Content>
+                    Style="{StaticResource UndoRedoButton}"
+                             Background="{DynamicResource Undo}">
+
                     </Button>
 
                     <Button  Grid.Column="0" Grid.Row="1"
                         Click="Redo" 
                         x:Name="redoBtn"
-                        Style="{StaticResource UndoRedoButton}" >
-                        <Button.Content>
-                            <Image  Source="/Resource/Images/Forward.png"/>
-                        </Button.Content>
+                        Style="{StaticResource UndoRedoButton}" 
+                             Background="{DynamicResource Redo}">
+
                     </Button>
 
                     <Button  Grid.Column="1" Grid.Row="1"
             Click="ClearAll" 
-            Style="{StaticResource UndoRedoButton}" >
-                        <Button.Content>
-                            <Image  Source="/Resource/Images/Basket.png"/>
-                        </Button.Content>
+            Style="{StaticResource UndoRedoButton}"  
+                            Background="{DynamicResource Basket}">
+
                     </Button>
                 </StackPanel>
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right"
@@ -216,8 +212,10 @@
                             BorderThickness="1"
                             Margin="5,0,10,0"
                             CornerRadius="5"
-                            Width="25" Height="25">
-                                <Image  Width="15" Height="15" Source="/Resource/Images/BackPageIcon.png"/>
+                            Width="25" Height="25"
+                                 >
+                                <Border Height="15" Width="15"  Background="{DynamicResource BackButtonImage}"/>
+
 
                             </Border>
                         </StackPanel>
@@ -227,34 +225,40 @@
                 <Grid Grid.Row="1" x:Name="GridElement"
                       Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="450"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.12*"/>
+                        <ColumnDefinition Width="0.12*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="0.12*"/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="0" Width="150" Height="110" Header="Инструменты"
+                    <GroupBox Style="{StaticResource PaintGroup}"
+                              Grid.Column="0" Height="110" Header="Инструменты"
                       BorderBrush="{DynamicResource Border}"
+                              Margin="5"
                               BorderThickness="2"
                               Foreground="{DynamicResource Coordinate}"                      
-                        FontSize="18" Margin="50,5,50.4,5">
+                        FontSize="18" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <RadioButton Content="/Resource/Images/Eraser.png"
+                            <RadioButton 
+                                Background="{DynamicResource EraserImage}"
                   x:Name="EraserCB"
                   IsChecked="{Binding Eraser}"
                   Style="{StaticResource EraserStyles}"
-                                      Grid.Column="0"/>
-                            <RadioButton Content="/Resource/Images/Pen.png"
+                                      Grid.Column="0">
+                               
+                            </RadioButton>
+                            <RadioButton Background="{DynamicResource Pencel}"
                   Style="{StaticResource PenStyles}"
                   x:Name="PenselP"  Grid.Column="1"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="1" Margin="29.6,5,20,5" Width="200" Height="110" Header="Размер"
+                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="1" 
+                              Height="110" Header="Размер"
+                              Margin="5"
                       BorderBrush="{DynamicResource Border}"
                         FontSize="18"
                               BorderThickness="2"
@@ -306,7 +310,9 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="2" Header="Цвет" Width="200" Height="110"
+                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="2" Header="Цвет" 
+                               Height="110"
+                              Margin="5"
                       BorderBrush="{DynamicResource Border}"
                         FontSize="18"
                               Foreground="{DynamicResource Coordinate}"
@@ -317,7 +323,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Button Click="changeColor" Tag="1" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="Black" />
                                 <Button Click="changeColor" Tag="2" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="Red" />
                                 <Button Click="changeColor" Tag="3" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF0500FF" />
@@ -335,12 +341,14 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="3" Header="Тема приложения"
+                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="3" 
+                              Header="Тема приложения"
                               FontSize="18"
+                              Margin="5"
                               BorderBrush="{DynamicResource Border}"
                               BorderThickness="2"
                               Foreground="{DynamicResource Coordinate}"
-                              Width="450" Height="110" 
+                             Height="110" 
                               >
 
                         <Grid>
@@ -446,7 +454,7 @@
                                                 <StackPanel Orientation="Horizontal" Grid.Row="0"
                                                             HorizontalAlignment="Center">
                                                     <Button Style="{DynamicResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#262F34" />
-                                                    <Button Style="{DynamicResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="Black" />
+                                                    <Border CornerRadius="5" Margin="5" Width="22" Height="22" BorderThickness="1" BorderBrush="White" Background="Black"/>
                                                     <Border
                                                            CornerRadius="5" Margin="5" Width="22" Height="22" BorderThickness="1" BorderBrush="#262F34" Background="White">
                                                     </Border>
@@ -466,8 +474,8 @@
                     <Border  Grid.Column="4"
                               BorderBrush="{DynamicResource Border}"
                               BorderThickness="2"
-                              Width="250" Height="95"
-                             Margin="0,18,-0.4,8"
+                                Height="95"
+                             Margin="5,14,5,0"
                         CornerRadius="3" Grid.ColumnSpan="2"                        >
                         <Button Style="{DynamicResource OpenPaint}"
                                 Click="OpenPaint">
@@ -475,10 +483,10 @@
                                 <TextBlock Style="{StaticResource PaintText}"
                                            Foreground="{DynamicResource Coordinate}"
                                            Text="Открыть доску" VerticalAlignment="Center"/>
-                                <Image Source="/Resource/Images/OpenPaint.png"
-                               Width="70"
+                                <Border Background="{DynamicResource DoskaImage}"
+                                        Width="70"
                                Height="30"
-                                   Margin="20,0,0,0"/>
+                                   Margin="20,0,0,0" />
                             </StackPanel>
                         </Button>
                     </Border>
@@ -488,8 +496,8 @@
         </Button>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition x:Name="ColumnForElement" Width="500"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition x:Name="ColumnForElement" Width="1*"/>
             </Grid.ColumnDefinitions>
             <Canvas
             Panel.ZIndex="0"
@@ -581,14 +589,16 @@
                                         </Grid>
                                         <StackPanel Style="{StaticResource HideTheopry}">
                                             <TextBlock Foreground="{StaticResource ThreeColor}" x:Name="AboutCircle" Width="auto" TextWrapping="Wrap" FontSize="20">- это множество всех точек плоскости, равноудаленных от данной точки, называемой 
-                                       <Run Foreground="{StaticResource TwoColor}">центром </Run>
+                                       <Run Foreground="{DynamicResource TwoColor}">центром </Run>
                                 окружности. Расстояние от центра окружности до любой ее точки называется
-                                <Run Foreground="{StaticResource TwoColor}">радиусом </Run>
+                                <Run Foreground="{DynamicResource TwoColor}">радиусом </Run>
                                 окружности.</TextBlock>
                                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="(x-x_0)^2+ (y-y_0)^2 = r^2"
-                                                     Background="{StaticResource ThreeColor}"/>
+                                                                      Foreground="{DynamicResource Coordinate}"
+                                                     Background="{DynamicResource ThreeColor}"
+                                                    />
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1"
@@ -598,6 +608,7 @@
                                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                                                     <controls:FormulaControl 
                                x:Name="Formula" 
+                                                         Foreground="{DynamicResource Coordinate}"
                                      Scale="28"
                                 />
                                                 </StackPanel>
