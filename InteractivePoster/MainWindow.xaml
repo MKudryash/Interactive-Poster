@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:InteractivePoster" xmlns:colorPalette="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Основы аналитической геометрии. Кривые второго порядка"
-        MinHeight="610"
-      MinWidth="800" WindowStartupLocation="CenterScreen"
+        MinHeight="800"
+      MinWidth="1400" WindowStartupLocation="CenterScreen"
         WindowState="Maximized"  FontSize="18" WindowStyle="ToolWindow"
         Width="1400">
     <Grid>     
