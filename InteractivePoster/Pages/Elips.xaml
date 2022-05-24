@@ -529,7 +529,7 @@
         </Button>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition x:Name="ColumnForElement" Width="850"/>
             </Grid.ColumnDefinitions>
             <Grid Width="850" HorizontalAlignment="Right"
