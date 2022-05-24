@@ -17,7 +17,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="{DynamicResource ThreeColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource HeadingForGroupBox}"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
         <Style TargetType="{x:Type GroupBox}">
@@ -142,9 +142,9 @@
             <RowDefinition  x:Name="GridHide" Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <Button Background="{DynamicResource ThreeColor}" 
                 Grid.Row="0"
-                Grid.ColumnSpan="2"
                 
                 Panel.ZIndex="1" Style="{StaticResource BackgrounButton}">
             <Grid>
@@ -171,88 +171,96 @@
                             Orientation="Horizontal"
                               HorizontalAlignment="Left"
                             x:Name="PaintElementStack"
-                             Margin="0,5,0,0"
                             Grid.Column="1">
 
                     <Button Grid.Column="0" Grid.Row="0"
                     Click="Undo" 
-                    Style="{StaticResource UndoRedoButton}">
-                        <Button.Content>
-                            <Image  Source="/Resource/Images/Return.png"/>
-                        </Button.Content>
+                    Style="{StaticResource UndoRedoButton}"
+                             Background="{DynamicResource Undo}">
+
                     </Button>
 
                     <Button  Grid.Column="0" Grid.Row="1"
                         Click="Redo" 
                         x:Name="redoBtn"
-                        Style="{StaticResource UndoRedoButton}" >
-                        <Button.Content>
-                            <Image  Source="/Resource/Images/Forward.png"/>
-                        </Button.Content>
+                        Style="{StaticResource UndoRedoButton}" 
+                             Background="{DynamicResource Redo}">
+
                     </Button>
 
                     <Button  Grid.Column="1" Grid.Row="1"
             Click="ClearAll" 
-            Style="{StaticResource UndoRedoButton}" >
-                        <Button.Content>
-                            <Image  Source="/Resource/Images/Basket.png"/>
-                        </Button.Content>
+            Style="{StaticResource UndoRedoButton}"  
+                            Background="{DynamicResource Basket}">
+
                     </Button>
                 </StackPanel>
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right"
                             Orientation="Horizontal"
                             Name="ButtonStack"
                             Grid.Column="1">
-                    <TextBlock Style="{StaticResource PaintText}"  Text="Вернуться назад" Margin="0,3,0,0" VerticalAlignment="Top"/>
-                    <Border BorderBrush="{DynamicResource Border}"
+                    <Button Background="Transparent"
+                                 Click="ComeBack"
+                                BorderThickness="0"
+                            Foreground="{DynamicResource Coordinate}"
+                                 Style="{DynamicResource BackButtonPaint}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource PaintText}"  Text="Вернуться назад" Margin="0,3,0,0" VerticalAlignment="Top"/>
+                            <Border BorderBrush="{DynamicResource Border}"
                             BorderThickness="1"
                             Margin="5,0,10,0"
                             CornerRadius="5"
-                            Width="25" Height="25">
-                        <Button Background="Transparent"
-                                 Click="ComeBack"
-                                BorderThickness="0"
-                                Width="20"
-                                Height="20"
-                                Style="{StaticResource BackButtonPaint}">
-                            <Image  Width="15" Height="15" Source="/Resource/Images/BackPageIcon.png"/>
-                        </Button>
-                    </Border>
+                            Width="25" Height="25"
+                                 >
+                                <Border Height="15" Width="15"  Background="{DynamicResource BackButtonImage}"/>
+
+
+                            </Border>
+                        </StackPanel>
+                    </Button>
 
                 </StackPanel>
                 <Grid Grid.Row="1" x:Name="GridElement"
                       Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="370"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.12*"/>
+                        <ColumnDefinition Width="0.12*"/>
+                        <ColumnDefinition Width="0.18*"/>
+                        <ColumnDefinition Width="0.12*"/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="0" Width="150" Height="110" Header="Инструменты"
+                    <GroupBox Style="{StaticResource PaintGroup}"
+                              Grid.Column="0" Height="110" Header="Инструменты"
                       BorderBrush="{DynamicResource Border}"
+                              Margin="5"
                               BorderThickness="2"
-                      
-                        FontSize="18">
+                              Foreground="{DynamicResource Coordinate}"                      
+                        FontSize="18" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <RadioButton Content="/Resource/Images/Eraser.png"
+                            <RadioButton 
+                                Background="{DynamicResource EraserImage}"
                   x:Name="EraserCB"
                   IsChecked="{Binding Eraser}"
                   Style="{StaticResource EraserStyles}"
-                                      Grid.Column="0"/>
-                            <RadioButton Content="/Resource/Images/Pen.png"
+                                      Grid.Column="0">
+
+                            </RadioButton>
+                            <RadioButton Background="{DynamicResource Pencel}"
                   Style="{StaticResource PenStyles}"
                   x:Name="PenselP"  Grid.Column="1"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="1" Margin="30,0,30,0" Width="200" Height="110" Header="Размер"
+                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="1" 
+                              Height="110" Header="Размер"
+                              Margin="5"
                       BorderBrush="{DynamicResource Border}"
                         FontSize="18"
-                              BorderThickness="2">
+                              BorderThickness="2"
+                              Foreground="{DynamicResource Coordinate}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -300,9 +308,13 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="2" Header="Цвет" Width="200" Height="110"
+                    <GroupBox Style="{StaticResource PaintGroup}" 
+                              Grid.Column="2" Header="Цвет" 
+                               Height="110"
+                              Margin="5"
                       BorderBrush="{DynamicResource Border}"
                         FontSize="18"
+                              Foreground="{DynamicResource Coordinate}"
                               BorderThickness="2">
                         <Grid>
 
@@ -310,8 +322,12 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Click="changeColor" Tag="1" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="Black" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+
+                                <Border CornerRadius="5" Margin="5" Width="22" Height="22" BorderThickness="1" BorderBrush="White" Background="Black">
+                                    <Button Tag="1" Style="{StaticResource ColorButton}" Background="Transparent" Click="changeColor"/>
+                                </Border>
                                 <Button Click="changeColor" Tag="2" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="Red" />
                                 <Button Click="changeColor" Tag="3" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF0500FF" />
                                 <Button Click="changeColor" Tag="4" Style="{StaticResource ColorButton}" Margin="5" Width="22" Height="22" BorderThickness="0" Background="#FF05FF00" />
@@ -328,11 +344,13 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Style="{StaticResource PaintGroup}" Grid.Column="3" Header="Тема приложения"
+                    <GroupBox Style="{StaticResource PaintGroup}"
+                              Foreground="{DynamicResource Coordinate}"
+                              Grid.Column="3" Header="Выбор режима"
                               FontSize="18"
                               BorderBrush="{DynamicResource Border}"
                               BorderThickness="2"
-                              Width="300" Height="110"
+                           Height="110"
                               >
 
                         <Grid>
@@ -397,20 +415,23 @@
                             </RadioButton>
                         </Grid>
                     </GroupBox>
-                    <Border  Grid.Column="5"
+
+                    <Border  Grid.Column="4"
                               BorderBrush="{DynamicResource Border}"
                               BorderThickness="2"
-                              Width="250" Height="95"
-                             Margin="0,10,0,0"
-                        CornerRadius="3"                        >
-                        <Button Style="{DynamicResource OpenPaint}" Click="OpenPaint"
-                          >
+                                Height="95"
+                             Margin="5,14,5,0"
+                        CornerRadius="3" Grid.ColumnSpan="2"                        >
+                        <Button Style="{DynamicResource OpenPaint}"
+                                Click="OpenPaint">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource PaintText}" Text="Открыть доску" VerticalAlignment="Center"/>
-                                <Image Source="/Resource/Images/OpenPaint.png"
-                               Width="70"
+                                <TextBlock Style="{StaticResource PaintText}"
+                                           Foreground="{DynamicResource Coordinate}"
+                                           Text="Открыть доску" VerticalAlignment="Center"/>
+                                <Border Background="{DynamicResource DoskaImage}"
+                                        Width="70"
                                Height="30"
-                                   Margin="20,0,0,0"/>
+                                   Margin="20,0,0,0" />
                             </StackPanel>
                         </Button>
                     </Border>
@@ -421,7 +442,7 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition x:Name="ColumnForElement" Width="500"/>
+                <ColumnDefinition x:Name="ColumnForElement" Width="550"/>
             </Grid.ColumnDefinitions>
 
             <Canvas
@@ -439,7 +460,7 @@
             />
             </Canvas>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
-            <Grid Width="500" HorizontalAlignment="Right"
+            <Grid Width="550" HorizontalAlignment="Right"
               Grid.Column ="1"
               x:Name="GridCanvas">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
@@ -512,7 +533,7 @@
                                                     <CheckBox Grid.Column="0" HorizontalAlignment="Center" 
                                   VerticalAlignment="Center"  
                                               IsEnabled="{Binding centerElips}"
-                                      Style="{StaticResource  CheckBoxBuild}"
+                                      Style="{StaticResource  CheckBoxBuild}"                                                              
                                       Content="Центр элипса"
                                        IsChecked="{Binding centerElips}"
                                               x:Name="CentrCircleCheck"
@@ -522,6 +543,7 @@
                                                 HorizontalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal" >
                                                             <TextBlock Text="X:"
+                                                                        Foreground="{DynamicResource Coordinate}"
                                                        VerticalAlignment="Center"/>
                                                             <TextBox Margin="7" 
                                                      Text="{Binding coordCX}"
@@ -529,6 +551,7 @@
                                                         </StackPanel>
                                                         <StackPanel Orientation="Horizontal" >
                                                             <TextBlock Text="Y:"
+                                                                        Foreground="{DynamicResource Coordinate}"
                                                        VerticalAlignment="Center"/>
                                                             <TextBox Margin="7" 
                                                      Text="{Binding coordCY}"
@@ -582,7 +605,8 @@
                                                 HorizontalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal" >
                                                             <TextBlock Width="80" Text="2*С:"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center"
+                                                                       Foreground="{DynamicResource Coordinate}"/>
                                                             <TextBox Margin="10" 
                                                     Text="{Binding ElementName=ParametrC,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"
                                                      Style="{StaticResource TextBoxForSlider}"/>
@@ -623,7 +647,8 @@
                                                 HorizontalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal" >
                                                             <TextBlock Width="80" Text="Lenght:"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center"
+                                                                       Foreground="{DynamicResource Coordinate}"/>
                                                             <TextBox Margin="10" 
                                                     Text="{Binding ElementName=lengthThread,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat='{}{0:#0.0}'}"
                                                      Style="{StaticResource TextBoxForSlider}"/>
@@ -653,19 +678,21 @@
                                                 HorizontalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal" >
                                                             <TextBlock Text="F1:"
+                                                                       Foreground="{DynamicResource Coordinate}"
                                                        VerticalAlignment="Center"/>
                                                             <TextBox Margin="10" 
                                                      Text="{Binding focusOne}"
-                                                     Style="{StaticResource TextBoxForSlider}"
+                                                     Style="{DynamicResource TextBoxForSlider}"
                                                      Width="80"/>
 
                                                         </StackPanel>
                                                         <StackPanel Orientation="Horizontal" >
                                                             <TextBlock Text="F2:"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center"
+                                                                       Foreground="{DynamicResource Coordinate}"/>
                                                             <TextBox Margin="10" 
                                                      Text="{Binding focusTwo}"
-                                                     Style="{StaticResource TextBoxForSlider}"
+                                                     Style="{DynamicResource TextBoxForSlider}"
                                                      Width="80"/>
                                                         </StackPanel>
                                                     </StackPanel>

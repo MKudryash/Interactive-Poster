@@ -798,7 +798,7 @@
                               TextAlignment="Center" 
                                        FontSize="18"
                                        VerticalAlignment="Center"
-                                       Foreground="{StaticResource OneColor}"    Width="200"/>
+                                       Foreground="{DynamicResource Coordinate}"    Width="200"/>
                         </Border>
 
                     </ControlTemplate>
@@ -842,7 +842,7 @@
             <Setter Property="FontFamily" Value="/InteractivePoster;component/Resource/Fonts/#Flanker Griffo"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="{DynamicResource ThreeColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Coordinate}"/>
             <Setter Property="Background" Value="{StaticResource OneColor}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource ThreeColor}"/>
             <Setter Property="Width" Value="250"/>
@@ -886,7 +886,7 @@
                             <TextBlock Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
                               TextAlignment="Center" 
                                        FontSize="25"
-                                       Foreground="{StaticResource OneColor}" Width="150"                            />
+                                       Foreground="{DynamicResource Coordinate}" Width="150"                            />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>

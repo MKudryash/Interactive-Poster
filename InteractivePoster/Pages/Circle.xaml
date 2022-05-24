@@ -525,10 +525,9 @@
                     Orientation="Vertical">
                 <Button  Width="30"
             Click="BuildCircleOpen" 
-            Style="{StaticResource SoundButton}">
-                    <Button.Content>
-                        <Image  Source="/Resource/Images/Pen.png"/>
-                    </Button.Content>
+            Style="{StaticResource SoundButton}"
+                          Background="{DynamicResource Pencel}"
+                         Height="30">
                 </Button>
             </StackPanel>
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->

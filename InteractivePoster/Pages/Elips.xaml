@@ -828,10 +828,8 @@
                 <Button 
             Click="BuildElipsOpen" 
             Style="{StaticResource SoundButton}" 
-               >
-                    <Button.Content>
-                        <Image  Source="/Resource/Images/Pen.png"/>
-                    </Button.Content>
+               Background="{DynamicResource Pencel}"
+                         Height="30">
                 </Button>
             </StackPanel>
         </Grid>
