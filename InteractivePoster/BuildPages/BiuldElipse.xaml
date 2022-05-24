@@ -378,6 +378,7 @@
                                                HorizontalAlignment="Center"
                                                            VerticalAlignment="Center"
                                                            TextWrapping="Wrap"
+                                                           Foreground="{DynamicResource Coordinate}"
                                                            TextAlignment="Center">Режим построения
                                                 </TextBlock>
                                             </Grid>
@@ -404,6 +405,7 @@
                                                 <TextBlock Grid.Row="1" 
                                                 Text=" "
                                                HorizontalAlignment="Center"
+                                                           Foreground="{DynamicResource Coordinate}"
                                                            VerticalAlignment="Center"
                                                            TextWrapping="Wrap"
                                                            TextAlignment="Center">Режим рисования
@@ -462,7 +464,8 @@
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
             <Grid Width="550" HorizontalAlignment="Right"
               Grid.Column ="1"
-              x:Name="GridCanvas">
+              x:Name="GridCanvas"
+                  Height="650">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
                     <DockPanel>
                         <ToggleButton x:Name="TgBtn"
