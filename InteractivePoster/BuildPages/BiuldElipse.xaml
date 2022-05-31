@@ -464,8 +464,7 @@
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
             <Grid Width="550" HorizontalAlignment="Right"
               Grid.Column ="1"
-              x:Name="GridCanvas"
-                  Height="650">
+              x:Name="GridCanvas">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
                     <DockPanel>
                         <ToggleButton x:Name="TgBtn"

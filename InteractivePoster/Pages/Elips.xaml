@@ -535,7 +535,7 @@
             <Grid Width="850" HorizontalAlignment="Right"
               Grid.Column ="1"
               x:Name="GridCanvas">
-                <ScrollViewer Panel.ZIndex="1" Grid.Column="1">
+                <ScrollViewer Panel.ZIndex="1" Grid.Column="1" PanningMode="Both">
                     <DockPanel>
                         <ToggleButton x:Name="TgBtn"
                                       Grid.Column="0"
