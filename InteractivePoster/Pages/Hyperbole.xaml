@@ -532,7 +532,7 @@
               Grid.Column ="1"
               x:Name="GridCanvas" Panel.ZIndex="1"
                   Background="{DynamicResource ThreeColor}">
-                <ScrollViewer >
+                <ScrollViewer PanningMode="Both" >
                     <DockPanel>
                         <ToggleButton x:Name="TgBtn"
                                       Grid.Column="0"
@@ -548,7 +548,7 @@
                         </ToggleButton>
                         <Border Panel.ZIndex="1" Margin="15"
                                 CornerRadius="10"
-                                Height="1200"
+                                  VerticalAlignment="Top"
                             Grid.Column="1" x:Name="ElementStack"
                         Background="{StaticResource OneColor}">
                             <StackPanel >
@@ -766,6 +766,7 @@
                                         </Grid.ColumnDefinitions>
                                         <CheckBox Grid.ColumnSpan="2"
                               Panel.ZIndex="1"
+                                                  Height="50"
                           x:Name="Element_Circle" Content="Видимость объектов"
                                 Style="{StaticResource CheckBoxContext}"
                                 Width="auto"/>
@@ -778,32 +779,28 @@
                                 </StackPanel>
 
 
-                                <StackPanel Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">
+                                <StackPanel  Height="200"
+                                    Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">
                                     <CheckBox IsChecked="{Binding ElementHyperboleRectangle }"
                         Content="Прямоугольник" 
-                        Style="{StaticResource ElementHide}"
+                        Style="{StaticResource ElementHides}"
                                    Click="SinCos"
                               />
                                     <CheckBox IsChecked="{Binding ElementHyperboleAssim }"
                         Content="Асимптоты" 
-                        Style="{StaticResource ElementHide}"
+                        Style="{StaticResource ElementHides}"
                                    Click="SinCos"
                               />
                                     <CheckBox Content="Фокусы" 
                               IsChecked="{Binding ElementHyperboleFocus }"                             
-                              Style="{StaticResource ElementHide}"
+                              Style="{StaticResource ElementHides}"
                                    Click="SinCos"/>
                                     <CheckBox Content="Точки" 
                               IsChecked="{Binding ElementHyperboleFocus }"                             
-                              Style="{StaticResource ElementHide}"
+                              Style="{StaticResource ElementHides}"
                                    Click="SinCos"/>
                                 </StackPanel>
-
-
-                                <!--<Button Click="ComeBack"
-                            Style="{StaticResource BackButton}"
-                            Margin="0,0,0,30" HorizontalAlignment="Center" Content=" Назад "/>-->
-
+                              
                             </StackPanel>
                         </Border>
                     </DockPanel>

@@ -249,7 +249,7 @@
                   IsChecked="{Binding Eraser}"
                   Style="{StaticResource EraserStyles}"
                                       Grid.Column="0">
-                               
+
                             </RadioButton>
                             <RadioButton Background="{DynamicResource Pencel}"
                   Style="{StaticResource PenStyles}"
@@ -324,8 +324,8 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                
-                                
+
+
                                 <Border CornerRadius="5" Margin="5" Width="22" Height="22" BorderThickness="1" BorderBrush="White" Background="Black">
                                     <Button Tag="1" Style="{StaticResource ColorButton}" Background="Transparent" Click="changeColor"/>
                                 </Border>
@@ -536,7 +536,8 @@
               Grid.Row="1"
               x:Name="GridCanvas">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" 
-                          Grid.Column="1" >
+                          Grid.Column="1" 
+                              PanningMode="Both">
                     <DockPanel>
                         <ToggleButton x:Name="TgBtn"
                                       Grid.Column="0"
@@ -552,7 +553,7 @@
                         <Border Panel.ZIndex="1" Margin="15"
                             Grid.Column="1" x:Name="ElementStack"
                                 VerticalAlignment="Top"
-                            CornerRadius="10" Height="800"
+                            CornerRadius="10" 
                         Background="{StaticResource OneColor}">
                             <StackPanel  >
                                 <Grid>
@@ -727,20 +728,20 @@
 
                                     </Grid>
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">
+                                <StackPanel Style="{StaticResource HideElement}"
+                                            MouseMove="Area_PreviewMouseMove"
+                                            Height="150">
+
                                     <CheckBox IsChecked="{Binding ElementCirclePoint }"
                         Content="Точка на окружности" 
-                        Style="{StaticResource ElementHide}"
+                        Style="{StaticResource ElementHides}"
                               Click="Update"
                               />
                                     <CheckBox Content="Радиус окружности" 
                               IsChecked="{Binding ElementCircle }"                             
-                              Style="{StaticResource ElementHide}"
+                              Style="{StaticResource ElementHides}"
                                   Click="Update"/>
                                 </StackPanel>
-
-
-
                             </StackPanel>
                         </Border>
                     </DockPanel>

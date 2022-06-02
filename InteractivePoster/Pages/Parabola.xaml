@@ -548,13 +548,14 @@
             x:Name="Background"
             />
             </Canvas>
- 
+
             <!--к свойству Tag у канвы биндим значение слайдера с масштабом. Not magic, science-->
             <Grid Width="500" HorizontalAlignment="Right"
               Grid.Column ="1"
               x:Name="GridCanvas"
               Background="{DynamicResource ThreeColor}">
-                <ScrollViewer Panel.ZIndex="1" Grid.Column="1" >
+                <ScrollViewer Panel.ZIndex="1" Grid.Column="1"
+                              PanningMode="Both">
                     <DockPanel>
                         <ToggleButton x:Name="TgBtn"
                                       Grid.Column="0"
@@ -570,7 +571,6 @@
                         </ToggleButton>
                         <Border Panel.ZIndex="1" Margin="15"
                                 CornerRadius="10"
-                                Height="900"
                             Grid.Column="1" x:Name="ElementStack"
                         Background="{StaticResource OneColor}">
                             <StackPanel  >
@@ -739,6 +739,7 @@
                                         </Grid.ColumnDefinitions>
                                         <CheckBox Grid.ColumnSpan="2"
                               Panel.ZIndex="1"
+                                                   Height="50"
                           x:Name="Element_Circle" Content="Видимость объектов"
                                 Style="{StaticResource CheckBoxContext}"
                                 Width="auto"/>
@@ -750,23 +751,23 @@
                                     </Grid>
                                 </StackPanel>
 
-                                <StackPanel Style="{StaticResource HideElement}" MouseMove="Area_PreviewMouseMove">
+                                <StackPanel Style="{StaticResource HideElement}" 
+                                            MouseMove="Area_PreviewMouseMove"
+                                            Height="150">
                                     <CheckBox IsChecked="{Binding ElementParabolaFocus }"
                         Content="Фокус" 
-                        Style="{StaticResource ElementHide}"
+                        Style="{StaticResource ElementHides}"
                                Click="Update"
                               />
                                     <CheckBox Content="Директриса" 
                               IsChecked="{Binding ElementParabolaD }"                             
-                              Style="{StaticResource ElementHide}"
+                              Style="{StaticResource ElementHides}"
                                Click="Update"/>
                                     <CheckBox Content="Точка" 
                               IsChecked="{Binding ElementParabolaPoint }"                             
-                              Style="{StaticResource ElementHide}"
+                              Style="{StaticResource ElementHides}"
                                Click="Update"/>
-
                                 </StackPanel>
-
                             </StackPanel>
                         </Border>
                     </DockPanel>

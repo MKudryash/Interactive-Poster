@@ -553,7 +553,7 @@
                         <Border Panel.ZIndex="1" Margin="15"
                                 CornerRadius="10"
                             Grid.Column="1" x:Name="ElementStack"
-                                Height="1050"
+                                
                         Background="{StaticResource OneColor}">
                             <StackPanel>
                                 <Grid>
@@ -778,15 +778,15 @@
                                 MouseMove="Area_PreviewMouseMove">
                                     <CheckBox IsChecked="{Binding ElementElipseRadius }"
                         Content="Точки" 
-                        Style="{StaticResource ElementHide}"
+                        Style="{StaticResource ElementHides}"
                                    Click="SinCos"/>
                                     <CheckBox Content="Точка на элипсе" 
                               IsChecked="{Binding ElementElipsePoint,UpdateSourceTrigger=PropertyChanged}"                             
-                              Style="{StaticResource ElementHide}"
+                              Style="{StaticResource ElementHides}"
                                    Click="SinCos"/>
                                     <CheckBox Content="Фокусы" 
                               IsChecked="{Binding ElementElipseFocus }"                             
-                              Style="{StaticResource ElementHide}"
+                              Style="{StaticResource ElementHides}"
                                   Click="SinCos"/>
                                 </StackPanel>
                                 <StackPanel Margin="20" 
