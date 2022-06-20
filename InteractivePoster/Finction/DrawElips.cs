@@ -314,14 +314,13 @@ namespace InteractivePoster.Finction
                     case true:
                         {
                             if (x == 0 && y == 0) return @"\frac{("+Math.Round(Math.Cos(gradusValueElips),2)+ "x)-(" + Math.Round(Math.Sin(gradusValueElips), 2) + "y))^2}{" + rW.ToString("F1") +
-                     @"^2}+ \frac{(" + Math.Round(Math.Sin(gradusValueElips), 2) + "y)+(" + Math.Round(Math.Cos(gradusValueElips), 2) + "x)))^2}{" + rH.ToString("F1") + @"^2} = 1";
-                            if (y == 0) return @"\frac{(" + Math.Round(Math.Cos(gradusValueElips), 2) + "x)-(" + Math.Round(Math.Sin(gradusValueElips), 2) + "y))-(" + x.ToString("F1") + ")" + @"))^2}{" 
-+ rW.ToString("F1") +
-                      @"^2}+ \frac{(" + Math.Round(Math.Sin(gradusValueElips), 2) + "x)+(" + Math.Round(Math.Cos(gradusValueElips), 2) + "y)))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                     @"^2} + \frac{(" + Math.Round(Math.Sin(gradusValueElips), 2) + "y)+(" + Math.Round(Math.Cos(gradusValueElips), 2) + "x)))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                            if (y == 0) return @"\frac{(" + Math.Round(Math.Cos(gradusValueElips), 2) + "x)-(" + Math.Round(Math.Sin(gradusValueElips), 2) + "y))-(" + x.ToString("F1") + ")" + @"))^2}{"+ rW.ToString("F1") +
+                      @"^2} + \frac{(" + Math.Round(Math.Sin(gradusValueElips), 2) + "x)+(" + Math.Round(Math.Cos(gradusValueElips), 2) + "y)))^2}{" + rH.ToString("F1") + @"^2} = 1";
                             if (x == 0) return @"\frac{(" + Math.Round(Math.Cos(gradusValueElips), 2) + "x)-(" + Math.Round(Math.Sin(gradusValueElips), 2) + "y)))^2}{" + rW.ToString("F1") +
                      @"^2}+ \frac{(" + Math.Round(Math.Sin(gradusValueElips), 2) + "x)+(" + Math.Round(Math.Cos(gradusValueElips), 2) + "y))-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                             return @"\frac{(" + Math.Round(Math.Cos(gradusValueElips), 2) + "x)-(" + Math.Round(Math.Sin(gradusValueElips), 2) + "y))-(" + x.ToString("F1") + ")" + @"))^2}{" + rW.ToString("F1") +
-                      @"^2}+ \frac{(" + Math.Round(Math.Sin(gradusValueElips), 2) + "x)+(" + Math.Round(Math.Cos(gradusValueElips), 2) + "y))-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
+                      @"^2} + \frac{(" + Math.Round(Math.Sin(gradusValueElips), 2) + "x)+(" + Math.Round(Math.Cos(gradusValueElips), 2) + "y))-(" + y.ToString("F1") + ")" + @"))^2}{" + rH.ToString("F1") + @"^2} = 1";
                         }
 
                     case false:

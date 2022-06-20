@@ -620,11 +620,15 @@
                                         <GroupBox Header="Каноническое уравнение:">
                                             <Grid>
                                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-                                                    <controls:FormulaControl 
-                               x:Name="Formula" 
-                                     Scale="28"
-                                                        Foreground="{DynamicResource Coordinate}"
-                                />
+                                                    <ScrollViewer Width="700" HorizontalScrollBarVisibility="Visible"
+                                                               VerticalScrollBarVisibility="Hidden" >
+                                                        <controls:FormulaControl  x:Name="Formula" 
+                                                                                  Scale="28"
+                                                                                  Height="85"
+                                                                                  VerticalAlignment="Center"
+                                                                                  HorizontalAlignment="Center"
+                                                        Foreground="{DynamicResource Coordinate}"/>
+                                                    </ScrollViewer>
                                                 </StackPanel>
                                             </Grid>
                                         </GroupBox>

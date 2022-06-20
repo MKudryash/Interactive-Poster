@@ -573,7 +573,7 @@
                                 CornerRadius="10"
                             Grid.Column="1" x:Name="ElementStack"
                         Background="{StaticResource OneColor}">
-                            <StackPanel  >
+                            <StackPanel>
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
