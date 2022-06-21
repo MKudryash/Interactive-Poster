@@ -602,32 +602,33 @@
                                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="\frac{(x-x_0)^2}{a^2} + \frac{(y-y_0)^2}{b^2} = 1"
-                                                                      Foreground="{DynamicResource Coordinate}"
-                                                                      Background="{DynamicResource ThreeColor}"/>
+                                                                      Background="White"/>
                                             <TextBlock Style="{StaticResource Heading}" Text="Расстояние между фокусами вычисляется по формуле: "/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
-                                                                      Background="{DynamicResource ThreeColor}"
+                                                                      Background="White"
                                 Formula="c = \sqrt{a^2+b^2}, a>b" 
-                                                                      Foreground="{DynamicResource Coordinate}"/>
+                                                                     />
                                             <controls:FormulaControl HorizontalAlignment="Center" 
-                                                                      Background="{DynamicResource ThreeColor}"
+                                                                      Background="White"
                                 Formula="c = \sqrt{b^2-a^2}, b>a"
-                                                                      Foreground="{DynamicResource Coordinate}"/>
+                                                                      />
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1"
                                 Margin="10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <GroupBox Header="Каноническое уравнение:">
-                                            <Grid>
-                                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <GroupBox Header="Каноническое уравнение:"   Background="White">
+                                            <Grid   Background="White" >
+                                                <StackPanel   Background="White" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                                                     <ScrollViewer Width="700" HorizontalScrollBarVisibility="Visible"
-                                                               VerticalScrollBarVisibility="Hidden" >
+                                                               VerticalScrollBarVisibility="Hidden"   >
                                                         <controls:FormulaControl  x:Name="Formula" 
                                                                                   Scale="28"
                                                                                   Height="85"
                                                                                   VerticalAlignment="Center"
                                                                                   HorizontalAlignment="Center"
-                                                        Foreground="{DynamicResource Coordinate}"/>
+                                                                                  Margin="0,10,0,0"
+                                                                                 
+                                                        />
                                                     </ScrollViewer>
                                                 </StackPanel>
                                             </Grid>

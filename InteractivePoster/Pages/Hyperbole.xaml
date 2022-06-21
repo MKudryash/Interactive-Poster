@@ -597,13 +597,12 @@
                                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="\frac{(x-x_0)^2}{a^2} - \frac{(y-y_0)^2}{b^2} = 1"
-                                                    Foreground="{DynamicResource Coordinate}"
-                                                     Background="{DynamicResource ThreeColor}"/>
+                                                     Background="White"/>
                                             <TextBlock Style="{StaticResource Heading}" 
                                            Text="Расстояние между фокусами вычисляется по формуле: "/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
-                                Formula="c^2 = a^2+b^2" Foreground="{DynamicResource Coordinate}"
-                                                     Background="{DynamicResource ThreeColor}"/>
+                                Formula="c^2 = a^2+b^2" 
+                                                     Background="White"/>
                                             <TextBlock Foreground="{DynamicResource HeadingForGroupBox}"
                                                        Width="auto" TextWrapping="Wrap" FontSize="20">Гипербола называется 
                                     <Run Foreground="{DynamicResource TwoColor}">равносторонней</Run>
@@ -612,17 +611,18 @@
                                     </StackPanel>
                                     <StackPanel Grid.Row="1"
                                 Margin="10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <GroupBox Header="Каноническое уравнение:">
+                                        <GroupBox Background="White" Header="Каноническое уравнение:">
                                             <Grid>
-                                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                                <StackPanel  Background="White" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                                                     <ScrollViewer Width="600" HorizontalScrollBarVisibility="Visible"
                                                                VerticalScrollBarVisibility="Hidden" >
                                                         <controls:FormulaControl  x:Name="Formula" 
                                                                                   Scale="28"
                                                                                   Height="85"
+                                                                                   Margin="0,10,0,0"
                                                                                   VerticalAlignment="Center"
                                                                                   HorizontalAlignment="Center"
-                                                        Foreground="{DynamicResource Coordinate}"/>
+                                                      />
                                                     </ScrollViewer>
                                                 </StackPanel>
                                             </Grid>

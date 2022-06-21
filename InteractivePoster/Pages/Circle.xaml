@@ -601,19 +601,18 @@
                                             <TextBlock Style="{StaticResource Heading}" Text="Каноническое уравнение:"/>
                                             <controls:FormulaControl HorizontalAlignment="Center" 
                                 Formula="(x-x_0)^2+ (y-y_0)^2 = r^2"
-                                                                      Foreground="{DynamicResource Coordinate}"
-                                                     Background="{DynamicResource ThreeColor}"
+                                                                     Background="White"
                                                     />
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1"
                                 Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <GroupBox Header="Каноническое уравнение:">
-                                            <Grid>
-                                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <GroupBox Background="White" Header="Каноническое уравнение:">
+                                            <Grid  Background="White">
+                                                <StackPanel   VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                                                     <controls:FormulaControl 
                                x:Name="Formula" 
-                                                         Foreground="{DynamicResource Coordinate}"
+                                                        Margin="0,10"
                                      Scale="28"
                                 />
                                                 </StackPanel>

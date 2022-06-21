@@ -620,12 +620,12 @@
                                     </StackPanel>
                                     <StackPanel Grid.Row="1"
                                 Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <GroupBox Header="Каноническое уравнение:">
-                                            <Grid>
-                                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <GroupBox Background="White" Header="Каноническое уравнение:">
+                                            <Grid  Background="White">
+                                                <StackPanel   VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                                                     <controls:FormulaControl 
                                x:Name="Formula" 
-                                                        Foreground="{DynamicResource Coordinate}"
+                                                         Margin="7"
                                      Scale="28"
                                 />
                                                 </StackPanel>
