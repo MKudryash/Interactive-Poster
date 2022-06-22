@@ -619,7 +619,7 @@
                                         <GroupBox Header="Каноническое уравнение:"   Background="White">
                                             <Grid   Background="White" >
                                                 <StackPanel   Background="White" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-                                                    <ScrollViewer Width="700" HorizontalScrollBarVisibility="Visible"
+                                                    <ScrollViewer Width="700" HorizontalScrollBarVisibility="Auto"
                                                                VerticalScrollBarVisibility="Hidden"   >
                                                         <controls:FormulaControl  x:Name="Formula" 
                                                                                   Scale="28"
@@ -692,7 +692,7 @@
                                             </GroupBox>
 
                                             <!--Радиус окружности width-->
-                                            <GroupBox Header="Радиус окружности ширина">
+                                            <GroupBox Header="Радиус (ширина)">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="auto"/>
@@ -708,7 +708,7 @@
                                             </GroupBox>
 
                                             <!--Радиус окружности height-->
-                                            <GroupBox Header="Радиус окружности высота">
+                                            <GroupBox Header="Радиус (высота)">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="auto"/>
